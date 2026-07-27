@@ -46,6 +46,14 @@
     font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
   }
+  ::selection {
+    background-color: #F9F1E3;
+    color: #0F1B33;
+  }
+  ::-moz-selection {
+    background-color: #F9F1E3;
+    color: #0F1B33;
+  }
 }
 
 @utility container-page {
