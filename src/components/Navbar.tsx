@@ -156,7 +156,7 @@ export function Navbar() {
             transition={{ duration: 0.25, ease: dropdownEase }}
             className="lg:hidden border-t border-border overflow-hidden shadow-lg"
           >
-            <div className="container-page py-4 space-y-1">
+            <div className="container-page py-4 space-y-1 max-h-[80vh] overflow-y-auto">
               {NAV.map((n) =>
                 n.dropdown ? (
                   <div key={n.to}>
@@ -177,43 +177,38 @@ export function Navbar() {
                           exit={{ height: 0 }}
                           className="overflow-hidden"
                         >
-                          <div className="pl-3 pt-1 pb-2 space-y-2">
+                          <div className="pl-3 pt-1 pb-2 space-y-1.5">
                             {SERVICES_BY_CATEGORY.map(({ category, services }) => (
-                              <div
-                                key={category.id}
-                                className="border-l-2 border-warm/20 pl-3 py-1"
-                              >
+                              <div key={category.id} className="border-l-2 border-warm/20 pl-3 py-1">
                                 <Link
                                   to="/services"
                                   onClick={() => setMobileOpen(false)}
-                                  className="text-[12px] font-bold text-warm uppercase tracking-wider block mb-1"
+                                  className="text-[11px] font-bold text-warm uppercase tracking-wider block mb-1"
                                 >
                                   {category.name}
                                 </Link>
                                 <div className="space-y-0.5">
-                                  {services.slice(0, 4).map((s) => (
+                                  {services.slice(0, 2).map((s) => (
                                     <Link
                                       key={s.slug}
                                       to="/services/$slug"
                                       params={{ slug: s.slug }}
                                       onClick={() => setMobileOpen(false)}
-                                      className="block text-[14px] text-navy/70 hover:text-navy py-1 transition-colors"
+                                      className="block text-[14px] text-navy/70 hover:text-navy py-1 transition-colors truncate"
                                     >
                                       {s.title}
                                     </Link>
                                   ))}
-                                  {services.length > 4 && (
-                                    <Link
-                                      to="/services"
-                                      onClick={() => setMobileOpen(false)}
-                                      className="block text-[12px] text-warm font-medium py-0.5"
-                                    >
-                                      View all {services.length} &rarr;
-                                    </Link>
-                                  )}
                                 </div>
                               </div>
                             ))}
+                            <Link
+                              to="/services"
+                              onClick={() => setMobileOpen(false)}
+                              className="flex items-center gap-1 text-[13px] font-medium text-warm px-3 py-1.5 hover:text-warm-dark transition-colors"
+                            >
+                              View all services <ChevronRight className="w-3.5 h-3.5" />
+                            </Link>
                           </div>
                         </motion.div>
                       )}
