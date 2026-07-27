@@ -1,0 +1,57 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@theme inline {
+  --color-navy: #0f1b33;
+  --color-navy-dark: #070e1f;
+  --color-navy-light: #1b3254;
+  --color-warm: #d4952e;
+  --color-warm-light: #f5e8d0;
+  --color-warm-dark: #a5711a;
+  --color-ink: #111827;
+  --color-paper: #ffffff;
+  --color-fog: #f8f6f3;
+  --color-mist: #d4d0c8;
+  --color-steel: #6b7280;
+  --color-graphite: #4b5563;
+
+  --color-background: #ffffff;
+  --color-foreground: #111827;
+  --color-border: #e8e5df;
+  --color-muted: #f8f6f3;
+  --color-muted-foreground: #6b7280;
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  --radius-tag: 4px;
+  --radius-card: 10px;
+  --radius-input: 8px;
+  --radius-button: 8px;
+}
+
+:root {
+  --page-max: 1200px;
+}
+
+@layer base {
+  * {
+    border-color: #e8e5df;
+    font-feature-settings: "calt" 0, "liga" 0, "ss03", "cv01", "cv10";
+  }
+  html,
+  body {
+    background-color: #ffffff;
+    color: #111827;
+    font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@utility container-page {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
