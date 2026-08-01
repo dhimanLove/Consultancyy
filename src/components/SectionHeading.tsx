@@ -37,17 +37,22 @@ export function SectionHeading({ eyebrow, heading, center, subtext }: Props) {
   return (
     <div ref={wrapRef} className={center ? "text-center" : ""}>
       {eyebrow && (
-        <div className="inline-flex items-center gap-2 text-[11px] font-semibold text-warm uppercase tracking-[0.15em] mb-1">
-          <span className="w-5 h-[2px] rounded-full bg-warm/50" />
+        <p className="text-[12px] font-semibold uppercase tracking-[0.2em] text-steel mb-2">
           {eyebrow}
-        </div>
+        </p>
       )}
-      <h2 className="text-[32px] md:text-[42px] font-bold text-navy leading-[1.15] tracking-tight">
+      <h2 className="font-display text-[24px] md:text-[27px] font-bold uppercase tracking-[0.055em] text-navy leading-[1.3]">
         {heading}
       </h2>
+      <span
+        aria-hidden
+        className={`block h-1 w-[35px] bg-[#FFD712] mt-3 ${center ? "mx-auto" : ""}`}
+      />
       {subtext && (
         <p
-          className={`text-[15px] text-steel mt-3 max-w-[560px] leading-relaxed ${center ? "mx-auto" : ""}`}
+          className={`text-[15px] text-steel mt-4 max-w-[620px] leading-relaxed ${
+            center ? "mx-auto" : ""
+          }`}
         >
           {subtext}
         </p>

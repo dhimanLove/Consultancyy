@@ -1,20 +1,21 @@
 import { useState, type FormEvent } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, type Variants } from "framer-motion";
 import { PageHeader } from "@/components/PageHeader";
 import { SectionHeading } from "@/components/SectionHeading";
+import { SERVICES } from "@/lib/services-data";
 import { Phone, Mail, Clock, MapPin, Send, CheckCircle, User, ChevronDown } from "lucide-react";
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { staggerChildren: 0.06, delayChildren: 0.05 } },
 };
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
 };
 
-const fieldVariants = {
+const fieldVariants: Variants = {
   hidden: { opacity: 0, x: -12 },
   visible: (i: number) => ({
     opacity: 1,
@@ -30,7 +31,7 @@ const contactStructured = {
       "@type": "ContactPage",
       name: "Contact Chartered Solution Indore",
       description:
-        "Get in touch with Chartered Solution for business registration, GST, FSSAI, ISO, and compliance services in Indore.",
+        "Get in touch with Chartered Solution for business registration, GST, FSSAI, MSME, ITR, audit, and compliance services in Indore.",
       url: "https://www.charteredsolution.com/contact-us",
     },
     {
@@ -74,7 +75,27 @@ export const Route = createFileRoute("/contact-us")({
           "Visit us at 152, Sanchar Nagar Ext., Goyal Nagar, Kanadia Road, Indore, MP 452016. Call +91 88155 53899.",
       },
       { property: "og:url", content: "https://www.charteredsolution.com/contact-us" },
+      { property: "og:image", content: "https://www.charteredsolution.com/Charted.jpeg" },
+      { property: "og:type", content: "website" },
+      { property: "og:locale", content: "en_IN" },
+      { property: "og:site_name", content: "Chartered Solution" },
       { name: "twitter:card", content: "summary_large_image" },
+      {
+        name: "twitter:title",
+        content: "Contact Us | Chartered Solution \u2014 Indore Office",
+      },
+      {
+        name: "twitter:description",
+        content:
+          "Visit us at 152, Sanchar Nagar Ext., Goyal Nagar, Kanadia Road, Indore, MP 452016. Call +91 88155 53899.",
+      },
+      {
+        name: "twitter:image",
+        content: "https://www.charteredsolution.com/Charted.jpeg",
+      },
+      { name: "geo.position", content: "22.7262239;75.919035" },
+      { name: "geo.placename", content: "Indore, Madhya Pradesh" },
+      { name: "geo.region", content: "IN-MP" },
     ],
     links: [{ rel: "canonical", href: "https://www.charteredsolution.com/contact-us" }],
     scripts: [{ type: "application/ld+json", innerHTML: JSON.stringify(contactStructured) }],
@@ -83,10 +104,10 @@ export const Route = createFileRoute("/contact-us")({
 });
 
 const inputBase =
-  "w-full bg-white border-2 border-gray-200 rounded-[10px] px-4 py-3 text-[15px] text-navy placeholder:text-gray-300 outline-none transition-all duration-200 " +
-  "hover:border-warm/30 focus:border-warm focus:ring-4 focus:ring-warm/10 focus:shadow-lg focus:shadow-warm/5";
+  "w-full bg-white border-2 border-gray-200 rounded-[2px] px-4 py-3 text-[15px] text-navy placeholder:text-gray-300 outline-none transition-all duration-200 " +
+  "hover:border-primary/30 focus:border-primary focus:ring-4 focus:ring-primary/10 focus:shadow-lg focus:shadow-primary/5";
 
-const labelBase = "block text-[13px] font-semibold text-navy mb-1.5";
+const labelBase = "block text-[13px] font-bold text-navy mb-1.5";
 
 function ContactUsPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -101,10 +122,10 @@ function ContactUsPage() {
 
   const update =
     (field: string) =>
-      (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
-        setValues((v) => ({ ...v, [field]: e.target.value }));
+    (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
+      setValues((v) => ({ ...v, [field]: e.target.value }));
 
-  const PHONE = "91881553899";
+  const PHONE = "918815553899";
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -135,7 +156,7 @@ function ContactUsPage() {
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
       <PageHeader
         crumbs={[{ label: "Home", to: "/" }, { label: "Contact Us" }]}
-        title="Let\u2019s talk about your business needs."
+        title="Let's talk about your business needs."
         subtext="Reach out to Chartered Solution in Indore for business registration, compliance, and all your service needs."
       />
 
@@ -150,7 +171,7 @@ function ContactUsPage() {
                   initial={{ opacity: 0, scale: 0.9, y: 20 }}
                   animate={{ opacity: 1, scale: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.9, y: -20 }}
-                  className="mt-8 p-10 bg-gradient-to-br from-warm-light/60 to-white border-2 border-warm/20 rounded-[14px] text-center"
+                  className="mt-8 p-10 bg-warm-light/40 border-2 border-warm/20 rounded-[14px] text-center"
                 >
                   <motion.div
                     initial={{ scale: 0 }}
@@ -174,7 +195,7 @@ function ContactUsPage() {
                     transition={{ delay: 0.4 }}
                     className="text-[14px] text-steel mt-2 leading-relaxed"
                   >
-                    We\u2019ve received your enquiry and will get back to you within 24 hours.
+                    We've received your enquiry and will get back to you within 24 hours.
                   </motion.p>
                   <motion.button
                     initial={{ opacity: 0 }}
@@ -201,10 +222,10 @@ function ContactUsPage() {
                   <div className="grid sm:grid-cols-2 gap-4">
                     <motion.div custom={0} variants={fieldVariants}>
                       <label className={labelBase}>
-                        Full Name <span className="text-warm">*</span>
+                        Full Name <span className="text-error">*</span>
                       </label>
                       <div className="relative group">
-                        <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-300 group-focus-within:text-warm transition-colors duration-200" />
+                        <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-300 group-focus-within:text-primary transition-colors duration-200" />
                         <input
                           type="text"
                           required
@@ -213,15 +234,15 @@ function ContactUsPage() {
                           className={`${inputBase} pl-10`}
                           placeholder="Your name"
                         />
-                        <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-warm scale-x-0 group-focus-within:scale-x-100 transition-transform duration-300 origin-left rounded-full" />
+                        <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-primary scale-x-0 group-focus-within:scale-x-100 transition-transform duration-300 origin-left rounded-full" />
                       </div>
                     </motion.div>
                     <motion.div custom={1} variants={fieldVariants}>
                       <label className={labelBase}>
-                        Phone <span className="text-warm">*</span>
+                        Phone <span className="text-error">*</span>
                       </label>
                       <div className="relative group">
-                        <Phone className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-300 group-focus-within:text-warm transition-colors duration-200" />
+                        <Phone className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-300 group-focus-within:text-primary transition-colors duration-200" />
                         <input
                           type="tel"
                           required
@@ -230,16 +251,16 @@ function ContactUsPage() {
                           className={`${inputBase} pl-10`}
                           placeholder="+91 XXXXX XXXXX"
                         />
-                        <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-warm scale-x-0 group-focus-within:scale-x-100 transition-transform duration-300 origin-left rounded-full" />
+                        <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-primary scale-x-0 group-focus-within:scale-x-100 transition-transform duration-300 origin-left rounded-full" />
                       </div>
                     </motion.div>
                   </div>
                   <motion.div custom={2} variants={fieldVariants}>
                     <label className={labelBase}>
-                      Email <span className="text-warm">*</span>
+                      Email <span className="text-error">*</span>
                     </label>
                     <div className="relative group">
-                      <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-300 group-focus-within:text-warm transition-colors duration-200" />
+                      <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-300 group-focus-within:text-primary transition-colors duration-200" />
                       <input
                         type="email"
                         required
@@ -248,12 +269,12 @@ function ContactUsPage() {
                         className={`${inputBase} pl-10`}
                         placeholder="your@email.com"
                       />
-                      <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-warm scale-x-0 group-focus-within:scale-x-100 transition-transform duration-300 origin-left rounded-full" />
+                      <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-primary scale-x-0 group-focus-within:scale-x-100 transition-transform duration-300 origin-left rounded-full" />
                     </div>
                   </motion.div>
                   <motion.div custom={3} variants={fieldVariants}>
                     <label className={labelBase}>
-                      Service Needed <span className="text-warm">*</span>
+                      Service Needed <span className="text-error">*</span>
                     </label>
                     <div className="relative group">
                       <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-300 pointer-events-none group-focus-within:text-warm transition-colors duration-200" />
@@ -264,18 +285,13 @@ function ContactUsPage() {
                         className={`${inputBase} appearance-none cursor-pointer pr-10`}
                       >
                         <option value="">Select a service...</option>
-                        <option value="gst-registration">GST Registration</option>
-                        <option value="gst-filing">GST Return Filing</option>
-                        <option value="itr-filing">ITR Filing</option>
-                        <option value="fssai">FSSAI License</option>
-                        <option value="iso">ISO Certification</option>
-                        <option value="msme">MSME / Udyam Registration</option>
-                        <option value="iec">IEC Code</option>
-                        <option value="trademark">Trademark Registration</option>
-                        <option value="company-incorporation">Company Incorporation</option>
-                        <option value="other">Other</option>
+                        {SERVICES.map((s) => (
+                          <option key={s.slug} value={s.title}>
+                            {s.title}
+                          </option>
+                        ))}
                       </select>
-                      <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-warm scale-x-0 group-focus-within:scale-x-100 transition-transform duration-300 origin-left rounded-full" />
+                      <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-primary scale-x-0 group-focus-within:scale-x-100 transition-transform duration-300 origin-left rounded-full" />
                     </div>
                   </motion.div>
                   <motion.div custom={4} variants={fieldVariants}>
@@ -288,14 +304,14 @@ function ContactUsPage() {
                         className={`${inputBase} resize-none`}
                         placeholder="How can we help you?"
                       />
-                      <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-warm scale-x-0 group-focus-within:scale-x-100 transition-transform duration-300 origin-left rounded-full" />
+                      <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-primary scale-x-0 group-focus-within:scale-x-100 transition-transform duration-300 origin-left rounded-full" />
                     </div>
                   </motion.div>
                   <motion.div custom={5} variants={fieldVariants}>
                     <button
                       type="submit"
                       disabled={sending}
-                      className="w-full rounded-[10px] bg-navy text-white font-semibold text-[14px] px-6 py-3.5 flex items-center justify-center gap-2.5 hover:bg-navy/90 active:scale-[0.98] transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed shadow-lg shadow-navy/10"
+                      className="w-full rounded-[2px] bg-primary text-white font-bold text-[14px] px-6 py-3.5 flex items-center justify-center gap-2.5 hover:bg-primary-70 active:scale-[0.98] transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed shadow-lg shadow-primary/10"
                     >
                       <AnimatePresence mode="wait">
                         {sending ? (
@@ -344,7 +360,7 @@ function ContactUsPage() {
           </div>
 
           <div className="space-y-6">
-            <div className="bg-gradient-to-br from-fog to-white border border-border rounded-[14px] p-8 shadow-sm">
+            <div className="bg-fog border border-border rounded-[14px] p-8 shadow-sm">
               <h3 className="text-[16px] font-bold text-navy mb-6 flex items-center gap-2">
                 <span className="w-1 h-5 rounded-full bg-warm" />
                 Our Office
@@ -382,7 +398,7 @@ function ContactUsPage() {
                     <p className="text-[14px] font-semibold text-navy">Phone / WhatsApp</p>
                     <a
                       href="tel:+918815553899"
-                      className="text-[13px] text-steel hover:text-warm transition-colors mt-0.5 block"
+                      className="text-[13px] text-steel hover:text-primary transition-colors mt-0.5 block"
                     >
                       +91 88155 53899
                     </a>
@@ -399,7 +415,7 @@ function ContactUsPage() {
                     <p className="text-[14px] font-semibold text-navy">Email</p>
                     <a
                       href="mailto:charteredgesolution@gmail.com"
-                      className="text-[13px] text-steel hover:text-warm transition-colors mt-0.5 block"
+                      className="text-[13px] text-steel hover:text-primary transition-colors mt-0.5 block"
                     >
                       charteredgesolution@gmail.com
                     </a>
@@ -415,7 +431,7 @@ function ContactUsPage() {
                   <div>
                     <p className="text-[14px] font-semibold text-navy">Working Hours</p>
                     <p className="text-[13px] text-steel mt-0.5">
-                      Monday \u2013 Saturday: 9:30 AM \u2013 6:30 PM
+                      Monday – Saturday: 9:30 AM – 6:30 PM
                     </p>
                     <p className="text-[13px] text-steel">Sunday: Closed</p>
                   </div>

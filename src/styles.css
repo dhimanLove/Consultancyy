@@ -3,26 +3,34 @@
 @import "tw-animate-css";
 
 @theme inline {
-  --color-navy: #0f1b33;
-  --color-navy-dark: #070e1f;
-  --color-navy-light: #1b3254;
-  --color-warm: #d4952e;
-  --color-warm-light: #f5e8d0;
-  --color-warm-dark: #a5711a;
+  --color-navy: #06306d;
+  --color-navy-dark: #041f47;
+  --color-navy-light: #0e57d5;
+  --color-warm: #ffb000;
+  --color-warm-light: #fff4d6;
+  --color-warm-dark: #cc8c00;
+  --color-primary: #004cd2;
+  --color-primary-light: #3d78e0;
+  --color-primary-60: #3d78e0;
+  --color-primary-70: #2466d8;
+  --color-primary-80: #0e57d5;
+  --color-primary-dark: #06306d;
   --color-ink: #111827;
   --color-paper: #ffffff;
-  --color-fog: #f8f6f3;
-  --color-mist: #d4d0c8;
-  --color-steel: #6b7280;
-  --color-graphite: #4b5563;
+  --color-fog: #f5f5f5;
+  --color-mist: #e5e5e5;
+  --color-steel: #4b5563;
+  --color-graphite: #374151;
+  --color-error: #d92d20;
 
   --color-background: #ffffff;
-  --color-foreground: #111827;
-  --color-border: #e8e5df;
-  --color-muted: #f8f6f3;
+  --color-foreground: #000000;
+  --color-border: #e5e5e5;
+  --color-muted: #f5f5f5;
   --color-muted-foreground: #6b7280;
 
-  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-sans: "Google Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: "Google Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
 
   --radius-tag: 4px;
   --radius-card: 10px;
@@ -36,23 +44,23 @@
 
 @layer base {
   * {
-    border-color: #e8e5df;
+    border-color: #e5e5e5;
     font-feature-settings: "calt" 0, "liga" 0, "ss03", "cv01", "cv10";
   }
   html,
   body {
     background-color: #ffffff;
-    color: #111827;
-    font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+    color: #000000;
+    font-family: "Google Sans", ui-sans-serif, system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
   }
   ::selection {
-    background-color: #F9F1E3;
-    color: #0F1B33;
+    background-color: #ffedb8;
+    color: #06306d;
   }
   ::-moz-selection {
-    background-color: #F9F1E3;
-    color: #0F1B33;
+    background-color: #ffedb8;
+    color: #06306d;
   }
 }
 

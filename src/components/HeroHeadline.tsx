@@ -43,10 +43,10 @@ export function HeroHeadline() {
       <span data-word className="inline-block will-change-transform">
         in
       </span>{" "}
-      <span data-word className="inline-block will-change-transform text-[#d4952e]">
+      <span data-word className="inline-block will-change-transform text-[#FFB000]">
         Indore
       </span>
-      <span data-word className="inline-block will-change-transform text-[#d4952e]">
+      <span data-word className="inline-block will-change-transform text-[#FFB000]">
         .
       </span>
     </h1>

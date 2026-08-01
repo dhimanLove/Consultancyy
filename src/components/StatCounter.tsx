@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { gsap } from "@/lib/gsap";
+import { gsap, ScrollTrigger } from "@/lib/gsap";
 
 interface Props {
   target: number;
@@ -8,16 +8,16 @@ interface Props {
 
 export function StatCounter({ target, suffix = "" }: Props) {
   const ref = useRef<HTMLSpanElement>(null);
-  const animated = useRef(false);
 
   useEffect(() => {
-    if (!ref.current || animated.current) return;
-    animated.current = true;
-
     const el = ref.current;
-    el.textContent = "0" + suffix;
+    if (!el) return;
 
-    const ctx = gsap.context(() => {
+    let done = false;
+    const animate = () => {
+      if (done) return;
+      done = true;
+      el.textContent = "0" + suffix;
       gsap.to(el, {
         textContent: target,
         duration: 1.5,
@@ -26,14 +26,24 @@ export function StatCounter({ target, suffix = "" }: Props) {
         modifiers: {
           textContent: (v) => Math.round(Number(v)).toLocaleString("en-IN") + suffix,
         },
-        scrollTrigger: {
-          trigger: el,
-          start: "top 90%",
-          once: true,
-        },
+      });
+    };
+
+    const ctx = gsap.context(() => {
+      ScrollTrigger.create({
+        trigger: el,
+        start: "top 92%",
+        once: true,
+        onEnter: animate,
       });
     });
-    return () => ctx.revert();
+
+    if (el.getBoundingClientRect().top < window.innerHeight * 0.92) animate();
+
+    return () => {
+      ctx.revert();
+      ScrollTrigger.refresh();
+    };
   }, [target, suffix]);
 
   return <span ref={ref}>0{suffix}</span>;

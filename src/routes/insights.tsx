@@ -12,7 +12,7 @@ export const Route = createFileRoute("/insights")({
       {
         name: "description",
         content:
-          "Expert insights, guides, and articles on business registration, GST, FSSAI, ISO, compliance, and tax topics from Chartered Solution in Indore.",
+          "Expert insights, guides, and articles on business registration, GST, FSSAI, MSME, compliance, and tax topics from Chartered Solution in Indore.",
       },
       {
         name: "keywords",
@@ -26,6 +26,27 @@ export const Route = createFileRoute("/insights")({
           "Expert articles and guides on business registration, compliance, GST, and tax topics from Chartered Solution Indore.",
       },
       { property: "og:url", content: "https://www.charteredsolution.com/insights" },
+      { property: "og:image", content: "https://www.charteredsolution.com/Charted.jpeg" },
+      { property: "og:type", content: "website" },
+      { property: "og:locale", content: "en_IN" },
+      { property: "og:site_name", content: "Chartered Solution" },
+      { name: "twitter:card", content: "summary_large_image" },
+      {
+        name: "twitter:title",
+        content: "Insights | Chartered Solution \u2014 Indore",
+      },
+      {
+        name: "twitter:description",
+        content:
+          "Expert articles and guides on business registration, compliance, GST, and tax topics from Chartered Solution Indore.",
+      },
+      {
+        name: "twitter:image",
+        content: "https://www.charteredsolution.com/Charted.jpeg",
+      },
+      { name: "geo.position", content: "22.7262239;75.919035" },
+      { name: "geo.placename", content: "Indore, Madhya Pradesh" },
+      { name: "geo.region", content: "IN-MP" },
     ],
     links: [{ rel: "canonical", href: "https://www.charteredsolution.com/insights" }],
     scripts: [
@@ -69,7 +90,7 @@ function InsightsPage() {
           <div className="max-w-[480px] mx-auto">
             <SectionHeading
               eyebrow="Coming Soon"
-              heading="We\u2019re writing something valuable."
+              heading="We're writing something valuable."
               center
             />
             <p className="text-[15px] text-steel mt-4 leading-relaxed">

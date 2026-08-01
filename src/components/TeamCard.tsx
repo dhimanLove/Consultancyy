@@ -13,7 +13,7 @@ export function TeamCard({ photo, name, credentials, role, bio }: Props) {
   return (
     <motion.div
       {...cardChild}
-      className="bg-white border border-border rounded-[10px] overflow-hidden group hover:border-warm/20 hover:shadow-lg transition-all duration-300"
+      className="bg-white border border-border rounded-[5px] overflow-hidden group hover:border-primary/20 hover:shadow-lg transition-all duration-300"
     >
       <img
         src={photo}

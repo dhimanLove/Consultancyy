@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { useEffect, useRef } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { PageHeader } from "@/components/PageHeader";
@@ -8,11 +8,11 @@ import { ServiceCard } from "@/components/ServiceCard";
 import { SERVICES_BY_CATEGORY, SERVICES } from "@/lib/services-data";
 import { ChevronRight, ArrowUpRight } from "lucide-react";
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { staggerChildren: 0.06, delayChildren: 0.05 } },
 };
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
 };
@@ -58,17 +58,17 @@ export const Route = createFileRoute("/services/")({
     meta: [
       {
         title:
-          "All 74 Services | Business Registration, GST, FSSAI, ISO | Chartered Solution Indore",
+          "All 74 Services | Business Registration, GST, FSSAI, MSME | Chartered Solution Indore",
       },
       {
         name: "description",
         content:
-          "Full list of 74 services by Chartered Solution in Indore: GST registration & filing, ITR filing, FSSAI license, ISO certification, MSME/Udyam, IEC, trademark, company incorporation (Pvt Ltd, OPC, LLP), startup India registration, audit, tax planning, and more across 10 categories.",
+          "Full list of 74 services by Chartered Solution in Indore: GST registration & filing, ITR filing, FSSAI license, MSME/Udyam, IEC, startup India registration, audit & assurance, CA certificates, ROC compliance, tax planning, and more across 10 categories.",
       },
       {
         name: "keywords",
         content:
-          "GST registration Indore, ITR filing Indore, FSSAI license Indore, ISO certification Indore, MSME registration Indore, company incorporation Indore, trademark registration Indore, business registration Indore",
+          "GST registration Indore, ITR filing Indore, FSSAI license Indore, MSME registration Indore, IEC code Indore, net worth certificate Indore, tax audit Indore, ROC compliance Indore, business registration Indore",
       },
       {
         property: "og:title",
@@ -77,10 +77,30 @@ export const Route = createFileRoute("/services/")({
       {
         property: "og:description",
         content:
-          "Complete list of 74 services including GST, ITR, FSSAI, ISO, MSME, IEC, trademark, company incorporation, and more in Indore.",
+          "Complete list of 74 services including GST, ITR, FSSAI, MSME, IEC, certificates, audit, ROC compliance, and more in Indore.",
       },
       { property: "og:url", content: "https://www.charteredsolution.com/services" },
+      { property: "og:image", content: "https://www.charteredsolution.com/Charted.jpeg" },
+      { property: "og:type", content: "website" },
+      { property: "og:locale", content: "en_IN" },
+      { property: "og:site_name", content: "Chartered Solution" },
       { name: "twitter:card", content: "summary_large_image" },
+      {
+        name: "twitter:title",
+        content: "74 Business & Compliance Services | Chartered Solution Indore",
+      },
+      {
+        name: "twitter:description",
+        content:
+          "Complete list of 74 services including GST, ITR, FSSAI, MSME, IEC, certificates, audit, ROC compliance, and more in Indore.",
+      },
+      {
+        name: "twitter:image",
+        content: "https://www.charteredsolution.com/Charted.jpeg",
+      },
+      { name: "geo.position", content: "22.7262239;75.919035" },
+      { name: "geo.placename", content: "Indore, Madhya Pradesh" },
+      { name: "geo.region", content: "IN-MP" },
     ],
     links: [{ rel: "canonical", href: "https://www.charteredsolution.com/services" }],
     scripts: [{ type: "application/ld+json", innerHTML: JSON.stringify(serviceStructuredData) }],
@@ -118,7 +138,7 @@ function ServicesPage() {
       <PageHeader
         crumbs={[{ label: "Home", to: "/" }, { label: "Services" }]}
         title="74 compliance and registration services for your business."
-        subtext="Chartered Solution in Indore offers end-to-end business registration, licensing, tax filing, and compliance services across 10 categories. From GST registration to company incorporation \u2014 we handle it all."
+        subtext="Chartered Solution in Indore offers end-to-end business registration, licensing, tax filing, and compliance services across 10 categories. From GST registration to company incorporation — we handle it all."
       />
 
       <section className="bg-white py-20">
@@ -147,7 +167,7 @@ function ServicesPage() {
                 className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
               >
                 {services.map((s) => (
-                  <motion.div key={s.slug} variants={itemVariants}>
+                  <motion.div key={s.slug} variants={itemVariants} className="h-full">
                     <ServiceCard service={s} />
                   </motion.div>
                 ))}
@@ -158,7 +178,6 @@ function ServicesPage() {
       </section>
 
       <section className="bg-navy py-20 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-warm/5 rounded-bl-[100%] pointer-events-none" />
         <div className="container-page text-center relative z-10">
           <h2 className="text-[28px] md:text-[34px] font-bold text-white leading-tight tracking-tight">
             Need help choosing the right service?

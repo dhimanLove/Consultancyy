@@ -1,24 +1,16 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardHeader,
-  CardFooter,
-  CardTitle,
-  CardDescription,
-  CardAction,
-} from "@/components/ui/card";
+import { Link } from "@tanstack/react-router";
+import { ArrowRight, Phone } from "lucide-react";
+import { ServiceIcon } from "./ServiceIcon";
+import { WhatsAppIcon } from "./WhatsAppIcon";
 import type { Service } from "@/lib/services-data";
-import { getCategoryForService, getServiceImage } from "@/lib/services-data";
+import { getCategoryForService } from "@/lib/services-data";
 import { QuickEnquiry } from "./QuickEnquiry";
 
 export function ServiceCard({ service }: { service: Service }) {
   const [showEnquiry, setShowEnquiry] = useState(false);
-  const [imgOk, setImgOk] = useState(true);
   const cat = getCategoryForService(service.slug);
-  const imgSrc = getServiceImage(service.slug);
 
   return (
     <>
@@ -27,55 +19,55 @@ export function ServiceCard({ service }: { service: Service }) {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-40px" }}
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        className="h-full"
       >
-        <Card
-          onClick={() => setShowEnquiry(true)}
-          className="relative mx-auto w-full max-w-sm pt-0 cursor-pointer group
-                     transition-all duration-200 ease-out
-                     hover:-translate-y-0.5 hover:shadow-lg
-                     active:scale-[0.98]"
+        <div
+          className="relative flex h-full flex-col rounded-[10px] border border-[#E5E5E5] bg-white p-5 transition-all duration-200 ease-out
+                     hover:-translate-y-1 hover:border-primary/40 hover:shadow-xl hover:shadow-navy/10
+                     active:scale-[0.99]"
         >
-          <div className="relative h-[140px] w-full overflow-hidden rounded-t-xl bg-gray-100">
-            {imgOk ? (
-              <img
-                src={imgSrc}
-                alt={service.title}
-                loading="lazy"
-                onError={() => setImgOk(false)}
-                className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
-              />
-            ) : (
-              <div className="flex h-full items-center justify-center bg-[#F9F5EF]">
-                <span className="text-[28px] font-bold text-warm/40">
-                  {service.title.charAt(0)}
-                </span>
-              </div>
+          <div className="flex items-start justify-between gap-3">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[10px] bg-primary/10 text-primary transition-colors duration-200">
+              <ServiceIcon slug={service.slug} className="h-6 w-6" />
+            </div>
+            {cat && (
+              <span className="inline-flex items-center gap-1 rounded-full bg-fog px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.08em] text-steel">
+                {cat.name}
+              </span>
             )}
           </div>
-          <CardHeader className="p-4 pb-2">
-            {cat && (
-              <CardAction>
-                <Badge
-                  variant="secondary"
-                  className="bg-warm/10 text-warm hover:bg-warm/15 border-0 text-[10px] font-medium px-2 py-0.5"
-                >
-                  {cat.name}
-                </Badge>
-              </CardAction>
-            )}
-            <CardTitle className="text-[15px] font-bold text-navy leading-snug group-hover:text-warm transition-colors duration-200">
+
+          <h3 className="mt-4 text-[15px] font-bold leading-snug text-navy">
+            <Link
+              to="/services/$slug"
+              params={{ slug: service.slug }}
+              className="transition-colors duration-200 hover:text-primary"
+            >
               {service.title}
-            </CardTitle>
-            <CardDescription className="text-[12px] leading-relaxed mt-1" style={{ color: "#555" }}>
-              {service.descriptor}
-            </CardDescription>
-          </CardHeader>
-          <CardFooter className="p-4 pt-0">
-            <Button className="w-full rounded-lg text-[12px] font-semibold bg-navy text-white hover:bg-navy/90 active:scale-[0.97] transition-all h-9">
-              Tap to enquire
-            </Button>
-          </CardFooter>
-        </Card>
+            </Link>
+          </h3>
+
+          <p className="mt-2 flex-1 text-[12.5px] leading-relaxed text-steel">
+            {service.descriptor}
+          </p>
+
+          <div className="mt-5 flex items-center gap-2 border-t border-[#F0F0F0] pt-4">
+            <button
+              onClick={() => setShowEnquiry(true)}
+              className="inline-flex flex-1 items-center justify-center gap-2 rounded-[2px] bg-primary px-4 py-2.5 text-[12.5px] font-bold text-white transition-all duration-200 hover:bg-primary-70 active:scale-[0.97]"
+            >
+              <WhatsAppIcon className="h-4 w-4" /> Get Quote
+            </button>
+            <Link
+              to="/services/$slug"
+              params={{ slug: service.slug }}
+              aria-label={`View details for ${service.title}`}
+              className="inline-flex h-[38px] w-[38px] items-center justify-center rounded-[2px] border border-[#E5E5E5] text-primary transition-all duration-200 hover:border-primary hover:bg-primary hover:text-white active:scale-[0.95]"
+            >
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </div>
       </motion.div>
 
       <QuickEnquiry

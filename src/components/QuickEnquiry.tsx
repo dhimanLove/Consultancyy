@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, type Variants } from "framer-motion";
 import { X, Send, CheckCircle, User, Phone, ChevronDown } from "lucide-react";
 import { SERVICES } from "@/lib/services-data";
 
@@ -9,11 +9,11 @@ interface Props {
   preselected?: string;
 }
 
-const PHONE = "91881553899";
+const PHONE = "918815553899";
 
 const inputCls =
-  "w-full border border-border bg-white rounded-[8px] px-4 py-2.5 text-[14px] placeholder:text-steel/40 focus:outline-none focus:border-warm focus:ring-2 focus:ring-warm/15 transition-all";
-const labelCls = "block text-[12px] font-semibold text-navy mb-1";
+  "w-full border border-border bg-white rounded-[2px] px-4 py-2.5 text-[14px] placeholder:text-steel/40 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/15 transition-all";
+const labelCls = "block text-[12px] font-bold text-navy mb-1";
 
 const fields = [
   {
@@ -34,12 +34,12 @@ const fields = [
   },
 ] as const;
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { staggerChildren: 0.07, delayChildren: 0.1 } },
 };
 
-const fieldVariants = {
+const fieldVariants: Variants = {
   hidden: { opacity: 0, y: 16 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] } },
 };
@@ -152,14 +152,14 @@ export function QuickEnquiry({ open, onClose, preselected }: Props) {
                       {fields.map((f) => (
                         <motion.div key={f.key} variants={fieldVariants}>
                           <label className={labelCls}>
-                            {f.label} <span className="text-warm">*</span>
+                            {f.label} <span className="text-error">*</span>
                           </label>
                           <div className="relative group">
-                            <f.icon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-300 group-focus-within:text-warm transition-colors" />
+                            <f.icon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-300 group-focus-within:text-primary transition-colors" />
                             <input
                               type={f.type}
                               required={f.required}
-                              value={(vals as any)[f.key]}
+                              value={vals[f.key as keyof typeof vals]}
                               onChange={update(f.key)}
                               className={`${inputCls} pl-9`}
                               placeholder={f.placeholder}
@@ -170,7 +170,7 @@ export function QuickEnquiry({ open, onClose, preselected }: Props) {
                       <motion.div variants={fieldVariants}>
                         <label className={labelCls}>Service Needed</label>
                         <div className="relative group">
-                          <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-300 pointer-events-none group-focus-within:text-warm transition-colors" />
+                          <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-300 pointer-events-none group-focus-within:text-primary transition-colors" />
                           <select
                             value={vals.service}
                             onChange={update("service")}
@@ -189,7 +189,7 @@ export function QuickEnquiry({ open, onClose, preselected }: Props) {
                         <button
                           type="submit"
                           disabled={sending}
-                          className="w-full flex items-center justify-center gap-2 bg-navy text-white rounded-[8px] px-4 py-3 text-[14px] font-semibold hover:bg-navy/90 active:scale-[0.97] transition-all disabled:opacity-60"
+                          className="w-full flex items-center justify-center gap-2 bg-primary text-white rounded-[2px] px-4 py-3 text-[14px] font-bold hover:bg-primary-70 active:scale-[0.97] transition-all disabled:opacity-60"
                         >
                           {sending ? (
                             <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">

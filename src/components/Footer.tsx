@@ -1,108 +1,110 @@
 import { Link } from "@tanstack/react-router";
-import { SERVICE_CATEGORIES } from "@/lib/services-data";
-import { ArrowUpRight } from "lucide-react";
+import { NAV_GROUPS, PHONE, PHONE_HREF, EMAIL, WHATSAPP_HREF } from "@/lib/nav";
+import { WhatsAppIcon } from "@/components/WhatsAppIcon";
+import { Phone, Mail, MapPin, ArrowUpRight } from "lucide-react";
 import logoImg from "../../assets/Charted.jpeg";
 
 export function Footer() {
   return (
-    <footer className="bg-navy text-white pt-16 pb-8">
-      <div className="container mx-auto px-4 md:px-6 lg:px-8">
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
-          <div>
-            <div className="flex items-center gap-2.5">
+    <footer className="bg-[#3C3C3C] text-white">
+      <div className="container-page pt-16 pb-10">
+        <div className="grid gap-10 lg:grid-cols-6">
+          <div className="lg:col-span-2">
+            <div className="flex items-center gap-3">
               <img
                 src={logoImg}
                 alt="Chartered Solution"
-                className="w-28 h-25 rounded-xl object-cover ring-1 ring-white/10"
+                className="w-24 h-22 rounded-[5px] object-cover ring-1 ring-white/20"
               />
-              <span className="text-base font-bold text-white tracking-tight">
-                Chartered Solution
-              </span>
+              <div>
+                <span className="text-[17px] font-bold text-white tracking-tight block">
+                  Chartered Solution
+                </span>
+                <span className="text-[10px] text-white/50 uppercase tracking-[0.18em]">
+                  CA · GST · Audit · Indore
+                </span>
+              </div>
             </div>
-            <p className="text-sm text-white/50 mt-4 max-w-[250px] leading-relaxed">
-              End-to-end business registration, licensing, and compliance services for startups,
-              SMEs, and entrepreneurs across India.
+            <p className="text-[13px] text-white/55 mt-4 leading-relaxed max-w-[300px]">
+              End-to-end business registration, licensing, certification, and compliance services
+              for startups, SMEs, and entrepreneurs across Indore, Madhya Pradesh, and India.
             </p>
-          </div>
-
-          <div>
-            <h3 className="mb-4 text-[11px] font-bold uppercase tracking-[0.15em] text-warm">
-              Quick Links
-            </h3>
-            <nav className="space-y-3 text-sm text-white/60">
-              <Link to="/" className="block hover:text-warm transition-colors">
-                Home
-              </Link>
-              <Link to="/services" className="block hover:text-warm transition-colors">
-                Services
-              </Link>
-              <Link to="/about-us" className="block hover:text-warm transition-colors">
-                About Us
-              </Link>
-              <Link to="/contact-us" className="block hover:text-warm transition-colors">
-                Contact Us
-              </Link>
-            </nav>
-          </div>
-
-          <div>
-            <h3 className="mb-4 text-[11px] font-bold uppercase tracking-[0.15em] text-warm">
-              Service Categories
-            </h3>
-            <nav className="space-y-2.5 text-sm text-white/60">
-              {SERVICE_CATEGORIES.map((cat) => (
-                <Link
-                  key={cat.id}
-                  to="/services"
-                  className="block hover:text-warm transition-colors"
-                >
-                  {cat.name}
-                </Link>
-              ))}
-            </nav>
-          </div>
-
-          <div>
-            <h3 className="mb-4 text-[11px] font-bold uppercase tracking-[0.15em] text-warm">
-              Contact
-            </h3>
-            <address className="space-y-3 text-sm text-white/60 not-italic">
-              <p className="leading-relaxed">
-                152, Sanchar Nagar Ext., Goyal Nagar,
-                <br />
-                Kanadia Road, Indore,
-                <br />
-                Madhya Pradesh 452016
+            <div className="mt-5 space-y-2.5 text-[13px] text-white/65">
+              <p className="flex items-start gap-2">
+                <MapPin className="w-4 h-4 text-[#FFB000] shrink-0 mt-0.5" />
+                152, Sanchar Nagar Ext., Goyal Nagar, Kanadia Road, Indore, Madhya Pradesh 452016
               </p>
-              <a href="tel:+918815553899" className="block hover:text-warm transition-colors">
-                +91 88155 53899
+              <a
+                href={PHONE_HREF}
+                className="flex items-center gap-2 hover:text-white transition-colors"
+              >
+                <Phone className="w-4 h-4 text-[#FFB000] shrink-0" /> {PHONE}
               </a>
               <a
-                href="mailto:charteredgesolution@gmail.com"
-                className="block hover:text-warm transition-colors"
+                href={`mailto:${EMAIL}`}
+                className="flex items-center gap-2 hover:text-white transition-colors"
               >
-                charteredgesolution@gmail.com
+                <Mail className="w-4 h-4 text-[#FFB000] shrink-0" /> {EMAIL}
               </a>
-              <a
-                href="https://www.charteredsolution.com"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-1 hover:text-warm transition-colors"
-              >
-                www.charteredsolution.com <ArrowUpRight className="w-3 h-3" />
-              </a>
-            </address>
+            </div>
           </div>
-        </div>
 
-        <div className="mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/30">
-          <p>&copy; {new Date().getFullYear()} Chartered Solution Pvt. Ltd. All rights reserved.</p>
-          <div className="flex gap-6">
-            <a href="#" className="hover:text-warm transition-colors">
-              Privacy Policy
+          {NAV_GROUPS.map((group) => (
+            <div key={group.id}>
+              <h3 className="mb-4 text-[12px] font-bold uppercase tracking-[0.14em] text-[#FFB000]">
+                {group.label}
+              </h3>
+              <nav className="space-y-2 text-[13px] text-white/55">
+                {group.links.slice(0, 7).map((l) => (
+                  <Link
+                    key={l.slug}
+                    to="/services/$slug"
+                    params={{ slug: l.slug }}
+                    className="block hover:text-[#FFB000] transition-colors"
+                  >
+                    {l.label}
+                  </Link>
+                ))}
+                <Link
+                  to="/services"
+                  className="block text-[#FFB000] font-bold hover:underline transition-colors"
+                >
+                  View all services
+                </Link>
+              </nav>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="bg-[#262626]">
+        <div className="container-page py-5 flex flex-col md:flex-row justify-between items-center gap-4 text-[12px] text-white/45">
+          <p>
+            &copy; {new Date().getFullYear()} Chartered Solution. All rights reserved. ·
+            <span className="hidden md:inline"> Chartered Accountant services in Indore, MP.</span>
+          </p>
+          <div className="flex flex-wrap justify-center gap-x-5 gap-y-1">
+            <Link to="/about-us" className="hover:text-white transition-colors">
+              About Us
+            </Link>
+            <Link to="/contact-us" className="hover:text-white transition-colors">
+              Contact
+            </Link>
+            <a
+              href={WHATSAPP_HREF}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1.5 hover:text-white transition-colors"
+            >
+              <WhatsAppIcon className="w-3 h-3" /> WhatsApp
             </a>
-            <a href="#" className="hover:text-warm transition-colors">
-              Terms of Service
+            <a
+              href="https://www.charteredsolution.com"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1 hover:text-white transition-colors"
+            >
+              www.charteredsolution.com <ArrowUpRight className="w-3 h-3" />
             </a>
           </div>
         </div>

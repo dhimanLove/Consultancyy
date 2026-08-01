@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { useEffect, useRef } from "react";
 import { gsap } from "@/lib/gsap";
 import { PageHeader } from "@/components/PageHeader";
@@ -9,13 +9,14 @@ import { EmberButton } from "@/components/EmberButton";
 import { RevealParagraph } from "@/components/RevealParagraph";
 import { TrustPillar } from "@/components/TrustPillar";
 import { TestimonialCard } from "@/components/TestimonialCard";
-import { ArrowUpRight } from "lucide-react";
+import { WhatsAppIcon } from "@/components/WhatsAppIcon";
+import { ArrowUpRight, Phone, Mail } from "lucide-react";
 
-const container = {
+const container: Variants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { staggerChildren: 0.06, delayChildren: 0.05 } },
 };
-const child = {
+const child: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
 };
@@ -24,7 +25,7 @@ const faqData = [
   {
     question: "What services does Chartered Solution in Indore offer?",
     answer:
-      "We offer 74 services across 10 categories including GST registration & filing, ITR filing, FSSAI license, ISO certification, MSME/Udyam registration, IEC code, trademark registration, company incorporation (Pvt Ltd, OPC, LLP), startup India registration, tax planning, audit, and more professional business services in Indore, Madhya Pradesh.",
+      "We offer 74 services across 10 categories including GST registration & filing, ITR filing, FSSAI license, MSME/Udyam registration, IEC code, startup India registration, tax planning, audit & assurance, CA certificates (net worth, turnover, etc.), ROC compliance, and more professional business services in Indore, Madhya Pradesh.",
   },
   {
     question: "Who is the founder of Chartered Solution?",
@@ -57,9 +58,9 @@ const faqData = [
       "Yes, Chartered Solution Pvt. Ltd. is a registered professional services firm based in Indore, MP. We are recognized as a reliable service provider for government-related registrations, filings, and compliance work.",
   },
   {
-    question: "Do you provide ISO certification services in Indore?",
+    question: "Do you provide CA certificates like net worth and turnover certificates in Indore?",
     answer:
-      "Yes, we offer ISO certification services including ISO 9001:2015, ISO 14001, ISO 45001, ISO 22000 (FSSC), ISO 27001, and ISO 13485 across Indore and all of Madhya Pradesh. We handle documentation, audit coordination, and certification follow-up.",
+      "Yes, we issue net worth certificates, turnover certificates, CA certified financial statements, fund utilization certificates, income certificates, bank certificates, and certificate for government tenders across Indore and all of Madhya Pradesh.",
   },
 ];
 
@@ -122,7 +123,7 @@ export const Route = createFileRoute("/about-us")({
       {
         name: "description",
         content:
-          "Founded by Jitendra Malviya, Chartered Solution in Indore, MP is a professional firm offering 74+ business registration, licensing, GST, ITR, FSSAI, ISO, and compliance services. Call +91 88155 53899.",
+          "Founded by Jitendra Malviya, Chartered Solution in Indore, MP is a professional firm offering 74+ business registration, licensing, GST, ITR, FSSAI, audit, CA certificate, and compliance services. Call +91 88155 53899.",
       },
       {
         name: "keywords",
@@ -136,10 +137,30 @@ export const Route = createFileRoute("/about-us")({
       {
         property: "og:description",
         content:
-          "Meet the team behind Chartered Solution. Founded by Jitendra Malviya, we are Indore\u2019s trusted partner for business registration, GST, FSSAI, ISO, and 70+ compliance services.",
+          "Meet the team behind Chartered Solution. Founded by Jitendra Malviya, we are Indore\u2019s trusted partner for business registration, GST, FSSAI, ITR, audit, and 74+ compliance services.",
       },
       { property: "og:url", content: "https://www.charteredsolution.com/about-us" },
+      { property: "og:image", content: "https://www.charteredsolution.com/Charted.jpeg" },
+      { property: "og:type", content: "website" },
+      { property: "og:locale", content: "en_IN" },
+      { property: "og:site_name", content: "Chartered Solution" },
       { name: "twitter:card", content: "summary_large_image" },
+      {
+        name: "twitter:title",
+        content: "About Chartered Solution \u2014 Indore\u2019s Compliance & Registration Experts",
+      },
+      {
+        name: "twitter:description",
+        content:
+          "Meet the team behind Chartered Solution. Founded by Jitendra Malviya, we are Indore\u2019s trusted partner for business registration, GST, FSSAI, ITR, audit, and 74+ compliance services.",
+      },
+      {
+        name: "twitter:image",
+        content: "https://www.charteredsolution.com/Charted.jpeg",
+      },
+      { name: "geo.position", content: "22.7262239;75.919035" },
+      { name: "geo.placename", content: "Indore, Madhya Pradesh" },
+      { name: "geo.region", content: "IN-MP" },
     ],
     links: [{ rel: "canonical", href: "https://www.charteredsolution.com/about-us" }],
     scripts: [{ type: "application/ld+json", innerHTML: JSON.stringify(aboutStructured) }],
@@ -170,7 +191,7 @@ function AboutUsPage() {
       <PageHeader
         crumbs={[{ label: "Home", to: "/" }, { label: "About Us" }]}
         title="About Chartered Solution."
-        subtext="Founded by Jitendra Malviya in Indore, Madhya Pradesh \u2014 helping businesses register, comply, and grow since 2023."
+        subtext="Founded by Jitendra Malviya in Indore, Madhya Pradesh — helping businesses register, comply, and grow since 2023."
       />
 
       <section className="bg-white py-20">
@@ -178,7 +199,7 @@ function AboutUsPage() {
           <div>
             <SectionHeading
               eyebrow="Our Story"
-              heading="From Kanadia Road, Indore \u2014 building a compliance-first India."
+              heading="From Kanadia Road, Indore — building a compliance-first India."
             />
             <RevealParagraph className="text-[15px] text-steel leading-relaxed mt-6">
               Chartered Solution was founded in 2023 by Jitendra Malviya with a clear mission: make
@@ -187,11 +208,10 @@ function AboutUsPage() {
               a team of dedicated professionals serving clients across Madhya Pradesh and beyond.
             </RevealParagraph>
             <RevealParagraph className="text-[15px] text-steel leading-relaxed mt-4">
-              Today, we proudly offer 74 services across 10 categories \u2014 from GST registration
-              and ITR filing to company incorporation, ISO certification, trademark registration,
-              and more. Every solution is tailored, every process is handled end-to-end, and every
-              client gets a single point of contact. We are rated 5.0 stars and serve over 500 happy
-              clients across India.
+              Today, we proudly offer 74 services across 10 categories — from GST registration and
+              ITR filing to company &amp; business setup, audit &amp; assurance, CA certificates,
+              ROC compliance, and more. Every solution is tailored, every process is handled
+              end-to-end, and every client gets a single point of contact.
             </RevealParagraph>
             <RevealParagraph className="text-[15px] text-steel leading-relaxed mt-4">
               Whether you are a startup founder, a small business owner, or an established
@@ -201,7 +221,7 @@ function AboutUsPage() {
           </div>
           <div
             ref={founderRef}
-            className="bg-fog border border-border rounded-[10px] p-8 text-center"
+            className="bg-fog border border-border rounded-[5px] p-8 text-center"
           >
             <div className="founder-el w-[64px] h-[64px] rounded-full bg-warm/10 flex items-center justify-center mx-auto">
               <span className="text-[20px] font-bold text-warm">JM</span>
@@ -213,18 +233,29 @@ function AboutUsPage() {
             <p className="founder-el text-[14px] text-steel mt-5 leading-relaxed">
               &ldquo;We believe that every business deserves expert compliance guidance. Our mission
               at Chartered Solution is to remove the complexity from registrations, filings, and
-              certifications so that entrepreneurs can focus on what they do best \u2014 building
-              their dreams.&rdquo;
+              certifications so that entrepreneurs can focus on what they do best — building their
+              dreams.&rdquo;
             </p>
-            <div className="founder-el mt-6 flex justify-center gap-2.5 text-[12px] text-steel">
-              <span className="bg-white border border-border rounded-full px-4 py-1.5">
-                +91 88155 53899
-              </span>
+            <div className="founder-el mt-6 flex flex-wrap justify-center gap-2.5 text-[12px] text-steel">
+              <a
+                href="tel:+918815553899"
+                className="inline-flex items-center gap-1.5 bg-white border border-border rounded-full px-4 py-1.5 hover:text-primary hover:border-primary/40 transition-colors"
+              >
+                <Phone className="w-3.5 h-3.5 text-primary" /> +91 88155 53899
+              </a>
               <a
                 href="mailto:charteredgesolution@gmail.com"
-                className="bg-white border border-border rounded-full px-4 py-1.5 hover:text-warm transition-colors"
+                className="inline-flex items-center gap-1.5 bg-white border border-border rounded-full px-4 py-1.5 hover:text-primary hover:border-primary/40 transition-colors"
               >
-                Email
+                <Mail className="w-3.5 h-3.5 text-primary" /> Email
+              </a>
+              <a
+                href="https://wa.me/918815553899"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1.5 bg-[#25D366] border border-[#25D366] text-white rounded-full px-4 py-1.5 hover:bg-[#1fb959] transition-colors"
+              >
+                <WhatsAppIcon className="w-3.5 h-3.5" /> WhatsApp
               </a>
             </div>
           </div>
@@ -244,7 +275,7 @@ function AboutUsPage() {
             <TrustPillar
               number="01"
               title="End-to-end service"
-              body="From documentation to filing and follow-up, we manage every step so you don\u2019t have to. Single point of contact always."
+              body="From documentation to filing and follow-up, we manage every step so you don't have to. Single point of contact always."
             />
             <TrustPillar
               number="02"
@@ -271,7 +302,7 @@ function AboutUsPage() {
             className="grid md:grid-cols-3 gap-6 mt-12"
           >
             <TestimonialCard
-              quote="I am satisfied with CharterEdge Solution. They handled my MSME and GST registrations professionally and quickly."
+              quote="I am satisfied with Chartered Solution. They handled my MSME and GST registrations professionally and quickly."
               author="Capital Crest"
               date="2 years ago"
             />
@@ -290,7 +321,6 @@ function AboutUsPage() {
       </section>
 
       <section className="bg-navy py-16 md:py-20 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-warm/5 rounded-bl-[100%] pointer-events-none" />
         <div className="container-page text-center relative z-10">
           <SectionHeading
             eyebrow="Get in Touch"
@@ -338,7 +368,7 @@ function AboutUsPage() {
               <motion.details
                 key={i}
                 variants={child}
-                className="group border border-border rounded-[10px] overflow-hidden open:border-warm/30 transition-colors"
+                className="group border border-border rounded-[5px] overflow-hidden open:border-primary/40 transition-colors"
               >
                 <summary className="text-[15px] font-semibold text-navy cursor-pointer px-6 py-4 select-none flex items-center justify-between gap-4 list-none marker:hidden">
                   <span>{faq.question}</span>

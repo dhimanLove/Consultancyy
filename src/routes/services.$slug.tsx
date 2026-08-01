@@ -1,10 +1,11 @@
 import { createFileRoute, notFound, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { PageHeader } from "@/components/PageHeader";
 import { EmberButton } from "@/components/EmberButton";
 import { ServiceCard } from "@/components/ServiceCard";
 import { QuickEnquiry } from "@/components/QuickEnquiry";
+import { WhatsAppIcon } from "@/components/WhatsAppIcon";
 import {
   SERVICES,
   getService,
@@ -13,11 +14,11 @@ import {
 } from "@/lib/services-data";
 import { CheckCircle, Phone, Mail, ArrowUpRight } from "lucide-react";
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { staggerChildren: 0.08, delayChildren: 0.05 } },
 };
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
 };
@@ -50,7 +51,26 @@ export const Route = createFileRoute("/services/$slug")({
           property: "og:url",
           content: `https://www.charteredsolution.com/services/${loaderData.slug}`,
         },
+        {
+          property: "og:image",
+          content: "https://www.charteredsolution.com/Charted.jpeg",
+        },
+        { property: "og:type", content: "website" },
+        { property: "og:locale", content: "en_IN" },
+        { property: "og:site_name", content: "Chartered Solution" },
         { name: "twitter:card", content: "summary_large_image" },
+        {
+          name: "twitter:title",
+          content: `${loaderData.title} | Chartered Solution \u2014 Indore`,
+        },
+        { name: "twitter:description", content: loaderData.summary },
+        {
+          name: "twitter:image",
+          content: "https://www.charteredsolution.com/Charted.jpeg",
+        },
+        { name: "geo.position", content: "22.7262239;75.919035" },
+        { name: "geo.placename", content: "Indore, Madhya Pradesh" },
+        { name: "geo.region", content: "IN-MP" },
       ],
       links: [
         { rel: "canonical", href: `https://www.charteredsolution.com/services/${loaderData.slug}` },
@@ -65,10 +85,15 @@ export const Route = createFileRoute("/services/$slug")({
                 "@type": "Service",
                 name: loaderData.title,
                 description: loaderData.summary,
+                url: `https://www.charteredsolution.com/services/${loaderData.slug}`,
+                image: "https://www.charteredsolution.com/Charted.jpeg",
+                serviceType: loaderData.title,
                 provider: {
                   "@type": "Organization",
                   name: "Chartered Solution",
                   url: "https://www.charteredsolution.com",
+                  image: "https://www.charteredsolution.com/Charted.jpeg",
+                  telephone: "+91-88155-53899",
                   address: {
                     "@type": "PostalAddress",
                     streetAddress: "152, Sanchar Nagar Ext., Goyal Nagar, Kanadia Road",
@@ -99,7 +124,12 @@ export const Route = createFileRoute("/services/$slug")({
                     name: "Services",
                     item: "https://www.charteredsolution.com/services",
                   },
-                  { "@type": "ListItem", position: 3, name: loaderData.title },
+                  {
+                    "@type": "ListItem",
+                    position: 3,
+                    name: loaderData.title,
+                    item: `https://www.charteredsolution.com/services/${loaderData.slug}`,
+                  },
                 ],
               },
             ],
@@ -128,11 +158,11 @@ function ServiceDetailPage() {
       ?.services.filter((s) => s.slug !== service.slug)
       .slice(0, 4) ?? [];
 
-  const sidebarVariants = {
+  const sidebarVariants: Variants = {
     hidden: { opacity: 0, x: 20 },
     visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
   };
-  const sidebarItem = {
+  const sidebarItem: Variants = {
     hidden: { opacity: 0, y: 12 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] } },
   };
@@ -171,7 +201,7 @@ function ServiceDetailPage() {
             >
               {service.scope.map((item: string) => (
                 <motion.div key={item} variants={itemVariants} className="flex items-start gap-3">
-                  <CheckCircle className="w-5 h-5 text-warm flex-shrink-0 mt-0.5" />
+                  <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                   <span className="text-[15px] text-navy">{item}</span>
                 </motion.div>
               ))}
@@ -185,7 +215,7 @@ function ServiceDetailPage() {
             >
               <button
                 onClick={() => setShowEnquiry(true)}
-                className="inline-flex items-center gap-2 bg-navy text-white rounded-[8px] px-5 py-2.5 text-[14px] font-semibold hover:bg-navy/90 active:scale-[0.97] transition-all"
+                className="inline-flex items-center gap-2 bg-primary text-white rounded-[2px] px-5 py-2.5 text-[14px] font-bold hover:bg-primary-70 active:scale-[0.97] transition-all"
               >
                 Get expert advice <ArrowUpRight className="w-4 h-4" />
               </button>
@@ -196,7 +226,7 @@ function ServiceDetailPage() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-40px" }}
-            className="bg-fog border border-border rounded-[10px] p-8"
+            className="bg-fog border border-border rounded-[5px] p-8"
           >
             <motion.h3 variants={sidebarItem} className="text-[16px] font-bold text-navy">
               Need {service.title} in Indore?
@@ -214,7 +244,7 @@ function ServiceDetailPage() {
             >
               <div className="flex items-start gap-3">
                 <Phone className="w-4 h-4 text-warm mt-0.5" />
-                <div>
+                <div className="flex-1">
                   <span className="text-[11px] font-semibold text-warm uppercase tracking-wider">
                     Call / WhatsApp
                   </span>
@@ -226,6 +256,16 @@ function ServiceDetailPage() {
                   </a>
                 </div>
               </div>
+              <a
+                href={`https://wa.me/918815553899?text=${encodeURIComponent(
+                  `Hi Chartered Solution, I need help with ${service.title}. Please share details.`,
+                )}`}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center justify-center gap-2 w-full bg-[#25D366] text-white rounded-[2px] px-5 py-2.5 text-[14px] font-bold hover:bg-[#1fb959] active:scale-[0.97] transition-all"
+              >
+                <WhatsAppIcon /> WhatsApp Us
+              </a>
               <div className="flex items-start gap-3">
                 <Mail className="w-4 h-4 text-warm mt-0.5" />
                 <div>
@@ -244,7 +284,7 @@ function ServiceDetailPage() {
             <motion.div variants={sidebarItem} className="pt-2">
               <button
                 onClick={() => setShowEnquiry(true)}
-                className="w-full inline-flex items-center justify-center gap-2 bg-navy text-white rounded-[8px] px-5 py-2.5 text-[14px] font-semibold hover:bg-navy/90 active:scale-[0.97] transition-all"
+                className="w-full inline-flex items-center justify-center gap-2 bg-primary text-white rounded-[2px] px-5 py-2.5 text-[14px] font-bold hover:bg-primary-70 active:scale-[0.97] transition-all"
               >
                 Enquire now <ArrowUpRight className="w-4 h-4" />
               </button>
@@ -276,7 +316,7 @@ function ServiceDetailPage() {
               className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8"
             >
               {related.map((r) => (
-                <motion.div key={r.slug} variants={itemVariants}>
+                <motion.div key={r.slug} variants={itemVariants} className="h-full">
                   <ServiceCard service={r} />
                 </motion.div>
               ))}

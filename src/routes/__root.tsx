@@ -7,10 +7,9 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
-import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { WhatsAppFAB } from "@/components/WhatsAppFAB";
@@ -42,9 +41,6 @@ function NotFoundComponent() {
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   console.error(error);
   const router = useRouter();
-  useEffect(() => {
-    reportLovableError(error, { boundary: "tanstack_root_error_component" });
-  }, [error]);
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-white px-4">
@@ -85,16 +81,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       {
         title:
-          "Chartered Solution | Business Registration, GST, FSSAI, ISO & Compliance Services in Indore",
+          "Chartered Solution | Business Registration, GST, FSSAI, MSME & Compliance Services in Indore",
       },
       {
         name: "description",
-        content:"Chartered Solution is a leading CA firm in Indore, offering expert business registration, GST services, FSSAI licenses, ISO certification, MSME/Udyam registration, Import Export Code (IEC), trademark registration, and comprehensive business compliance solutions. Trusted professional services in Indore, Madhya Pradesh.",
+        content:
+          "Chartered Solution is a leading CA firm in Indore, offering expert business registration, GST services, FSSAI licenses, MSME/Udyam registration, Import Export Code (IEC), ITR filing, audit, CA certificates, and comprehensive business compliance solutions. Trusted professional services in Indore, Madhya Pradesh.",
       },
       {
         name: "keywords",
         content:
-          "Chartered Solution, business registration Indore, GST registration Indore, FSSAI license Indore, ISO certification Indore, MSME registration Indore, company incorporation Indore, trademark registration Indore, CA services Indore, Jitendra Malviya, compliance services, Sanchar Nagar Indore",
+          "Chartered Solution, business registration Indore, GST registration Indore, FSSAI license Indore, MSME registration Indore, IEC code Indore, ITR filing Indore, audit services Indore, net worth certificate Indore, CA services Indore, Jitendra Malviya, compliance services, Sanchar Nagar Indore",
       },
       {
         property: "og:title",
@@ -103,12 +100,30 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         property: "og:description",
         content:
-          "Expert business registration, GST, FSSAI, ISO, and compliance services in Indore, Madhya Pradesh. 5.0 rated. Call +91 88155 53899.",
+          "Expert business registration, GST, FSSAI, MSME, ITR, audit, and compliance services in Indore, Madhya Pradesh. Call +91 88155 53899.",
       },
       { property: "og:type", content: "website" },
       { property: "og:locale", content: "en_IN" },
       { property: "og:site_name", content: "Chartered Solution" },
+      { property: "og:url", content: "https://www.charteredsolution.com" },
+      { property: "og:image", content: "https://www.charteredsolution.com/Charted.jpeg" },
       { name: "twitter:card", content: "summary_large_image" },
+      {
+        name: "twitter:title",
+        content: "Chartered Solution | Business Registration & Compliance Services Indore",
+      },
+      {
+        name: "twitter:description",
+        content:
+          "Business registration, GST, FSSAI, MSME, ITR, audit & compliance in Indore, MP. Call +91 88155 53899.",
+      },
+      {
+        name: "twitter:image",
+        content: "https://www.charteredsolution.com/Charted.jpeg",
+      },
+      { name: "geo.position", content: "22.7262239;75.919035" },
+      { name: "geo.placename", content: "Indore, Madhya Pradesh" },
+      { name: "geo.region", content: "IN-MP" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -123,10 +138,58 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700;800&display=swap",
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
       { rel: "canonical", href: "https://www.charteredsolution.com" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        innerHTML: JSON.stringify({
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "WebSite",
+              name: "Chartered Solution",
+              url: "https://www.charteredsolution.com",
+              inLanguage: "en-IN",
+              publisher: {
+                "@type": "Organization",
+                name: "Chartered Solution",
+                url: "https://www.charteredsolution.com",
+              },
+            },
+            {
+              "@type": "ProfessionalService",
+              name: "Chartered Solution",
+              url: "https://www.charteredsolution.com",
+              image: "https://www.charteredsolution.com/Charted.jpeg",
+              logo: "https://www.charteredsolution.com/Charted.jpeg",
+              telephone: "+91-88155-53899",
+              email: "charteredgesolution@gmail.com",
+              priceRange: "₹₹",
+              sameAs: ["https://wa.me/918815553899", "https://www.charteredsolution.com"],
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: "152, Sanchar Nagar Ext., Goyal Nagar, Kanadia Road",
+                addressLocality: "Indore",
+                addressRegion: "Madhya Pradesh",
+                postalCode: "452016",
+                addressCountry: "IN",
+              },
+              geo: { "@type": "GeoCoordinates", latitude: 22.7262239, longitude: 75.919035 },
+              openingHours: "Mo-Sa 09:30-18:30",
+              founder: { "@type": "Person", name: "Jitendra Malviya", jobTitle: "Founder & CEO" },
+              areaServed: [
+                { "@type": "City", name: "Indore" },
+                { "@type": "State", name: "Madhya Pradesh" },
+                { "@type": "Country", name: "India" },
+              ],
+            },
+          ],
+        }),
+      },
     ],
   }),
   shellComponent: RootShell,

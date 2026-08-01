@@ -424,7 +424,7 @@ const _SERVICES: Service[] = [
     order: 25,
   },
   {
-    slug: "tax-audit",
+    slug: "tax-audit-44ab",
     title: "Tax Audit",
     descriptor: "Audit of books of accounts under Section 44AB of Income Tax Act.",
     summary:
@@ -1332,6 +1332,7 @@ export const SERVICE_ICONS: Record<string, string> = {
   "itr-filing": "FileText",
   "tax-planning": "TrendingUp",
   "tax-audit": "SearchCheck",
+  "tax-audit-44ab": "SearchCheck",
   "income-tax-assessment": "Scale",
   "notice-reply-representation": "FileWarning",
   "tds-return-filing": "Receipt",
