@@ -11,6 +11,7 @@ export function RevealParagraph({
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (!ref.current) return;
+    gsap.registerPlugin(ScrollTrigger);
     const ctx = gsap.context(() => {
       gsap.from(ref.current, {
         opacity: 0,

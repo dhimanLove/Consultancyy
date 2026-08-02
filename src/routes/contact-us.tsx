@@ -16,10 +16,10 @@ const itemVariants: Variants = {
 };
 
 const fieldVariants: Variants = {
-  hidden: { opacity: 0, x: -12 },
+  hidden: { opacity: 0, y: 12 },
   visible: (i: number) => ({
     opacity: 1,
-    x: 0,
+    y: 0,
     transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1], delay: i * 0.08 },
   }),
 };

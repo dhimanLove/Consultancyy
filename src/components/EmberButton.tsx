@@ -26,7 +26,7 @@ export function EmberButton({
   const isWarm = variant === "warm";
   const base = `inline-flex items-center justify-center gap-1.5 ${
     isWarm ? "bg-primary text-white hover:bg-primary-70" : "bg-navy text-white hover:bg-navy-light"
-  } rounded-[2px] px-5 py-2.5 text-[14px] font-bold transition-all duration-200 active:scale-[0.97] ${
+  } rounded-[8px] px-5 py-2.5 text-[14px] font-bold transition-all duration-200 active:scale-[0.97] ${
     fullWidth ? "w-full py-3 text-[15px]" : ""
   } ${className}`;
 

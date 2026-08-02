@@ -13,6 +13,8 @@ export function StatCounter({ target, suffix = "" }: Props) {
     const el = ref.current;
     if (!el) return;
 
+    gsap.registerPlugin(ScrollTrigger);
+
     let done = false;
     const animate = () => {
       if (done) return;

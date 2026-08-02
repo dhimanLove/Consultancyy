@@ -159,8 +159,8 @@ function ServiceDetailPage() {
       .slice(0, 4) ?? [];
 
   const sidebarVariants: Variants = {
-    hidden: { opacity: 0, x: 20 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
   };
   const sidebarItem: Variants = {
     hidden: { opacity: 0, y: 12 },
@@ -180,8 +180,8 @@ function ServiceDetailPage() {
       />
 
       <section className="bg-white py-20">
-        <div className="container-page grid lg:grid-cols-[60%_40%] gap-12 items-start">
-          <div>
+        <div className="container-page grid gap-12 items-start lg:grid-cols-[minmax(0,1fr)_minmax(0,400px)]">
+          <div className="min-w-0">
             {category && (
               <div className="inline-flex items-center gap-2 text-[11px] font-semibold text-warm uppercase tracking-[0.15em] mb-3">
                 <span className="w-4 h-[2px] rounded-full bg-warm/50" />
@@ -215,7 +215,7 @@ function ServiceDetailPage() {
             >
               <button
                 onClick={() => setShowEnquiry(true)}
-                className="inline-flex items-center gap-2 bg-primary text-white rounded-[2px] px-5 py-2.5 text-[14px] font-bold hover:bg-primary-70 active:scale-[0.97] transition-all"
+                className="inline-flex items-center gap-2 bg-primary text-white rounded-[8px] px-5 py-2.5 text-[14px] font-bold hover:bg-primary-70 active:scale-[0.97] transition-all"
               >
                 Get expert advice <ArrowUpRight className="w-4 h-4" />
               </button>
@@ -226,7 +226,7 @@ function ServiceDetailPage() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-40px" }}
-            className="bg-fog border border-border rounded-[5px] p-8"
+            className="bg-fog border border-border rounded-[5px] p-8 min-w-0 overflow-hidden"
           >
             <motion.h3 variants={sidebarItem} className="text-[16px] font-bold text-navy">
               Need {service.title} in Indore?
@@ -262,7 +262,7 @@ function ServiceDetailPage() {
                 )}`}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center justify-center gap-2 w-full bg-[#25D366] text-white rounded-[2px] px-5 py-2.5 text-[14px] font-bold hover:bg-[#1fb959] active:scale-[0.97] transition-all"
+                className="inline-flex items-center justify-center gap-2 w-full bg-[#25D366] text-white rounded-[8px] px-5 py-2.5 text-[14px] font-bold hover:bg-[#1fb959] active:scale-[0.97] transition-all"
               >
                 <WhatsAppIcon /> WhatsApp Us
               </a>
@@ -274,7 +274,7 @@ function ServiceDetailPage() {
                   </span>
                   <a
                     href="mailto:charteredgesolution@gmail.com"
-                    className="block text-[15px] text-navy font-medium mt-0.5 hover:text-warm transition-colors"
+                    className="block text-[15px] text-navy font-medium mt-0.5 hover:text-warm transition-colors break-all"
                   >
                     charteredgesolution@gmail.com
                   </a>
@@ -284,7 +284,7 @@ function ServiceDetailPage() {
             <motion.div variants={sidebarItem} className="pt-2">
               <button
                 onClick={() => setShowEnquiry(true)}
-                className="w-full inline-flex items-center justify-center gap-2 bg-primary text-white rounded-[2px] px-5 py-2.5 text-[14px] font-bold hover:bg-primary-70 active:scale-[0.97] transition-all"
+                className="w-full inline-flex items-center justify-center gap-2 bg-primary text-white rounded-[8px] px-5 py-2.5 text-[14px] font-bold hover:bg-primary-70 active:scale-[0.97] transition-all"
               >
                 Enquire now <ArrowUpRight className="w-4 h-4" />
               </button>

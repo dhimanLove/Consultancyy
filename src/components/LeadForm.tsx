@@ -26,7 +26,7 @@ const fieldVariants: Variants = {
 };
 
 const inputBase =
-  "w-full bg-white border-2 border-gray-200 rounded-[2px] px-3.5 py-2.5 text-[14px] text-navy placeholder:text-gray-300 outline-none transition-all duration-200 " +
+  "w-full bg-white border-2 border-gray-200 rounded-[8px] px-3.5 py-2.5 text-[14px] text-navy placeholder:text-gray-300 outline-none transition-all duration-200 " +
   "hover:border-primary/30 focus:border-primary focus:ring-4 focus:ring-primary/10";
 
 const labelBase = "block text-[12px] font-bold text-navy mb-1.5";
@@ -99,7 +99,7 @@ export function LeadForm() {
   };
 
   return (
-    <div className="relative w-full bg-white rounded-[14px] shadow-2xl shadow-navy/20 ring-1 ring-navy/10 p-7">
+    <div className="relative w-full bg-white rounded-[14px] shadow-2xl shadow-navy/20 ring-1 ring-navy/10 p-8">
       <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-24 h-1.5 rounded-full bg-[#FFB000]" />
       <AnimatePresence mode="wait">
         {sent ? (
@@ -161,7 +161,7 @@ export function LeadForm() {
           >
             <motion.div
               variants={fieldVariants}
-              className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2 mb-6"
+              className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-7"
             >
               <div>
                 <p className="text-[20px] font-black text-navy leading-tight">
@@ -181,7 +181,7 @@ export function LeadForm() {
               </div>
             </motion.div>
 
-            <motion.div variants={fieldVariants} className="mb-5">
+            <motion.div variants={fieldVariants} className="mb-6">
               <span className={labelBase}>Salutation</span>
               <div className="flex flex-wrap gap-1.5">
                 {SALUTATIONS.map((s) => (
@@ -210,7 +210,7 @@ export function LeadForm() {
               </div>
             </motion.div>
 
-            <div className="grid sm:grid-cols-2 gap-4">
+            <div className="grid sm:grid-cols-2 gap-x-4 gap-y-5">
               <motion.div variants={fieldVariants}>
                 <Field
                   label={
@@ -320,18 +320,18 @@ export function LeadForm() {
                   initial={{ opacity: 0, y: -6 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0 }}
-                  className="text-[12px] font-bold text-error bg-error/5 border border-error/20 rounded-[2px] px-3 py-2 mt-4"
+                  className="text-[12px] font-bold text-error bg-error/5 border border-error/20 rounded-[8px] px-3 py-2 mt-4"
                 >
                   {error}
                 </motion.p>
               )}
             </AnimatePresence>
 
-            <motion.div variants={fieldVariants} className="mt-6">
+            <motion.div variants={fieldVariants} className="mt-7">
               <button
                 type="submit"
                 disabled={sending}
-                className="w-full rounded-[2px] bg-[#FFB000] text-navy font-bold text-[14px] px-6 py-3.5 flex items-center justify-center gap-2.5 hover:bg-[#e6a000] active:scale-[0.98] transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed shadow-lg shadow-[#FFB000]/25"
+                className="w-full rounded-[8px] bg-[#FFB000] text-navy font-bold text-[14px] px-6 py-3.5 flex items-center justify-center gap-2.5 hover:bg-[#e6a000] active:scale-[0.98] transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed shadow-lg shadow-[#FFB000]/25"
               >
                 {sending ? (
                   <>
@@ -363,7 +363,7 @@ export function LeadForm() {
 
             <motion.p
               variants={fieldVariants}
-              className="text-[11px] text-steel/60 mt-3 text-center"
+              className="text-[11px] text-steel/60 mt-4 text-center"
             >
               Your info stays confidential. No spam.
             </motion.p>

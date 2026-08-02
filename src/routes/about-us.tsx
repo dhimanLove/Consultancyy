@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion, type Variants } from "framer-motion";
 import { useEffect, useRef } from "react";
-import { gsap } from "@/lib/gsap";
+import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { PageHeader } from "@/components/PageHeader";
 import { TeamCard } from "@/components/TeamCard";
 import { SectionHeading } from "@/components/SectionHeading";
@@ -173,6 +173,7 @@ function AboutUsPage() {
 
   useEffect(() => {
     if (!founderRef.current) return;
+    gsap.registerPlugin(ScrollTrigger);
     const ctx = gsap.context(() => {
       gsap.from(founderRef.current!.querySelectorAll(".founder-el"), {
         opacity: 0,

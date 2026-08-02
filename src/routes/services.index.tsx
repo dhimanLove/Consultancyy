@@ -112,6 +112,7 @@ function ServicesPage() {
   const categoryRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
     const ctx = gsap.context(() => {
       categoryRefs.current.forEach((el) => {
         if (!el) return;

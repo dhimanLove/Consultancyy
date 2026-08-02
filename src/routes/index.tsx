@@ -470,6 +470,7 @@ function ParallaxBanner({ children }: { children: React.ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (!ref.current) return;
+    gsap.registerPlugin(ScrollTrigger);
     const ctx = gsap.context(() => {
       gsap.fromTo(
         ref.current,
@@ -508,7 +509,7 @@ function Index() {
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
       {/* ===== HERO ===== */}
       <section ref={heroRef} className="bg-white text-navy relative overflow-hidden">
-        <div className="container-page relative z-10 grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] gap-12 items-center py-16 md:py-24">
+        <div className="container-page relative z-10 grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-16 lg:gap-24 items-center py-20 md:py-28">
           <motion.div
             style={{ y: heroY }}
             variants={containerVariants}
@@ -524,27 +525,27 @@ function Index() {
             </motion.span>
             <motion.h1
               variants={itemVariants}
-              className="mt-5 font-display text-[36px] md:text-[52px] font-black leading-[1.08] tracking-tight text-navy"
+              className="mt-6 font-display text-[36px] md:text-[52px] font-black leading-[1.1] tracking-tight text-navy"
             >
               Business Compliance, <br />
               <span className="text-primary">Handled with Precision.</span>
             </motion.h1>
             <motion.p
               variants={itemVariants}
-              className="mt-6 text-[15px] md:text-[17px] text-steel leading-relaxed max-w-[520px]"
+              className="mt-7 text-[15px] md:text-[17px] text-steel leading-[1.75] max-w-[500px]"
             >
               Company registration, GST, FSSAI, MSME, certificates, audit &amp; tax &mdash;
               delivered end-to-end by Chartered Solution from Indore, serving clients across India.
             </motion.p>
             <motion.ul
               variants={containerVariants}
-              className="mt-8 grid sm:grid-cols-2 gap-x-6 gap-y-3"
+              className="mt-10 grid sm:grid-cols-2 gap-x-8 gap-y-3.5"
             >
               {HERO_CHECKLIST.map((item) => (
                 <motion.li
                   key={item}
                   variants={itemVariants}
-                  className="flex items-start gap-2.5 text-[13.5px] font-medium text-navy/80"
+                  className="flex items-start gap-3 text-[13.5px] font-medium text-navy/80"
                 >
                   <span className="mt-0.5 w-4 h-4 rounded-full bg-[#FFB000] text-navy flex items-center justify-center shrink-0">
                     <Check className="w-3 h-3" strokeWidth={3} />
@@ -553,10 +554,10 @@ function Index() {
                 </motion.li>
               ))}
             </motion.ul>
-            <motion.div variants={itemVariants} className="mt-9 flex flex-wrap items-center gap-4">
+            <motion.div variants={itemVariants} className="mt-11 flex flex-wrap items-center gap-4">
               <a
                 href={PHONE_HREF}
-                className="inline-flex items-center gap-2 bg-[#FFB000] text-navy font-bold text-[14px] rounded-[2px] px-7 py-3.5 shadow-lg shadow-[#FFB000]/25 hover:bg-[#e6a000] active:scale-[0.98] transition-all"
+                className="inline-flex items-center gap-2 bg-[#FFB000] text-navy font-bold text-[14px] rounded-[8px] px-7 py-3.5 shadow-lg shadow-[#FFB000]/25 hover:bg-[#e6a000] hover:shadow-[#FFB000]/35 active:scale-[0.98] transition-all"
               >
                 <Phone className="w-4 h-4" /> {PHONE}
               </a>
@@ -564,14 +565,14 @@ function Index() {
                 href={WHATSAPP_HREF}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 bg-white text-primary font-bold text-[14px] rounded-[2px] px-7 py-3.5 border-2 border-primary hover:bg-primary hover:text-white transition-colors"
+                className="inline-flex items-center gap-2 bg-white text-primary font-bold text-[14px] rounded-[8px] px-7 py-3.5 border-2 border-primary hover:bg-primary hover:text-white transition-colors"
               >
                 <WhatsAppIcon /> WhatsApp Us
               </a>
             </motion.div>
             <motion.div
               variants={itemVariants}
-              className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-[12px] text-steel/70"
+              className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-2.5 text-[12px] text-steel/70"
             >
               <span className="inline-flex items-center gap-1.5">
                 <Star className="w-3.5 h-3.5 text-[#FFB000] fill-current" /> CA-led team in Indore
@@ -590,6 +591,7 @@ function Index() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            className="w-full max-w-[440px] lg:justify-self-start lg:ml-auto"
           >
             <LeadForm />
           </motion.div>
@@ -889,21 +891,21 @@ function Index() {
             <motion.div variants={itemVariants} className="mt-9 flex flex-wrap gap-4">
               <a
                 href={PHONE_HREF}
-                className="inline-flex items-center gap-2 bg-primary text-white font-bold text-[14px] rounded-[2px] px-7 py-3.5 hover:bg-primary-70 transition-colors"
+                className="inline-flex items-center gap-2 bg-primary text-white font-bold text-[14px] rounded-[8px] px-7 py-3.5 hover:bg-primary-70 transition-colors"
               >
                 <Phone className="w-4 h-4" /> Call {PHONE}
               </a>
               <a
                 href={`mailto:${EMAIL}`}
-                className="inline-flex items-center gap-2 bg-navy text-white font-bold text-[14px] rounded-[2px] px-7 py-3.5 hover:bg-navy-light transition-colors"
+                className="inline-flex items-center gap-2 bg-navy text-white font-bold text-[14px] rounded-[8px] px-7 py-3.5 hover:bg-navy-light transition-colors"
               >
                 <Mail className="w-4 h-4" /> Email Us
               </a>
             </motion.div>
           </motion.div>
           <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             whileHover={{ y: -6 }}

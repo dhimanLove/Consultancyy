@@ -15,8 +15,12 @@ interface Props {
 
 export function PageHeader({ crumbs, title, subtext }: Props) {
   return (
-    <section className="bg-fog py-16 md:py-20">
-      <div className="container-page">
+    <section className="bg-fog py-16 md:py-20 relative overflow-hidden">
+      <div
+        aria-hidden
+        className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-primary via-warm to-primary/40"
+      />
+      <div className="container-page relative">
         <div className="flex items-center gap-1.5 text-[12px] text-steel">
           {crumbs.map((c, i) => (
             <span key={i} className="flex items-center gap-1.5">

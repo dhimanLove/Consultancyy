@@ -13,6 +13,7 @@ export function SectionHeading({ eyebrow, heading, center, subtext }: Props) {
 
   useEffect(() => {
     if (!wrapRef.current) return;
+    gsap.registerPlugin(ScrollTrigger);
     const children = Array.from(wrapRef.current.children);
     const ctx = gsap.context(() => {
       gsap.from(children, {
@@ -37,20 +38,21 @@ export function SectionHeading({ eyebrow, heading, center, subtext }: Props) {
   return (
     <div ref={wrapRef} className={center ? "text-center" : ""}>
       {eyebrow && (
-        <p className="text-[12px] font-semibold uppercase tracking-[0.2em] text-steel mb-2">
+        <p className="eyebrow flex items-center gap-2.5 mb-3">
+          {!center && <span aria-hidden className="block h-px w-6 bg-warm-dark/50" />}
           {eyebrow}
         </p>
       )}
-      <h2 className="font-display text-[24px] md:text-[27px] font-bold uppercase tracking-[0.055em] text-navy leading-[1.3]">
+      <h2 className="font-display text-[26px] md:text-[32px] font-bold uppercase tracking-[0.04em] text-navy leading-[1.22]">
         {heading}
       </h2>
       <span
         aria-hidden
-        className={`block h-1 w-[35px] bg-[#FFD712] mt-3 ${center ? "mx-auto" : ""}`}
+        className={`block h-[3px] w-9 bg-[#FFD712] mt-4 rounded-full ${center ? "mx-auto" : ""}`}
       />
       {subtext && (
         <p
-          className={`text-[15px] text-steel mt-4 max-w-[620px] leading-relaxed ${
+          className={`text-[16px] text-steel mt-5 max-w-[620px] leading-relaxed ${
             center ? "mx-auto" : ""
           }`}
         >

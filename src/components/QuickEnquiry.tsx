@@ -12,7 +12,7 @@ interface Props {
 const PHONE = "918815553899";
 
 const inputCls =
-  "w-full border border-border bg-white rounded-[2px] px-4 py-2.5 text-[14px] placeholder:text-steel/40 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/15 transition-all";
+  "w-full border border-border bg-white rounded-[8px] px-4 py-2.5 text-[14px] placeholder:text-steel/40 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/15 transition-all";
 const labelCls = "block text-[12px] font-bold text-navy mb-1";
 
 const fields = [
@@ -189,7 +189,7 @@ export function QuickEnquiry({ open, onClose, preselected }: Props) {
                         <button
                           type="submit"
                           disabled={sending}
-                          className="w-full flex items-center justify-center gap-2 bg-primary text-white rounded-[2px] px-4 py-3 text-[14px] font-bold hover:bg-primary-70 active:scale-[0.97] transition-all disabled:opacity-60"
+                          className="w-full flex items-center justify-center gap-2 bg-primary text-white rounded-[8px] px-4 py-3 text-[14px] font-bold hover:bg-primary-70 active:scale-[0.97] transition-all disabled:opacity-60"
                         >
                           {sending ? (
                             <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">

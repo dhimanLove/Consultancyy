@@ -54,7 +54,7 @@ export function ServiceCard({ service }: { service: Service }) {
           <div className="mt-5 flex items-center gap-2 border-t border-[#F0F0F0] pt-4">
             <button
               onClick={() => setShowEnquiry(true)}
-              className="inline-flex flex-1 items-center justify-center gap-2 rounded-[2px] bg-primary px-4 py-2.5 text-[12.5px] font-bold text-white transition-all duration-200 hover:bg-primary-70 active:scale-[0.97]"
+              className="inline-flex flex-1 items-center justify-center gap-2 rounded-[8px] bg-primary px-4 py-2.5 text-[12.5px] font-bold text-white transition-all duration-200 hover:bg-primary-70 active:scale-[0.97]"
             >
               <WhatsAppIcon className="h-4 w-4" /> Get Quote
             </button>
@@ -62,7 +62,7 @@ export function ServiceCard({ service }: { service: Service }) {
               to="/services/$slug"
               params={{ slug: service.slug }}
               aria-label={`View details for ${service.title}`}
-              className="inline-flex h-[38px] w-[38px] items-center justify-center rounded-[2px] border border-[#E5E5E5] text-primary transition-all duration-200 hover:border-primary hover:bg-primary hover:text-white active:scale-[0.95]"
+              className="inline-flex h-[38px] w-[38px] items-center justify-center rounded-[8px] border border-[#E5E5E5] text-primary transition-all duration-200 hover:border-primary hover:bg-primary hover:text-white active:scale-[0.95]"
             >
               <ArrowRight className="h-4 w-4" />
             </Link>
