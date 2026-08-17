@@ -5,8 +5,8 @@ import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { PageHeader } from "@/components/PageHeader";
 import { EmberButton } from "@/components/EmberButton";
 import { ServiceCard } from "@/components/ServiceCard";
-import { SERVICES_BY_CATEGORY, SERVICES } from "@/lib/services-data";
-import { ChevronRight, ArrowUpRight } from "lucide-react";
+import { SERVICES_BY_CATEGORY, SERVICES, SERVICE_CATEGORIES } from "@/lib/services-data";
+import { ArrowUpRight } from "lucide-react";
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -23,8 +23,7 @@ const serviceStructuredData = {
     {
       "@type": "ItemList",
       name: "All Services at Chartered Solution, Indore",
-      description:
-        "74 business registration, compliance, and financial services across 10 categories.",
+      description: `${SERVICES.length} business registration, compliance, and financial services across ${SERVICE_CATEGORIES.length} categories.`,
       itemListElement: SERVICES.map((s, i) => ({
         "@type": "ListItem",
         position: i + 1,
@@ -57,27 +56,24 @@ export const Route = createFileRoute("/services/")({
   head: () => ({
     meta: [
       {
-        title:
-          "All 74 Services | Business Registration, GST, FSSAI, MSME | Chartered Solution Indore",
+        title: `All ${SERVICES.length} Services | Business Registration, GST, FSSAI, MSME | Chartered Solution Indore`,
       },
       {
         name: "description",
-        content:
-          "Full list of 74 services by Chartered Solution in Indore: GST registration & filing, ITR filing, FSSAI license, MSME/Udyam, IEC, startup India registration, audit & assurance, CA certificates, ROC compliance, tax planning, and more across 10 categories.",
+        content: `Full list of ${SERVICES.length} services by Chartered Solution in Indore: business registration, GST registration & filing, ITR filing, FSSAI license, MSME/Udyam, IEC, startup India registration, ISO certification, medical device & cosmetics regulatory, solar, e-commerce, ROC compliance, and more across ${SERVICE_CATEGORIES.length} categories.`,
       },
       {
         name: "keywords",
         content:
-          "GST registration Indore, ITR filing Indore, FSSAI license Indore, MSME registration Indore, IEC code Indore, net worth certificate Indore, tax audit Indore, ROC compliance Indore, business registration Indore",
+          "GST registration Indore, ITR filing Indore, FSSAI license Indore, MSME registration Indore, IEC code Indore, ISO certification Indore, medical device registration Indore, cosmetics registration Indore, business registration Indore, compliance services Indore",
       },
       {
         property: "og:title",
-        content: "74 Business & Compliance Services | Chartered Solution Indore",
+        content: `${SERVICES.length} Business, Regulatory & Compliance Services | Chartered Solution Indore`,
       },
       {
         property: "og:description",
-        content:
-          "Complete list of 74 services including GST, ITR, FSSAI, MSME, IEC, certificates, audit, ROC compliance, and more in Indore.",
+        content: `Complete list of ${SERVICES.length} services including business registration, GST, ITR, FSSAI, MSME, IEC, ISO, medical device, cosmetics, solar, e-commerce, certificates, ROC compliance, and more in Indore.`,
       },
       { property: "og:url", content: "https://www.charteredsolution.com/services" },
       { property: "og:image", content: "https://www.charteredsolution.com/Charted.jpeg" },
@@ -87,12 +83,11 @@ export const Route = createFileRoute("/services/")({
       { name: "twitter:card", content: "summary_large_image" },
       {
         name: "twitter:title",
-        content: "74 Business & Compliance Services | Chartered Solution Indore",
+        content: `${SERVICES.length} Business, Regulatory & Compliance Services | Chartered Solution Indore`,
       },
       {
         name: "twitter:description",
-        content:
-          "Complete list of 74 services including GST, ITR, FSSAI, MSME, IEC, certificates, audit, ROC compliance, and more in Indore.",
+        content: `Complete list of ${SERVICES.length} services including business registration, GST, ITR, FSSAI, MSME, IEC, ISO, medical device, cosmetics, solar, e-commerce, certificates, ROC compliance, and more in Indore.`,
       },
       {
         name: "twitter:image",
@@ -138,8 +133,8 @@ function ServicesPage() {
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
       <PageHeader
         crumbs={[{ label: "Home", to: "/" }, { label: "Services" }]}
-        title="74 compliance and registration services for your business."
-        subtext="Chartered Solution in Indore offers end-to-end business registration, licensing, tax filing, and compliance services across 10 categories. From GST registration to company incorporation — we handle it all."
+        title={`${SERVICES.length} registration and compliance services for your business.`}
+        subtext={`Chartered Solution in Indore offers end-to-end business registration, licensing, tax, regulatory, and compliance services across ${SERVICE_CATEGORIES.length} categories. From company incorporation to ISO, solar, and e-commerce — we handle it all.`}
       />
 
       <section className="bg-white py-20">
@@ -178,7 +173,7 @@ function ServicesPage() {
         </div>
       </section>
 
-      <section className="bg-navy py-20 relative overflow-hidden">
+      <section className="bg-navy py-20 relative overflow-hidden cv-auto">
         <div className="container-page text-center relative z-10">
           <h2 className="text-[28px] md:text-[34px] font-bold text-white leading-tight tracking-tight">
             Need help choosing the right service?

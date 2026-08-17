@@ -44,7 +44,6 @@ export function StatCounter({ target, suffix = "" }: Props) {
 
     return () => {
       ctx.revert();
-      ScrollTrigger.refresh();
     };
   }, [target, suffix]);
 

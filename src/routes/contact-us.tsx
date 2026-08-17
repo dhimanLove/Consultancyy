@@ -3,8 +3,18 @@ import { createFileRoute } from "@tanstack/react-router";
 import { motion, AnimatePresence, type Variants } from "framer-motion";
 import { PageHeader } from "@/components/PageHeader";
 import { SectionHeading } from "@/components/SectionHeading";
-import { SERVICES } from "@/lib/services-data";
-import { Phone, Mail, Clock, MapPin, Send, CheckCircle, User, ChevronDown } from "lucide-react";
+import { CONTACT_SERVICE_OPTIONS, BUSINESS_TYPES } from "@/lib/nav";
+import {
+  Phone,
+  Mail,
+  Clock,
+  MapPin,
+  Send,
+  CheckCircle,
+  User,
+  ChevronDown,
+  Paperclip,
+} from "lucide-react";
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -31,7 +41,7 @@ const contactStructured = {
       "@type": "ContactPage",
       name: "Contact Chartered Solution Indore",
       description:
-        "Get in touch with Chartered Solution for business registration, GST, FSSAI, MSME, ITR, audit, and compliance services in Indore.",
+        "Get in touch with Chartered Solution for business registration, GST, FSSAI, MSME, ISO, medical device, cosmetics, solar, and compliance services in Indore.",
       url: "https://www.charteredsolution.com/contact-us",
     },
     {
@@ -116,6 +126,8 @@ function ContactUsPage() {
     name: "",
     phone: "",
     email: "",
+    city: "",
+    businessType: "",
     service: "",
     message: "",
   });
@@ -135,10 +147,12 @@ function ContactUsPage() {
       "*New Enquiry - Chartered Solution (Contact Page)*",
       "",
       `*Name:* ${values.name}`,
-      `*Phone:* ${values.phone}`,
+      `*Phone/WhatsApp:* ${values.phone}`,
       `*Email:* ${values.email || "Not provided"}`,
+      `*City/State:* ${values.city || "Not provided"}`,
+      `*Business Type:* ${values.businessType || "Not specified"}`,
       `*Service:* ${values.service || "Not specified"}`,
-      `*Message:* ${values.message || "Not provided"}`,
+      `*Requirement:* ${values.message || "Not provided"}`,
       "",
       "Sent via Contact Us form",
     ].join("\n");
@@ -157,7 +171,7 @@ function ContactUsPage() {
       <PageHeader
         crumbs={[{ label: "Home", to: "/" }, { label: "Contact Us" }]}
         title="Let's talk about your business needs."
-        subtext="Reach out to Chartered Solution in Indore for business registration, compliance, and all your service needs."
+        subtext="Reach out to Chartered Solution for business registration, tax & GST, regulatory compliance, certifications, and digital growth services across India."
       />
 
       <section className="bg-white py-20">
@@ -203,7 +217,15 @@ function ContactUsPage() {
                     transition={{ delay: 0.55 }}
                     onClick={() => {
                       setSubmitted(false);
-                      setValues({ name: "", phone: "", email: "", service: "", message: "" });
+                      setValues({
+                        name: "",
+                        phone: "",
+                        email: "",
+                        city: "",
+                        businessType: "",
+                        service: "",
+                        message: "",
+                      });
                     }}
                     className="mt-6 text-[13px] font-medium text-warm hover:text-warm-dark underline underline-offset-2 transition-colors"
                   >
@@ -274,7 +296,43 @@ function ContactUsPage() {
                   </motion.div>
                   <motion.div custom={3} variants={fieldVariants}>
                     <label className={labelBase}>
-                      Service Needed <span className="text-error">*</span>
+                      City / State <span className="text-error">*</span>
+                    </label>
+                    <div className="relative group">
+                      <MapPin className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-300 group-focus-within:text-primary transition-colors duration-200" />
+                      <input
+                        type="text"
+                        required
+                        value={values.city}
+                        onChange={update("city")}
+                        className={`${inputBase} pl-10`}
+                        placeholder="Indore, Madhya Pradesh"
+                      />
+                      <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-primary scale-x-0 group-focus-within:scale-x-100 transition-transform duration-300 origin-left rounded-full" />
+                    </div>
+                  </motion.div>
+                  <motion.div custom={4} variants={fieldVariants}>
+                    <label className={labelBase}>Business Type</label>
+                    <div className="relative group">
+                      <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-300 pointer-events-none group-focus-within:text-warm transition-colors duration-200" />
+                      <select
+                        value={values.businessType}
+                        onChange={update("businessType")}
+                        className={`${inputBase} appearance-none cursor-pointer pr-10`}
+                      >
+                        <option value="">Select your business type...</option>
+                        {BUSINESS_TYPES.map((bt) => (
+                          <option key={bt} value={bt}>
+                            {bt}
+                          </option>
+                        ))}
+                      </select>
+                      <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-primary scale-x-0 group-focus-within:scale-x-100 transition-transform duration-300 origin-left rounded-full" />
+                    </div>
+                  </motion.div>
+                  <motion.div custom={5} variants={fieldVariants}>
+                    <label className={labelBase}>
+                      Service Required <span className="text-error">*</span>
                     </label>
                     <div className="relative group">
                       <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-300 pointer-events-none group-focus-within:text-warm transition-colors duration-200" />
@@ -285,29 +343,37 @@ function ContactUsPage() {
                         className={`${inputBase} appearance-none cursor-pointer pr-10`}
                       >
                         <option value="">Select a service...</option>
-                        {SERVICES.map((s) => (
-                          <option key={s.slug} value={s.title}>
-                            {s.title}
+                        {CONTACT_SERVICE_OPTIONS.map((s) => (
+                          <option key={s} value={s}>
+                            {s}
                           </option>
                         ))}
                       </select>
                       <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-primary scale-x-0 group-focus-within:scale-x-100 transition-transform duration-300 origin-left rounded-full" />
                     </div>
                   </motion.div>
-                  <motion.div custom={4} variants={fieldVariants}>
-                    <label className={labelBase}>Message</label>
+                  <motion.div custom={6} variants={fieldVariants}>
+                    <label className={labelBase}>Requirement Description</label>
                     <div className="relative group">
                       <textarea
                         rows={3}
                         value={values.message}
                         onChange={update("message")}
                         className={`${inputBase} resize-none`}
-                        placeholder="How can we help you?"
+                        placeholder="Tell us what you need — registrations, filings, certifications, or something else."
                       />
                       <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-primary scale-x-0 group-focus-within:scale-x-100 transition-transform duration-300 origin-left rounded-full" />
                     </div>
                   </motion.div>
-                  <motion.div custom={5} variants={fieldVariants}>
+                  <motion.div
+                    custom={7}
+                    variants={fieldVariants}
+                    className="flex items-center gap-3 text-[12.5px] text-steel bg-fog/60 border border-border rounded-[2px] px-4 py-3"
+                  >
+                    <Paperclip className="w-4 h-4 text-warm shrink-0" />
+                    Optional: You can attach documents later on WhatsApp after we connect.
+                  </motion.div>
+                  <motion.div custom={8} variants={fieldVariants}>
                     <button
                       type="submit"
                       disabled={sending}

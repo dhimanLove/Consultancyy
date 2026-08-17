@@ -1,3 +1,13 @@
+export interface ServiceFaq {
+  q: string;
+  a: string;
+}
+
+export interface ServiceProcessStep {
+  title: string;
+  detail: string;
+}
+
 export interface Service {
   slug: string;
   title: string;
@@ -6,6 +16,17 @@ export interface Service {
   scope: string[];
   category: string;
   order: number;
+  /** Slugs of related / sub services to surface on the service page. Falls back to same-category services. */
+  related?: string[];
+  /** Section 12 detail fields — optional; category-level defaults fill the gaps. */
+  whoNeeds?: string[];
+  eligibility?: string[];
+  documents?: string[];
+  process?: ServiceProcessStep[];
+  govFee?: string;
+  professionalFee?: string;
+  timeline?: string;
+  faqs?: ServiceFaq[];
 }
 
 export interface ServiceCategory {
@@ -598,7 +619,7 @@ const _SERVICES: Service[] = [
       "Tax exemption (80-IAC) advisory",
       "Startup India benefits guide",
     ],
-    category: "registration",
+    category: "startup",
     order: 36,
   },
   {
@@ -614,7 +635,7 @@ const _SERVICES: Service[] = [
       "IEC modification",
       "Digital signature support",
     ],
-    category: "registration",
+    category: "import-export",
     order: 37,
   },
   {
@@ -630,7 +651,7 @@ const _SERVICES: Service[] = [
       "License renewal",
       "FSSAI compliance advisory",
     ],
-    category: "registration",
+    category: "food",
     order: 38,
   },
   {
@@ -982,7 +1003,7 @@ const _SERVICES: Service[] = [
     title: "Net Worth Certificate",
     descriptor: "Certified net worth certificate for various purposes.",
     summary:
-      "Issuance of net worth certificates certified by a practicing CA for business proposals, loan applications, tenders, and visa purposes.",
+      "Issuance of net worth certificates prepared and certified by qualified professionals for business proposals, loan applications, tenders, and visa purposes.",
     scope: [
       "Net worth computation",
       "Asset & liability verification",
@@ -998,7 +1019,7 @@ const _SERVICES: Service[] = [
     title: "Turnover Certificate",
     descriptor: "Certified turnover certificate for tenders and submissions.",
     summary:
-      "Issuance of CA-certified turnover certificates based on audited financial statements for tender participation and regulatory submissions.",
+      "Issuance of certified turnover certificates based on audited financial statements for tender participation and regulatory submissions.",
     scope: [
       "Turnover computation from audited books",
       "Revenue verification",
@@ -1010,11 +1031,11 @@ const _SERVICES: Service[] = [
     order: 61,
   },
   {
-    slug: "ca-certified-financial-statements",
-    title: "CA Certified Financial Statements",
-    descriptor: "CA-certified financial statements for regulatory and business needs.",
+    slug: "certified-financial-statements",
+    title: "Certified Financial Statements",
+    descriptor: "Professionally certified financial statements for regulatory and business needs.",
     summary:
-      "Certification of financial statements by a practicing Chartered Accountant for banks, investors, regulators, and other authorities.",
+      "Preparation and certification of financial statements by qualified professionals for banks, investors, regulators, and other authorities.",
     scope: [
       "Financial statement certification",
       "Audit verification",
@@ -1030,7 +1051,7 @@ const _SERVICES: Service[] = [
     title: "Fund Utilization Certificate",
     descriptor: "Certification of fund utilization for grants and loans.",
     summary:
-      "Issuance of fund utilization certificates for grant recipients, loan borrowers, and project funding, certified by a practicing CA.",
+      "Issuance of fund utilization certificates for grant recipients, loan borrowers, and project funding, prepared and certified by qualified professionals.",
     scope: [
       "Fund utilization verification",
       "Expenditure statement preparation",
@@ -1046,7 +1067,7 @@ const _SERVICES: Service[] = [
     title: "Income Certificate",
     descriptor: "Certified income certificate for various official purposes.",
     summary:
-      "Issuance of CA-certified income certificates based on verified financial records for visa applications, scholarships, and government submissions.",
+      "Issuance of certified income certificates based on verified financial records for visa applications, scholarships, and government submissions.",
     scope: [
       "Income computation & verification",
       "Document review",
@@ -1076,7 +1097,7 @@ const _SERVICES: Service[] = [
   {
     slug: "bank-certificate",
     title: "Bank Certificate",
-    descriptor: "Various CA-certified certificates for banking purposes.",
+    descriptor: "Various certified certificates for banking purposes.",
     summary:
       "Issuance of various bank-related certificates including credit limit confirmation, stock statement certification, and financial standing certificates.",
     scope: [
@@ -1092,7 +1113,7 @@ const _SERVICES: Service[] = [
   {
     slug: "government-tender-certificate",
     title: "Certificate for Government Tenders",
-    descriptor: "CA-certified documents for government tender submissions.",
+    descriptor: "Certified financial documents for government tender submissions.",
     summary:
       "Preparation and certification of financial documents required for government tender submissions including turnover, net worth, and experience certificates.",
     scope: [
@@ -1219,29 +1240,1910 @@ const _SERVICES: Service[] = [
     category: "consultancy",
     order: 74,
   },
+
+  // 🩺 Medical Device / CDSCO Regulatory
+  {
+    slug: "md5-medical-device-manufacturing-licence",
+    title: "Medical Device Manufacturing Licence (MD-5) \u2013 Class A & B",
+    descriptor: "Manufacturing licence assistance for Class A & B medical devices in India.",
+    summary:
+      "Assistance with obtaining a licence to manufacture Class A and Class B medical devices for sale or distribution in India, under the Medical Devices Rules, 2017.",
+    scope: [
+      "Application in Form MD-3 to State Licensing Authority",
+      "Licence in Form MD-5 (Class A & B)",
+      "Technical dossier & QMS documentation",
+      "Premises & equipment documentation",
+      "Site audit coordination (Class B)",
+      "Licence renewal assistance",
+    ],
+    category: "medical-device",
+    order: 75,
+  },
+  {
+    slug: "md6-medical-device-loan-licence",
+    title: "Medical Device Loan Licence (MD-6) \u2013 Class A & B",
+    descriptor: "Loan licence to manufacture Class A & B devices using another licensee's site.",
+    summary:
+      "Assistance with obtaining a loan licence to manufacture Class A and Class B medical devices using the manufacturing site of another licensee, under the Medical Devices Rules, 2017.",
+    scope: [
+      "Application in Form MD-4 to State Licensing Authority",
+      "Loan licence in Form MD-6 (Class A & B)",
+      "Manufacturing site verification support",
+      "Technical documentation",
+      "Compliance coordination with principal licensee",
+      "Renewal & amendment assistance",
+    ],
+    category: "medical-device",
+    order: 76,
+  },
+  {
+    slug: "md9-medical-device-manufacturing-licence-cd",
+    title: "Medical Device Manufacturing Licence (MD-9) \u2013 Class C & D",
+    descriptor: "Manufacturing licence assistance for Class C & D medical devices in India.",
+    summary:
+      "Assistance with obtaining a licence to manufacture Class C and Class D medical devices for sale or distribution in India, under the Medical Devices Rules, 2017.",
+    scope: [
+      "Application in Form MD-7 to Central Licensing Authority",
+      "Licence in Form MD-9 (Class C & D)",
+      "Comprehensive technical dossier",
+      "QMS / ISO 13485 documentation",
+      "Mandatory manufacturing site audit",
+      "Clinical & performance data coordination",
+    ],
+    category: "medical-device",
+    order: 77,
+  },
+  {
+    slug: "md15-medical-device-import-licence",
+    title: "Medical Device Import Licence (MD-15)",
+    descriptor: "Import licence to bring notified medical devices into India.",
+    summary:
+      "End-to-end assistance for obtaining an import licence to bring notified medical devices into India, under the Medical Devices Rules, 2017.",
+    scope: [
+      "Application in Form MD-14 to Central Licensing Authority",
+      "Licence in Form MD-15",
+      "Power of Attorney from overseas manufacturer",
+      "Free Sale Certificate & QMS documentation",
+      "Plant Master File & Device Master File support",
+      "Authorised agent coordination",
+    ],
+    category: "medical-device",
+    order: 78,
+  },
+  {
+    slug: "md13-medical-device-test-licence",
+    title: "Medical Device Test Licence (MD-13)",
+    descriptor: "Licence to manufacture medical devices for testing, evaluation or demonstration.",
+    summary:
+      "Assistance with obtaining a licence to manufacture medical devices for the purposes of clinical investigation, test, evaluation, demonstration or training, under the Medical Devices Rules, 2017.",
+    scope: [
+      "Application in Form MD-12",
+      "Test licence in Form MD-13",
+      "Quantity & device specification documentation",
+      "Technical dossier support",
+      "Renewal coordination (3-year validity)",
+    ],
+    category: "medical-device",
+    order: 79,
+  },
+  {
+    slug: "md17-medical-device-import-test-licence",
+    title: "Medical Device Import Test Licence (MD-17)",
+    descriptor: "Licence to import medical devices for testing, evaluation or demonstration.",
+    summary:
+      "Assistance with obtaining a licence to import medical devices for clinical investigation, test, evaluation, demonstration or training in India, under the Medical Devices Rules, 2017.",
+    scope: [
+      "Application for import for test/evaluation",
+      "Licence in Form MD-17",
+      "Overseas manufacturer documentation",
+      "Quantities & device specification support",
+      "Renewal coordination",
+    ],
+    category: "medical-device",
+    order: 80,
+  },
+  {
+    slug: "md42-medical-device-wholesale-licence",
+    title: "Medical Device Wholesale Licence (MD-42)",
+    descriptor: "Wholesale licence to stock, exhibit and distribute medical devices in India.",
+    summary:
+      "Assistance with obtaining a wholesale licence to stock, exhibit and distribute notified medical devices in India, under the Medical Devices Rules, 2017.",
+    scope: [
+      "Application in Form MD-41 to State Licensing Authority",
+      "Wholesale licence in Form MD-42",
+      "Premises & storage documentation",
+      "Qualified technical staff details",
+      "Record-keeping systems",
+      "Renewal assistance",
+    ],
+    category: "medical-device",
+    order: 81,
+  },
+  {
+    slug: "medical-device-certificates",
+    title: "Medical Device Certificates",
+    descriptor: "Free Sale, Market Standing, Non-Conviction & Neutral Code certificates.",
+    summary:
+      "Assistance with obtaining regulatory certificates for medical devices including Free Sale Certificate, Market Standing Certificate, Non-Conviction Certificate and Neutral Code Certificate for export and regulatory submissions.",
+    scope: [
+      "Free Sale Certificate (FSC)",
+      "Market Standing Certificate",
+      "Non-Conviction Certificate",
+      "Neutral Code Certificate",
+      "Notarised / apostilled documentation",
+      "Country-specific certificate coordination",
+    ],
+    category: "medical-device",
+    order: 82,
+  },
+
+  // 🇺🇸 US FDA Medical Device Services
+  {
+    slug: "fda-ndc-number-registration",
+    title: "FDA NDC Number Registration",
+    descriptor: "National Drug Code (NDC) number registration assistance for the US market.",
+    summary:
+      "Assistance with obtaining NDC (National Drug Code) numbers for products entering the United States market, including labeler code coordination and FDA submission support.",
+    scope: [
+      "NDC labeler code assignment",
+      "FDA electronic submission",
+      "Product establishment registration",
+      "Label & listing data preparation",
+      "Renewal & update assistance",
+    ],
+    category: "medical-device",
+    order: 83,
+  },
+  {
+    slug: "fda-device-listing-establishment",
+    title: "FDA Device Listing / Establishment Registration",
+    descriptor: "US FDA establishment registration and device listing assistance.",
+    summary:
+      "Assistance with US FDA establishment registration and medical device listing, a prerequisite for legally marketing and distributing medical devices in the United States.",
+    scope: [
+      "FDA establishment registration (annual)",
+      "Medical device listing",
+      "U.S. Agent coordination",
+      "Owner/operator & importer registration",
+      "User fee guidance",
+      "Annual update assistance",
+    ],
+    category: "medical-device",
+    order: 84,
+  },
+  {
+    slug: "fda-510k-submission",
+    title: "FDA 510(k) Submission",
+    descriptor: "Premarket notification (510(k)) submission assistance for medical devices.",
+    summary:
+      "Assistance with preparing and submitting a 510(k) Premarket Notification to the US FDA for medical devices seeking market clearance in the United States.",
+    scope: [
+      "Predicate device identification",
+      "Substantial equivalence assessment",
+      "510(k) submission preparation",
+      "Test data & documentation coordination",
+      "FDA communication & follow-up",
+    ],
+    category: "medical-device",
+    order: 85,
+  },
+  {
+    slug: "us-fda-agent-services",
+    title: "US FDA Agent Services",
+    descriptor: "Authorised U.S. Agent services for FDA-registered establishments.",
+    summary:
+      "Acting as your authorised U.S. Agent for FDA registration, device listing and regulatory correspondence, helping foreign manufacturers maintain compliance with US FDA requirements.",
+    scope: [
+      "Authorised U.S. Agent representation",
+      "FDA correspondence handling",
+      "Registration & listing maintenance",
+      "Import alerts assistance",
+      "Compliance notifications",
+    ],
+    category: "medical-device",
+    order: 86,
+  },
+
+  // 🏭 Manufacturing & QMS Services
+  {
+    slug: "medical-device-manufacturing-plant-setup",
+    title: "Medical Device Manufacturing Plant Setup",
+    descriptor: "End-to-end regulatory support for setting up a medical device plant.",
+    summary:
+      "Regulatory and documentation assistance for setting up a medical device manufacturing plant in India, from site and equipment documentation to licensing readiness.",
+    scope: [
+      "Regulatory pathway assessment",
+      "Premises & layout documentation",
+      "Equipment & utility documentation",
+      "QMS & SOP documentation",
+      "Product & process documentation",
+      "Licensing readiness support",
+    ],
+    category: "medical-device",
+    order: 87,
+  },
+  {
+    slug: "qms-iso-certification",
+    title: "QMS / ISO Certification",
+    descriptor: "Quality Management System development and ISO certification coordination.",
+    summary:
+      "Assistance with developing and implementing a Quality Management System (QMS) aligned with ISO standards, and coordination with certification bodies for certification.",
+    scope: [
+      "QMS development & implementation",
+      "Documentation & SOP preparation",
+      "Internal audit support",
+      "Certification body coordination",
+      "Corrective action assistance",
+      "Surveillance audit support",
+    ],
+    category: "iso",
+    order: 88,
+  },
+  {
+    slug: "iso-13485-certification",
+    title: "ISO 13485 Certification",
+    descriptor: "Quality management certification for medical device manufacturers.",
+    summary:
+      "Assistance with achieving ISO 13485 certification, the internationally recognised quality management standard for medical device manufacturers.",
+    scope: [
+      "Gap assessment",
+      "QMS documentation & SOPs",
+      "Risk management file support",
+      "Certification audit coordination",
+      "Corrective action & closure",
+    ],
+    category: "iso",
+    order: 89,
+  },
+  {
+    slug: "iso-9001-certification",
+    title: "ISO 9001 Certification",
+    descriptor: "Quality management system certification for business processes.",
+    summary:
+      "Assistance with achieving ISO 9001 certification, the globally recognised quality management system standard applicable across industries.",
+    scope: [
+      "Gap assessment",
+      "QMS documentation",
+      "Process mapping support",
+      "Internal & certification audits",
+      "Corrective action support",
+    ],
+    category: "iso",
+    order: 90,
+  },
+  {
+    slug: "sa-8000-certification",
+    title: "SA 8000 Certification",
+    descriptor: "Social accountability certification for ethical and fair workplaces.",
+    summary:
+      "Assistance with SA 8000 certification, the internationally recognised social accountability standard covering child labour, working hours, health & safety, and fair remuneration.",
+    scope: [
+      "Gap assessment",
+      "Policy & documentation support",
+      "Workplace practice review",
+      "Certification audit coordination",
+      "Corrective action assistance",
+    ],
+    category: "iso",
+    order: 91,
+  },
+  {
+    slug: "icmed-13485-certification",
+    title: "ICMED 13485 Certification",
+    descriptor: "Indian certification for medical device quality management systems.",
+    summary:
+      "Assistance with ICMED 13485 certification, the Indian certification scheme based on ISO 13485 for quality management systems of medical device manufacturers.",
+    scope: [
+      "Applicability assessment",
+      "QMS documentation support",
+      "Premises & process review",
+      "Certification audit coordination",
+      "Surveillance audit support",
+    ],
+    category: "iso",
+    order: 92,
+  },
+
+  // 🌍 International Regulatory Services
+  {
+    slug: "udi-compliance",
+    title: "Unique Device Identification (UDI) Compliance",
+    descriptor: "UDI compliance and labelling support for global medical device markets.",
+    summary:
+      "Assistance with Unique Device Identification (UDI) compliance, including UDI-DI/UDI-PI allocation, barcode labelling, and GUDID submission for medical devices.",
+    scope: [
+      "UDI-DI / UDI-PI allocation",
+      "GS1 barcode & label support",
+      "GUDID data submission",
+      "Label verification",
+      "Compliance documentation",
+    ],
+    category: "medical-device",
+    order: 93,
+  },
+  {
+    slug: "ce-certification-marking",
+    title: "CE Certification / CE Marking Consultancy",
+    descriptor: "CE marking pathway consultancy for the European market.",
+    summary:
+      "Consultancy for CE marking of medical devices for the European market, covering classification, conformity assessment route, and technical documentation.",
+    scope: [
+      "Device classification (MDR)",
+      "Conformity assessment route selection",
+      "Technical documentation (TD) support",
+      "Notified Body coordination",
+      "CE mark placement guidance",
+      "Post-market surveillance support",
+    ],
+    category: "medical-device",
+    order: 94,
+  },
+  {
+    slug: "eu-mdr-labeling",
+    title: "Medical Device Labeling Compliance / EU MDR Labeling",
+    descriptor: "Label review and compliance under EU MDR requirements.",
+    summary:
+      "Review and compliance assistance for medical device labelling and packaging under EU MDR requirements, including symbols, languages and IFU (Instructions for Use).",
+    scope: [
+      "Label & packaging review (EU MDR)",
+      "Symbol & language compliance",
+      "Instructions for Use (IFU) review",
+      "Label claims review",
+      "Compliance documentation",
+    ],
+    category: "medical-device",
+    order: 95,
+  },
+
+  // 💄 Cosmetics Regulatory & Compliance
+  {
+    slug: "cosmetic-manufacturing-licence",
+    title: "Cosmetic Manufacturing Licence",
+    descriptor: "Manufacturing licence assistance for cosmetic manufacturers in India.",
+    summary:
+      "Regulatory and documentation assistance for obtaining and maintaining a cosmetic manufacturing licence in India through the applicable State Licensing Authority.",
+    scope: [
+      "New cosmetic manufacturing licence assistance",
+      "State Licensing Authority application support",
+      "Manufacturing premises & process documentation",
+      "Product, formula & technical documentation",
+      "SOP & quality documentation",
+      "Licence renewal & amendment assistance",
+    ],
+    category: "cosmetics",
+    order: 96,
+  },
+  {
+    slug: "cdsco-cosmetic-import-registration",
+    title: "CDSCO Cosmetic Import Registration (COS-1/COS-2)",
+    descriptor: "Import registration for cosmetics entering the Indian market.",
+    summary:
+      "End-to-end assistance for importing cosmetics into India, including Form COS-1 application and obtaining the Import Registration Certificate in Form COS-2 under the Cosmetics Rules, 2020.",
+    scope: [
+      "Form COS-1 application assistance",
+      "SUGAM portal filing support",
+      "Importer & authorised agent documentation",
+      "Foreign manufacturer & site documentation",
+      "Free Sale Certificate documentation",
+      "Post-approval change assistance",
+    ],
+    category: "cosmetics",
+    order: 97,
+  },
+  {
+    slug: "cosmetic-product-regulatory-compliance",
+    title: "Cosmetic Product Regulatory Compliance",
+    descriptor: "Product-specific regulatory assessment for cosmetic products.",
+    summary:
+      "Product-specific regulatory assessment and compliance support for cosmetics, covering classification, formula review, product specifications, pack sizes and manufacturing sites.",
+    scope: [
+      "Cosmetic product classification",
+      "Formula / ingredient review",
+      "Product specification review",
+      "Variant & pack size documentation",
+      "Manufacturing site documentation",
+      "Regulatory pathway assessment",
+    ],
+    category: "cosmetics",
+    order: 98,
+  },
+  {
+    slug: "cosmetic-label-packaging-compliance",
+    title: "Cosmetic Label & Packaging Compliance",
+    descriptor: "Professional cosmetic label and packaging review before market launch.",
+    summary:
+      "Label and packaging compliance review for cosmetics, helping businesses identify potential regulatory issues in labels, packaging, claims and supporting information before launch.",
+    scope: [
+      "Cosmetic label review",
+      "Packaging compliance review",
+      "Ingredient declaration review",
+      "Manufacturer & importer details",
+      "Net quantity, usage & warnings review",
+      "Country of origin & claim review",
+    ],
+    category: "cosmetics",
+    order: 99,
+  },
+  {
+    slug: "cosmetic-formula-ingredient-compliance",
+    title: "Cosmetic Formula & Ingredient Compliance",
+    descriptor: "Ingredient and formula regulatory review for cosmetics.",
+    summary:
+      "Regulatory review of cosmetic formulas and ingredients, including restricted and prohibited ingredient assessment and percentage composition documentation.",
+    scope: [
+      "Cosmetic formula review",
+      "Ingredient list review",
+      "Restricted ingredient assessment",
+      "Prohibited ingredient assessment",
+      "Percentage composition documentation",
+      "Product specification & safety documentation",
+    ],
+    category: "cosmetics",
+    order: 100,
+  },
+  {
+    slug: "cosmetic-testing-quality-support",
+    title: "Cosmetic Testing & Quality Support",
+    descriptor: "Testing and laboratory coordination for cosmetic products.",
+    summary:
+      "Coordination of cosmetic product testing through applicable and qualified laboratories, including microbiological, stability and safety testing, with test report documentation.",
+    scope: [
+      "Cosmetic product testing coordination",
+      "Microbiological testing coordination",
+      "Stability testing coordination",
+      "Safety testing coordination",
+      "Laboratory coordination & selection",
+      "Test report documentation",
+    ],
+    category: "cosmetics",
+    order: 101,
+  },
+  {
+    slug: "cosmetic-manufacturing-setup",
+    title: "Cosmetic Manufacturing Setup",
+    descriptor: "Regulatory assistance to start a cosmetic manufacturing business.",
+    summary:
+      "Assistance for entrepreneurs and businesses starting a cosmetic manufacturing business in India, covering regulatory pathway assessment, premises documentation and licensing.",
+    scope: [
+      "Regulatory pathway assessment",
+      "Manufacturing premises documentation",
+      "Product & process documentation",
+      "Quality & SOP documentation",
+      "Licensing assistance",
+      "Regulatory readiness support",
+    ],
+    category: "cosmetics",
+    order: 102,
+  },
+  {
+    slug: "contract-cosmetic-manufacturing",
+    title: "Contract / Third-Party Cosmetic Manufacturing",
+    descriptor: "Regulatory support for brands manufacturing through third-party facilities.",
+    summary:
+      "Regulatory support for cosmetic brands manufacturing through third-party facilities, including manufacturer selection, licence verification, formula documentation and label review.",
+    scope: [
+      "Contract manufacturing documentation",
+      "Manufacturer selection assistance",
+      "Manufacturing licence verification",
+      "Product & formula documentation",
+      "Label review",
+      "Regulatory compliance coordination",
+    ],
+    category: "cosmetics",
+    order: 103,
+  },
+  {
+    slug: "cosmetic-distributor-wholesaler-compliance",
+    title: "Cosmetic Distributor & Wholesaler Compliance",
+    descriptor: "Distribution and wholesale business compliance for cosmetics.",
+    summary:
+      "Compliance support for cosmetic distributors and wholesalers, covering business setup assistance, supplier documentation and product compliance review.",
+    scope: [
+      "Cosmetic distribution compliance",
+      "Wholesale business setup assistance",
+      "Distributor & supplier documentation",
+      "Product compliance review",
+      "Importer / distributor documentation",
+      "Regulatory documentation support",
+    ],
+    category: "cosmetics",
+    order: 104,
+  },
+  {
+    slug: "us-cosmetics-regulatory-mocra",
+    title: "US Cosmetics Regulatory Services (MoCRA)",
+    descriptor: "US market entry and MoCRA compliance for cosmetic businesses.",
+    summary:
+      "Assistance with US cosmetics regulatory requirements, including MoCRA compliance, FDA cosmetic facility registration, product listing and label compliance.",
+    scope: [
+      "MoCRA compliance assistance",
+      "FDA cosmetic facility registration",
+      "Cosmetic product listing",
+      "U.S. Responsible Person coordination",
+      "Cosmetic label compliance",
+      "Regulatory documentation",
+    ],
+    category: "cosmetics",
+    order: 105,
+  },
+  {
+    slug: "eu-cosmetics-regulatory",
+    title: "EU Cosmetics Regulatory Services",
+    descriptor: "European cosmetic compliance, CPNP notification and PIF assistance.",
+    summary:
+      "Assistance with EU cosmetic regulatory compliance under the EU Cosmetics Regulation, including CPNP notification, Product Information File (PIF) and CPSR coordination.",
+    scope: [
+      "EU Cosmetics Regulation compliance",
+      "EU Responsible Person assistance",
+      "CPNP notification assistance",
+      "PIF (Product Information File) assistance",
+      "CPSR coordination",
+      "EU label, ingredient, claims & packaging review",
+    ],
+    category: "cosmetics",
+    order: 106,
+  },
+  {
+    slug: "international-cosmetics-market-access",
+    title: "International Cosmetics Market Access",
+    descriptor: "Global regulatory assistance for cosmetic market entry.",
+    summary:
+      "International regulatory assistance for cosmetic brands entering new markets, covering export compliance, market entry documentation and country-specific coordination.",
+    scope: [
+      "International regulatory assessment",
+      "Export compliance assistance",
+      "Market entry documentation",
+      "Free Sale documentation",
+      "Regulatory certificates",
+      "Country-specific compliance coordination",
+    ],
+    category: "cosmetics",
+    order: 107,
+  },
+  {
+    slug: "natural-organic-vegan-cosmetic-claims",
+    title: "Natural / Organic / Vegan Cosmetic Claims",
+    descriptor: "Claims and certification assistance for natural, organic and vegan cosmetics.",
+    summary:
+      "Review and coordination support for natural, organic, vegan and cruelty-free cosmetic claims, with certification coordination as per the applicable standard or certification scheme.",
+    scope: [
+      "Natural cosmetic claims review",
+      "Organic claim documentation",
+      "Vegan claim coordination",
+      "Cruelty-free claim documentation",
+      "Herbal cosmetic documentation",
+      "Certification coordination",
+    ],
+    category: "cosmetics",
+    order: 108,
+  },
+  {
+    slug: "cosmetic-claims-advertising-compliance",
+    title: "Cosmetic Claims & Advertising Compliance",
+    descriptor: "Review of product, advertising and digital claims before marketing.",
+    summary:
+      "Review of product claims, advertising, packaging, website, social media and e-commerce listing content to reduce the risk of false, misleading or unsupported cosmetic claims.",
+    scope: [
+      "Product claims review",
+      "Advertising & packaging claims review",
+      "Website & social media claims review",
+      "E-commerce listing content review",
+      "Promotional material review",
+      "Compliance guidance",
+    ],
+    category: "cosmetics",
+    order: 109,
+  },
+  {
+    slug: "ecommerce-cosmetic-compliance",
+    title: "E-commerce Cosmetic Compliance",
+    descriptor: "Compliance support for online cosmetic sellers.",
+    summary:
+      "Compliance support for online cosmetic sellers on platforms such as Amazon, Flipkart and Meesho, covering listing, label, ingredient and brand documentation.",
+    scope: [
+      "Amazon product listing compliance",
+      "Flipkart listing compliance",
+      "Meesho product compliance",
+      "Product label & description review",
+      "Ingredient & packaging information",
+      "Regulatory document compilation",
+    ],
+    category: "cosmetics",
+    order: 110,
+  },
+  {
+    slug: "cosmetic-certificates-documentation",
+    title: "Cosmetic Certificates & Documentation",
+    descriptor: "Regulatory certificates and documentation for cosmetic products.",
+    summary:
+      "Assistance with regulatory certificates and documentation for cosmetics, including Free Sale Certificate, Certificate of Analysis and product declarations for export and compliance.",
+    scope: [
+      "Free Sale Certificate assistance",
+      "Certificate of Analysis coordination",
+      "Product specification",
+      "Manufacturer & ingredient declarations",
+      "Product safety documentation",
+      "Export documentation",
+    ],
+    category: "cosmetics",
+    order: 111,
+  },
+
+  // 🏢 Company & Business Registration
+  {
+    slug: "private-limited-company-registration",
+    title: "Private Limited Company Registration",
+    descriptor: "End-to-end incorporation of a Private Limited Company in India.",
+    summary:
+      "Complete incorporation of a Private Limited Company — from name reservation, MOA/AOA drafting, DSC, DIN, to PAN/TAN and certificate of incorporation. The preferred structure for startups and investors.",
+    scope: [
+      "Name reservation on MCA portal (RUN)",
+      "Digital Signature Certificate (DSC)",
+      "Director Identification Number (DIN)",
+      "MOA & AOA drafting",
+      "Certificate of Incorporation (CoI)",
+      "PAN & TAN application",
+    ],
+    related: [
+      "llp-registration",
+      "one-person-company-registration",
+      "section-8-company-registration",
+      "gst-registration",
+    ],
+    category: "business-registration",
+    order: 1,
+  },
+  {
+    slug: "llp-registration",
+    title: "LLP Registration",
+    descriptor: "Limited Liability Partnership (LLP) incorporation with low compliance.",
+    summary:
+      "Incorporation of a Limited Liability Partnership combining the benefits of a partnership and a company — limited liability of partners with flexible compliance. Ideal for professional services and SMEs.",
+    scope: [
+      "Name availability check & reservation",
+      "DSC for designated partners",
+      "DPIN / DIN application",
+      "LLP Agreement drafting",
+      "Certificate of Incorporation",
+      "PAN & TAN for the LLP",
+    ],
+    related: [
+      "private-limited-company-registration",
+      "one-person-company-registration",
+      "partnership-firm-registration",
+      "gst-registration",
+    ],
+    category: "business-registration",
+    order: 2,
+  },
+  {
+    slug: "one-person-company-registration",
+    title: "One Person Company (OPC) Registration",
+    descriptor: "Single-founder company incorporation under the Companies Act.",
+    summary:
+      "Incorporation of a One Person Company for sole founders who want the credibility of a company with a single shareholder and nominee. Simple compliance and limited liability.",
+    scope: [
+      "Name reservation",
+      "DSC & DIN for director",
+      "Nominee appointment",
+      "MOA & AOA drafting",
+      "Certificate of Incorporation",
+      "PAN & TAN application",
+    ],
+    related: [
+      "private-limited-company-registration",
+      "llp-registration",
+      "proprietorship-registration",
+      "gst-registration",
+    ],
+    category: "business-registration",
+    order: 3,
+  },
+  {
+    slug: "partnership-firm-registration",
+    title: "Partnership Firm Registration",
+    descriptor: "Registration of a partnership firm under the Indian Partnership Act.",
+    summary:
+      "Registration of a partnership firm under the Indian Partnership Act, 1932, including partnership deed drafting, registration with the Registrar of Firms, and related compliance.",
+    scope: [
+      "Partnership deed drafting",
+      "Firm name registration",
+      "Registration with Registrar of Firms",
+      "PAN application for the firm",
+      "GST registration (if applicable)",
+    ],
+    related: [
+      "proprietorship-registration",
+      "llp-registration",
+      "gst-registration",
+      "msme-registration",
+    ],
+    category: "business-registration",
+    order: 4,
+  },
+  {
+    slug: "proprietorship-registration",
+    title: "Proprietorship Registration",
+    descriptor: "Simple, low-cost setup for sole proprietors in India.",
+    summary:
+      "End-to-end setup support for a proprietorship business — shop & establishment registration, Udyam/MSME, GST, professional tax, and the legal paperwork a sole proprietor needs to operate.",
+    scope: [
+      "Shop & establishment registration",
+      "MSME / Udyam registration",
+      "GST registration",
+      "Professional tax registration",
+      "Current account opening support",
+    ],
+    related: [
+      "partnership-firm-registration",
+      "msme-registration",
+      "gst-registration",
+      "shop-establishment-registration",
+    ],
+    category: "business-registration",
+    order: 5,
+  },
+  {
+    slug: "section-8-company-registration",
+    title: "Section 8 Company Registration",
+    descriptor: "Non-profit company incorporation for charitable objectives.",
+    summary:
+      "Incorporation of a Section 8 company for charitable, educational, or social purposes — a non-profit structure that can avail income tax exemptions and CSR funding.",
+    scope: [
+      "Name reservation",
+      "Incorporation under Section 8",
+      "MOA & AOA with charitable objects",
+      "Certificate of Incorporation (Section 8)",
+      "PAN & TAN application",
+      "12A / 80G support (where applicable)",
+    ],
+    related: ["ngo-registration", "private-limited-company-registration", "gst-registration"],
+    category: "business-registration",
+    order: 6,
+  },
+  {
+    slug: "ngo-registration",
+    title: "NGO / Trust / Society Registration",
+    descriptor: "Registration of Trusts, Societies, and Section 8 NGOs.",
+    summary:
+      "Registration support for NGOs across the three main forms — Trust, Society, and Section 8 Company — including deed drafting, registration, and FCRA / 12A / 80G guidance.",
+    scope: [
+      "Trust deed / MoA drafting",
+      "Trust & society registration",
+      "Section 8 NGO incorporation",
+      "PAN & bank account setup support",
+      "12A / 80G / FCRA advisory",
+    ],
+    related: ["section-8-company-registration", "gst-registration", "msme-registration"],
+    category: "business-registration",
+    order: 7,
+  },
+
+  // 🧾 Registrations & Licenses
+  {
+    slug: "dsc-registration",
+    title: "Digital Signature Certificate (DSC)",
+    descriptor: "Class 2/Class 3 DSC purchase and registration for e-filings.",
+    summary:
+      "Digital Signature Certificate (DSC) procurement and registration for company filings, GST, income tax, e-tenders, and other government portals. Issuance by certified CAs across India.",
+    scope: [
+      "DSC class selection (Class 2 / Class 3)",
+      "Token & certificate issuance",
+      "Registration on MCA / GST / Income Tax portals",
+      "DSC renewal & revocation",
+      "Multi-user / organisation DSCs",
+    ],
+    related: [
+      "gst-registration",
+      "pan-application",
+      "roc-compliance-support",
+      "import-export-code",
+    ],
+    category: "registration",
+    order: 1,
+  },
+  {
+    slug: "epfo-registration",
+    title: "EPFO Registration",
+    descriptor: "Provident Fund registration for employers in India.",
+    summary:
+      "EPFO registration of your business under the Employees' Provident Fund & Miscellaneous Provisions Act, including employer registration, employee onboarding, and monthly contribution compliance.",
+    scope: [
+      "EPFO employer registration",
+      "Establishment registration documentation",
+      "Employee enrolment (UAN)",
+      "Monthly PF contribution guidance",
+      "Annual returns support",
+    ],
+    related: ["esic-registration", "payroll-accounting", "gst-registration"],
+    category: "registration",
+    order: 2,
+  },
+  {
+    slug: "esic-registration",
+    title: "ESIC Registration",
+    descriptor: "Employees' State Insurance Corporation registration.",
+    summary:
+      "ESIC registration for employers under the Employees' State Insurance Act, covering medical benefits and social security for employees, with complete documentation and filing support.",
+    scope: [
+      "ESIC employer registration",
+      "Employee registration support",
+      "Contribution deposit guidance",
+      "Return filing assistance",
+      "Compliance follow-up",
+    ],
+    related: ["epfo-registration", "payroll-accounting", "professional-tax-registration"],
+    category: "registration",
+    order: 3,
+  },
+
+  // 🏛️ Corporate Compliance
+  {
+    slug: "aoc-4-filing",
+    title: "AOC-4 Annual Filing",
+    descriptor: "Filing of annual financial statements with the MCA.",
+    summary:
+      "Preparation and filing of Form AOC-4 — annual financial statements of the company — with the Registrar of Companies, including director signatures and mandatory certifications.",
+    scope: [
+      "Financial statement preparation check",
+      "Directors' report support",
+      "Form AOC-4 preparation",
+      "MCA filing with DSC",
+      "Clarification of ROC scrutiny queries",
+    ],
+    related: ["mgt-7-filing", "roc-compliance-support", "director-kyc", "statutory-audit"],
+    category: "corporate",
+    order: 1,
+  },
+  {
+    slug: "mgt-7-filing",
+    title: "MGT-7 Annual Return Filing",
+    descriptor: "Filing of annual return (MGT-7 / MGT-7A) with ROC.",
+    summary:
+      "Preparation and filing of the company's annual return in Form MGT-7 (or MGT-7A for OPCs and small companies) with the Registrar of Companies before the due date.",
+    scope: [
+      "Annual return data compilation",
+      "Registered office & member details",
+      "Form MGT-7 / MGT-7A filing",
+      "Shareholder / member details verification",
+      "ROC query handling",
+    ],
+    related: ["aoc-4-filing", "roc-compliance-support", "director-kyc"],
+    category: "corporate",
+    order: 2,
+  },
+  {
+    slug: "director-kyc",
+    title: "Director KYC (DIR-3 KYC)",
+    descriptor: "Annual KYC filing for directors with the MCA.",
+    summary:
+      "Annual KYC filing in Form DIR-3 KYC for every director holding a DIN, along with web-based DIR-3 KYC verification, to keep the DIN active.",
+    scope: [
+      "DIR-3 KYC preparation",
+      "Web KYC (e-sign / mobile OTP)",
+      "DIN status verification",
+      "Non-KYC penalty guidance",
+      "Annual renewal reminders",
+    ],
+    related: ["mgt-7-filing", "aoc-4-filing", "roc-compliance-support"],
+    category: "corporate",
+    order: 3,
+  },
+  {
+    slug: "dpt-3-filing",
+    title: "DPT-3 Return Filing",
+    descriptor: "Return of deposits and outstanding money (DPT-3) filing.",
+    summary:
+      "Filing of Form DPT-3 with the Registrar of Companies for companies accepting deposits or having outstanding money from the public, including the one-time return for outstanding loans.",
+    scope: [
+      "Deposit exemption assessment",
+      "Form DPT-3 preparation",
+      "One-time return for outstanding money",
+      "Certification support",
+      "ROC filing with DSC",
+    ],
+    related: ["roc-compliance-support", "aoc-4-filing", "mgt-7-filing"],
+    category: "corporate",
+    order: 4,
+  },
+  {
+    slug: "adt-1-appointment",
+    title: "ADT-1 Auditor Appointment",
+    descriptor: "Filing of auditor appointment with the Registrar of Companies.",
+    summary:
+      "Preparation and filing of Form ADT-1 for appointment of the statutory auditor of a company with the ROC within 30 days of the board resolution and AGM.",
+    scope: [
+      "Auditor appointment documentation",
+      "Board resolution support",
+      "Form ADT-1 preparation & filing",
+      "Annual / casual vacancy filing",
+      "Compliance reminders",
+    ],
+    related: ["statutory-audit", "roc-compliance-support", "aoc-4-filing"],
+    category: "corporate",
+    order: 5,
+  },
+  {
+    slug: "company-changes-closure",
+    title: "Company Changes & Closure",
+    descriptor: "Corporate restructuring, registered-office changes, and closure.",
+    summary:
+      "Support for company changes such as registered office shifts, director appointments/removals, change of name, and full closure — including STK-2 fast-track and voluntary strike-off.",
+    scope: [
+      "Registered office change filing",
+      "Director appointment / resignation filing",
+      "Change of name / MOA-AOA alteration",
+      "Share transfer & allotment filings",
+      "Voluntary closure (STK-2) support",
+    ],
+    related: ["roc-compliance-support", "business-restructuring", "merger-acquisition-advisory"],
+    category: "corporate",
+    order: 6,
+  },
+
+  // 📈 Financial & Business Advisory
+  {
+    slug: "business-plan-preparation",
+    title: "Business Plan Preparation",
+    descriptor: "Bank-ready business plans for funding and growth.",
+    summary:
+      "Professional business plan preparation covering market analysis, operations, team, and financial projections — tailored for investors, banks, and lenders.",
+    scope: [
+      "Executive summary & business model",
+      "Market & competitor analysis",
+      "Marketing & operations plan",
+      "Financial projections",
+      "Bank / investor-ready formatting",
+    ],
+    related: [
+      "project-report-preparation",
+      "funding-readiness",
+      "financial-planning",
+      "cma-report",
+    ],
+    category: "advisory",
+    order: 1,
+  },
+
+  // ✅ ISO Certification & QMS
+  {
+    slug: "iso-consultancy",
+    title: "ISO Consultancy & Regulatory Services",
+    descriptor: "End-to-end ISO certification consultancy for growing businesses.",
+    summary:
+      "Complete ISO consultancy covering ISO 9001, ISO 14001, ISO 45001, ISO 22000, ISO 13485, and other management system standards — from gap assessment and documentation to certification audit coordination.",
+    scope: [
+      "ISO standard selection & roadmap",
+      "Gap assessment & feasibility",
+      "QMS documentation & SOPs",
+      "Internal audit & training support",
+      "Certification body coordination",
+      "Surveillance & renewal audit support",
+    ],
+    related: [
+      "iso-9001-certification",
+      "iso-14001-certification",
+      "iso-45001-certification",
+      "iso-13485-certification",
+      "fsms-certification",
+      "qms-iso-certification",
+      "sa-8000-certification",
+      "icmed-13485-certification",
+    ],
+    category: "iso",
+    order: 1,
+  },
+  {
+    slug: "iso-14001-certification",
+    title: "ISO 14001 Certification (EMS)",
+    descriptor: "Environmental management system certification.",
+    summary:
+      "Assistance with ISO 14001 certification for environmental management systems — covering environmental policy, compliance obligations, and audit readiness for your organisation.",
+    scope: [
+      "Gap assessment (EMS)",
+      "Environmental policy & objectives",
+      "Documentation & operational controls",
+      "Internal audit support",
+      "Certification audit coordination",
+    ],
+    related: ["iso-consultancy", "iso-9001-certification", "iso-45001-certification"],
+    category: "iso",
+    order: 2,
+  },
+  {
+    slug: "iso-45001-certification",
+    title: "ISO 45001 Certification (OHS)",
+    descriptor: "Occupational health & safety management system certification.",
+    summary:
+      "Assistance with ISO 45001 certification for occupational health and safety management, including hazard identification, controls, and audit coordination for manufacturers and industry.",
+    scope: [
+      "Gap assessment (OH&S)",
+      "Hazard & risk assessment",
+      "Documentation & OH&S policy",
+      "Internal audit support",
+      "Certification audit coordination",
+    ],
+    related: ["iso-consultancy", "iso-9001-certification", "iso-14001-certification"],
+    category: "iso",
+    order: 3,
+  },
+
+  // 🩺 Medical Device Regulatory — landing
+  {
+    slug: "medical-device-regulatory",
+    title: "Medical Device Regulatory & Compliance Services",
+    descriptor: "CDSCO, US FDA, ISO 13485, and CE/EU MDR regulatory support.",
+    summary:
+      "Full-spectrum medical device regulatory and compliance services — CDSCO manufacturing, import and wholesale licences under the Medical Devices Rules 2017, US FDA registration and 510(k), ISO 13485, and CE marking/EU MDR readiness.",
+    scope: [
+      "CDSCO manufacturing licences (MD-5, MD-9)",
+      "CDSCO import licences (MD-15) & wholesale (MD-42)",
+      "US FDA establishment registration & device listing",
+      "FDA 510(k) submission & UDI compliance",
+      "ISO 13485 / ICMED 13485 certification",
+      "CE marking & EU MDR pathway support",
+    ],
+    related: [
+      "md5-medical-device-manufacturing-licence",
+      "md9-medical-device-manufacturing-licence-cd",
+      "md15-medical-device-import-licence",
+      "md42-medical-device-wholesale-licence",
+      "medical-device-certificates",
+      "fda-device-listing-establishment",
+      "fda-510k-submission",
+      "iso-13485-certification",
+      "ce-certification-marking",
+      "udi-compliance",
+    ],
+    category: "medical-device",
+    order: 1,
+  },
+
+  // 💄 Cosmetics Regulatory — landing
+  {
+    slug: "cosmetics-regulatory",
+    title: "Cosmetics Regulatory & Compliance Services",
+    descriptor:
+      "Manufacturing, import, product compliance, and labelling under Cosmetics Rules 2020.",
+    summary:
+      "Complete cosmetics regulatory services under the Cosmetics Rules, 2020 — manufacturing licences, CDSCO import registration (COS-1/COS-2), product & formula compliance, labelling review, testing coordination, and export certificates.",
+    scope: [
+      "Cosmetic manufacturing licence",
+      "CDSCO import registration (COS-1 / COS-2)",
+      "Product, formula & ingredient compliance",
+      "Label & packaging compliance review",
+      "Testing & quality coordination",
+      "US (MoCRA) & EU cosmetic compliance",
+    ],
+    related: [
+      "cosmetic-manufacturing-licence",
+      "cdsco-cosmetic-import-registration",
+      "cosmetic-product-regulatory-compliance",
+      "cosmetic-label-packaging-compliance",
+      "cosmetic-formula-ingredient-compliance",
+      "cosmetic-testing-quality-support",
+      "us-cosmetics-regulatory-mocra",
+      "eu-cosmetics-regulatory",
+      "natural-organic-vegan-cosmetic-claims",
+      "cosmetic-certificates-documentation",
+    ],
+    category: "cosmetics",
+    order: 1,
+  },
+
+  // 🍽️ Food & FSSAI
+  {
+    slug: "food-fssai-services",
+    title: "Food & FSSAI Regulatory Services",
+    descriptor: "FSSAI licensing, labelling, testing, and FSMS compliance.",
+    summary:
+      "Comprehensive food regulatory services — FSSAI registration and state/central licence, renewal, food labelling and claim compliance, food product testing coordination, and FSMS / ISO 22000 certification support.",
+    scope: [
+      "FSSAI basic registration & state/central licence",
+      "FSSAI licence renewal & amendments",
+      "Food labelling & claim compliance review",
+      "Food testing coordination",
+      "FSMS / ISO 22000 (HACCP) certification",
+      "Import & export food compliance",
+    ],
+    related: [
+      "fssai-registration",
+      "food-license-renewal",
+      "food-labelling-compliance",
+      "food-testing-support",
+      "fsms-certification",
+      "ecommerce-cosmetic-compliance",
+    ],
+    category: "food",
+    order: 1,
+  },
+  {
+    slug: "food-license-renewal",
+    title: "FSSAI License Renewal",
+    descriptor: "Timely renewal of FSSAI registration and licences.",
+    summary:
+      "Hassle-free renewal of FSSAI basic registration and state/central licences before the due date, avoiding penalties and disruptions to your food business.",
+    scope: [
+      "Renewal eligibility & fee calculation",
+      "Document compilation",
+      "Online renewal application",
+      "Deficiency & query handling",
+      "Renewal certificate delivery",
+    ],
+    related: ["fssai-registration", "food-labelling-compliance", "fsms-certification"],
+    category: "food",
+    order: 2,
+  },
+  {
+    slug: "food-labelling-compliance",
+    title: "Food Labelling & Claim Compliance",
+    descriptor: "Label review against FSS (Labelling & Display) Regulations.",
+    summary:
+      "Review of food labels, packaging, nutritional claims, and e-commerce listing content against the FSS (Labelling & Display) and FSSAI advertising requirements before launch.",
+    scope: [
+      "Label & packaging review",
+      "Nutritional & ingredient declarations",
+      "Health / natural / organic claim review",
+      "FSSAI logo & licence number checks",
+      "E-commerce listing content review",
+    ],
+    related: ["fssai-registration", "food-fssai-services", "food-testing-support"],
+    category: "food",
+    order: 3,
+  },
+  {
+    slug: "food-testing-support",
+    title: "Food Product Testing",
+    descriptor: "Testing coordination with NABL-accredited laboratories.",
+    summary:
+      "Coordination of food product testing through NABL-accredited laboratories — microbiological, chemical, and nutrition analysis, with test report documentation for compliance.",
+    scope: [
+      "Lab selection & parameter scoping",
+      "Sample collection guidance",
+      "Microbiological & chemical testing coordination",
+      "Nutritional analysis",
+      "Test report documentation",
+    ],
+    related: ["fssai-registration", "food-labelling-compliance", "fsms-certification"],
+    category: "food",
+    order: 4,
+  },
+  {
+    slug: "fsms-certification",
+    title: "FSMS / ISO 22000 (HACCP) Certification",
+    descriptor: "Food safety management system certification for food businesses.",
+    summary:
+      "Assistance with food safety management systems — FSMS registration per FSSAI and ISO 22000 certification, covering HACCP plans, documentation, and audit readiness.",
+    scope: [
+      "FSMS scope & applicability assessment",
+      "HACCP plan development",
+      "Prerequisite program (PRP) documentation",
+      "Internal audit & staff training support",
+      "Certification audit coordination",
+    ],
+    related: ["fssai-registration", "food-fssai-services", "iso-consultancy"],
+    category: "food",
+    order: 5,
+  },
+
+  // 🌐 Import, Export & Product Compliance
+  {
+    slug: "import-export-compliance",
+    title: "Import, Export & Product Compliance Services",
+    descriptor: "IEC, DGFT licensing, and product compliance for cross-border trade.",
+    summary:
+      "End-to-end import-export services — Import Export Code (IEC), DGFT registrations, RCMC, product compliance certification, certificates of origin, and trade documentation for importers, exporters, and e-commerce sellers.",
+    scope: [
+      "Import Export Code (IEC) application",
+      "DGFT licensing & RCMC support",
+      "Certificates of origin & export certificates",
+      "Product compliance & certification for export",
+      "ISF / customs documentation assistance",
+      "GST & IEC compliance for cross-border trade",
+    ],
+    related: [
+      "import-export-code",
+      "product-compliance-certification",
+      "export-import-documentation",
+      "gst-lut-application",
+      "gst-refund",
+      "cosmetic-certificates-documentation",
+    ],
+    category: "import-export",
+    order: 1,
+  },
+  {
+    slug: "product-compliance-certification",
+    title: "Product Compliance & Certification (India)",
+    descriptor: "BIS, EPR, and regulatory certification for products sold in India.",
+    summary:
+      "Assistance with mandatory product compliance for selling in India — BIS (ISI/CRS) certification, E-waste EPR, packaging rules, and market-specific regulatory documents for manufacturers and importers.",
+    scope: [
+      "BIS certification (ISI & CRS) support",
+      "E-waste EPR registration for electronics",
+      "Plastic / packaging rules compliance",
+      "Labelling & standards review",
+      "Regulatory document compilation",
+    ],
+    related: ["import-export-compliance", "import-export-code", "export-import-documentation"],
+    category: "import-export",
+    order: 2,
+  },
+  {
+    slug: "export-import-documentation",
+    title: "Export / Import Documentation",
+    descriptor: "Shipping, banking, and regulatory documentation for trade.",
+    summary:
+      "Complete documentation support for international trade — invoices, packing lists, certificates of origin, LC documents, and customs clearance paperwork.",
+    scope: [
+      "Commercial invoice & packing list",
+      "Certificate of origin (COO)",
+      "Letter of credit (LC) documentation",
+      "Insurance & customs documentation",
+      "Regulatory certificates (FSC, etc.)",
+    ],
+    related: ["import-export-code", "import-export-compliance", "gst-lut-application"],
+    category: "import-export",
+    order: 3,
+  },
+
+  // 🛒 E-Commerce & Marketplace
+  {
+    slug: "ecommerce-services",
+    title: "E-Commerce & Marketplace Services",
+    descriptor: "Seller registration, listings, catalogues, and compliance for online selling.",
+    summary:
+      "Complete e-commerce growth services — seller registration on Amazon, Flipkart, Meesho, IndiaMART and Shopify, product listing and optimisation, catalogue design, brand & barcode (GS1) registration, and product compliance.",
+    scope: [
+      "Amazon / Flipkart / Meesho seller onboarding",
+      "IndiaMART catalogue & account setup",
+      "Shopify store setup & development",
+      "Product listing & catalogue design",
+      "Brand & GS1 barcode registration",
+      "E-commerce product compliance",
+    ],
+    related: [
+      "amazon-seller-registration",
+      "flipkart-seller-registration",
+      "meesho-seller-registration",
+      "indiamart-seller-registration",
+      "shopify-store-setup",
+      "product-listing-service",
+      "catalogue-design",
+      "brand-barcode-registration",
+      "ecommerce-product-compliance",
+      "ecommerce-marketing",
+    ],
+    category: "ecommerce",
+    order: 1,
+  },
+  {
+    slug: "amazon-seller-registration",
+    title: "Amazon Seller Registration",
+    descriptor: "Amazon.in seller account setup and onboarding.",
+    summary:
+      "End-to-end Amazon seller registration — GST validation, brand registry support, category approvals, product listing setup, and launch guidance for your products.",
+    scope: [
+      "Seller account registration",
+      "GST & KYC verification support",
+      "Category approvals (gated categories)",
+      "Product listing & variant setup",
+      "Fulfilment (FBA/Easy Ship) guidance",
+    ],
+    related: [
+      "ecommerce-services",
+      "flipkart-seller-registration",
+      "product-listing-service",
+      "brand-barcode-registration",
+    ],
+    category: "ecommerce",
+    order: 2,
+  },
+  {
+    slug: "flipkart-seller-registration",
+    title: "Flipkart Seller Registration",
+    descriptor: "Flipkart Seller Hub account setup and onboarding.",
+    summary:
+      "Complete Flipkart seller registration — account creation, KYC, catalogue setup, category support, and Flipkart Fulfilment / seller support guidance.",
+    scope: [
+      "Seller account registration on Flipkart",
+      "KYC & GST validation support",
+      "Catalogue & listing setup",
+      "Category upgrades & supports",
+      "Fulfilment guidance",
+    ],
+    related: ["ecommerce-services", "amazon-seller-registration", "product-listing-service"],
+    category: "ecommerce",
+    order: 3,
+  },
+  {
+    slug: "meesho-seller-registration",
+    title: "Meesho Seller Registration",
+    descriptor: "Supplier registration and catalogue setup on Meesho.",
+    summary:
+      "Supplier registration and catalogue activation on Meesho for resellers and D2C brands — KYC, listing, pricing guidance, and order management support.",
+    scope: [
+      "Meesho supplier registration",
+      "KYC & GST validation support",
+      "Catalogue upload & optimisation",
+      "Pricing & margin guidance",
+      "Order fulfilment support",
+    ],
+    related: ["ecommerce-services", "amazon-seller-registration", "product-listing-service"],
+    category: "ecommerce",
+    order: 4,
+  },
+  {
+    slug: "indiamart-seller-registration",
+    title: "IndiaMART Seller Registration & Catalogue Setup",
+    descriptor: "IndiaMART account, catalogue, and keyword setup for B2B leads.",
+    summary:
+      "IndiaMART seller account setup with a professional catalogue — keywords, categories, and supplier page optimisation to generate quality B2B enquiries.",
+    scope: [
+      "IndiaMART account registration",
+      "Catalogue creation & optimisation",
+      "Keyword & SEO setup",
+      "Supplier page optimisation",
+      "Enquiry response guidance",
+    ],
+    related: ["ecommerce-services", "indiamart-marketing", "product-listing-service"],
+    category: "ecommerce",
+    order: 5,
+  },
+  {
+    slug: "shopify-store-setup",
+    title: "Shopify Store Setup & Development",
+    descriptor: "Professional Shopify store design and configuration.",
+    summary:
+      "Shopify store setup including theme selection, product import, payment and shipping configuration, and store launch — for D2C brands ready to sell direct.",
+    scope: [
+      "Shopify account & plan setup",
+      "Theme design & customisation",
+      "Product import & collections",
+      "Payments, shipping & tax configuration",
+      "Store launch & testing",
+    ],
+    related: [
+      "ecommerce-services",
+      "ecommerce-marketing",
+      "product-listing-service",
+      "website-development",
+    ],
+    category: "ecommerce",
+    order: 6,
+  },
+  {
+    slug: "product-listing-service",
+    title: "Product Listing & Optimisation",
+    descriptor: "High-converting product listings across marketplaces.",
+    summary:
+      "Professional product listing services — keyword-rich titles, bullet points, descriptions, backend keywords, and image guidance for Amazon, Flipkart, Meesho, and IndiaMART.",
+    scope: [
+      "Listing content & keyword research",
+      "Title, bullets & description writing",
+      "Image & A+ content guidance",
+      "Backend keyword optimisation",
+      "Competitor & ranking review",
+    ],
+    related: ["ecommerce-services", "catalogue-design", "amazon-seller-registration"],
+    category: "ecommerce",
+    order: 7,
+  },
+  {
+    slug: "catalogue-design",
+    title: "Product Catalogue Design",
+    descriptor: "Professionally designed product catalogues for sellers.",
+    summary:
+      "Design of product catalogues for marketplaces, B2B buyers, and D2C websites — clean, brand-consistent layouts that convert.",
+    scope: [
+      "Catalogue layout design",
+      "Product photography guidance",
+      "Category page structure",
+      "Brand assets & templates",
+      "Marketplace-ready image sizes",
+    ],
+    related: ["ecommerce-services", "product-listing-service", "branding-services"],
+    category: "ecommerce",
+    order: 8,
+  },
+  {
+    slug: "brand-barcode-registration",
+    title: "Brand & Barcode (GS1) Registration",
+    descriptor: "Trademark, brand registry, and GS1 barcode registration.",
+    summary:
+      "Brand protection and marketplace readiness — trademark application, Amazon Brand Registry / Flipkart Brand Advantage, and GS1 India barcode (GTIN/EAN) registration for your products.",
+    scope: [
+      "Trademark application support",
+      "Amazon Brand Registry / Brand Advantage",
+      "GS1 India barcode registration",
+      "GTIN / EAN assignment",
+      "Product brand documentation",
+    ],
+    related: ["ecommerce-services", "amazon-seller-registration", "product-listing-service"],
+    category: "ecommerce",
+    order: 9,
+  },
+  {
+    slug: "ecommerce-product-compliance",
+    title: "E-Commerce Product Compliance",
+    descriptor: "Regulatory documents and compliance for online sellers.",
+    summary:
+      "Product compliance support for online sellers — applicable registration, labelling, and regulatory documents required to list and sell products on marketplaces without complaints.",
+    scope: [
+      "Regulatory document checklist",
+      "Applicable licence assessment",
+      "Label & claim review for listings",
+      "Ingredient & product information",
+      "Complaint & removal prevention guidance",
+    ],
+    related: [
+      "ecommerce-services",
+      "product-compliance-certification",
+      "cosmetic-label-packaging-compliance",
+    ],
+    category: "ecommerce",
+    order: 10,
+  },
+
+  // 🚀 Startup India & Funding
+  {
+    slug: "startup-funding-services",
+    title: "Startup India, Funding & Compliance Services",
+    descriptor: "Startup India recognition, funding readiness, and compliance.",
+    summary:
+      "End-to-end startup services — Startup India / DPIIT recognition, funding readiness (pitch decks, financials, investor readiness), and ongoing startup compliance including ESOPs and ROC filings.",
+    scope: [
+      "Startup India / DPIIT recognition",
+      "Funding readiness & investor support",
+      "Pitch deck & financial model support",
+      "Startup compliance (ROC, ESOP)",
+      "Tax exemption (80-IAC) advisory",
+      "Investor / FEMA compliance support",
+    ],
+    related: [
+      "startup-india-registration",
+      "startup-funding-support",
+      "startup-compliance-services",
+      "funding-readiness",
+      "business-plan-preparation",
+      "virtual-cfo-services",
+    ],
+    category: "startup",
+    order: 1,
+  },
+  {
+    slug: "startup-funding-support",
+    title: "Startup Funding & Investor Support",
+    descriptor: "End-to-end support for raising funding from investors.",
+    summary:
+      "Funding readiness and investor support — pitch deck preparation, financial projections, valuation, investor outreach documentation, and term-sheet review support for startups.",
+    scope: [
+      "Pitch deck creation",
+      "Financial projections for investors",
+      "Valuation guidance",
+      "Investor documentation & data room",
+      "Term-sheet negotiation support",
+    ],
+    related: ["startup-funding-services", "funding-readiness", "business-valuation"],
+    category: "startup",
+    order: 2,
+  },
+  {
+    slug: "startup-compliance-services",
+    title: "Startup Compliance & ESOP Support",
+    descriptor: "Ongoing statutory compliance for startups and ESOP structuring.",
+    summary:
+      "Ongoing compliance for startups — ROC filings, ESOP scheme documentation, board resolutions, and investor-related compliance, keeping your startup audit and due-diligence ready.",
+    scope: [
+      "Annual & event-based ROC filings",
+      "ESOP scheme structuring & documentation",
+      "Board & shareholder resolutions",
+      "Investor compliance & reporting",
+      "Statutory registers maintenance",
+    ],
+    related: ["startup-funding-services", "roc-compliance-support", "company-compliance-advisory"],
+    category: "startup",
+    order: 3,
+  },
+  {
+    slug: "funding-readiness",
+    title: "Funding Readiness Advisory",
+    descriptor: "Make your business investor-ready before you raise.",
+    summary:
+      "Funding readiness advisory for SMEs and startups — cleaning financials, structuring records, and preparing investor documentation so you can raise capital with confidence.",
+    scope: [
+      "Financial & compliance hygiene review",
+      "Investor-ready financials",
+      "Data room preparation",
+      "Funding strategy & roadmap",
+      "Investor pitch support",
+    ],
+    related: ["startup-funding-services", "business-plan-preparation", "financial-planning"],
+    category: "startup",
+    order: 4,
+  },
+
+  // 📣 Digital Marketing & Growth
+  {
+    slug: "digital-marketing-services",
+    title: "Digital Marketing & Growth Services",
+    descriptor: "SEO, ads, social media, websites, and lead generation for growth.",
+    summary:
+      "Full-funnel digital growth services — SEO, Google & Meta ads, social media marketing, website development, IndiaMART and e-commerce marketing, and B2B lead generation for growing businesses.",
+    scope: [
+      "Search Engine Optimisation (SEO)",
+      "Google & Meta (Facebook/Instagram) Ads",
+      "Social media marketing & content",
+      "Website development & optimisation",
+      "IndiaMART & e-commerce marketing",
+      "Lead generation & branding",
+    ],
+    related: [
+      "seo-services",
+      "google-ads",
+      "meta-ads",
+      "social-media-marketing",
+      "website-development",
+      "indiamart-marketing",
+      "ecommerce-marketing",
+      "lead-generation",
+      "branding-services",
+    ],
+    category: "digital-marketing",
+    order: 1,
+  },
+  {
+    slug: "social-media-marketing",
+    title: "Social Media Marketing",
+    descriptor: "Content, pages, and campaigns for social platforms.",
+    summary:
+      "Social media marketing — page setup, content calendar, graphic design, and community management across Instagram, Facebook, LinkedIn, and YouTube to build your brand.",
+    scope: [
+      "Social media page setup & optimisation",
+      "Content calendar & creation",
+      "Graphic & reel design",
+      "Community management",
+      "Performance reporting",
+    ],
+    related: ["digital-marketing-services", "meta-ads", "branding-services"],
+    category: "digital-marketing",
+    order: 2,
+  },
+  {
+    slug: "google-ads",
+    title: "Google Ads Management",
+    descriptor: "Search, display, and shopping campaigns on Google.",
+    summary:
+      "Google Ads management — search, display, and Shopping campaigns with keyword research, ad copy, landing page guidance, and ROI-focused optimisation.",
+    scope: [
+      "Campaign strategy & setup",
+      "Keyword research & negative keywords",
+      "Ad copy & extensions",
+      "Shopping & remarketing campaigns",
+      "Ongoing optimisation & reporting",
+    ],
+    related: ["digital-marketing-services", "lead-generation", "seo-services"],
+    category: "digital-marketing",
+    order: 3,
+  },
+  {
+    slug: "meta-ads",
+    title: "Meta Ads (Facebook & Instagram)",
+    descriptor: "Facebook and Instagram paid campaigns for demand generation.",
+    summary:
+      "Meta ads management on Facebook and Instagram — audience targeting, creative direction, A/B testing, and funnel campaigns for leads and sales.",
+    scope: [
+      "Meta Business Manager setup",
+      "Audience & interest targeting",
+      "Ad creative & copy guidance",
+      "A/B testing & scaling",
+      "Funnel & retargeting campaigns",
+    ],
+    related: ["digital-marketing-services", "social-media-marketing", "lead-generation"],
+    category: "digital-marketing",
+    order: 4,
+  },
+  {
+    slug: "seo-services",
+    title: "SEO Services",
+    descriptor: "On-page, technical, and local SEO to rank on Google.",
+    summary:
+      "Search engine optimisation — technical, on-page, and local SEO with keyword strategy, content optimisation, and link building to grow organic traffic.",
+    scope: [
+      "Technical SEO audit",
+      "On-page & content optimisation",
+      "Keyword research & strategy",
+      "Local SEO & Google Business Profile",
+      "Link building & reporting",
+    ],
+    related: ["digital-marketing-services", "google-ads", "website-development"],
+    category: "digital-marketing",
+    order: 5,
+  },
+  {
+    slug: "website-development",
+    title: "Website Development",
+    descriptor: "Fast, professional business websites that convert.",
+    summary:
+      "Custom business website design and development — responsive design, SEO-ready structure, lead forms, and analytics, delivered on modern stacks.",
+    scope: [
+      "Website strategy & sitemap",
+      "UI design & development",
+      "On-page SEO setup",
+      "Lead forms & WhatsApp integration",
+      "Go-live, analytics & training",
+    ],
+    related: ["digital-marketing-services", "seo-services", "shopify-store-setup"],
+    category: "digital-marketing",
+    order: 6,
+  },
+  {
+    slug: "indiamart-marketing",
+    title: "IndiaMART Marketing & Promotion",
+    descriptor: "Paid and organic growth campaigns on IndiaMART.",
+    summary:
+      "IndiaMART campaigns and organic optimisation to increase B2B enquiries — keyword bidding strategy, catalogue boosts, and account-level optimisation.",
+    scope: [
+      "Campaign & keyword bidding strategy",
+      "Catalogue & product boosts",
+      "Supplier page optimisation",
+      "Enquiry response & follow-up support",
+      "Performance reporting",
+    ],
+    related: ["digital-marketing-services", "indiamart-seller-registration", "lead-generation"],
+    category: "digital-marketing",
+    order: 7,
+  },
+  {
+    slug: "ecommerce-marketing",
+    title: "E-Commerce Marketing",
+    descriptor: "Marketplace and D2C performance marketing.",
+    summary:
+      "E-commerce marketing — Amazon PPC, Flipkart ads, marketplace promotions, and D2C funnel campaigns to grow sales on marketplaces and your own store.",
+    scope: [
+      "Amazon PPC (Sponsored Ads) management",
+      "Flipkart / marketplace promotions",
+      "D2C funnel campaigns",
+      "Discount & deal strategies",
+      "ROAS reporting",
+    ],
+    related: ["digital-marketing-services", "google-ads", "meta-ads", "ecommerce-services"],
+    category: "digital-marketing",
+    order: 8,
+  },
+  {
+    slug: "lead-generation",
+    title: "Lead Generation Services",
+    descriptor: "B2B lead generation campaigns for sales-ready enquiries.",
+    summary:
+      "Sales-ready lead generation through ads, LinkedIn, IndiaMART, and landing pages — including lead qualification, CRM handoff, and reporting.",
+    scope: [
+      "Lead funnel strategy",
+      "Landing pages & forms",
+      "LinkedIn & B2B outreach",
+      "Google & Meta lead campaigns",
+      "CRM & lead handoff setup",
+    ],
+    related: ["digital-marketing-services", "google-ads", "indiamart-marketing"],
+    category: "digital-marketing",
+    order: 9,
+  },
+  {
+    slug: "branding-services",
+    title: "Branding & Design Services",
+    descriptor: "Logos, identity, and brand kits for businesses.",
+    summary:
+      "Brand identity creation — logo design, colour & typography systems, brand guidelines, and print/digital assets for a professional, consistent look.",
+    scope: [
+      "Logo & brand identity design",
+      "Colour & typography system",
+      "Brand guidelines document",
+      "Stationery & packaging design",
+      "Social & digital brand templates",
+    ],
+    related: ["digital-marketing-services", "social-media-marketing", "catalogue-design"],
+    category: "digital-marketing",
+    order: 10,
+  },
+
+  // ☀️ Solar Consultancy & Regulatory
+  {
+    slug: "solar-consultancy",
+    title: "Solar Consultancy & Regulatory Services",
+    descriptor:
+      "Vendor registration, DISCOM, PM Surya Ghar, net metering, and solar business support.",
+    summary:
+      "PAN-India solar consultancy with state-wise assistance — solar vendor & empanelment registration, DISCOM registrations, PM Surya Ghar scheme support, net metering applications, and solar business setup services.",
+    scope: [
+      "Solar vendor / empanelment registration",
+      "DISCOM registration & approval support",
+      "PM Surya Ghar scheme registration & assistance",
+      "Net metering application & compliance",
+      "Solar business setup & documentation",
+      "State-wise vendor registration (PAN-India)",
+    ],
+    related: [
+      "solar-vendor-registration",
+      "discom-registration",
+      "pm-surya-ghar",
+      "net-metering",
+      "solar-business-support",
+      "solar-vendor-registration-madhya-pradesh",
+      "solar-vendor-registration-gujarat",
+      "solar-vendor-registration-maharashtra",
+      "solar-vendor-registration-rajasthan",
+      "solar-vendor-registration-uttar-pradesh",
+    ],
+    category: "solar",
+    order: 1,
+  },
+  {
+    slug: "solar-vendor-registration",
+    title: "Solar Vendor / Empanelment Registration",
+    descriptor: "Vendor and empanelment registration for rooftop, RESCO, and CPSU solar work.",
+    summary:
+      "Registration and empanelment as a solar vendor with DISCOMs and nodal agencies — rooftop, RESCO, and CPSU schemes — with complete documentation and approvals across India.",
+    scope: [
+      "Vendor empanelment with DISCOM",
+      "Rooftop solar vendor registration",
+      "RESCO / CPSU scheme registration",
+      "Technical & financial document compilation",
+      "Approval tracking & follow-up",
+    ],
+    related: ["solar-consultancy", "discom-registration", "pm-surya-ghar", "net-metering"],
+    category: "solar",
+    order: 2,
+  },
+  {
+    slug: "discom-registration",
+    title: "DISCOM Registration & Empanelment",
+    descriptor: "Registration with electricity distribution companies for solar work.",
+    summary:
+      "Vendor registration and empanelment with State DISCOMs for solar installations under rooftop, KUSUM, and state schemes — plus net metering and subsidy coordination.",
+    scope: [
+      "DISCOM vendor registration",
+      "Scheme-wise empanelment (rooftop/KUSUM)",
+      "Documentation & technical compliance",
+      "Net metering coordination",
+      "Subsidy / incentive claim support",
+    ],
+    related: ["solar-consultancy", "solar-vendor-registration", "net-metering"],
+    category: "solar",
+    order: 3,
+  },
+  {
+    slug: "pm-surya-ghar",
+    title: "PM Surya Ghar Scheme Registration & Support",
+    descriptor: "Vendor registration and beneficiary assistance under PM Surya Ghar.",
+    summary:
+      "Support under the PM Surya Ghar Muft Bijli Yojana — vendor registration, beneficiary submission assistance, subsidy claim coordination, and net metering for rooftop solar households.",
+    scope: [
+      "Vendor registration under PM Surya Ghar",
+      "Beneficiary application assistance",
+      "Roof-top system documentation",
+      "Subsidy claim coordination",
+      "Net metering & DPR support",
+    ],
+    related: ["solar-consultancy", "solar-vendor-registration", "net-metering"],
+    category: "solar",
+    order: 4,
+  },
+  {
+    slug: "net-metering",
+    title: "Net Metering Application & Compliance",
+    descriptor: "Net metering applications for rooftop and commercial solar.",
+    summary:
+      "End-to-end net metering application support with DISCOMs — documentation, approvals, meter installation coordination, and compliance for residential and commercial solar systems.",
+    scope: [
+      "Net metering application filing",
+      "Technical document preparation",
+      "DISCOM approval coordination",
+      "Meter installation follow-up",
+      "Bi-annual / annual compliance",
+    ],
+    related: ["solar-consultancy", "discom-registration", "pm-surya-ghar"],
+    category: "solar",
+    order: 5,
+  },
+  {
+    slug: "solar-business-support",
+    title: "Solar Business Setup & Support",
+    descriptor: "Registration and documentation to start a solar business.",
+    summary:
+      "Guidance to start and scale your solar business — company registration, GST, tenders, vendor registration, insurance, and compliance documentation for solar EPC and distribution businesses.",
+    scope: [
+      "Company & GST registration for solar business",
+      "Solar vendor / empanelment registration",
+      "Tender documentation support",
+      "Certification & licence guidance",
+      "Project & documentation management",
+    ],
+    related: ["solar-consultancy", "private-limited-company-registration", "gst-registration"],
+    category: "solar",
+    order: 6,
+  },
 ];
 
 export const SERVICE_CATEGORIES: { id: string; name: string; icon: string }[] = [
+  { id: "business-registration", name: "Company & Business Registration", icon: "building" },
+  { id: "registration", name: "Registrations & Licenses", icon: "file-text" },
   { id: "accounting", name: "Accounting & Bookkeeping", icon: "book-open" },
   { id: "income-tax", name: "Income Tax", icon: "landmark" },
   { id: "gst", name: "GST Services", icon: "receipt" },
   { id: "audit", name: "Audit & Assurance", icon: "search-check" },
-  { id: "registration", name: "Business Registration & Compliance", icon: "file-text" },
-  { id: "advisory", name: "Financial Advisory", icon: "bar-chart" },
-  { id: "corporate", name: "Corporate Advisory", icon: "building" },
-  { id: "international", name: "International Tax & FEMA", icon: "globe" },
-  { id: "certification", name: "Certification Services", icon: "badge-check" },
+  { id: "corporate", name: "Corporate Compliance", icon: "building" },
+  { id: "advisory", name: "Financial & Business Advisory", icon: "bar-chart" },
   { id: "consultancy", name: "Business Consultancy", icon: "briefcase" },
+  { id: "certification", name: "Certification Services", icon: "badge-check" },
+  { id: "international", name: "International Tax & FEMA", icon: "globe" },
+  { id: "iso", name: "ISO Certification & QMS", icon: "badge-check" },
+  { id: "medical-device", name: "Medical Device Regulatory", icon: "stethoscope" },
+  { id: "cosmetics", name: "Cosmetics Regulatory & Compliance", icon: "sparkles" },
+  { id: "food", name: "Food & FSSAI", icon: "utensils-crossed" },
+  { id: "solar", name: "Solar Consultancy & Regulatory", icon: "sun" },
+  { id: "import-export", name: "Import, Export & Product Compliance", icon: "globe" },
+  { id: "ecommerce", name: "E-Commerce & Marketplace", icon: "shopping-bag" },
+  { id: "startup", name: "Startup India & Funding", icon: "zap" },
+  { id: "digital-marketing", name: "Digital Marketing & Growth", icon: "megaphone" },
 ];
 
-export const SERVICES: Service[] = _SERVICES;
+// ☀️ State-wise solar vendor registration services (Section 8)
+const SOLAR_STATES: { slug: string; state: string; statesLong: string }[] = [
+  {
+    slug: "madhya-pradesh",
+    state: "Madhya Pradesh",
+    statesLong: "MPPMCL / MP Madhya Kshetra & Paschim Kshetra Vidyut Vitaran Co.",
+  },
+  { slug: "gujarat", state: "Gujarat", statesLong: "GUVNL & discoms (PGVCL, MGVCL, DGVCL, UGVCL)" },
+  { slug: "maharashtra", state: "Maharashtra", statesLong: "MSEDCL" },
+  { slug: "rajasthan", state: "Rajasthan", statesLong: "JVVNL, AVVNL, JDVVNL" },
+  {
+    slug: "uttar-pradesh",
+    state: "Uttar Pradesh",
+    statesLong: "UPPCL & discoms (UPPCL zone offices)",
+  },
+  { slug: "karnataka", state: "Karnataka", statesLong: "BESCOM, CESC, MESCOM, HESCOM, GESCOM" },
+  { slug: "tamil-nadu", state: "Tamil Nadu", statesLong: "TANGEDCO" },
+  {
+    slug: "delhi-ncr",
+    state: "Delhi NCR",
+    statesLong: "BSES Rajdhani, BSES Yamuna, TPDDL, Haryana & UP discoms",
+  },
+  { slug: "punjab", state: "Punjab", statesLong: "PSPCL" },
+  { slug: "haryana", state: "Haryana", statesLong: "UHBVN, DHBVN" },
+];
+
+export const SOLAR_STATE_SERVICES: Service[] = SOLAR_STATES.map((s, i) => ({
+  slug: `solar-vendor-registration-${s.slug}`,
+  title: `Solar Vendor Registration – ${s.state}`,
+  descriptor: `Solar vendor & empanelment registration with ${s.state} discoms.`,
+  summary: `Solar vendor and empanelment registration in ${s.state} for rooftop, RESCO, and DISCOM schemes, including ${s.statesLong} approvals, documentation, and end-to-end follow-up by our local process partners.`,
+  scope: [
+    `Vendor empanelment with ${s.state} discom(s)`,
+    "Rooftop / RESCO / CPSU scheme registration",
+    "Technical & financial document compilation",
+    "Net metering & subsidy coordination",
+    "Approval tracking & follow-up",
+  ],
+  related: [
+    "solar-consultancy",
+    "solar-vendor-registration",
+    "discom-registration",
+    "net-metering",
+    "pm-surya-ghar",
+  ],
+  category: "solar",
+  order: 10 + i,
+}));
+
+export const SERVICES: Service[] = [..._SERVICES, ...SOLAR_STATE_SERVICES];
 
 export const SERVICES_BY_CATEGORY: {
   category: (typeof SERVICE_CATEGORIES)[number];
   services: Service[];
 }[] = SERVICE_CATEGORIES.map((cat) => ({
   category: cat,
-  services: _SERVICES.filter((s) => s.category === cat.id).sort((a, b) => a.order - b.order),
+  services: SERVICES.filter((s) => s.category === cat.id).sort((a, b) => a.order - b.order),
 }));
 
 export const getService = (slug: string): Service | undefined =>
@@ -1311,13 +3213,67 @@ const CATEGORY_IMAGE_POOL: Record<string, string[]> = {
     "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=400&h=280&fit=crop",
     "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=400&h=280&fit=crop",
   ],
+  "medical-device": [
+    "https://images.unsplash.com/photo-1584982751601-97dcc096659c?w=400&h=280&fit=crop",
+    "https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?w=400&h=280&fit=crop",
+    "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=400&h=280&fit=crop",
+    "https://images.unsplash.com/photo-1507413245164-6160d8298b31?w=400&h=280&fit=crop",
+  ],
+  cosmetics: [
+    "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=400&h=280&fit=crop",
+    "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=400&h=280&fit=crop",
+    "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=400&h=280&fit=crop",
+    "https://images.unsplash.com/photo-1553374657-3335eb01e2c3?w=400&h=280&fit=crop",
+  ],
+  "business-registration": [
+    "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=280&fit=crop",
+    "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=400&h=280&fit=crop",
+    "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=400&h=280&fit=crop",
+    "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&h=280&fit=crop",
+  ],
+  iso: [
+    "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=280&fit=crop",
+    "https://images.unsplash.com/photo-1581091012184-7e0cdfce7d8c?w=400&h=280&fit=crop",
+    "https://images.unsplash.com/photo-1531973576160-7125cd663d86?w=400&h=280&fit=crop",
+  ],
+  food: [
+    "https://images.unsplash.com/photo-1547573854-74d2a71d0826?w=400&h=280&fit=crop",
+    "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=280&fit=crop",
+    "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&h=280&fit=crop",
+  ],
+  solar: [
+    "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=400&h=280&fit=crop",
+    "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=400&h=280&fit=crop",
+    "https://images.unsplash.com/photo-1613665813446-82a78c468a1d?w=400&h=280&fit=crop",
+    "https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?w=400&h=280&fit=crop",
+  ],
+  "import-export": [
+    "https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=400&h=280&fit=crop",
+    "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=400&h=280&fit=crop",
+    "https://images.unsplash.com/photo-1553413077-190dd305871c?w=400&h=280&fit=crop",
+  ],
+  ecommerce: [
+    "https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=400&h=280&fit=crop",
+    "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=400&h=280&fit=crop",
+    "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=400&h=280&fit=crop",
+  ],
+  startup: [
+    "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=400&h=280&fit=crop",
+    "https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=400&h=280&fit=crop",
+    "https://images.unsplash.com/photo-1529119368496-2dfda6ec2804?w=400&h=280&fit=crop",
+  ],
+  "digital-marketing": [
+    "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=280&fit=crop",
+    "https://images.unsplash.com/photo-1547658719-da2b51169166?w=400&h=280&fit=crop",
+    "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=400&h=280&fit=crop",
+  ],
 };
 
 export const getServiceImage = (slug: string): string => {
   const cat = getCategoryForService(slug);
   if (!cat) return CATEGORY_IMAGE_POOL.consultancy[0];
   const pool = CATEGORY_IMAGE_POOL[cat.id] ?? CATEGORY_IMAGE_POOL.consultancy;
-  const idx = _SERVICES.findIndex((s) => s.slug === slug);
+  const idx = SERVICES.findIndex((s) => s.slug === slug);
   return pool[idx % pool.length];
 };
 
@@ -1383,7 +3339,7 @@ export const SERVICE_ICONS: Record<string, string> = {
   "foreign-remittance-compliance": "ArrowRightLeft",
   "net-worth-certificate": "Award",
   "turnover-certificate": "BadgeCheck",
-  "ca-certified-financial-statements": "FileCheck",
+  "certified-financial-statements": "FileCheck",
   "fund-utilization-certificate": "Receipt",
   "income-certificate": "ScrollText",
   "projected-financial-statements": "FileSpreadsheet",
@@ -1396,4 +3352,111 @@ export const SERVICE_ICONS: Record<string, string> = {
   "investment-advisory": "CandlestickChart",
   "risk-management-advisory": "Shield",
   "compliance-managing": "ClipboardCheck",
+  "md5-medical-device-manufacturing-licence": "Stethoscope",
+  "md6-medical-device-loan-licence": "Stethoscope",
+  "md9-medical-device-manufacturing-licence-cd": "Activity",
+  "md15-medical-device-import-licence": "Ship",
+  "md13-medical-device-test-licence": "FlaskConical",
+  "md17-medical-device-import-test-licence": "Ship",
+  "md42-medical-device-wholesale-licence": "Warehouse",
+  "medical-device-certificates": "BadgeCheck",
+  "fda-ndc-number-registration": "Hash",
+  "fda-device-listing-establishment": "ClipboardList",
+  "fda-510k-submission": "FileSearch",
+  "us-fda-agent-services": "Handshake",
+  "medical-device-manufacturing-plant-setup": "Factory",
+  "qms-iso-certification": "Settings2",
+  "iso-13485-certification": "Award",
+  "iso-9001-certification": "Award",
+  "sa-8000-certification": "HeartHandshake",
+  "icmed-13485-certification": "ShieldCheck",
+  "udi-compliance": "Barcode",
+  "ce-certification-marking": "BadgeCheck",
+  "eu-mdr-labeling": "Tags",
+  "cosmetic-manufacturing-licence": "Factory",
+  "cdsco-cosmetic-import-registration": "Ship",
+  "cosmetic-product-regulatory-compliance": "ClipboardCheck",
+  "cosmetic-label-packaging-compliance": "Tags",
+  "cosmetic-formula-ingredient-compliance": "FlaskConical",
+  "cosmetic-testing-quality-support": "TestTubes",
+  "cosmetic-manufacturing-setup": "Factory",
+  "contract-cosmetic-manufacturing": "Handshake",
+  "cosmetic-distributor-wholesaler-compliance": "Warehouse",
+  "us-cosmetics-regulatory-mocra": "Flag",
+  "eu-cosmetics-regulatory": "Globe2",
+  "international-cosmetics-market-access": "Globe",
+  "natural-organic-vegan-cosmetic-claims": "Leaf",
+  "cosmetic-claims-advertising-compliance": "Megaphone",
+  "ecommerce-cosmetic-compliance": "ShoppingBag",
+  "cosmetic-certificates-documentation": "ScrollText",
+  "private-limited-company-registration": "Building2",
+  "llp-registration": "Handshake",
+  "one-person-company-registration": "UserRound",
+  "partnership-firm-registration": "Users",
+  "proprietorship-registration": "Store",
+  "section-8-company-registration": "HeartHandshake",
+  "ngo-registration": "HeartPulse",
+  "dsc-registration": "KeyRound",
+  "epfo-registration": "WalletCards",
+  "esic-registration": "ShieldPlus",
+  "aoc-4-filing": "FileSpreadsheet",
+  "mgt-7-filing": "ClipboardList",
+  "director-kyc": "IdCard",
+  "dpt-3-filing": "FileText",
+  "adt-1-appointment": "ClipboardCheck",
+  "company-changes-closure": "Shuffle",
+  "business-plan-preparation": "FileText",
+  "iso-consultancy": "BadgeCheck",
+  "iso-14001-certification": "Leaf",
+  "iso-45001-certification": "HardHat",
+  "medical-device-regulatory": "Stethoscope",
+  "cosmetics-regulatory": "Sparkles",
+  "food-fssai-services": "UtensilsCrossed",
+  "food-license-renewal": "RefreshCw",
+  "food-labelling-compliance": "Tags",
+  "food-testing-support": "TestTubes",
+  "fsms-certification": "ShieldCheck",
+  "import-export-compliance": "Globe",
+  "product-compliance-certification": "BadgeCheck",
+  "export-import-documentation": "FileSignature",
+  "ecommerce-services": "ShoppingBag",
+  "amazon-seller-registration": "ShoppingCart",
+  "flipkart-seller-registration": "ShoppingCart",
+  "meesho-seller-registration": "ShoppingBag",
+  "indiamart-seller-registration": "Store",
+  "shopify-store-setup": "ShoppingBag",
+  "product-listing-service": "ListOrdered",
+  "catalogue-design": "Palette",
+  "brand-barcode-registration": "Barcode",
+  "ecommerce-product-compliance": "ShieldCheck",
+  "startup-funding-services": "Rocket",
+  "startup-funding-support": "TrendingUp",
+  "startup-compliance-services": "ClipboardCheck",
+  "funding-readiness": "CircleDollarSign",
+  "digital-marketing-services": "Megaphone",
+  "social-media-marketing": "Share2",
+  "google-ads": "Search",
+  "meta-ads": "Instagram",
+  "seo-services": "TrendingUp",
+  "website-development": "MonitorSmartphone",
+  "indiamart-marketing": "Store",
+  "ecommerce-marketing": "ShoppingCart",
+  "lead-generation": "Target",
+  "branding-services": "Palette",
+  "solar-consultancy": "Sun",
+  "solar-vendor-registration": "Sun",
+  "discom-registration": "Zap",
+  "pm-surya-ghar": "SunMedium",
+  "net-metering": "Gauge",
+  "solar-business-support": "Briefcase",
+  "solar-vendor-registration-madhya-pradesh": "Sun",
+  "solar-vendor-registration-gujarat": "Sun",
+  "solar-vendor-registration-maharashtra": "Sun",
+  "solar-vendor-registration-rajasthan": "Sun",
+  "solar-vendor-registration-uttar-pradesh": "Sun",
+  "solar-vendor-registration-karnataka": "Sun",
+  "solar-vendor-registration-tamil-nadu": "Sun",
+  "solar-vendor-registration-delhi-ncr": "Sun",
+  "solar-vendor-registration-punjab": "Sun",
+  "solar-vendor-registration-haryana": "Sun",
 };

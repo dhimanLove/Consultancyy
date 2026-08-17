@@ -80,27 +80,26 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content: "width=device-width, initial-scale=1",
       },
       {
-        title:
-          "Chartered Solution | Business Registration, GST, FSSAI, MSME & Compliance Services in Indore",
+        title: "Chartered Solution | Business, Regulatory & Digital Growth Consultancy",
       },
       {
         name: "description",
         content:
-          "Chartered Solution is a leading CA firm in Indore, offering expert business registration, GST services, FSSAI licenses, MSME/Udyam registration, Import Export Code (IEC), ITR filing, audit, CA certificates, and comprehensive business compliance solutions. Trusted professional services in Indore, Madhya Pradesh.",
+          "Chartered Solution is a business, regulatory and digital growth consultancy offering business registration, GST, FSSAI, MSME/Udyam, Import Export Code (IEC), ITR, ISO certification, medical device, cosmetics, solar and compliance solutions across India. Trusted professional services in Indore, Madhya Pradesh.",
       },
       {
         name: "keywords",
         content:
-          "Chartered Solution, business registration Indore, GST registration Indore, FSSAI license Indore, MSME registration Indore, IEC code Indore, ITR filing Indore, audit services Indore, net worth certificate Indore, CA services Indore, Jitendra Malviya, compliance services, Sanchar Nagar Indore",
+          "Chartered Solution, business consultancy Indore, business registration Indore, GST registration Indore, FSSAI license Indore, MSME registration Indore, IEC code Indore, ITR filing Indore, ISO certification Indore, medical device regulatory, cosmetics regulatory, solar consultancy, e-commerce services Indore, Jitendra Malviya, compliance services, Sanchar Nagar Indore",
       },
       {
         property: "og:title",
-        content: "Chartered Solution | Business Registration & Compliance Services Indore",
+        content: "Chartered Solution | Business, Regulatory & Digital Growth Consultancy",
       },
       {
         property: "og:description",
         content:
-          "Expert business registration, GST, FSSAI, MSME, ITR, audit, and compliance services in Indore, Madhya Pradesh. Call +91 88155 53899.",
+          "One partner for business setup, compliance, regulatory and digital growth solutions in Indore and across India. Call +91 88155 53899.",
       },
       { property: "og:type", content: "website" },
       { property: "og:locale", content: "en_IN" },
@@ -110,12 +109,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
       {
         name: "twitter:title",
-        content: "Chartered Solution | Business Registration & Compliance Services Indore",
+        content: "Chartered Solution | Business, Regulatory & Digital Growth Consultancy",
       },
       {
         name: "twitter:description",
         content:
-          "Business registration, GST, FSSAI, MSME, ITR, audit & compliance in Indore, MP. Call +91 88155 53899.",
+          "Business setup, compliance, regulatory and digital growth solutions in Indore, MP and across India. Call +91 88155 53899.",
       },
       {
         name: "twitter:image",

@@ -31,7 +31,6 @@ export function SectionHeading({ eyebrow, heading, center, subtext }: Props) {
     });
     return () => {
       ctx.revert();
-      ScrollTrigger.refresh();
     };
   }, []);
 

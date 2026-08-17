@@ -70,6 +70,36 @@ export default defineConfig(({ command, mode }) => {
       ],
       ignoreOutdatedRequests: true,
     },
+    build: {
+      rolldownOptions: {
+        output: {
+          advancedChunks: {
+            groups: [
+              {
+                name: "vendor-motion",
+                test: (id) => /(framer-motion|motion-dom|motion-utils|gsap)/.test(id),
+                includeDependenciesRecursively: false,
+              },
+              {
+                name: "vendor-icons",
+                test: (id) => id.includes("lucide-react"),
+                includeDependenciesRecursively: false,
+              },
+              {
+                name: "vendor-react",
+                test: (id) => /(react|react-dom|scheduler|use-sync-external-store)/.test(id),
+                includeDependenciesRecursively: false,
+              },
+              {
+                name: "vendor",
+                test: (id) => id.includes("node_modules"),
+                includeDependenciesRecursively: false,
+              },
+            ],
+          },
+        },
+      },
+    },
     plugins,
   };
 

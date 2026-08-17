@@ -10,6 +10,7 @@ import { RevealParagraph } from "@/components/RevealParagraph";
 import { TrustPillar } from "@/components/TrustPillar";
 import { TestimonialCard } from "@/components/TestimonialCard";
 import { WhatsAppIcon } from "@/components/WhatsAppIcon";
+import { SERVICES, SERVICE_CATEGORIES } from "@/lib/services-data";
 import { ArrowUpRight, Phone, Mail } from "lucide-react";
 
 const container: Variants = {
@@ -24,8 +25,7 @@ const child: Variants = {
 const faqData = [
   {
     question: "What services does Chartered Solution in Indore offer?",
-    answer:
-      "We offer 74 services across 10 categories including GST registration & filing, ITR filing, FSSAI license, MSME/Udyam registration, IEC code, startup India registration, tax planning, audit & assurance, CA certificates (net worth, turnover, etc.), ROC compliance, and more professional business services in Indore, Madhya Pradesh.",
+    answer: `We offer ${SERVICES.length}+ services across ${SERVICE_CATEGORIES.length} categories including business registration, GST registration & filing, ITR filing, FSSAI license, MSME/Udyam registration, IEC code, startup India registration, ISO certification, medical device and cosmetics regulatory, solar consultancy, e-commerce, digital marketing, ROC compliance, and more professional business services in Indore, Madhya Pradesh.`,
   },
   {
     question: "Who is the founder of Chartered Solution?",
@@ -58,9 +58,9 @@ const faqData = [
       "Yes, Chartered Solution Pvt. Ltd. is a registered professional services firm based in Indore, MP. We are recognized as a reliable service provider for government-related registrations, filings, and compliance work.",
   },
   {
-    question: "Do you provide CA certificates like net worth and turnover certificates in Indore?",
+    question: "Do you provide certificates like net worth and turnover certificates in Indore?",
     answer:
-      "Yes, we issue net worth certificates, turnover certificates, CA certified financial statements, fund utilization certificates, income certificates, bank certificates, and certificate for government tenders across Indore and all of Madhya Pradesh.",
+      "Yes, we prepare net worth certificates, turnover certificates, certified financial statements, fund utilization certificates, income certificates, bank certificates, and certificates for government tenders across Indore and all of Madhya Pradesh.",
   },
 ];
 
@@ -118,26 +118,27 @@ export const Route = createFileRoute("/about-us")({
     meta: [
       {
         title:
-          "About Us | Chartered Solution \u2014 Indore\u2019s Trusted Business Compliance Partner",
+          "About Us | Chartered Solution \u2014 Business, Regulatory & Digital Growth Consultancy",
       },
       {
         name: "description",
         content:
-          "Founded by Jitendra Malviya, Chartered Solution in Indore, MP is a professional firm offering 74+ business registration, licensing, GST, ITR, FSSAI, audit, CA certificate, and compliance services. Call +91 88155 53899.",
+          "Founded by Jitendra Malviya, Chartered Solution in Indore, MP is a professional consultancy offering business registration, licensing, GST, ITR, FSSAI, ISO, medical device, cosmetics, solar, and compliance solutions. Call +91 88155 53899.",
       },
       {
         name: "keywords",
         content:
-          "Chartered Solution Indore, Jitendra Malviya, business compliance Indore, registration services Indore, CA firm Indore, consultancy Indore",
+          "Chartered Solution Indore, Jitendra Malviya, business consultancy Indore, registration services Indore, regulatory consultancy Indore, compliance services Indore",
       },
       {
         property: "og:title",
-        content: "About Chartered Solution \u2014 Indore\u2019s Compliance & Registration Experts",
+        content:
+          "About Chartered Solution \u2014 Indore\u2019s Business, Regulatory & Digital Growth Consultancy",
       },
       {
         property: "og:description",
         content:
-          "Meet the team behind Chartered Solution. Founded by Jitendra Malviya, we are Indore\u2019s trusted partner for business registration, GST, FSSAI, ITR, audit, and 74+ compliance services.",
+          "Meet the team behind Chartered Solution. Founded by Jitendra Malviya, we help businesses register, comply, and grow with regulatory, compliance and digital solutions across India.",
       },
       { property: "og:url", content: "https://www.charteredsolution.com/about-us" },
       { property: "og:image", content: "https://www.charteredsolution.com/Charted.jpeg" },
@@ -151,8 +152,7 @@ export const Route = createFileRoute("/about-us")({
       },
       {
         name: "twitter:description",
-        content:
-          "Meet the team behind Chartered Solution. Founded by Jitendra Malviya, we are Indore\u2019s trusted partner for business registration, GST, FSSAI, ITR, audit, and 74+ compliance services.",
+        content: `Meet the team behind Chartered Solution. Founded by Jitendra Malviya, we are Indore's trusted partner for business registration, GST, FSSAI, ITR, ISO, regulatory and ${SERVICES.length}+ business solutions.`,
       },
       {
         name: "twitter:image",
@@ -204,20 +204,22 @@ function AboutUsPage() {
             />
             <RevealParagraph className="text-[15px] text-steel leading-relaxed mt-6">
               Chartered Solution was founded in 2023 by Jitendra Malviya with a clear mission: make
-              business registration and compliance simple, transparent, and stress-free for
-              entrepreneurs across India. What started as a two-person firm in Indore has grown into
-              a team of dedicated professionals serving clients across Madhya Pradesh and beyond.
+              business setup, compliance, and regulatory processes simple, transparent, and
+              stress-free for entrepreneurs across India. What started as a small consultancy in
+              Indore has grown into a team of dedicated professionals serving clients across Madhya
+              Pradesh and beyond.
             </RevealParagraph>
             <RevealParagraph className="text-[15px] text-steel leading-relaxed mt-4">
-              Today, we proudly offer 74 services across 10 categories — from GST registration and
-              ITR filing to company &amp; business setup, audit &amp; assurance, CA certificates,
-              ROC compliance, and more. Every solution is tailored, every process is handled
-              end-to-end, and every client gets a single point of contact.
+              Today, we offer {SERVICES.length}+ services across {SERVICE_CATEGORIES.length}{" "}
+              categories — from business registration, GST, ITR and ROC compliance to ISO
+              certification, medical device and cosmetics regulatory, solar consultancy, e-commerce
+              enablement, and digital growth solutions. Every solution is tailored, every process is
+              handled end-to-end, and every client gets a single point of contact.
             </RevealParagraph>
             <RevealParagraph className="text-[15px] text-steel leading-relaxed mt-4">
-              Whether you are a startup founder, a small business owner, or an established
-              enterprise, we are your compliance partner in Indore. 152, Sanchar Nagar Ext., Goyal
-              Nagar, Kanadia Road is where we turn paperwork into possibilities.
+              Whether you are a startup founder, a small business owner, a manufacturer, an exporter
+              or an established enterprise, we are your growth partner in Indore. 152, Sanchar Nagar
+              Ext., Goyal Nagar, Kanadia Road is where we turn paperwork into possibilities.
             </RevealParagraph>
           </div>
           <div
@@ -263,7 +265,7 @@ function AboutUsPage() {
         </div>
       </section>
 
-      <section className="bg-fog py-20">
+      <section className="bg-fog py-20 cv-auto">
         <div className="container-page">
           <SectionHeading eyebrow="Trust Pillars" heading="Why businesses in Indore trust us." />
           <motion.div
@@ -292,7 +294,7 @@ function AboutUsPage() {
         </div>
       </section>
 
-      <section className="bg-white py-20">
+      <section className="bg-white py-20 cv-auto">
         <div className="container-page">
           <SectionHeading eyebrow="Testimonials" heading="What our clients in Indore say." />
           <motion.div
@@ -321,7 +323,7 @@ function AboutUsPage() {
         </div>
       </section>
 
-      <section className="bg-navy py-16 md:py-20 relative overflow-hidden">
+      <section className="bg-navy py-16 md:py-20 relative overflow-hidden cv-auto">
         <div className="container-page text-center relative z-10">
           <SectionHeading
             eyebrow="Get in Touch"

@@ -14,7 +14,14 @@ import {
   SERVICES,
   type Service,
 } from "@/lib/services-data";
-import { PHONE, PHONE_HREF, WHATSAPP_HREF, EMAIL } from "@/lib/nav";
+import {
+  PHONE,
+  PHONE_HREF,
+  WHATSAPP_HREF,
+  EMAIL,
+  REGULATORY_SERVICES,
+  INDUSTRIES as NAV_INDUSTRIES,
+} from "@/lib/nav";
 import {
   Check,
   ChevronLeft,
@@ -33,6 +40,9 @@ import {
   Building2,
   GraduationCap,
   ArrowRight,
+  Rocket,
+  TrendingUp,
+  Sun,
 } from "lucide-react";
 
 const structuredData = {
@@ -46,7 +56,7 @@ const structuredData = {
       logo: "https://www.charteredsolution.com/Charted.jpeg",
       sameAs: ["https://wa.me/918815553899"],
       description:
-        "Chartered Solution is a CA firm in Indore offering business registration, GST, FSSAI, MSME, IEC, certification, audit, and compliance services across India.",
+        "Chartered Solution Pvt. Ltd. is a business, regulatory and digital growth consultancy offering business registration, GST, FSSAI, MSME, IEC, ISO, medical device, cosmetics, solar and compliance services across India.",
       address: {
         "@type": "PostalAddress",
         streetAddress: "152, Sanchar Nagar Ext., Goyal Nagar, Kanadia Road",
@@ -132,7 +142,7 @@ const structuredData = {
           name: "How long does GST registration take?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "GST registration is usually completed within 3\u20137 working days once all required documents are submitted to our Indore CA team.",
+            text: "GST registration is usually completed within 3\u20137 working days once all required documents are submitted to our Indore team.",
           },
         },
         {
@@ -168,27 +178,26 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       {
-        title:
-          "Chartered Solution | CA Firm in Indore \u2014 Business Registration, GST, FSSAI, MSME, IEC, Audit & Compliance",
+        title: "Chartered Solution | Business, Regulatory & Digital Growth Consultancy in Indore",
       },
       {
         name: "description",
         content:
-          "Chartered Solution is a trusted CA firm in Indore, MP. Business registration, company incorporation, GST registration & filing, FSSAI license, MSME/Udyam, IEC, certificates, audit, and compliance across India. Call +91 88155 53899.",
+          "One partner for business setup, compliance, regulatory and digital growth. Business registration, GST, FSSAI, MSME, IEC, ISO, medical device, cosmetics, solar and e-commerce solutions across India. Call +91 88155 53899.",
       },
       {
         name: "keywords",
         content:
-          "CA firm Indore, business registration Indore, company incorporation Indore, GST registration Indore, GST filing Indore, FSSAI license Indore, MSME registration Indore, Udyam registration Indore, IEC code Indore, net worth certificate Indore, tax audit Indore, compliance services Indore, Chartered Solution, Jitendra Malviya",
+          "business consultancy Indore, business registration Indore, company incorporation Indore, GST registration Indore, GST filing Indore, FSSAI license Indore, MSME registration Indore, Udyam registration Indore, IEC code Indore, ISO certification Indore, medical device registration Indore, cosmetics registration Indore, solar vendor registration, compliance services Indore, Chartered Solution, Jitendra Malviya",
       },
       {
         property: "og:title",
-        content: "Chartered Solution | CA Firm in Indore \u2014 Business Registration & Compliance",
+        content: "Chartered Solution | Business, Regulatory & Digital Growth Consultancy in Indore",
       },
       {
         property: "og:description",
         content:
-          "Business registration, GST, FSSAI, MSME, IEC, certificates, audit and compliance services in Indore, MP. Call +91 88155 53899.",
+          "Business setup, compliance, regulatory and digital growth solutions for startups, SMEs, manufacturers and growing businesses across India. Call +91 88155 53899.",
       },
       { property: "og:url", content: "https://www.charteredsolution.com" },
       { property: "og:type", content: "website" },
@@ -217,92 +226,71 @@ const itemVariants: Variants = {
 
 const HERO_CHECKLIST = [
   "Business Setup & Company Incorporation",
-  "GST Registration & Filing",
-  "MSME / Udyam Registration",
-  "Startup India Registration",
-  "Import Export Code (IEC)",
-  "FSSAI License",
-  "Accounting & Tax (ITR / TDS / Audit)",
-  "CA Certificates (Net Worth, Turnover, etc.)",
+  "GST, MSME / Udyam & Startup India",
+  "ISO, Food & Import / Export Compliance",
+  "Medical Device & Cosmetics Regulatory",
+  "Solar Consultancy & Vendor Registration",
+  "E-Commerce & Marketplace Enablement",
+  "Accounting, Tax, ITR & TDS (GST filing)",
+  "Compliance Certificates & Documentation",
 ];
 
 const STATS = [
-  { value: 74, suffix: "+", label: "Services" },
-  { value: 10, suffix: "+", label: "Categories" },
+  { value: SERVICES.length, suffix: "+", label: "Services" },
+  { value: SERVICE_CATEGORIES.length, suffix: "", label: "Categories" },
   { value: 2023, suffix: "", label: "Founded in Indore" },
-  { value: 500, suffix: "+", label: "Businesses Assisted" },
-  { value: 48, suffix: " hrs", label: "Avg. Turnaround" },
-];
-
-const TESTIMONIALS = [
-  {
-    name: "Rajesh Sharma",
-    city: "Indore",
-    rating: 5,
-    text: "Chartered Solution handled my private limited company registration and GST in a week. Very professional team and completely transparent pricing.",
-  },
-  {
-    name: "Priya Verma",
-    city: "Indore",
-    rating: 5,
-    text: "Got my FSSAI license and MSME registration done within 48 hours. The team guided me through every document. Highly recommended for food businesses.",
-  },
-  {
-    name: "Amit Agrawal",
-    city: "Bhopal",
-    rating: 5,
-    text: "Their CA team manages my monthly GST filing, TDS, and bookkeeping. Accurate, on time, and always reachable on WhatsApp.",
-  },
+  { value: REGULATORY_SERVICES.length, suffix: "", label: "Regulatory Verticals" },
+  { value: 48, suffix: " hrs", label: "Response Time" },
 ];
 
 const WHY_US = [
   {
     icon: Award,
-    big: "CA-led",
-    title: "Qualified Team",
-    body: "Every file is handled by a qualified CA and dedicated compliance staff.",
+    big: "One",
+    title: "Partner. Many Needs.",
+    body: "Business, regulatory, compliance and digital growth solutions under one roof.",
   },
   {
     icon: Users,
-    big: "500+",
-    title: "Businesses Assisted",
-    body: "Trusted by startups, SMEs, and corporates across India.",
+    big: "PAN-India",
+    title: "Consultancy",
+    body: "Serving startups, SMEs, manufacturers and growing businesses across India.",
   },
   {
     icon: FileCheck,
-    big: "74+",
+    big: `${SERVICES.length}+`,
     title: "Services",
-    body: "From registration to audit \u2014 everything under one roof.",
+    body: "From business setup to regulatory compliance \u2014 everything in one place.",
   },
   {
     icon: ShieldCheck,
-    big: "10+",
+    big: `${SERVICE_CATEGORIES.length}`,
     title: "Categories",
-    body: "Registration, tax, GST, audit, certification, and advisory.",
+    body: "Registration, tax, GST, ISO, medical, cosmetics, solar, e-commerce, and more.",
   },
   {
     icon: Zap,
-    big: "24-48",
-    title: "Hour Turnaround",
-    body: "Fast execution for MSME, FSSAI, GST, and certificates.",
+    big: "End-to-End",
+    title: "Documentation",
+    body: "Complete assistance with applications, documents, filings and follow-up.",
   },
   {
     icon: Landmark,
-    big: "Fixed",
-    title: "Transparent Pricing",
-    body: "No hidden charges. Exact quote before you start.",
+    big: "Transparent",
+    title: "Professional Fees",
+    body: "No hidden charges. A clear quote before you start.",
   },
   {
     icon: BadgeCheck,
-    big: "Verified",
-    title: "Registered Firm",
-    body: "GST certified with an active CIN registration.",
+    big: "Industry-Specific",
+    title: "Solutions",
+    body: "Tailored compliance for your industry and business type.",
   },
   {
     icon: Clock,
-    big: "PAN-India",
-    title: "Service",
-    body: "Serving all of India remotely from our Indore office.",
+    big: "Dedicated",
+    title: "Client Support",
+    body: "A single point of contact on every engagement.",
   },
 ];
 
@@ -319,7 +307,7 @@ const CLIENT_SEGMENTS = [
   },
   {
     icon: GraduationCap,
-    title: "SMEs & MSMEs",
+    title: "MSMEs & SMEs",
     desc: "Udyam, licenses, GST, accounting, and audit for growing businesses.",
     points: [
       "MSME/Udyam registration",
@@ -339,6 +327,49 @@ const CLIENT_SEGMENTS = [
   },
 ];
 
+const BUSINESS_JOURNEY = [
+  {
+    phase: "Start",
+    icon: Rocket,
+    title: "Start & Register",
+    desc: "Set up your business entity and get the registrations you need to start.",
+    items: ["Company / LLP / OPC", "GST, MSME & Startup India", "IEC & required licences"],
+    to: "/services/private-limited-company-registration",
+    cta: "Explore Registration",
+  },
+  {
+    phase: "Comply",
+    icon: ShieldCheck,
+    title: "Compile & Comply",
+    desc: "Stay on time with your tax, GST, ROC and regulatory obligations.",
+    items: [
+      "ITR, TDS & GST returns",
+      "ROC compliances & filings",
+      "Audits, certificates & advisory",
+    ],
+    to: "/services/gst-return-filing",
+    cta: "Explore Compliance",
+  },
+  {
+    phase: "Protect",
+    icon: FileCheck,
+    title: "Protect & Certify",
+    desc: "Protect your products and brand with the right certifications and approvals.",
+    items: ["ISO, QMS & FSMS", "Medical device & cosmetics", "Food, import/export compliance"],
+    to: "/services/iso-consultancy",
+    cta: "Explore Certifications",
+  },
+  {
+    phase: "Grow",
+    icon: TrendingUp,
+    title: "Grow & Digitalise",
+    desc: "Take your business online and grow with solar, e-commerce and marketing.",
+    items: ["Solar vendor & DISCOM", "E-commerce & marketplaces", "SEO, ads & lead generation"],
+    to: "/services/solar-consultancy",
+    cta: "Explore Growth",
+  },
+];
+
 const FAQS = [
   {
     q: "How much does company registration cost in Indore?",
@@ -346,7 +377,7 @@ const FAQS = [
   },
   {
     q: "How long does GST registration take?",
-    a: "GST registration is usually completed within 3\u20137 working days once all required documents are submitted to our Indore CA team.",
+    a: "GST registration is usually completed within 3\u20137 working days once all required documents are submitted to our Indore team.",
   },
   {
     q: "What documents are needed for MSME / Udyam registration?",
@@ -466,10 +497,39 @@ function ServiceCarousel({ services }: { services: Service[] }) {
   );
 }
 
+function useMediaQuery(query: string) {
+  const [matches, setMatches] = useState(() =>
+    typeof window !== "undefined" ? window.matchMedia(query).matches : false,
+  );
+  useEffect(() => {
+    const mq = window.matchMedia(query);
+    const handler = () => setMatches(mq.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, [query]);
+  return matches;
+}
+
+function useScrollParallax({
+  target,
+  range,
+}: {
+  target: React.RefObject<HTMLElement | null>;
+  range: [number, number];
+}) {
+  const desktop = useMediaQuery("(pointer: fine) and (min-width: 1024px)");
+  const { scrollYProgress } = useScroll({
+    target,
+    offset: ["start start", "end start"],
+  });
+  return useTransform(scrollYProgress, [0, 1], desktop ? range : [0, 0]);
+}
+
 function ParallaxBanner({ children }: { children: React.ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (!ref.current) return;
+    if (window.matchMedia("(pointer: fine) and (min-width: 1024px)").matches === false) return;
     gsap.registerPlugin(ScrollTrigger);
     const ctx = gsap.context(() => {
       gsap.fromTo(
@@ -489,7 +549,6 @@ function ParallaxBanner({ children }: { children: React.ReactNode }) {
     }, ref);
     return () => {
       ctx.revert();
-      ScrollTrigger.refresh();
     };
   }, []);
   return <div ref={ref}>{children}</div>;
@@ -501,9 +560,8 @@ function Index() {
   const active = SERVICES_BY_CATEGORY.find((c) => c.category.id === activeCat);
 
   const heroRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
-  const heroY = useTransform(scrollYProgress, [0, 1], [0, 90]);
-  const heroFormY = useTransform(scrollYProgress, [0, 1], [0, 40]);
+  const heroY = useScrollParallax({ target: heroRef, range: [0, 90] });
+  const heroFormY = useScrollParallax({ target: heroRef, range: [0, 40] });
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
@@ -521,21 +579,22 @@ function Index() {
               className="inline-flex items-center gap-2.5 text-[11px] font-bold tracking-[0.22em] uppercase text-warm-dark"
             >
               <span className="w-8 h-[2px] bg-[#FFB000]" />
-              Chartered Solution &middot; CA Firm in Indore
+              Chartered Solution &middot; Business, Regulatory &amp; Digital Growth
             </motion.span>
             <motion.h1
               variants={itemVariants}
               className="mt-6 font-display text-[36px] md:text-[52px] font-black leading-[1.1] tracking-tight text-navy"
             >
-              Business Compliance, <br />
-              <span className="text-primary">Handled with Precision.</span>
+              Business. Regulatory. <br />
+              <span className="text-primary">Digital Growth.</span>
             </motion.h1>
             <motion.p
               variants={itemVariants}
               className="mt-7 text-[15px] md:text-[17px] text-steel leading-[1.75] max-w-[500px]"
             >
-              Company registration, GST, FSSAI, MSME, certificates, audit &amp; tax &mdash;
-              delivered end-to-end by Chartered Solution from Indore, serving clients across India.
+              One Partner for Business Setup, Compliance, Regulatory &amp; Digital Growth Solutions.
+              Integrated solutions for startups, SMEs, manufacturers, exporters, e-commerce brands
+              and growing businesses across India.
             </motion.p>
             <motion.ul
               variants={containerVariants}
@@ -559,7 +618,7 @@ function Index() {
                 href={PHONE_HREF}
                 className="inline-flex items-center gap-2 bg-[#FFB000] text-navy font-bold text-[14px] rounded-[8px] px-7 py-3.5 shadow-lg shadow-[#FFB000]/25 hover:bg-[#e6a000] hover:shadow-[#FFB000]/35 active:scale-[0.98] transition-all"
               >
-                <Phone className="w-4 h-4" /> {PHONE}
+                <Phone className="w-4 h-4" /> Get Started
               </a>
               <a
                 href={WHATSAPP_HREF}
@@ -567,7 +626,7 @@ function Index() {
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 bg-white text-primary font-bold text-[14px] rounded-[8px] px-7 py-3.5 border-2 border-primary hover:bg-primary hover:text-white transition-colors"
               >
-                <WhatsAppIcon /> WhatsApp Us
+                <WhatsAppIcon /> Talk to an Expert
               </a>
             </motion.div>
             <motion.div
@@ -575,13 +634,13 @@ function Index() {
               className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-2.5 text-[12px] text-steel/70"
             >
               <span className="inline-flex items-center gap-1.5">
-                <Star className="w-3.5 h-3.5 text-[#FFB000] fill-current" /> CA-led team in Indore
+                <Star className="w-3.5 h-3.5 text-[#FFB000] fill-current" /> Consultancy in Indore
               </span>
               <span className="inline-flex items-center gap-1.5">
                 <BadgeCheck className="w-3.5 h-3.5 text-primary" /> PAN-India service
               </span>
               <span className="inline-flex items-center gap-1.5">
-                <ShieldCheck className="w-3.5 h-3.5 text-primary" /> Fixed-fee quotes
+                <ShieldCheck className="w-3.5 h-3.5 text-primary" /> Transparent professional fees
               </span>
             </motion.div>
           </motion.div>
@@ -625,12 +684,12 @@ function Index() {
       </section>
 
       {/* ===== ALL SERVICES (TABS) ===== */}
-      <section className="bg-white py-20">
+      <section className="bg-white py-20 cv-auto">
         <div className="container-page">
           <SectionHeading
             eyebrow="Our Services"
             heading="All Services under One Roof"
-            subtext="74+ business registration, licensing, certification, tax, and compliance services across 10 categories."
+            subtext={`${SERVICES.length}+ business registration, licensing, regulatory, tax, and compliance services across ${SERVICE_CATEGORIES.length} categories.`}
             center
           />
           <div className="mt-10 flex justify-center whitespace-nowrap overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
@@ -671,13 +730,13 @@ function Index() {
         </div>
       </section>
 
-      {/* ===== TESTIMONIALS ===== */}
-      <section className="bg-[#F4F4F4] py-20">
+      {/* ===== BUSINESS JOURNEY ===== */}
+      <section className="bg-[#F4F4F4] py-20 cv-auto" id="business-journey">
         <div className="container-page">
           <SectionHeading
-            eyebrow="Testimonials"
-            heading="What business owners say about us"
-            subtext="Reviews from founders, SMEs, and professionals we work with across India."
+            eyebrow="How We Help"
+            heading="Your Business Journey"
+            subtext="From the day you start to the day you scale \u2014 one partner for every stage."
             center
           />
           <motion.div
@@ -685,49 +744,197 @@ function Index() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-60px" }}
-            className="mt-12 grid md:grid-cols-3 gap-6"
+            className="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-5"
           >
-            {TESTIMONIALS.map((t) => (
+            {BUSINESS_JOURNEY.map((j, i) => (
               <motion.div
-                key={t.name}
+                key={j.phase}
                 variants={itemVariants}
-                whileHover={{ y: -6 }}
-                transition={{ type: "spring", stiffness: 300, damping: 22 }}
-                className="bg-white border border-[#E5E5E5] rounded-[5px] p-7 flex flex-col hover:shadow-lg hover:border-primary/20 transition-shadow"
+                className="group bg-white border border-[#E5E5E5] rounded-[10px] p-6 flex flex-col hover:shadow-xl hover:shadow-navy/10 hover:-translate-y-1 transition-all duration-200"
               >
-                <div className="flex gap-1 text-[#FDA700]">
-                  {Array.from({ length: t.rating }).map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-current" />
+                <div className="flex items-center justify-between">
+                  <div className="w-12 h-12 rounded-[10px] bg-primary/10 text-primary flex items-center justify-center transition-colors duration-200 group-hover:bg-primary group-hover:text-white">
+                    <j.icon className="w-6 h-6" />
+                  </div>
+                  <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-warm-dark">
+                    {j.phase}
+                  </span>
+                </div>
+                <h3 className="mt-4 text-[16px] font-bold text-navy">{j.title}</h3>
+                <p className="mt-2 text-[12.5px] text-steel leading-relaxed">{j.desc}</p>
+                <ul className="mt-4 space-y-2 flex-1">
+                  {j.items.map((it) => (
+                    <li key={it} className="flex items-start gap-2 text-[12.5px] text-navy/80">
+                      <span className="mt-1 w-1.5 h-1.5 rounded-full bg-[#FFB000] shrink-0" />
+                      {it}
+                    </li>
                   ))}
-                </div>
-                <p className="mt-4 text-[14px] text-steel leading-relaxed flex-1">
-                  &ldquo;{t.text}&rdquo;
-                </p>
-                <div className="mt-6 flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center text-[14px] font-bold">
-                    {t.name
-                      .split(" ")
-                      .map((w) => w[0])
-                      .join("")}
-                  </div>
-                  <div>
-                    <div className="text-[14px] font-bold text-navy">{t.name}</div>
-                    <div className="text-[12px] text-steel">{t.city}</div>
-                  </div>
-                </div>
+                </ul>
+                {i === 0 ? (
+                  <Link
+                    to="/services/$slug"
+                    params={{ slug: "private-limited-company-registration" }}
+                    className="mt-5 inline-flex items-center gap-1.5 text-[12.5px] font-bold text-primary hover:underline"
+                  >
+                    {j.cta} <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                ) : (
+                  <Link
+                    to={j.to}
+                    className="mt-5 inline-flex items-center gap-1.5 text-[12.5px] font-bold text-primary hover:underline"
+                  >
+                    {j.cta} <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                )}
               </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
 
+      {/* ===== REGULATORY & COMPLIANCE SERVICES ===== */}
+      <section className="bg-white py-20 cv-auto" id="regulatory-services">
+        <div className="container-page">
+          <SectionHeading
+            eyebrow="Regulatory Services"
+            heading="Regulatory & Compliance Services"
+            subtext="Specialised, category-specific regulatory solutions for growing businesses."
+            center
+          />
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-60px" }}
+            className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-5"
+          >
+            {REGULATORY_SERVICES.map((r) => {
+              const meta = SERVICES.find((s) => s.slug === r.slug);
+              return (
+                <motion.div key={r.slug} variants={itemVariants}>
+                  <Link
+                    to="/services/$slug"
+                    params={{ slug: r.slug }}
+                    className="group flex items-start gap-4 h-full bg-[#F4F4F4] border border-[#E5E5E5] rounded-[8px] p-5 hover:border-primary/40 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
+                  >
+                    <div className="shrink-0 w-11 h-11 rounded-[8px] bg-primary/10 text-primary flex items-center justify-center transition-colors duration-200 group-hover:bg-primary group-hover:text-white">
+                      <ServiceIcon slug={r.slug} className="w-5.5 h-5.5" />
+                    </div>
+                    <div>
+                      <h3 className="text-[14px] font-bold text-navy group-hover:text-primary transition-colors leading-snug">
+                        {r.label}
+                      </h3>
+                      <p className="mt-1.5 text-[12px] text-steel leading-relaxed line-clamp-2">
+                        {meta?.descriptor}
+                      </p>
+                    </div>
+                  </Link>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+          <div className="mt-10 text-center">
+            <Link
+              to="/services"
+              className="inline-flex items-center gap-2 bg-navy text-white font-bold text-[14px] rounded-[8px] px-7 py-3.5 hover:bg-primary transition-colors"
+            >
+              Explore Regulatory Services <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== SOLAR ===== */}
+      <section className="bg-primary text-white py-20 cv-auto" id="solar">
+        <div className="container-page grid lg:grid-cols-2 gap-12 items-center">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-60px" }}
+          >
+            <motion.span
+              variants={itemVariants}
+              className="inline-flex items-center gap-2.5 text-[11px] font-bold tracking-[0.22em] uppercase text-[#FFB000]"
+            >
+              <span className="w-8 h-[2px] bg-[#FFB000]" />
+              Solar &amp; Renewable Energy
+            </motion.span>
+            <motion.h2
+              variants={itemVariants}
+              className="mt-5 font-display text-[30px] md:text-[36px] font-black leading-[1.15] tracking-tight"
+            >
+              Solar Consultancy &amp; Regulatory Services
+            </motion.h2>
+            <motion.p
+              variants={itemVariants}
+              className="mt-5 text-[14.5px] text-white/85 leading-relaxed max-w-[480px]"
+            >
+              End-to-end support for solar companies and vendors \u2014 from vendor and DISCOM
+              registration to PM Surya Ghar and net metering, across India.
+            </motion.p>
+            <motion.ul variants={itemVariants} className="mt-7 grid sm:grid-cols-2 gap-x-6 gap-y-3">
+              {[
+                "Solar Vendor Registration",
+                "DISCOM Registration",
+                "PM Surya Ghar Support",
+                "Net Metering",
+                "Solar Business Support",
+                "State-wise PAN-India service",
+              ].map((it) => (
+                <li
+                  key={it}
+                  className="flex items-start gap-2.5 text-[13px] font-medium text-white/90"
+                >
+                  <Check className="w-4 h-4 text-[#FFB000] shrink-0 mt-0.5" strokeWidth={3} />
+                  {it}
+                </li>
+              ))}
+            </motion.ul>
+            <motion.div variants={itemVariants} className="mt-9 flex flex-wrap gap-4">
+              <Link
+                to="/services/$slug"
+                params={{ slug: "solar-vendor-registration" }}
+                className="inline-flex items-center gap-2 bg-[#FFB000] text-navy font-bold text-[14px] rounded-[8px] px-7 py-3.5 shadow-lg shadow-black/20 hover:bg-[#e6a000] transition-colors"
+              >
+                <Sun className="w-4 h-4" /> Solar Vendor Registration
+              </Link>
+            </motion.div>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="bg-navy rounded-[10px] p-8 md:p-10"
+          >
+            <Sun className="w-10 h-10 text-[#FFB000]" />
+            <h3 className="mt-4 text-[20px] font-black leading-snug">
+              Solar business, simplified.
+            </h3>
+            <p className="mt-3 text-[13.5px] text-white/80 leading-relaxed">
+              We help solar vendors, EPC companies and installers get registered and stay compliant
+              with state energy agencies across India \u2014 so you can focus on installing and
+              scaling.
+            </p>
+            <Link
+              to="/services/$slug"
+              params={{ slug: "solar-consultancy" }}
+              className="mt-7 inline-flex w-full items-center justify-center gap-2 bg-white text-navy font-bold text-[14px] rounded-[8px] px-6 py-3.5 hover:bg-[#FFB000] transition-colors"
+            >
+              Explore Solar Services <ArrowRight className="w-4 h-4" />
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
       {/* ===== WHY CHARTERED SOLUTION ===== */}
-      <section className="bg-white py-20">
+      <section className="bg-white py-20 cv-auto">
         <div className="container-page">
           <SectionHeading
             eyebrow="Why Chartered Solution"
-            heading="A firm built on speed, transparency, and trust"
-            subtext="A registered CA firm in Indore, delivering every engagement on a committed timeline."
+            heading="One Partner. Multiple Business Needs."
+            subtext="Professional business, compliance, regulatory and digital solutions for startups, SMEs, manufacturers and growing businesses."
             center
           />
           <motion.div
@@ -756,7 +963,7 @@ function Index() {
       </section>
 
       {/* ===== OUR CLIENTS ===== */}
-      <section className="bg-[#F4F4F4] py-20">
+      <section className="bg-[#F4F4F4] py-20 cv-auto">
         <div className="container-page">
           <SectionHeading
             eyebrow="Who We Serve"
@@ -802,8 +1009,50 @@ function Index() {
         </div>
       </section>
 
+      {/* ===== INDUSTRIES ===== */}
+      <section className="bg-white py-20 cv-auto" id="industries">
+        <div className="container-page">
+          <SectionHeading
+            eyebrow="Industries"
+            heading="Who Do We Work With?"
+            subtext="11 industry verticals \u2014 from startups to solar to medical devices."
+            center
+          />
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-60px" }}
+            className="mt-12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+          >
+            {NAV_INDUSTRIES.map((ind) => (
+              <motion.div key={ind.slug} variants={itemVariants}>
+                <Link
+                  to="/industries"
+                  hash={ind.slug}
+                  className="group flex items-start gap-3 h-full bg-[#F4F4F4] border border-[#E5E5E5] rounded-[8px] p-4 hover:border-primary/40 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
+                >
+                  <ArrowRight className="w-4 h-4 text-warm-dark mt-0.5 shrink-0 transition-transform group-hover:translate-x-0.5" />
+                  <span className="text-[13px] font-bold text-navy group-hover:text-primary transition-colors leading-snug">
+                    {ind.label}
+                  </span>
+                </Link>
+              </motion.div>
+            ))}
+          </motion.div>
+          <div className="mt-10 text-center">
+            <Link
+              to="/industries"
+              className="inline-flex items-center gap-2 bg-navy text-white font-bold text-[14px] rounded-[8px] px-7 py-3.5 hover:bg-primary transition-colors"
+            >
+              View All Industries <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* ===== FAQ ===== */}
-      <section className="bg-white py-20">
+      <section className="bg-white py-20 cv-auto">
         <div className="container-page max-w-[820px]">
           <SectionHeading
             eyebrow="FAQ"
@@ -859,7 +1108,7 @@ function Index() {
       </section>
 
       {/* ===== CTA ===== */}
-      <section className="bg-[#F4F4F4] py-20">
+      <section className="bg-[#F4F4F4] py-20 cv-auto">
         <div className="container-page grid lg:grid-cols-2 gap-12 items-center">
           <motion.div
             variants={containerVariants}
@@ -871,12 +1120,13 @@ function Index() {
               variants={itemVariants}
               className="text-[30px] md:text-[38px] font-black text-navy leading-[1.1] tracking-tight"
             >
-              Registrations and filings, <span className="text-primary">delivered on time.</span>
+              Registrations, compliance and{" "}
+              <span className="text-primary">regulatory clarity.</span>
             </motion.h2>
             <motion.ul variants={itemVariants} className="mt-7 space-y-4">
               {[
-                "Initial consultation with an experienced CA professional",
-                "Transparent, all-inclusive pricing \u2014 no hidden charges",
+                "Initial consultation with an experienced consultant",
+                "Transparent, all-inclusive professional fees \u2014 no hidden charges",
                 "A dedicated expert on your file from start to finish",
                 "PAN-India service \u2014 100% online, doorstep delivery",
               ].map((point) => (
@@ -923,21 +1173,23 @@ function Index() {
               How we work with every client
             </h3>
             <p className="mt-3 text-[14px] text-white/80 leading-relaxed">
-              Each engagement starts with a fixed quote and a committed timeline. Your dedicated
-              expert keeps you updated at every step \u2014 by phone and WhatsApp \u2014 until your
-              work is done.
+              Each engagement starts with a clear scope and a transparent professional fee. Your
+              dedicated expert keeps you updated at every step \u2014 by phone and WhatsApp \u2014
+              until your work is done.
             </p>
             <ul className="mt-6 space-y-3">
-              {["Verified on IndiaMART", "GST certified firm", "Active CIN registration"].map(
-                (line) => (
-                  <li key={line} className="flex items-center gap-2.5 text-[13.5px] font-medium">
-                    <span className="w-4 h-4 rounded-full bg-[#FFB000] text-navy flex items-center justify-center">
-                      <Check className="w-3 h-3" strokeWidth={3} />
-                    </span>
-                    {line}
-                  </li>
-                ),
-              )}
+              {[
+                "Dedicated expert for every engagement",
+                "Transparent professional fees",
+                "End-to-end documentation assistance",
+              ].map((line) => (
+                <li key={line} className="flex items-center gap-2.5 text-[13.5px] font-medium">
+                  <span className="w-4 h-4 rounded-full bg-[#FFB000] text-navy flex items-center justify-center">
+                    <Check className="w-3 h-3" strokeWidth={3} />
+                  </span>
+                  {line}
+                </li>
+              ))}
             </ul>
             <div className="mt-8">
               <EmberButton
@@ -953,7 +1205,7 @@ function Index() {
 
       {/* ===== TRUST BANNER ===== */}
       <ParallaxBanner>
-        <section className="bg-primary text-white">
+        <section className="bg-primary text-white cv-auto">
           <div className="container-page py-10">
             <motion.div
               variants={containerVariants}
@@ -976,25 +1228,29 @@ function Index() {
                     </motion.span>
                   ))}
                 </div>
-                <div className="text-[20px] font-black">Client-rated quality</div>
+                <div className="text-[20px] font-black">Client-focused service</div>
                 <div className="text-[12.5px] text-white/70 mt-1">
-                  Strong ratings across IndiaMART
+                  One partner for every business need
                 </div>
               </motion.div>
               <motion.div
                 variants={itemVariants}
                 className="md:border-l md:border-r md:border-white/15"
               >
-                <div className="text-[28px] font-black text-[#FFB000] leading-none mt-1">74+</div>
+                <div className="text-[28px] font-black text-[#FFB000] leading-none mt-1">
+                  {SERVICES.length}+
+                </div>
                 <div className="text-[20px] font-black mt-2">Services Offered</div>
-                <div className="text-[12.5px] text-white/70 mt-1">Across 10 service categories</div>
+                <div className="text-[12.5px] text-white/70 mt-1">
+                  Across {SERVICE_CATEGORIES.length} service categories
+                </div>
               </motion.div>
               <motion.div variants={itemVariants}>
                 <div className="flex items-center justify-center gap-1 text-[#FFB000] mb-2">
                   <BadgeCheck className="w-7 h-7" />
                 </div>
-                <div className="text-[20px] font-black">Verified on IndiaMART</div>
-                <div className="text-[12.5px] text-white/70 mt-1">GST certified · Active CIN</div>
+                <div className="text-[20px] font-black">PAN-India Service</div>
+                <div className="text-[12.5px] text-white/70 mt-1">Industry-specific solutions</div>
               </motion.div>
             </motion.div>
           </div>

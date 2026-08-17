@@ -1,18 +1,28 @@
 import { createFileRoute, notFound, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { motion, type Variants } from "framer-motion";
+import { motion, AnimatePresence, type Variants } from "framer-motion";
 import { PageHeader } from "@/components/PageHeader";
 import { EmberButton } from "@/components/EmberButton";
 import { ServiceCard } from "@/components/ServiceCard";
 import { QuickEnquiry } from "@/components/QuickEnquiry";
 import { WhatsAppIcon } from "@/components/WhatsAppIcon";
+import { getService, getCategoryForService } from "@/lib/services-data";
+import { getServiceDetails, getRelatedServices } from "@/lib/service-details";
 import {
-  SERVICES,
-  getService,
-  getCategoryForService,
-  SERVICES_BY_CATEGORY,
-} from "@/lib/services-data";
-import { CheckCircle, Phone, Mail, ArrowUpRight } from "lucide-react";
+  CheckCircle,
+  Phone,
+  Mail,
+  ArrowUpRight,
+  Users,
+  FileCheck,
+  ListChecks,
+  Wallet,
+  Clock,
+  ShieldCheck,
+  FileText,
+  IndianRupee,
+  Plus,
+} from "lucide-react";
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -32,10 +42,15 @@ export const Route = createFileRoute("/services/$slug")({
   head: ({ loaderData }) => {
     if (!loaderData) return {};
     const cat = getCategoryForService(loaderData.slug);
+    const categoryLabel = cat?.name
+      ? cat.name.endsWith("Services")
+        ? cat.name
+        : `${cat.name} Services`
+      : "Compliance Services";
     return {
       meta: [
         {
-          title: `${loaderData.title} in Indore | Chartered Solution \u2014 ${cat?.name ?? "Compliance"} Services`,
+          title: `${loaderData.title} in Indore | Chartered Solution \u2014 ${categoryLabel}`,
         },
         {
           name: "description",
@@ -149,14 +164,50 @@ export const Route = createFileRoute("/services/$slug")({
   ),
 });
 
+function Block({
+  title,
+  icon: Icon,
+  children,
+  items,
+}: {
+  title: string;
+  icon: React.ElementType;
+  children?: React.ReactNode;
+  items?: string[];
+}) {
+  return (
+    <motion.div
+      variants={itemVariants}
+      className="border border-[#E5E5E5] rounded-[10px] bg-[#F4F4F4] p-7"
+    >
+      <div className="flex items-center gap-3 mb-4">
+        <div className="w-9 h-9 rounded-[8px] bg-primary/10 text-primary flex items-center justify-center shrink-0">
+          <Icon className="w-4.5 h-4.5" />
+        </div>
+        <h3 className="text-[17px] font-bold text-navy">{title}</h3>
+      </div>
+      {children}
+      {items && (
+        <ul className="space-y-2.5">
+          {items.map((it) => (
+            <li key={it} className="flex items-start gap-3">
+              <CheckCircle className="w-4.5 h-4.5 text-primary flex-shrink-0 mt-0.5" />
+              <span className="text-[14.5px] text-navy/85 leading-relaxed">{it}</span>
+            </li>
+          ))}
+        </ul>
+      )}
+    </motion.div>
+  );
+}
+
 function ServiceDetailPage() {
   const service = Route.useLoaderData();
   const category = getCategoryForService(service.slug);
+  const details = getServiceDetails(service);
+  const related = getRelatedServices(service, 4);
   const [showEnquiry, setShowEnquiry] = useState(false);
-  const related =
-    SERVICES_BY_CATEGORY.find((c) => c.category.id === service.category)
-      ?.services.filter((s) => s.slug !== service.slug)
-      .slice(0, 4) ?? [];
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   const sidebarVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
@@ -166,6 +217,10 @@ function ServiceDetailPage() {
     hidden: { opacity: 0, y: 12 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] } },
   };
+
+  const whatsappText = encodeURIComponent(
+    `Hi Chartered Solution, I need help with ${service.title}. Please share details.`,
+  );
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
@@ -189,54 +244,165 @@ function ServiceDetailPage() {
               </div>
             )}
             <h2 className="text-[26px] md:text-[30px] font-bold text-navy tracking-tight">
-              Scope of Work
+              {service.title} — Overview
             </h2>
             <p className="text-[15px] text-steel mt-3 leading-relaxed">{service.summary}</p>
+
             <motion.div
               variants={containerVariants}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="mt-8 space-y-3"
+              className="mt-10 space-y-6"
             >
-              {service.scope.map((item: string) => (
-                <motion.div key={item} variants={itemVariants} className="flex items-start gap-3">
-                  <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                  <span className="text-[15px] text-navy">{item}</span>
+              <Block title="What We Provide" icon={FileCheck} items={service.scope} />
+
+              {details.whoNeeds.length > 0 && (
+                <Block title="Who Needs This Service?" icon={Users} items={details.whoNeeds} />
+              )}
+
+              {details.eligibility.length > 0 && (
+                <Block title="Eligibility" icon={ShieldCheck} items={details.eligibility} />
+              )}
+
+              {details.documents.length > 0 && (
+                <Block title="Documents Required" icon={ListChecks} items={details.documents} />
+              )}
+
+              {details.process.length > 0 && (
+                <Block title="Our Process" icon={FileText}>
+                  <ol className="space-y-0">
+                    {details.process.map((step, i) => (
+                      <li
+                        key={step.title}
+                        className="flex items-start gap-4 py-3 border-b border-[#E5E5E5] last:border-0"
+                      >
+                        <span className="w-7 h-7 rounded-full bg-primary text-white text-[12.5px] font-bold flex items-center justify-center shrink-0">
+                          {i + 1}
+                        </span>
+                        <div>
+                          <div className="text-[14.5px] font-bold text-navy">{step.title}</div>
+                          <div className="text-[13.5px] text-steel mt-0.5 leading-relaxed">
+                            {step.detail}
+                          </div>
+                        </div>
+                      </li>
+                    ))}
+                  </ol>
+                </Block>
+              )}
+
+              <div className="grid sm:grid-cols-2 gap-6">
+                <Block title="Government / Authority Fees" icon={IndianRupee}>
+                  <p className="text-[14px] text-navy/85 leading-relaxed">{details.govFee}</p>
+                </Block>
+                <Block title="Professional Fees" icon={Wallet}>
+                  <p className="text-[14px] text-navy/85 leading-relaxed">
+                    {details.professionalFee}
+                  </p>
+                </Block>
+              </div>
+
+              <Block title="Estimated Timeline" icon={Clock}>
+                <p className="text-[14px] text-navy/85 leading-relaxed">{details.timeline}</p>
+              </Block>
+
+              <Block title="Why Choose Chartered Solution?" icon={ShieldCheck}>
+                <ul className="space-y-2.5">
+                  {[
+                    "Dedicated expert assigned to every engagement",
+                    "Transparent, all-inclusive professional fees — no hidden charges",
+                    "End-to-end documentation, filing and follow-up support",
+                    "PAN-India service, delivered 100% online where possible",
+                  ].map((it) => (
+                    <li key={it} className="flex items-start gap-3">
+                      <CheckCircle className="w-4.5 h-4.5 text-primary flex-shrink-0 mt-0.5" />
+                      <span className="text-[14.5px] text-navy/85 leading-relaxed">{it}</span>
+                    </li>
+                  ))}
+                </ul>
+              </Block>
+
+              {details.faqs.length > 0 && (
+                <motion.div
+                  variants={itemVariants}
+                  className="border border-[#E5E5E5] rounded-[10px] bg-white overflow-hidden"
+                >
+                  <div className="px-7 pt-7 pb-4">
+                    <h3 className="text-[19px] font-bold text-navy">Frequently Asked Questions</h3>
+                  </div>
+                  <div className="px-4 pb-4 space-y-2">
+                    {details.faqs.map((f, i) => {
+                      const open = openFaq === i;
+                      return (
+                        <div
+                          key={f.q}
+                          className="border border-[#E5E5E5] rounded-[8px] overflow-hidden bg-[#F4F4F4]"
+                        >
+                          <button
+                            onClick={() => setOpenFaq(open ? null : i)}
+                            className="w-full flex items-center justify-between gap-4 px-5 py-4 text-left"
+                            aria-expanded={open}
+                          >
+                            <span className="text-[14.5px] font-bold text-navy">{f.q}</span>
+                            <span
+                              className={`shrink-0 w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center transition-transform ${open ? "rotate-45" : ""}`}
+                            >
+                              <Plus className="w-3.5 h-3.5" />
+                            </span>
+                          </button>
+                          <AnimatePresence initial={false}>
+                            {open && (
+                              <motion.div
+                                initial={{ height: 0, opacity: 0 }}
+                                animate={{ height: "auto", opacity: 1 }}
+                                exit={{ height: 0, opacity: 0 }}
+                                transition={{ duration: 0.25 }}
+                                className="overflow-hidden"
+                              >
+                                <p className="px-5 pb-5 text-[13.5px] text-steel leading-relaxed">
+                                  {f.a}
+                                </p>
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+                        </div>
+                      );
+                    })}
+                  </div>
                 </motion.div>
-              ))}
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="mt-10"
-            >
-              <button
-                onClick={() => setShowEnquiry(true)}
-                className="inline-flex items-center gap-2 bg-primary text-white rounded-[8px] px-5 py-2.5 text-[14px] font-bold hover:bg-primary-70 active:scale-[0.97] transition-all"
-              >
-                Get expert advice <ArrowUpRight className="w-4 h-4" />
-              </button>
+              )}
+
+              <motion.div variants={itemVariants} className="flex flex-wrap gap-4 pt-2">
+                <EmberButton to="/contact-us">
+                  Get Started <ArrowUpRight className="w-4 h-4" />
+                </EmberButton>
+                <button
+                  onClick={() => setShowEnquiry(true)}
+                  className="inline-flex items-center gap-2 bg-primary text-white rounded-[8px] px-5 py-2.5 text-[14px] font-bold hover:bg-primary-70 active:scale-[0.97] transition-all"
+                >
+                  Request a Quote <ArrowUpRight className="w-4 h-4" />
+                </button>
+              </motion.div>
             </motion.div>
           </div>
+
           <motion.div
             variants={sidebarVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-40px" }}
-            className="bg-fog border border-border rounded-[5px] p-8 min-w-0 overflow-hidden"
+            className="bg-fog border border-border rounded-[5px] p-8 min-w-0 overflow-hidden lg:sticky lg:top-28"
           >
             <motion.h3 variants={sidebarItem} className="text-[16px] font-bold text-navy">
-              Need {service.title} in Indore?
+              Need {service.title}?
             </motion.h3>
             <motion.p
               variants={sidebarItem}
               className="text-[14px] text-steel mt-3 leading-relaxed"
             >
-              Our team at Chartered Solution in Indore, Madhya Pradesh is here to help. Get in touch
-              for a personalized consultation.
+              Our team at Chartered Solution, Indore is here to help. Get in touch for a
+              personalised consultation.
             </motion.p>
             <motion.div
               variants={sidebarItem}
@@ -257,9 +423,7 @@ function ServiceDetailPage() {
                 </div>
               </div>
               <a
-                href={`https://wa.me/918815553899?text=${encodeURIComponent(
-                  `Hi Chartered Solution, I need help with ${service.title}. Please share details.`,
-                )}`}
+                href={`https://wa.me/918815553899?text=${whatsappText}`}
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center justify-center gap-2 w-full bg-[#25D366] text-white rounded-[8px] px-5 py-2.5 text-[14px] font-bold hover:bg-[#1fb959] active:scale-[0.97] transition-all"
@@ -281,13 +445,10 @@ function ServiceDetailPage() {
                 </div>
               </div>
             </motion.div>
-            <motion.div variants={sidebarItem} className="pt-2">
-              <button
-                onClick={() => setShowEnquiry(true)}
-                className="w-full inline-flex items-center justify-center gap-2 bg-primary text-white rounded-[8px] px-5 py-2.5 text-[14px] font-bold hover:bg-primary-70 active:scale-[0.97] transition-all"
-              >
-                Enquire now <ArrowUpRight className="w-4 h-4" />
-              </button>
+            <motion.div variants={sidebarItem} className="pt-6 mt-4 border-t border-border/50">
+              <EmberButton to="/contact-us" fullWidth>
+                Get a Free Consultation <ArrowUpRight className="w-4 h-4" />
+              </EmberButton>
             </motion.div>
           </motion.div>
         </div>
@@ -305,7 +466,7 @@ function ServiceDetailPage() {
             <div className="flex items-center gap-2 mb-8">
               <span className="w-5 h-[2px] rounded-full bg-warm/50" />
               <span className="text-[11px] font-semibold text-warm uppercase tracking-[0.15em]">
-                More {category?.name ?? "related"}
+                More {category?.name ?? "related"} services
               </span>
             </div>
             <motion.div

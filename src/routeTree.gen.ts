@@ -10,15 +10,24 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as InsightsRouteImport } from './routes/insights'
+import { Route as IndustriesRouteImport } from './routes/industries'
 import { Route as ContactUsRouteImport } from './routes/contact-us'
 import { Route as AboutUsRouteImport } from './routes/about-us'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
+import { Route as ResourcesIndexRouteImport } from './routes/resources/index'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
+import { Route as ResourcesFreeToolsRouteImport } from './routes/resources/free-tools'
+import { Route as ResourcesComplianceCalendarRouteImport } from './routes/resources/compliance-calendar'
 
 const InsightsRoute = InsightsRouteImport.update({
   id: '/insights',
   path: '/insights',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IndustriesRoute = IndustriesRouteImport.update({
+  id: '/industries',
+  path: '/industries',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactUsRoute = ContactUsRouteImport.update({
@@ -41,26 +50,50 @@ const ServicesIndexRoute = ServicesIndexRouteImport.update({
   path: '/services/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ResourcesIndexRoute = ResourcesIndexRouteImport.update({
+  id: '/resources/',
+  path: '/resources/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServicesSlugRoute = ServicesSlugRouteImport.update({
   id: '/services/$slug',
   path: '/services/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ResourcesFreeToolsRoute = ResourcesFreeToolsRouteImport.update({
+  id: '/resources/free-tools',
+  path: '/resources/free-tools',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResourcesComplianceCalendarRoute =
+  ResourcesComplianceCalendarRouteImport.update({
+    id: '/resources/compliance-calendar',
+    path: '/resources/compliance-calendar',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about-us': typeof AboutUsRoute
   '/contact-us': typeof ContactUsRoute
+  '/industries': typeof IndustriesRoute
   '/insights': typeof InsightsRoute
+  '/resources/compliance-calendar': typeof ResourcesComplianceCalendarRoute
+  '/resources/free-tools': typeof ResourcesFreeToolsRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/resources/': typeof ResourcesIndexRoute
   '/services/': typeof ServicesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about-us': typeof AboutUsRoute
   '/contact-us': typeof ContactUsRoute
+  '/industries': typeof IndustriesRoute
   '/insights': typeof InsightsRoute
+  '/resources/compliance-calendar': typeof ResourcesComplianceCalendarRoute
+  '/resources/free-tools': typeof ResourcesFreeToolsRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/resources': typeof ResourcesIndexRoute
   '/services': typeof ServicesIndexRoute
 }
 export interface FileRoutesById {
@@ -68,8 +101,12 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about-us': typeof AboutUsRoute
   '/contact-us': typeof ContactUsRoute
+  '/industries': typeof IndustriesRoute
   '/insights': typeof InsightsRoute
+  '/resources/compliance-calendar': typeof ResourcesComplianceCalendarRoute
+  '/resources/free-tools': typeof ResourcesFreeToolsRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/resources/': typeof ResourcesIndexRoute
   '/services/': typeof ServicesIndexRoute
 }
 export interface FileRouteTypes {
@@ -78,24 +115,36 @@ export interface FileRouteTypes {
     | '/'
     | '/about-us'
     | '/contact-us'
+    | '/industries'
     | '/insights'
+    | '/resources/compliance-calendar'
+    | '/resources/free-tools'
     | '/services/$slug'
+    | '/resources/'
     | '/services/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about-us'
     | '/contact-us'
+    | '/industries'
     | '/insights'
+    | '/resources/compliance-calendar'
+    | '/resources/free-tools'
     | '/services/$slug'
+    | '/resources'
     | '/services'
   id:
     | '__root__'
     | '/'
     | '/about-us'
     | '/contact-us'
+    | '/industries'
     | '/insights'
+    | '/resources/compliance-calendar'
+    | '/resources/free-tools'
     | '/services/$slug'
+    | '/resources/'
     | '/services/'
   fileRoutesById: FileRoutesById
 }
@@ -103,8 +152,12 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutUsRoute: typeof AboutUsRoute
   ContactUsRoute: typeof ContactUsRoute
+  IndustriesRoute: typeof IndustriesRoute
   InsightsRoute: typeof InsightsRoute
+  ResourcesComplianceCalendarRoute: typeof ResourcesComplianceCalendarRoute
+  ResourcesFreeToolsRoute: typeof ResourcesFreeToolsRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
+  ResourcesIndexRoute: typeof ResourcesIndexRoute
   ServicesIndexRoute: typeof ServicesIndexRoute
 }
 
@@ -115,6 +168,13 @@ declare module '@tanstack/react-router' {
       path: '/insights'
       fullPath: '/insights'
       preLoaderRoute: typeof InsightsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/industries': {
+      id: '/industries'
+      path: '/industries'
+      fullPath: '/industries'
+      preLoaderRoute: typeof IndustriesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact-us': {
@@ -145,11 +205,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/resources/': {
+      id: '/resources/'
+      path: '/resources'
+      fullPath: '/resources/'
+      preLoaderRoute: typeof ResourcesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/services/$slug': {
       id: '/services/$slug'
       path: '/services/$slug'
       fullPath: '/services/$slug'
       preLoaderRoute: typeof ServicesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/resources/free-tools': {
+      id: '/resources/free-tools'
+      path: '/resources/free-tools'
+      fullPath: '/resources/free-tools'
+      preLoaderRoute: typeof ResourcesFreeToolsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/resources/compliance-calendar': {
+      id: '/resources/compliance-calendar'
+      path: '/resources/compliance-calendar'
+      fullPath: '/resources/compliance-calendar'
+      preLoaderRoute: typeof ResourcesComplianceCalendarRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -159,8 +240,12 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutUsRoute: AboutUsRoute,
   ContactUsRoute: ContactUsRoute,
+  IndustriesRoute: IndustriesRoute,
   InsightsRoute: InsightsRoute,
+  ResourcesComplianceCalendarRoute: ResourcesComplianceCalendarRoute,
+  ResourcesFreeToolsRoute: ResourcesFreeToolsRoute,
   ServicesSlugRoute: ServicesSlugRoute,
+  ResourcesIndexRoute: ResourcesIndexRoute,
   ServicesIndexRoute: ServicesIndexRoute,
 }
 export const routeTree = rootRouteImport
