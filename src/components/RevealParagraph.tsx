@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { loadGsap, type GsapContext } from "@/lib/gsap";
 
 export function RevealParagraph({
   children,
@@ -10,22 +10,30 @@ export function RevealParagraph({
 }) {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    if (!ref.current) return;
-    gsap.registerPlugin(ScrollTrigger);
-    const ctx = gsap.context(() => {
-      gsap.from(ref.current, {
-        opacity: 0,
-        y: 20,
-        duration: 0.7,
-        ease: "expo.out",
-        scrollTrigger: {
-          trigger: ref.current!,
-          start: "top 85%",
-          once: true,
-        },
+    const el = ref.current;
+    if (!el) return;
+    let ctx: GsapContext | undefined;
+    let cancelled = false;
+    loadGsap().then(({ gsap }) => {
+      if (cancelled) return;
+      ctx = gsap.context(() => {
+        gsap.from(el, {
+          opacity: 0,
+          y: 20,
+          duration: 0.7,
+          ease: "expo.out",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 85%",
+            once: true,
+          },
+        });
       });
     });
-    return () => ctx.revert();
+    return () => {
+      cancelled = true;
+      ctx?.revert();
+    };
   }, []);
   return (
     <div ref={ref} className={`text-[16px] text-steel leading-relaxed ${className}`}>

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { loadGsap, type GsapContext } from "@/lib/gsap";
 
 interface Props {
   eyebrow?: string;
@@ -12,25 +12,31 @@ export function SectionHeading({ eyebrow, heading, center, subtext }: Props) {
   const wrapRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!wrapRef.current) return;
-    gsap.registerPlugin(ScrollTrigger);
-    const children = Array.from(wrapRef.current.children);
-    const ctx = gsap.context(() => {
-      gsap.from(children, {
-        opacity: 0,
-        y: 28,
-        stagger: 0.1,
-        duration: 0.7,
-        ease: "expo.out",
-        scrollTrigger: {
-          trigger: wrapRef.current!,
-          start: "top 85%",
-          once: true,
-        },
+    const wrap = wrapRef.current;
+    if (!wrap) return;
+    let ctx: GsapContext | undefined;
+    let cancelled = false;
+    loadGsap().then(({ gsap }) => {
+      if (cancelled) return;
+      const children = Array.from(wrap.children);
+      ctx = gsap.context(() => {
+        gsap.from(children, {
+          opacity: 0,
+          y: 28,
+          stagger: 0.1,
+          duration: 0.7,
+          ease: "expo.out",
+          scrollTrigger: {
+            trigger: wrap,
+            start: "top 85%",
+            once: true,
+          },
+        });
       });
     });
     return () => {
-      ctx.revert();
+      cancelled = true;
+      ctx?.revert();
     };
   }, []);
 

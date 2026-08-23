@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { m, useScroll, useTransform, type Variants } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { loadGsap, type GsapContext } from "@/lib/gsap";
 import { EmberButton } from "@/components/EmberButton";
 import { WhatsAppIcon } from "@/components/WhatsAppIcon";
 import { ServiceIcon } from "@/components/ServiceIcon";
@@ -460,27 +460,33 @@ function useScrollParallax({
 function ParallaxBanner({ children }: { children: React.ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    if (!ref.current) return;
+    const el = ref.current;
+    if (!el) return;
     if (window.matchMedia("(pointer: fine) and (min-width: 1024px)").matches === false) return;
-    gsap.registerPlugin(ScrollTrigger);
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        ref.current,
-        { y: 30 },
-        {
-          y: -30,
-          ease: "none",
-          scrollTrigger: {
-            trigger: ref.current,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: true,
+    let ctx: GsapContext | undefined;
+    let cancelled = false;
+    loadGsap().then(({ gsap }) => {
+      if (cancelled) return;
+      ctx = gsap.context(() => {
+        gsap.fromTo(
+          el,
+          { y: 30 },
+          {
+            y: -30,
+            ease: "none",
+            scrollTrigger: {
+              trigger: el,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: true,
+            },
           },
-        },
-      );
-    }, ref);
+        );
+      }, el);
+    });
     return () => {
-      ctx.revert();
+      cancelled = true;
+      ctx?.revert();
     };
   }, []);
   return <div ref={ref}>{children}</div>;

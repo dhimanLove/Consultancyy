@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { m, type Variants } from "framer-motion";
 import { useEffect, useRef } from "react";
-import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { loadGsap, type GsapContext } from "@/lib/gsap";
 import { PageHeader } from "@/components/PageHeader";
 import { EmberButton } from "@/components/EmberButton";
 import { ServiceCard } from "@/components/ServiceCard";
@@ -107,26 +107,33 @@ function ServicesPage() {
   const categoryRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-    const ctx = gsap.context(() => {
-      categoryRefs.current.forEach((el) => {
-        if (!el) return;
-        const line = el.querySelector(".cat-line") as HTMLElement | null;
-        const heading = el.querySelector(".cat-heading") as HTMLElement | null;
-        const badge = el.querySelector(".cat-badge") as HTMLElement | null;
-        const targets = [line, heading, badge].filter(Boolean);
-        if (targets.length === 0) return;
-        gsap.from(targets, {
-          opacity: 0,
-          y: 20,
-          stagger: 0.08,
-          duration: 0.6,
-          ease: "expo.out",
-          scrollTrigger: { trigger: el, start: "top 88%", once: true },
+    let ctx: GsapContext | undefined;
+    let cancelled = false;
+    loadGsap().then(({ gsap }) => {
+      if (cancelled) return;
+      ctx = gsap.context(() => {
+        categoryRefs.current.forEach((el) => {
+          if (!el) return;
+          const line = el.querySelector(".cat-line") as HTMLElement | null;
+          const heading = el.querySelector(".cat-heading") as HTMLElement | null;
+          const badge = el.querySelector(".cat-badge") as HTMLElement | null;
+          const targets = [line, heading, badge].filter(Boolean);
+          if (targets.length === 0) return;
+          gsap.from(targets, {
+            opacity: 0,
+            y: 20,
+            stagger: 0.08,
+            duration: 0.6,
+            ease: "expo.out",
+            scrollTrigger: { trigger: el, start: "top 88%", once: true },
+          });
         });
       });
     });
-    return () => ctx.revert();
+    return () => {
+      cancelled = true;
+      ctx?.revert();
+    };
   }, []);
 
   return (

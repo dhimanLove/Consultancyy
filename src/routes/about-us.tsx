@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { m, type Variants } from "framer-motion";
 import { useEffect, useRef } from "react";
-import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { loadGsap, type GsapContext } from "@/lib/gsap";
 import { PageHeader } from "@/components/PageHeader";
 import { SectionHeading } from "@/components/SectionHeading";
 import { EmberButton } from "@/components/EmberButton";
@@ -171,19 +171,27 @@ function AboutUsPage() {
   const founderRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!founderRef.current) return;
-    gsap.registerPlugin(ScrollTrigger);
-    const ctx = gsap.context(() => {
-      gsap.from(founderRef.current!.querySelectorAll(".founder-el"), {
-        opacity: 0,
-        y: 24,
-        stagger: 0.08,
-        duration: 0.7,
-        ease: "expo.out",
-        scrollTrigger: { trigger: founderRef.current!, start: "top 82%", once: true },
+    const founder = founderRef.current;
+    if (!founder) return;
+    let ctx: GsapContext | undefined;
+    let cancelled = false;
+    loadGsap().then(({ gsap }) => {
+      if (cancelled) return;
+      ctx = gsap.context(() => {
+        gsap.from(founder.querySelectorAll(".founder-el"), {
+          opacity: 0,
+          y: 24,
+          stagger: 0.08,
+          duration: 0.7,
+          ease: "expo.out",
+          scrollTrigger: { trigger: founder, start: "top 82%", once: true },
+        });
       });
     });
-    return () => ctx.revert();
+    return () => {
+      cancelled = true;
+      ctx?.revert();
+    };
   }, []);
 
   return (
