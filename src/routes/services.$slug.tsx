@@ -1,6 +1,6 @@
 import { createFileRoute, notFound, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { motion, AnimatePresence, type Variants } from "framer-motion";
+import { m, AnimatePresence, type Variants } from "framer-motion";
 import { PageHeader } from "@/components/PageHeader";
 import { EmberButton } from "@/components/EmberButton";
 import { ServiceCard } from "@/components/ServiceCard";
@@ -42,6 +42,7 @@ export const Route = createFileRoute("/services/$slug")({
   head: ({ loaderData }) => {
     if (!loaderData) return {};
     const cat = getCategoryForService(loaderData.slug);
+    const details = getServiceDetails(loaderData);
     const categoryLabel = cat?.name
       ? cat.name.endsWith("Services")
         ? cat.name
@@ -86,14 +87,8 @@ export const Route = createFileRoute("/services/$slug")({
         { name: "geo.position", content: "22.7262239;75.919035" },
         { name: "geo.placename", content: "Indore, Madhya Pradesh" },
         { name: "geo.region", content: "IN-MP" },
-      ],
-      links: [
-        { rel: "canonical", href: `https://www.charteredsolution.com/services/${loaderData.slug}` },
-      ],
-      scripts: [
         {
-          type: "application/ld+json",
-          innerHTML: JSON.stringify({
+          "script:ld+json": {
             "@context": "https://schema.org",
             "@graph": [
               {
@@ -147,9 +142,24 @@ export const Route = createFileRoute("/services/$slug")({
                   },
                 ],
               },
+              ...(details.faqs.length > 0
+                ? [
+                    {
+                      "@type": "FAQPage",
+                      mainEntity: details.faqs.map((f) => ({
+                        "@type": "Question",
+                        name: f.q,
+                        acceptedAnswer: { "@type": "Answer", text: f.a },
+                      })),
+                    },
+                  ]
+                : []),
             ],
-          }),
+          },
         },
+      ],
+      links: [
+        { rel: "canonical", href: `https://www.charteredsolution.com/services/${loaderData.slug}` },
       ],
     };
   },
@@ -176,7 +186,7 @@ function Block({
   items?: string[];
 }) {
   return (
-    <motion.div
+    <m.div
       variants={itemVariants}
       className="border border-[#E5E5E5] rounded-[10px] bg-[#F4F4F4] p-7"
     >
@@ -197,7 +207,7 @@ function Block({
           ))}
         </ul>
       )}
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -223,7 +233,7 @@ function ServiceDetailPage() {
   );
 
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
+    <m.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
       <PageHeader
         crumbs={[
           { label: "Home", to: "/" },
@@ -244,11 +254,11 @@ function ServiceDetailPage() {
               </div>
             )}
             <h2 className="text-[26px] md:text-[30px] font-bold text-navy tracking-tight">
-              {service.title} — Overview
+              {service.title} - Overview
             </h2>
             <p className="text-[15px] text-steel mt-3 leading-relaxed">{service.summary}</p>
 
-            <motion.div
+            <m.div
               variants={containerVariants}
               initial="hidden"
               whileInView="visible"
@@ -311,7 +321,7 @@ function ServiceDetailPage() {
                 <ul className="space-y-2.5">
                   {[
                     "Dedicated expert assigned to every engagement",
-                    "Transparent, all-inclusive professional fees — no hidden charges",
+                    "Transparent, all-inclusive professional fees - no hidden charges",
                     "End-to-end documentation, filing and follow-up support",
                     "PAN-India service, delivered 100% online where possible",
                   ].map((it) => (
@@ -324,7 +334,7 @@ function ServiceDetailPage() {
               </Block>
 
               {details.faqs.length > 0 && (
-                <motion.div
+                <m.div
                   variants={itemVariants}
                   className="border border-[#E5E5E5] rounded-[10px] bg-white overflow-hidden"
                 >
@@ -351,29 +361,25 @@ function ServiceDetailPage() {
                               <Plus className="w-3.5 h-3.5" />
                             </span>
                           </button>
-                          <AnimatePresence initial={false}>
-                            {open && (
-                              <motion.div
-                                initial={{ height: 0, opacity: 0 }}
-                                animate={{ height: "auto", opacity: 1 }}
-                                exit={{ height: 0, opacity: 0 }}
-                                transition={{ duration: 0.25 }}
-                                className="overflow-hidden"
-                              >
-                                <p className="px-5 pb-5 text-[13.5px] text-steel leading-relaxed">
-                                  {f.a}
-                                </p>
-                              </motion.div>
-                            )}
-                          </AnimatePresence>
+                          <div
+                            className={`grid transition-[grid-template-rows] duration-300 ease-out ${
+                              open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                            }`}
+                          >
+                            <div className="overflow-hidden">
+                              <p className="px-5 pb-5 text-[13.5px] text-steel leading-relaxed">
+                                {f.a}
+                              </p>
+                            </div>
+                          </div>
                         </div>
                       );
                     })}
                   </div>
-                </motion.div>
+                </m.div>
               )}
 
-              <motion.div variants={itemVariants} className="flex flex-wrap gap-4 pt-2">
+              <m.div variants={itemVariants} className="flex flex-wrap gap-4 pt-2">
                 <EmberButton to="/contact-us">
                   Get Started <ArrowUpRight className="w-4 h-4" />
                 </EmberButton>
@@ -383,31 +389,25 @@ function ServiceDetailPage() {
                 >
                   Request a Quote <ArrowUpRight className="w-4 h-4" />
                 </button>
-              </motion.div>
-            </motion.div>
+              </m.div>
+            </m.div>
           </div>
 
-          <motion.div
+          <m.div
             variants={sidebarVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-40px" }}
             className="bg-fog border border-border rounded-[5px] p-8 min-w-0 overflow-hidden lg:sticky lg:top-28"
           >
-            <motion.h3 variants={sidebarItem} className="text-[16px] font-bold text-navy">
+            <m.h3 variants={sidebarItem} className="text-[16px] font-bold text-navy">
               Need {service.title}?
-            </motion.h3>
-            <motion.p
-              variants={sidebarItem}
-              className="text-[14px] text-steel mt-3 leading-relaxed"
-            >
+            </m.h3>
+            <m.p variants={sidebarItem} className="text-[14px] text-steel mt-3 leading-relaxed">
               Our team at Chartered Solution, Indore is here to help. Get in touch for a
               personalised consultation.
-            </motion.p>
-            <motion.div
-              variants={sidebarItem}
-              className="mt-6 space-y-4 border-t border-border/50 pt-6"
-            >
+            </m.p>
+            <m.div variants={sidebarItem} className="mt-6 space-y-4 border-t border-border/50 pt-6">
               <div className="flex items-start gap-3">
                 <Phone className="w-4 h-4 text-warm mt-0.5" />
                 <div className="flex-1">
@@ -444,13 +444,13 @@ function ServiceDetailPage() {
                   </a>
                 </div>
               </div>
-            </motion.div>
-            <motion.div variants={sidebarItem} className="pt-6 mt-4 border-t border-border/50">
+            </m.div>
+            <m.div variants={sidebarItem} className="pt-6 mt-4 border-t border-border/50">
               <EmberButton to="/contact-us" fullWidth>
                 Get a Free Consultation <ArrowUpRight className="w-4 h-4" />
               </EmberButton>
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
         </div>
       </section>
 
@@ -469,7 +469,7 @@ function ServiceDetailPage() {
                 More {category?.name ?? "related"} services
               </span>
             </div>
-            <motion.div
+            <m.div
               variants={containerVariants}
               initial="hidden"
               whileInView="visible"
@@ -477,14 +477,14 @@ function ServiceDetailPage() {
               className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8"
             >
               {related.map((r) => (
-                <motion.div key={r.slug} variants={itemVariants} className="h-full">
+                <m.div key={r.slug} variants={itemVariants} className="h-full">
                   <ServiceCard service={r} />
-                </motion.div>
+                </m.div>
               ))}
-            </motion.div>
+            </m.div>
           </div>
         </section>
       )}
-    </motion.div>
+    </m.div>
   );
 }

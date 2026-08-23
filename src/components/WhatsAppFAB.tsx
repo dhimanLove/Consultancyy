@@ -1,9 +1,9 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { WhatsAppIcon } from "./WhatsAppIcon";
 
 export function WhatsAppFAB() {
   return (
-    <motion.a
+    <m.a
       href="https://wa.me/918815553899"
       target="_blank"
       rel="noreferrer"
@@ -16,6 +16,6 @@ export function WhatsAppFAB() {
       whileTap={{ scale: 0.95 }}
     >
       <WhatsAppIcon className="w-7 h-7 text-white" />
-    </motion.a>
+    </m.a>
   );
 }

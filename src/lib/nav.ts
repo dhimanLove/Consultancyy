@@ -25,7 +25,7 @@ export const ADDRESS =
   "152, Sanchar Nagar Extension, Goyal Nagar, Kanadia Road, Indore, Madhya Pradesh 452016, India";
 
 /**
- * SERVICES — Business & Compliance Services dropdown (Section 5)
+ * SERVICES - Business & Compliance Services dropdown (Section 5)
  */
 export const SERVICES_GROUPS: NavGroup[] = [
   {
@@ -106,7 +106,7 @@ export const SERVICES_GROUPS: NavGroup[] = [
 ];
 
 /**
- * REGULATORY & COMPLIANCE SERVICES — mega-menu (Section 4)
+ * REGULATORY & COMPLIANCE SERVICES - mega-menu (Section 4)
  */
 export const REGULATORY_SERVICES: NavLink[] = [
   { label: "ISO Consultancy & Regulatory Services", slug: "iso-consultancy" },
@@ -121,7 +121,7 @@ export const REGULATORY_SERVICES: NavLink[] = [
 ];
 
 /**
- * INDUSTRIES — dropdown (Section 11)
+ * INDUSTRIES - dropdown (Section 11)
  */
 export const INDUSTRIES: { label: string; slug: string }[] = [
   { label: "Startups & Founders", slug: "startups-founders" },
@@ -138,7 +138,7 @@ export const INDUSTRIES: { label: string; slug: string }[] = [
 ];
 
 /**
- * RESOURCES — dropdown (Section 13)
+ * RESOURCES - dropdown (Section 13)
  */
 export const RESOURCES: ResourceLink[] = [
   { label: "Blogs", to: "/insights", description: "Articles and insights from our team." },

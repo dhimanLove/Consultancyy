@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { motion, AnimatePresence, type Variants } from "framer-motion";
+import { m, AnimatePresence, type Variants } from "framer-motion";
 import { PageHeader } from "@/components/PageHeader";
 import { SectionHeading } from "@/components/SectionHeading";
 import { CONTACT_SERVICE_OPTIONS, BUSINESS_TYPES } from "@/lib/nav";
@@ -14,6 +14,7 @@ import {
   User,
   ChevronDown,
   Paperclip,
+  AlertCircle,
 } from "lucide-react";
 
 const containerVariants: Variants = {
@@ -106,9 +107,9 @@ export const Route = createFileRoute("/contact-us")({
       { name: "geo.position", content: "22.7262239;75.919035" },
       { name: "geo.placename", content: "Indore, Madhya Pradesh" },
       { name: "geo.region", content: "IN-MP" },
+      { "script:ld+json": contactStructured },
     ],
     links: [{ rel: "canonical", href: "https://www.charteredsolution.com/contact-us" }],
-    scripts: [{ type: "application/ld+json", innerHTML: JSON.stringify(contactStructured) }],
   }),
   component: ContactUsPage,
 });
@@ -122,6 +123,7 @@ const labelBase = "block text-[13px] font-bold text-navy mb-1.5";
 function ContactUsPage() {
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
+  const [errors, setErrors] = useState<Partial<Record<keyof typeof values, string>>>({});
   const [values, setValues] = useState({
     name: "",
     phone: "",
@@ -134,25 +136,48 @@ function ContactUsPage() {
 
   const update =
     (field: string) =>
-    (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
+    (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
       setValues((v) => ({ ...v, [field]: e.target.value }));
+      if (errors[field as keyof typeof values]) {
+        setErrors((prev) => ({ ...prev, [field]: undefined }));
+      }
+    };
 
   const PHONE = "918815553899";
 
+  const validate = () => {
+    const next: Partial<Record<keyof typeof values, string>> = {};
+    if (!values.name.trim()) next.name = "Please enter your name.";
+    else if (values.name.trim().length < 2) next.name = "Name looks too short.";
+    if (!values.phone.trim()) next.phone = "Please enter your phone number.";
+    else if (!/^(\+?\d[\d\s-]{8,14}\d)$/.test(values.phone.trim()))
+      next.phone = "Enter a valid 10-digit mobile number.";
+    if (!values.email.trim()) next.email = "Please enter your email address.";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(values.email.trim()))
+      next.email = "Enter a valid email address.";
+    if (!values.city.trim()) next.city = "Please enter your city.";
+    if (!values.service) next.service = "Please select a service.";
+    return next;
+  };
+
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+    const next = validate();
+    setErrors(next);
+    if (Object.keys(next).length > 0) return;
+
     setSending(true);
 
     const msg = [
       "*New Enquiry - Chartered Solution (Contact Page)*",
       "",
-      `*Name:* ${values.name}`,
-      `*Phone/WhatsApp:* ${values.phone}`,
-      `*Email:* ${values.email || "Not provided"}`,
-      `*City/State:* ${values.city || "Not provided"}`,
+      `*Name:* ${values.name.trim()}`,
+      `*Phone/WhatsApp:* ${values.phone.trim()}`,
+      `*Email:* ${values.email.trim()}`,
+      `*City/State:* ${values.city.trim()}`,
       `*Business Type:* ${values.businessType || "Not specified"}`,
-      `*Service:* ${values.service || "Not specified"}`,
-      `*Requirement:* ${values.message || "Not provided"}`,
+      `*Service:* ${values.service}`,
+      `*Requirement:* ${values.message.trim() || "Not provided"}`,
       "",
       "Sent via Contact Us form",
     ].join("\n");
@@ -167,7 +192,7 @@ function ContactUsPage() {
   };
 
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
+    <m.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
       <PageHeader
         crumbs={[{ label: "Home", to: "/" }, { label: "Contact Us" }]}
         title="Let's talk about your business needs."
@@ -180,38 +205,38 @@ function ContactUsPage() {
             <SectionHeading eyebrow="Enquire Now" heading="Drop us a message." />
             <AnimatePresence mode="wait">
               {submitted ? (
-                <motion.div
+                <m.div
                   key="success"
                   initial={{ opacity: 0, scale: 0.9, y: 20 }}
                   animate={{ opacity: 1, scale: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.9, y: -20 }}
                   className="mt-8 p-10 bg-warm-light/40 border-2 border-warm/20 rounded-[14px] text-center"
                 >
-                  <motion.div
+                  <m.div
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ type: "spring", stiffness: 200, damping: 12, delay: 0.15 }}
                     className="w-16 h-16 rounded-full bg-warm/10 flex items-center justify-center mx-auto"
                   >
                     <CheckCircle className="w-8 h-8 text-warm" />
-                  </motion.div>
-                  <motion.h3
+                  </m.div>
+                  <m.h3
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3 }}
                     className="text-[20px] font-bold text-navy mt-5"
                   >
                     Thank you!
-                  </motion.h3>
-                  <motion.p
+                  </m.h3>
+                  <m.p
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4 }}
                     className="text-[14px] text-steel mt-2 leading-relaxed"
                   >
                     We've received your enquiry and will get back to you within 24 hours.
-                  </motion.p>
-                  <motion.button
+                  </m.p>
+                  <m.button
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.55 }}
@@ -230,10 +255,10 @@ function ContactUsPage() {
                     className="mt-6 text-[13px] font-medium text-warm hover:text-warm-dark underline underline-offset-2 transition-colors"
                   >
                     Send another enquiry
-                  </motion.button>
-                </motion.div>
+                  </m.button>
+                </m.div>
               ) : (
-                <motion.form
+                <m.form
                   key="form"
                   onSubmit={handleSubmit}
                   className="mt-8 max-w-xl space-y-5"
@@ -242,7 +267,7 @@ function ContactUsPage() {
                   exit="hidden"
                 >
                   <div className="grid sm:grid-cols-2 gap-4">
-                    <motion.div custom={0} variants={fieldVariants}>
+                    <m.div custom={0} variants={fieldVariants}>
                       <label className={labelBase}>
                         Full Name <span className="text-error">*</span>
                       </label>
@@ -253,13 +278,14 @@ function ContactUsPage() {
                           required
                           value={values.name}
                           onChange={update("name")}
-                          className={`${inputBase} pl-10`}
+                          className={`${inputBase} pl-10 ${errors.name ? "border-error focus:border-error focus:ring-error/10" : ""}`}
                           placeholder="Your name"
                         />
                         <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-primary scale-x-0 group-focus-within:scale-x-100 transition-transform duration-300 origin-left rounded-full" />
                       </div>
-                    </motion.div>
-                    <motion.div custom={1} variants={fieldVariants}>
+                      <FieldError message={errors.name} />
+                    </m.div>
+                    <m.div custom={1} variants={fieldVariants}>
                       <label className={labelBase}>
                         Phone <span className="text-error">*</span>
                       </label>
@@ -270,14 +296,15 @@ function ContactUsPage() {
                           required
                           value={values.phone}
                           onChange={update("phone")}
-                          className={`${inputBase} pl-10`}
+                          className={`${inputBase} pl-10 ${errors.phone ? "border-error focus:border-error focus:ring-error/10" : ""}`}
                           placeholder="+91 XXXXX XXXXX"
                         />
                         <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-primary scale-x-0 group-focus-within:scale-x-100 transition-transform duration-300 origin-left rounded-full" />
                       </div>
-                    </motion.div>
+                      <FieldError message={errors.phone} />
+                    </m.div>
                   </div>
-                  <motion.div custom={2} variants={fieldVariants}>
+                  <m.div custom={2} variants={fieldVariants}>
                     <label className={labelBase}>
                       Email <span className="text-error">*</span>
                     </label>
@@ -288,13 +315,14 @@ function ContactUsPage() {
                         required
                         value={values.email}
                         onChange={update("email")}
-                        className={`${inputBase} pl-10`}
+                        className={`${inputBase} pl-10 ${errors.email ? "border-error focus:border-error focus:ring-error/10" : ""}`}
                         placeholder="your@email.com"
                       />
                       <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-primary scale-x-0 group-focus-within:scale-x-100 transition-transform duration-300 origin-left rounded-full" />
                     </div>
-                  </motion.div>
-                  <motion.div custom={3} variants={fieldVariants}>
+                    <FieldError message={errors.email} />
+                  </m.div>
+                  <m.div custom={3} variants={fieldVariants}>
                     <label className={labelBase}>
                       City / State <span className="text-error">*</span>
                     </label>
@@ -305,13 +333,14 @@ function ContactUsPage() {
                         required
                         value={values.city}
                         onChange={update("city")}
-                        className={`${inputBase} pl-10`}
+                        className={`${inputBase} pl-10 ${errors.city ? "border-error focus:border-error focus:ring-error/10" : ""}`}
                         placeholder="Indore, Madhya Pradesh"
                       />
                       <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-primary scale-x-0 group-focus-within:scale-x-100 transition-transform duration-300 origin-left rounded-full" />
                     </div>
-                  </motion.div>
-                  <motion.div custom={4} variants={fieldVariants}>
+                    <FieldError message={errors.city} />
+                  </m.div>
+                  <m.div custom={4} variants={fieldVariants}>
                     <label className={labelBase}>Business Type</label>
                     <div className="relative group">
                       <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-300 pointer-events-none group-focus-within:text-warm transition-colors duration-200" />
@@ -329,8 +358,8 @@ function ContactUsPage() {
                       </select>
                       <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-primary scale-x-0 group-focus-within:scale-x-100 transition-transform duration-300 origin-left rounded-full" />
                     </div>
-                  </motion.div>
-                  <motion.div custom={5} variants={fieldVariants}>
+                  </m.div>
+                  <m.div custom={5} variants={fieldVariants}>
                     <label className={labelBase}>
                       Service Required <span className="text-error">*</span>
                     </label>
@@ -340,7 +369,7 @@ function ContactUsPage() {
                         required
                         value={values.service}
                         onChange={update("service")}
-                        className={`${inputBase} appearance-none cursor-pointer pr-10`}
+                        className={`${inputBase} appearance-none cursor-pointer pr-10 ${errors.service ? "border-error focus:border-error focus:ring-error/10" : ""}`}
                       >
                         <option value="">Select a service...</option>
                         {CONTACT_SERVICE_OPTIONS.map((s) => (
@@ -351,8 +380,9 @@ function ContactUsPage() {
                       </select>
                       <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-primary scale-x-0 group-focus-within:scale-x-100 transition-transform duration-300 origin-left rounded-full" />
                     </div>
-                  </motion.div>
-                  <motion.div custom={6} variants={fieldVariants}>
+                    <FieldError message={errors.service} />
+                  </m.div>
+                  <m.div custom={6} variants={fieldVariants}>
                     <label className={labelBase}>Requirement Description</label>
                     <div className="relative group">
                       <textarea
@@ -360,20 +390,35 @@ function ContactUsPage() {
                         value={values.message}
                         onChange={update("message")}
                         className={`${inputBase} resize-none`}
-                        placeholder="Tell us what you need — registrations, filings, certifications, or something else."
+                        placeholder="Tell us what you need - registrations, filings, certifications, or something else."
                       />
                       <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-primary scale-x-0 group-focus-within:scale-x-100 transition-transform duration-300 origin-left rounded-full" />
                     </div>
-                  </motion.div>
-                  <motion.div
+                  </m.div>
+                  <m.div
                     custom={7}
                     variants={fieldVariants}
                     className="flex items-center gap-3 text-[12.5px] text-steel bg-fog/60 border border-border rounded-[2px] px-4 py-3"
                   >
                     <Paperclip className="w-4 h-4 text-warm shrink-0" />
                     Optional: You can attach documents later on WhatsApp after we connect.
-                  </motion.div>
-                  <motion.div custom={8} variants={fieldVariants}>
+                  </m.div>
+                  <AnimatePresence>
+                    {Object.values(errors).some(Boolean) && (
+                      <m.div
+                        initial={{ opacity: 0, y: -8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -8 }}
+                        className="flex items-start gap-2.5 bg-error/5 border border-error/25 rounded-[8px] px-4 py-3"
+                      >
+                        <AlertCircle className="w-4 h-4 text-error shrink-0 mt-0.5" />
+                        <p className="text-[13px] font-semibold text-error">
+                          Please fix the highlighted fields above before sending.
+                        </p>
+                      </m.div>
+                    )}
+                  </AnimatePresence>
+                  <m.div custom={8} variants={fieldVariants}>
                     <button
                       type="submit"
                       disabled={sending}
@@ -381,7 +426,7 @@ function ContactUsPage() {
                     >
                       <AnimatePresence mode="wait">
                         {sending ? (
-                          <motion.span
+                          <m.span
                             key="sending"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
@@ -405,9 +450,9 @@ function ContactUsPage() {
                               />
                             </svg>
                             Sending...
-                          </motion.span>
+                          </m.span>
                         ) : (
-                          <motion.span
+                          <m.span
                             key="idle"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
@@ -415,12 +460,12 @@ function ContactUsPage() {
                             className="flex items-center gap-2.5"
                           >
                             Send enquiry <Send className="w-4 h-4" />
-                          </motion.span>
+                          </m.span>
                         )}
                       </AnimatePresence>
                     </button>
-                  </motion.div>
-                </motion.form>
+                  </m.div>
+                </m.form>
               )}
             </AnimatePresence>
           </div>
@@ -431,14 +476,14 @@ function ContactUsPage() {
                 <span className="w-1 h-5 rounded-full bg-warm" />
                 Our Office
               </h3>
-              <motion.div
+              <m.div
                 variants={containerVariants}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
                 className="space-y-5"
               >
-                <motion.div
+                <m.div
                   variants={itemVariants}
                   className="flex items-start gap-4 group cursor-default"
                 >
@@ -452,8 +497,8 @@ function ContactUsPage() {
                       452016
                     </p>
                   </div>
-                </motion.div>
-                <motion.div
+                </m.div>
+                <m.div
                   variants={itemVariants}
                   className="flex items-start gap-4 group cursor-default"
                 >
@@ -469,8 +514,8 @@ function ContactUsPage() {
                       +91 88155 53899
                     </a>
                   </div>
-                </motion.div>
-                <motion.div
+                </m.div>
+                <m.div
                   variants={itemVariants}
                   className="flex items-start gap-4 group cursor-default"
                 >
@@ -486,8 +531,8 @@ function ContactUsPage() {
                       charteredgesolution@gmail.com
                     </a>
                   </div>
-                </motion.div>
-                <motion.div
+                </m.div>
+                <m.div
                   variants={itemVariants}
                   className="flex items-start gap-4 group cursor-default"
                 >
@@ -501,15 +546,15 @@ function ContactUsPage() {
                     </p>
                     <p className="text-[13px] text-steel">Sunday: Closed</p>
                   </div>
-                </motion.div>
-              </motion.div>
+                </m.div>
+              </m.div>
             </div>
 
             <div className="overflow-hidden rounded-[14px] border border-border shadow-sm group">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3679.6802054222304!2d75.905432475098!3d22.737381828772134!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3962fd8a1b2b4b1b%3A0x9b8a5e5b7b2b4b1b!2sKanadia%20Rd%2C%20Indore%2C%20Madhya%20Pradesh!5e0!3m2!1sen!2sin!4v1"
                 width="100%"
-                height="220"
+                height="360"
                 style={{ border: 0, borderRadius: 14 }}
                 allowFullScreen
                 loading="lazy"
@@ -521,6 +566,25 @@ function ContactUsPage() {
           </div>
         </div>
       </section>
-    </motion.div>
+    </m.div>
+  );
+}
+
+function FieldError({ message }: { message?: string }) {
+  return (
+    <AnimatePresence>
+      {message && (
+        <m.p
+          initial={{ opacity: 0, y: -3 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.15 }}
+          className="flex items-center gap-1.5 text-[12px] font-bold text-error mt-1.5"
+        >
+          <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+          {message}
+        </m.p>
+      )}
+    </AnimatePresence>
   );
 }

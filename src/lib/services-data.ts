@@ -18,7 +18,7 @@ export interface Service {
   order: number;
   /** Slugs of related / sub services to surface on the service page. Falls back to same-category services. */
   related?: string[];
-  /** Section 12 detail fields — optional; category-level defaults fill the gaps. */
+  /** Section 12 detail fields - optional; category-level defaults fill the gaps. */
   whoNeeds?: string[];
   eligibility?: string[];
   documents?: string[];
@@ -1875,7 +1875,7 @@ const _SERVICES: Service[] = [
     title: "Private Limited Company Registration",
     descriptor: "End-to-end incorporation of a Private Limited Company in India.",
     summary:
-      "Complete incorporation of a Private Limited Company — from name reservation, MOA/AOA drafting, DSC, DIN, to PAN/TAN and certificate of incorporation. The preferred structure for startups and investors.",
+      "Complete incorporation of a Private Limited Company - from name reservation, MOA/AOA drafting, DSC, DIN, to PAN/TAN and certificate of incorporation. The preferred structure for startups and investors.",
     scope: [
       "Name reservation on MCA portal (RUN)",
       "Digital Signature Certificate (DSC)",
@@ -1898,7 +1898,7 @@ const _SERVICES: Service[] = [
     title: "LLP Registration",
     descriptor: "Limited Liability Partnership (LLP) incorporation with low compliance.",
     summary:
-      "Incorporation of a Limited Liability Partnership combining the benefits of a partnership and a company — limited liability of partners with flexible compliance. Ideal for professional services and SMEs.",
+      "Incorporation of a Limited Liability Partnership combining the benefits of a partnership and a company - limited liability of partners with flexible compliance. Ideal for professional services and SMEs.",
     scope: [
       "Name availability check & reservation",
       "DSC for designated partners",
@@ -1966,7 +1966,7 @@ const _SERVICES: Service[] = [
     title: "Proprietorship Registration",
     descriptor: "Simple, low-cost setup for sole proprietors in India.",
     summary:
-      "End-to-end setup support for a proprietorship business — shop & establishment registration, Udyam/MSME, GST, professional tax, and the legal paperwork a sole proprietor needs to operate.",
+      "End-to-end setup support for a proprietorship business - shop & establishment registration, Udyam/MSME, GST, professional tax, and the legal paperwork a sole proprietor needs to operate.",
     scope: [
       "Shop & establishment registration",
       "MSME / Udyam registration",
@@ -1988,7 +1988,7 @@ const _SERVICES: Service[] = [
     title: "Section 8 Company Registration",
     descriptor: "Non-profit company incorporation for charitable objectives.",
     summary:
-      "Incorporation of a Section 8 company for charitable, educational, or social purposes — a non-profit structure that can avail income tax exemptions and CSR funding.",
+      "Incorporation of a Section 8 company for charitable, educational, or social purposes - a non-profit structure that can avail income tax exemptions and CSR funding.",
     scope: [
       "Name reservation",
       "Incorporation under Section 8",
@@ -2006,7 +2006,7 @@ const _SERVICES: Service[] = [
     title: "NGO / Trust / Society Registration",
     descriptor: "Registration of Trusts, Societies, and Section 8 NGOs.",
     summary:
-      "Registration support for NGOs across the three main forms — Trust, Society, and Section 8 Company — including deed drafting, registration, and FCRA / 12A / 80G guidance.",
+      "Registration support for NGOs across the three main forms - Trust, Society, and Section 8 Company - including deed drafting, registration, and FCRA / 12A / 80G guidance.",
     scope: [
       "Trust deed / MoA drafting",
       "Trust & society registration",
@@ -2083,7 +2083,7 @@ const _SERVICES: Service[] = [
     title: "AOC-4 Annual Filing",
     descriptor: "Filing of annual financial statements with the MCA.",
     summary:
-      "Preparation and filing of Form AOC-4 — annual financial statements of the company — with the Registrar of Companies, including director signatures and mandatory certifications.",
+      "Preparation and filing of Form AOC-4 - annual financial statements of the company - with the Registrar of Companies, including director signatures and mandatory certifications.",
     scope: [
       "Financial statement preparation check",
       "Directors' report support",
@@ -2168,7 +2168,7 @@ const _SERVICES: Service[] = [
     title: "Company Changes & Closure",
     descriptor: "Corporate restructuring, registered-office changes, and closure.",
     summary:
-      "Support for company changes such as registered office shifts, director appointments/removals, change of name, and full closure — including STK-2 fast-track and voluntary strike-off.",
+      "Support for company changes such as registered office shifts, director appointments/removals, change of name, and full closure - including STK-2 fast-track and voluntary strike-off.",
     scope: [
       "Registered office change filing",
       "Director appointment / resignation filing",
@@ -2187,7 +2187,7 @@ const _SERVICES: Service[] = [
     title: "Business Plan Preparation",
     descriptor: "Bank-ready business plans for funding and growth.",
     summary:
-      "Professional business plan preparation covering market analysis, operations, team, and financial projections — tailored for investors, banks, and lenders.",
+      "Professional business plan preparation covering market analysis, operations, team, and financial projections - tailored for investors, banks, and lenders.",
     scope: [
       "Executive summary & business model",
       "Market & competitor analysis",
@@ -2211,7 +2211,7 @@ const _SERVICES: Service[] = [
     title: "ISO Consultancy & Regulatory Services",
     descriptor: "End-to-end ISO certification consultancy for growing businesses.",
     summary:
-      "Complete ISO consultancy covering ISO 9001, ISO 14001, ISO 45001, ISO 22000, ISO 13485, and other management system standards — from gap assessment and documentation to certification audit coordination.",
+      "Complete ISO consultancy covering ISO 9001, ISO 14001, ISO 45001, ISO 22000, ISO 13485, and other management system standards - from gap assessment and documentation to certification audit coordination.",
     scope: [
       "ISO standard selection & roadmap",
       "Gap assessment & feasibility",
@@ -2238,7 +2238,7 @@ const _SERVICES: Service[] = [
     title: "ISO 14001 Certification (EMS)",
     descriptor: "Environmental management system certification.",
     summary:
-      "Assistance with ISO 14001 certification for environmental management systems — covering environmental policy, compliance obligations, and audit readiness for your organisation.",
+      "Assistance with ISO 14001 certification for environmental management systems - covering environmental policy, compliance obligations, and audit readiness for your organisation.",
     scope: [
       "Gap assessment (EMS)",
       "Environmental policy & objectives",
@@ -2268,13 +2268,13 @@ const _SERVICES: Service[] = [
     order: 3,
   },
 
-  // 🩺 Medical Device Regulatory — landing
+  // 🩺 Medical Device Regulatory - landing
   {
     slug: "medical-device-regulatory",
     title: "Medical Device Regulatory & Compliance Services",
     descriptor: "CDSCO, US FDA, ISO 13485, and CE/EU MDR regulatory support.",
     summary:
-      "Full-spectrum medical device regulatory and compliance services — CDSCO manufacturing, import and wholesale licences under the Medical Devices Rules 2017, US FDA registration and 510(k), ISO 13485, and CE marking/EU MDR readiness.",
+      "Full-spectrum medical device regulatory and compliance services - CDSCO manufacturing, import and wholesale licences under the Medical Devices Rules 2017, US FDA registration and 510(k), ISO 13485, and CE marking/EU MDR readiness.",
     scope: [
       "CDSCO manufacturing licences (MD-5, MD-9)",
       "CDSCO import licences (MD-15) & wholesale (MD-42)",
@@ -2299,14 +2299,14 @@ const _SERVICES: Service[] = [
     order: 1,
   },
 
-  // 💄 Cosmetics Regulatory — landing
+  // 💄 Cosmetics Regulatory - landing
   {
     slug: "cosmetics-regulatory",
     title: "Cosmetics Regulatory & Compliance Services",
     descriptor:
       "Manufacturing, import, product compliance, and labelling under Cosmetics Rules 2020.",
     summary:
-      "Complete cosmetics regulatory services under the Cosmetics Rules, 2020 — manufacturing licences, CDSCO import registration (COS-1/COS-2), product & formula compliance, labelling review, testing coordination, and export certificates.",
+      "Complete cosmetics regulatory services under the Cosmetics Rules, 2020 - manufacturing licences, CDSCO import registration (COS-1/COS-2), product & formula compliance, labelling review, testing coordination, and export certificates.",
     scope: [
       "Cosmetic manufacturing licence",
       "CDSCO import registration (COS-1 / COS-2)",
@@ -2337,7 +2337,7 @@ const _SERVICES: Service[] = [
     title: "Food & FSSAI Regulatory Services",
     descriptor: "FSSAI licensing, labelling, testing, and FSMS compliance.",
     summary:
-      "Comprehensive food regulatory services — FSSAI registration and state/central licence, renewal, food labelling and claim compliance, food product testing coordination, and FSMS / ISO 22000 certification support.",
+      "Comprehensive food regulatory services - FSSAI registration and state/central licence, renewal, food labelling and claim compliance, food product testing coordination, and FSMS / ISO 22000 certification support.",
     scope: [
       "FSSAI basic registration & state/central licence",
       "FSSAI licence renewal & amendments",
@@ -2396,7 +2396,7 @@ const _SERVICES: Service[] = [
     title: "Food Product Testing",
     descriptor: "Testing coordination with NABL-accredited laboratories.",
     summary:
-      "Coordination of food product testing through NABL-accredited laboratories — microbiological, chemical, and nutrition analysis, with test report documentation for compliance.",
+      "Coordination of food product testing through NABL-accredited laboratories - microbiological, chemical, and nutrition analysis, with test report documentation for compliance.",
     scope: [
       "Lab selection & parameter scoping",
       "Sample collection guidance",
@@ -2413,7 +2413,7 @@ const _SERVICES: Service[] = [
     title: "FSMS / ISO 22000 (HACCP) Certification",
     descriptor: "Food safety management system certification for food businesses.",
     summary:
-      "Assistance with food safety management systems — FSMS registration per FSSAI and ISO 22000 certification, covering HACCP plans, documentation, and audit readiness.",
+      "Assistance with food safety management systems - FSMS registration per FSSAI and ISO 22000 certification, covering HACCP plans, documentation, and audit readiness.",
     scope: [
       "FSMS scope & applicability assessment",
       "HACCP plan development",
@@ -2432,7 +2432,7 @@ const _SERVICES: Service[] = [
     title: "Import, Export & Product Compliance Services",
     descriptor: "IEC, DGFT licensing, and product compliance for cross-border trade.",
     summary:
-      "End-to-end import-export services — Import Export Code (IEC), DGFT registrations, RCMC, product compliance certification, certificates of origin, and trade documentation for importers, exporters, and e-commerce sellers.",
+      "End-to-end import-export services - Import Export Code (IEC), DGFT registrations, RCMC, product compliance certification, certificates of origin, and trade documentation for importers, exporters, and e-commerce sellers.",
     scope: [
       "Import Export Code (IEC) application",
       "DGFT licensing & RCMC support",
@@ -2457,7 +2457,7 @@ const _SERVICES: Service[] = [
     title: "Product Compliance & Certification (India)",
     descriptor: "BIS, EPR, and regulatory certification for products sold in India.",
     summary:
-      "Assistance with mandatory product compliance for selling in India — BIS (ISI/CRS) certification, E-waste EPR, packaging rules, and market-specific regulatory documents for manufacturers and importers.",
+      "Assistance with mandatory product compliance for selling in India - BIS (ISI/CRS) certification, E-waste EPR, packaging rules, and market-specific regulatory documents for manufacturers and importers.",
     scope: [
       "BIS certification (ISI & CRS) support",
       "E-waste EPR registration for electronics",
@@ -2474,7 +2474,7 @@ const _SERVICES: Service[] = [
     title: "Export / Import Documentation",
     descriptor: "Shipping, banking, and regulatory documentation for trade.",
     summary:
-      "Complete documentation support for international trade — invoices, packing lists, certificates of origin, LC documents, and customs clearance paperwork.",
+      "Complete documentation support for international trade - invoices, packing lists, certificates of origin, LC documents, and customs clearance paperwork.",
     scope: [
       "Commercial invoice & packing list",
       "Certificate of origin (COO)",
@@ -2493,7 +2493,7 @@ const _SERVICES: Service[] = [
     title: "E-Commerce & Marketplace Services",
     descriptor: "Seller registration, listings, catalogues, and compliance for online selling.",
     summary:
-      "Complete e-commerce growth services — seller registration on Amazon, Flipkart, Meesho, IndiaMART and Shopify, product listing and optimisation, catalogue design, brand & barcode (GS1) registration, and product compliance.",
+      "Complete e-commerce growth services - seller registration on Amazon, Flipkart, Meesho, IndiaMART and Shopify, product listing and optimisation, catalogue design, brand & barcode (GS1) registration, and product compliance.",
     scope: [
       "Amazon / Flipkart / Meesho seller onboarding",
       "IndiaMART catalogue & account setup",
@@ -2522,7 +2522,7 @@ const _SERVICES: Service[] = [
     title: "Amazon Seller Registration",
     descriptor: "Amazon.in seller account setup and onboarding.",
     summary:
-      "End-to-end Amazon seller registration — GST validation, brand registry support, category approvals, product listing setup, and launch guidance for your products.",
+      "End-to-end Amazon seller registration - GST validation, brand registry support, category approvals, product listing setup, and launch guidance for your products.",
     scope: [
       "Seller account registration",
       "GST & KYC verification support",
@@ -2544,7 +2544,7 @@ const _SERVICES: Service[] = [
     title: "Flipkart Seller Registration",
     descriptor: "Flipkart Seller Hub account setup and onboarding.",
     summary:
-      "Complete Flipkart seller registration — account creation, KYC, catalogue setup, category support, and Flipkart Fulfilment / seller support guidance.",
+      "Complete Flipkart seller registration - account creation, KYC, catalogue setup, category support, and Flipkart Fulfilment / seller support guidance.",
     scope: [
       "Seller account registration on Flipkart",
       "KYC & GST validation support",
@@ -2561,7 +2561,7 @@ const _SERVICES: Service[] = [
     title: "Meesho Seller Registration",
     descriptor: "Supplier registration and catalogue setup on Meesho.",
     summary:
-      "Supplier registration and catalogue activation on Meesho for resellers and D2C brands — KYC, listing, pricing guidance, and order management support.",
+      "Supplier registration and catalogue activation on Meesho for resellers and D2C brands - KYC, listing, pricing guidance, and order management support.",
     scope: [
       "Meesho supplier registration",
       "KYC & GST validation support",
@@ -2578,7 +2578,7 @@ const _SERVICES: Service[] = [
     title: "IndiaMART Seller Registration & Catalogue Setup",
     descriptor: "IndiaMART account, catalogue, and keyword setup for B2B leads.",
     summary:
-      "IndiaMART seller account setup with a professional catalogue — keywords, categories, and supplier page optimisation to generate quality B2B enquiries.",
+      "IndiaMART seller account setup with a professional catalogue - keywords, categories, and supplier page optimisation to generate quality B2B enquiries.",
     scope: [
       "IndiaMART account registration",
       "Catalogue creation & optimisation",
@@ -2595,7 +2595,7 @@ const _SERVICES: Service[] = [
     title: "Shopify Store Setup & Development",
     descriptor: "Professional Shopify store design and configuration.",
     summary:
-      "Shopify store setup including theme selection, product import, payment and shipping configuration, and store launch — for D2C brands ready to sell direct.",
+      "Shopify store setup including theme selection, product import, payment and shipping configuration, and store launch - for D2C brands ready to sell direct.",
     scope: [
       "Shopify account & plan setup",
       "Theme design & customisation",
@@ -2617,7 +2617,7 @@ const _SERVICES: Service[] = [
     title: "Product Listing & Optimisation",
     descriptor: "High-converting product listings across marketplaces.",
     summary:
-      "Professional product listing services — keyword-rich titles, bullet points, descriptions, backend keywords, and image guidance for Amazon, Flipkart, Meesho, and IndiaMART.",
+      "Professional product listing services - keyword-rich titles, bullet points, descriptions, backend keywords, and image guidance for Amazon, Flipkart, Meesho, and IndiaMART.",
     scope: [
       "Listing content & keyword research",
       "Title, bullets & description writing",
@@ -2634,7 +2634,7 @@ const _SERVICES: Service[] = [
     title: "Product Catalogue Design",
     descriptor: "Professionally designed product catalogues for sellers.",
     summary:
-      "Design of product catalogues for marketplaces, B2B buyers, and D2C websites — clean, brand-consistent layouts that convert.",
+      "Design of product catalogues for marketplaces, B2B buyers, and D2C websites - clean, brand-consistent layouts that convert.",
     scope: [
       "Catalogue layout design",
       "Product photography guidance",
@@ -2651,7 +2651,7 @@ const _SERVICES: Service[] = [
     title: "Brand & Barcode (GS1) Registration",
     descriptor: "Trademark, brand registry, and GS1 barcode registration.",
     summary:
-      "Brand protection and marketplace readiness — trademark application, Amazon Brand Registry / Flipkart Brand Advantage, and GS1 India barcode (GTIN/EAN) registration for your products.",
+      "Brand protection and marketplace readiness - trademark application, Amazon Brand Registry / Flipkart Brand Advantage, and GS1 India barcode (GTIN/EAN) registration for your products.",
     scope: [
       "Trademark application support",
       "Amazon Brand Registry / Brand Advantage",
@@ -2668,7 +2668,7 @@ const _SERVICES: Service[] = [
     title: "E-Commerce Product Compliance",
     descriptor: "Regulatory documents and compliance for online sellers.",
     summary:
-      "Product compliance support for online sellers — applicable registration, labelling, and regulatory documents required to list and sell products on marketplaces without complaints.",
+      "Product compliance support for online sellers - applicable registration, labelling, and regulatory documents required to list and sell products on marketplaces without complaints.",
     scope: [
       "Regulatory document checklist",
       "Applicable licence assessment",
@@ -2691,7 +2691,7 @@ const _SERVICES: Service[] = [
     title: "Startup India, Funding & Compliance Services",
     descriptor: "Startup India recognition, funding readiness, and compliance.",
     summary:
-      "End-to-end startup services — Startup India / DPIIT recognition, funding readiness (pitch decks, financials, investor readiness), and ongoing startup compliance including ESOPs and ROC filings.",
+      "End-to-end startup services - Startup India / DPIIT recognition, funding readiness (pitch decks, financials, investor readiness), and ongoing startup compliance including ESOPs and ROC filings.",
     scope: [
       "Startup India / DPIIT recognition",
       "Funding readiness & investor support",
@@ -2716,7 +2716,7 @@ const _SERVICES: Service[] = [
     title: "Startup Funding & Investor Support",
     descriptor: "End-to-end support for raising funding from investors.",
     summary:
-      "Funding readiness and investor support — pitch deck preparation, financial projections, valuation, investor outreach documentation, and term-sheet review support for startups.",
+      "Funding readiness and investor support - pitch deck preparation, financial projections, valuation, investor outreach documentation, and term-sheet review support for startups.",
     scope: [
       "Pitch deck creation",
       "Financial projections for investors",
@@ -2733,7 +2733,7 @@ const _SERVICES: Service[] = [
     title: "Startup Compliance & ESOP Support",
     descriptor: "Ongoing statutory compliance for startups and ESOP structuring.",
     summary:
-      "Ongoing compliance for startups — ROC filings, ESOP scheme documentation, board resolutions, and investor-related compliance, keeping your startup audit and due-diligence ready.",
+      "Ongoing compliance for startups - ROC filings, ESOP scheme documentation, board resolutions, and investor-related compliance, keeping your startup audit and due-diligence ready.",
     scope: [
       "Annual & event-based ROC filings",
       "ESOP scheme structuring & documentation",
@@ -2750,7 +2750,7 @@ const _SERVICES: Service[] = [
     title: "Funding Readiness Advisory",
     descriptor: "Make your business investor-ready before you raise.",
     summary:
-      "Funding readiness advisory for SMEs and startups — cleaning financials, structuring records, and preparing investor documentation so you can raise capital with confidence.",
+      "Funding readiness advisory for SMEs and startups - cleaning financials, structuring records, and preparing investor documentation so you can raise capital with confidence.",
     scope: [
       "Financial & compliance hygiene review",
       "Investor-ready financials",
@@ -2769,7 +2769,7 @@ const _SERVICES: Service[] = [
     title: "Digital Marketing & Growth Services",
     descriptor: "SEO, ads, social media, websites, and lead generation for growth.",
     summary:
-      "Full-funnel digital growth services — SEO, Google & Meta ads, social media marketing, website development, IndiaMART and e-commerce marketing, and B2B lead generation for growing businesses.",
+      "Full-funnel digital growth services - SEO, Google & Meta ads, social media marketing, website development, IndiaMART and e-commerce marketing, and B2B lead generation for growing businesses.",
     scope: [
       "Search Engine Optimisation (SEO)",
       "Google & Meta (Facebook/Instagram) Ads",
@@ -2797,7 +2797,7 @@ const _SERVICES: Service[] = [
     title: "Social Media Marketing",
     descriptor: "Content, pages, and campaigns for social platforms.",
     summary:
-      "Social media marketing — page setup, content calendar, graphic design, and community management across Instagram, Facebook, LinkedIn, and YouTube to build your brand.",
+      "Social media marketing - page setup, content calendar, graphic design, and community management across Instagram, Facebook, LinkedIn, and YouTube to build your brand.",
     scope: [
       "Social media page setup & optimisation",
       "Content calendar & creation",
@@ -2814,7 +2814,7 @@ const _SERVICES: Service[] = [
     title: "Google Ads Management",
     descriptor: "Search, display, and shopping campaigns on Google.",
     summary:
-      "Google Ads management — search, display, and Shopping campaigns with keyword research, ad copy, landing page guidance, and ROI-focused optimisation.",
+      "Google Ads management - search, display, and Shopping campaigns with keyword research, ad copy, landing page guidance, and ROI-focused optimisation.",
     scope: [
       "Campaign strategy & setup",
       "Keyword research & negative keywords",
@@ -2831,7 +2831,7 @@ const _SERVICES: Service[] = [
     title: "Meta Ads (Facebook & Instagram)",
     descriptor: "Facebook and Instagram paid campaigns for demand generation.",
     summary:
-      "Meta ads management on Facebook and Instagram — audience targeting, creative direction, A/B testing, and funnel campaigns for leads and sales.",
+      "Meta ads management on Facebook and Instagram - audience targeting, creative direction, A/B testing, and funnel campaigns for leads and sales.",
     scope: [
       "Meta Business Manager setup",
       "Audience & interest targeting",
@@ -2848,7 +2848,7 @@ const _SERVICES: Service[] = [
     title: "SEO Services",
     descriptor: "On-page, technical, and local SEO to rank on Google.",
     summary:
-      "Search engine optimisation — technical, on-page, and local SEO with keyword strategy, content optimisation, and link building to grow organic traffic.",
+      "Search engine optimisation - technical, on-page, and local SEO with keyword strategy, content optimisation, and link building to grow organic traffic.",
     scope: [
       "Technical SEO audit",
       "On-page & content optimisation",
@@ -2865,7 +2865,7 @@ const _SERVICES: Service[] = [
     title: "Website Development",
     descriptor: "Fast, professional business websites that convert.",
     summary:
-      "Custom business website design and development — responsive design, SEO-ready structure, lead forms, and analytics, delivered on modern stacks.",
+      "Custom business website design and development - responsive design, SEO-ready structure, lead forms, and analytics, delivered on modern stacks.",
     scope: [
       "Website strategy & sitemap",
       "UI design & development",
@@ -2882,7 +2882,7 @@ const _SERVICES: Service[] = [
     title: "IndiaMART Marketing & Promotion",
     descriptor: "Paid and organic growth campaigns on IndiaMART.",
     summary:
-      "IndiaMART campaigns and organic optimisation to increase B2B enquiries — keyword bidding strategy, catalogue boosts, and account-level optimisation.",
+      "IndiaMART campaigns and organic optimisation to increase B2B enquiries - keyword bidding strategy, catalogue boosts, and account-level optimisation.",
     scope: [
       "Campaign & keyword bidding strategy",
       "Catalogue & product boosts",
@@ -2899,7 +2899,7 @@ const _SERVICES: Service[] = [
     title: "E-Commerce Marketing",
     descriptor: "Marketplace and D2C performance marketing.",
     summary:
-      "E-commerce marketing — Amazon PPC, Flipkart ads, marketplace promotions, and D2C funnel campaigns to grow sales on marketplaces and your own store.",
+      "E-commerce marketing - Amazon PPC, Flipkart ads, marketplace promotions, and D2C funnel campaigns to grow sales on marketplaces and your own store.",
     scope: [
       "Amazon PPC (Sponsored Ads) management",
       "Flipkart / marketplace promotions",
@@ -2916,7 +2916,7 @@ const _SERVICES: Service[] = [
     title: "Lead Generation Services",
     descriptor: "B2B lead generation campaigns for sales-ready enquiries.",
     summary:
-      "Sales-ready lead generation through ads, LinkedIn, IndiaMART, and landing pages — including lead qualification, CRM handoff, and reporting.",
+      "Sales-ready lead generation through ads, LinkedIn, IndiaMART, and landing pages - including lead qualification, CRM handoff, and reporting.",
     scope: [
       "Lead funnel strategy",
       "Landing pages & forms",
@@ -2933,7 +2933,7 @@ const _SERVICES: Service[] = [
     title: "Branding & Design Services",
     descriptor: "Logos, identity, and brand kits for businesses.",
     summary:
-      "Brand identity creation — logo design, colour & typography systems, brand guidelines, and print/digital assets for a professional, consistent look.",
+      "Brand identity creation - logo design, colour & typography systems, brand guidelines, and print/digital assets for a professional, consistent look.",
     scope: [
       "Logo & brand identity design",
       "Colour & typography system",
@@ -2953,7 +2953,7 @@ const _SERVICES: Service[] = [
     descriptor:
       "Vendor registration, DISCOM, PM Surya Ghar, net metering, and solar business support.",
     summary:
-      "PAN-India solar consultancy with state-wise assistance — solar vendor & empanelment registration, DISCOM registrations, PM Surya Ghar scheme support, net metering applications, and solar business setup services.",
+      "PAN-India solar consultancy with state-wise assistance - solar vendor & empanelment registration, DISCOM registrations, PM Surya Ghar scheme support, net metering applications, and solar business setup services.",
     scope: [
       "Solar vendor / empanelment registration",
       "DISCOM registration & approval support",
@@ -2982,7 +2982,7 @@ const _SERVICES: Service[] = [
     title: "Solar Vendor / Empanelment Registration",
     descriptor: "Vendor and empanelment registration for rooftop, RESCO, and CPSU solar work.",
     summary:
-      "Registration and empanelment as a solar vendor with DISCOMs and nodal agencies — rooftop, RESCO, and CPSU schemes — with complete documentation and approvals across India.",
+      "Registration and empanelment as a solar vendor with DISCOMs and nodal agencies - rooftop, RESCO, and CPSU schemes - with complete documentation and approvals across India.",
     scope: [
       "Vendor empanelment with DISCOM",
       "Rooftop solar vendor registration",
@@ -2999,7 +2999,7 @@ const _SERVICES: Service[] = [
     title: "DISCOM Registration & Empanelment",
     descriptor: "Registration with electricity distribution companies for solar work.",
     summary:
-      "Vendor registration and empanelment with State DISCOMs for solar installations under rooftop, KUSUM, and state schemes — plus net metering and subsidy coordination.",
+      "Vendor registration and empanelment with State DISCOMs for solar installations under rooftop, KUSUM, and state schemes - plus net metering and subsidy coordination.",
     scope: [
       "DISCOM vendor registration",
       "Scheme-wise empanelment (rooftop/KUSUM)",
@@ -3016,7 +3016,7 @@ const _SERVICES: Service[] = [
     title: "PM Surya Ghar Scheme Registration & Support",
     descriptor: "Vendor registration and beneficiary assistance under PM Surya Ghar.",
     summary:
-      "Support under the PM Surya Ghar Muft Bijli Yojana — vendor registration, beneficiary submission assistance, subsidy claim coordination, and net metering for rooftop solar households.",
+      "Support under the PM Surya Ghar Muft Bijli Yojana - vendor registration, beneficiary submission assistance, subsidy claim coordination, and net metering for rooftop solar households.",
     scope: [
       "Vendor registration under PM Surya Ghar",
       "Beneficiary application assistance",
@@ -3033,7 +3033,7 @@ const _SERVICES: Service[] = [
     title: "Net Metering Application & Compliance",
     descriptor: "Net metering applications for rooftop and commercial solar.",
     summary:
-      "End-to-end net metering application support with DISCOMs — documentation, approvals, meter installation coordination, and compliance for residential and commercial solar systems.",
+      "End-to-end net metering application support with DISCOMs - documentation, approvals, meter installation coordination, and compliance for residential and commercial solar systems.",
     scope: [
       "Net metering application filing",
       "Technical document preparation",
@@ -3050,7 +3050,7 @@ const _SERVICES: Service[] = [
     title: "Solar Business Setup & Support",
     descriptor: "Registration and documentation to start a solar business.",
     summary:
-      "Guidance to start and scale your solar business — company registration, GST, tenders, vendor registration, insurance, and compliance documentation for solar EPC and distribution businesses.",
+      "Guidance to start and scale your solar business - company registration, GST, tenders, vendor registration, insurance, and compliance documentation for solar EPC and distribution businesses.",
     scope: [
       "Company & GST registration for solar business",
       "Solar vendor / empanelment registration",

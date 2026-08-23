@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Link } from "@tanstack/react-router";
 import type { ComponentProps } from "react";
 
@@ -38,23 +38,23 @@ export function EmberButton({
 
   if (to) {
     return (
-      <motion.span {...motionProps} className="inline-block">
+      <m.span {...motionProps} className="inline-block">
         <Link to={to as ComponentProps<typeof Link>["to"]} className={base}>
           {children}
         </Link>
-      </motion.span>
+      </m.span>
     );
   }
   if (href) {
     return (
-      <motion.a href={href} className={base} {...motionProps}>
+      <m.a href={href} className={base} {...motionProps}>
         {children}
-      </motion.a>
+      </m.a>
     );
   }
   return (
-    <motion.button type={type ?? "button"} onClick={onClick} className={base} {...motionProps}>
+    <m.button type={type ?? "button"} onClick={onClick} className={base} {...motionProps}>
       {children}
-    </motion.button>
+    </m.button>
   );
 }

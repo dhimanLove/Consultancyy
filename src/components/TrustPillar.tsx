@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { cardChild } from "@/lib/motion";
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
 
 export function TrustPillar({ number, title, body }: Props) {
   return (
-    <motion.div
+    <m.div
       {...cardChild}
       className="bg-white border border-border rounded-[5px] p-8 group hover:border-primary/20 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300"
     >
@@ -18,6 +18,6 @@ export function TrustPillar({ number, title, body }: Props) {
         {title}
       </h3>
       <p className="text-[15px] text-steel mt-3 leading-relaxed">{body}</p>
-    </motion.div>
+    </m.div>
   );
 }

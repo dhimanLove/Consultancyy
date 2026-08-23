@@ -1,9 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { motion, type Variants } from "framer-motion";
+import { m, type Variants } from "framer-motion";
 import { useEffect, useRef } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { PageHeader } from "@/components/PageHeader";
-import { TeamCard } from "@/components/TeamCard";
 import { SectionHeading } from "@/components/SectionHeading";
 import { EmberButton } from "@/components/EmberButton";
 import { RevealParagraph } from "@/components/RevealParagraph";
@@ -161,9 +160,9 @@ export const Route = createFileRoute("/about-us")({
       { name: "geo.position", content: "22.7262239;75.919035" },
       { name: "geo.placename", content: "Indore, Madhya Pradesh" },
       { name: "geo.region", content: "IN-MP" },
+      { "script:ld+json": aboutStructured },
     ],
     links: [{ rel: "canonical", href: "https://www.charteredsolution.com/about-us" }],
-    scripts: [{ type: "application/ld+json", innerHTML: JSON.stringify(aboutStructured) }],
   }),
   component: AboutUsPage,
 });
@@ -188,11 +187,11 @@ function AboutUsPage() {
   }, []);
 
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
+    <m.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
       <PageHeader
         crumbs={[{ label: "Home", to: "/" }, { label: "About Us" }]}
         title="About Chartered Solution."
-        subtext="Founded by Jitendra Malviya in Indore, Madhya Pradesh — helping businesses register, comply, and grow since 2023."
+        subtext="Founded by Jitendra Malviya in Indore, Madhya Pradesh - helping businesses register, comply, and grow since 2023."
       />
 
       <section className="bg-white py-20">
@@ -200,7 +199,7 @@ function AboutUsPage() {
           <div>
             <SectionHeading
               eyebrow="Our Story"
-              heading="From Kanadia Road, Indore — building a compliance-first India."
+              heading="From Kanadia Road, Indore - building a compliance-first India."
             />
             <RevealParagraph className="text-[15px] text-steel leading-relaxed mt-6">
               Chartered Solution was founded in 2023 by Jitendra Malviya with a clear mission: make
@@ -211,7 +210,7 @@ function AboutUsPage() {
             </RevealParagraph>
             <RevealParagraph className="text-[15px] text-steel leading-relaxed mt-4">
               Today, we offer {SERVICES.length}+ services across {SERVICE_CATEGORIES.length}{" "}
-              categories — from business registration, GST, ITR and ROC compliance to ISO
+              categories - from business registration, GST, ITR and ROC compliance to ISO
               certification, medical device and cosmetics regulatory, solar consultancy, e-commerce
               enablement, and digital growth solutions. Every solution is tailored, every process is
               handled end-to-end, and every client gets a single point of contact.
@@ -236,7 +235,7 @@ function AboutUsPage() {
             <p className="founder-el text-[14px] text-steel mt-5 leading-relaxed">
               &ldquo;We believe that every business deserves expert compliance guidance. Our mission
               at Chartered Solution is to remove the complexity from registrations, filings, and
-              certifications so that entrepreneurs can focus on what they do best — building their
+              certifications so that entrepreneurs can focus on what they do best - building their
               dreams.&rdquo;
             </p>
             <div className="founder-el mt-6 flex flex-wrap justify-center gap-2.5 text-[12px] text-steel">
@@ -268,7 +267,7 @@ function AboutUsPage() {
       <section className="bg-fog py-20 cv-auto">
         <div className="container-page">
           <SectionHeading eyebrow="Trust Pillars" heading="Why businesses in Indore trust us." />
-          <motion.div
+          <m.div
             variants={container}
             initial="hidden"
             whileInView="visible"
@@ -290,14 +289,14 @@ function AboutUsPage() {
               title="Fast turnaround"
               body="We respect your time. With streamlined processes and experienced professionals, we deliver results promptly."
             />
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
       <section className="bg-white py-20 cv-auto">
         <div className="container-page">
           <SectionHeading eyebrow="Testimonials" heading="What our clients in Indore say." />
-          <motion.div
+          <m.div
             variants={container}
             initial="hidden"
             whileInView="visible"
@@ -319,7 +318,7 @@ function AboutUsPage() {
               author="Anurag Malviya"
               date="2 years ago"
             />
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
@@ -330,7 +329,7 @@ function AboutUsPage() {
             heading="Ready to start your compliance journey?"
             center
           />
-          <motion.p
+          <m.p
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -338,8 +337,8 @@ function AboutUsPage() {
             className="text-[15px] text-white/60 mt-3 max-w-[480px] mx-auto"
           >
             Call us at +91 88155 53899 or visit our office at Kanadia Road, Indore.
-          </motion.p>
-          <motion.div
+          </m.p>
+          <m.div
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -349,7 +348,7 @@ function AboutUsPage() {
             <EmberButton to="/contact-us">
               Contact us today <ArrowUpRight className="w-4 h-4" />
             </EmberButton>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
@@ -360,7 +359,7 @@ function AboutUsPage() {
             heading="Common questions about Chartered Solution."
             center
           />
-          <motion.div
+          <m.div
             variants={container}
             initial="hidden"
             whileInView="visible"
@@ -368,7 +367,7 @@ function AboutUsPage() {
             className="mt-10 space-y-4"
           >
             {faqData.map((faq, i) => (
-              <motion.details
+              <m.details
                 key={i}
                 variants={child}
                 className="group border border-border rounded-[5px] overflow-hidden open:border-primary/40 transition-colors"
@@ -382,11 +381,11 @@ function AboutUsPage() {
                 <div className="px-6 pb-4">
                   <p className="text-[14px] text-steel leading-relaxed">{faq.answer}</p>
                 </div>
-              </motion.details>
+              </m.details>
             ))}
-          </motion.div>
+          </m.div>
         </div>
       </section>
-    </motion.div>
+    </m.div>
   );
 }

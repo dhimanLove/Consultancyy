@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { motion, type Variants } from "framer-motion";
+import { m, type Variants } from "framer-motion";
 import { PageHeader } from "@/components/PageHeader";
 import { SectionHeading } from "@/components/SectionHeading";
 import { ArrowRight, CalendarDays, FileText, Users, ShieldCheck } from "lucide-react";
@@ -99,7 +99,7 @@ export const Route = createFileRoute("/resources/compliance-calendar")({
       {
         name: "description",
         content:
-          "Track your business compliance deadlines with the Chartered Solution calendar — GST returns, TDS, income tax, PF/ESIC, ROC filings and more. Updated for Indian businesses.",
+          "Track your business compliance deadlines with the Chartered Solution calendar - GST returns, TDS, income tax, PF/ESIC, ROC filings and more. Updated for Indian businesses.",
       },
       {
         name: "keywords",
@@ -110,7 +110,7 @@ export const Route = createFileRoute("/resources/compliance-calendar")({
       {
         property: "og:description",
         content:
-          "A deadline tracker for GST, TDS, Income Tax, ROC, PF and ESIC — built for Indian business owners.",
+          "A deadline tracker for GST, TDS, Income Tax, ROC, PF and ESIC - built for Indian business owners.",
       },
       {
         property: "og:url",
@@ -125,7 +125,7 @@ export const Route = createFileRoute("/resources/compliance-calendar")({
       {
         name: "twitter:description",
         content:
-          "A deadline tracker for GST, TDS, Income Tax, ROC, PF and ESIC — built for Indian business owners.",
+          "A deadline tracker for GST, TDS, Income Tax, ROC, PF and ESIC - built for Indian business owners.",
       },
     ],
     links: [
@@ -140,7 +140,7 @@ export const Route = createFileRoute("/resources/compliance-calendar")({
 
 function ComplianceCalendarPage() {
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
+    <m.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
       <PageHeader
         crumbs={[
           { label: "Home", to: "/" },
@@ -148,7 +148,7 @@ function ComplianceCalendarPage() {
           { label: "Compliance Calendar" },
         ]}
         title="Business compliance calendar."
-        subtext="A quick reference to the common GST, tax, ROC, PF and ESIC deadlines for Indian businesses. Timelines vary — always confirm the current due dates with the respective authority."
+        subtext="A quick reference to the common GST, tax, ROC, PF and ESIC deadlines for Indian businesses. Timelines vary - always confirm the current due dates with the respective authority."
       />
 
       <section className="bg-white py-20">
@@ -159,7 +159,7 @@ function ComplianceCalendarPage() {
               Key Deadlines at a Glance
             </h2>
           </div>
-          <motion.div
+          <m.div
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
@@ -167,7 +167,7 @@ function ComplianceCalendarPage() {
             className="grid sm:grid-cols-2 gap-4"
           >
             {DEADLINES.map((d) => (
-              <motion.div
+              <m.div
                 key={d.label}
                 variants={itemVariants}
                 className="border border-[#E5E5E5] rounded-[8px] p-5 flex items-start gap-4"
@@ -180,9 +180,9 @@ function ComplianceCalendarPage() {
                   <div className="text-[13px] text-warm-dark font-medium mt-0.5">{d.due}</div>
                   <div className="text-[12.5px] text-steel mt-1 leading-relaxed">{d.note}</div>
                 </div>
-              </motion.div>
+              </m.div>
             ))}
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
@@ -211,7 +211,7 @@ function ComplianceCalendarPage() {
                 body: "Employer returns filed accurately and on time, every month.",
               },
             ].map((s) => (
-              <motion.div
+              <m.div
                 key={s.title}
                 variants={itemVariants}
                 initial="hidden"
@@ -222,7 +222,7 @@ function ComplianceCalendarPage() {
                 <s.icon className="w-7 h-7 text-primary" />
                 <h3 className="mt-4 text-[16px] font-bold text-navy">{s.title}</h3>
                 <p className="mt-2 text-[13.5px] text-steel leading-relaxed">{s.body}</p>
-              </motion.div>
+              </m.div>
             ))}
           </div>
           <div className="mt-10 text-center">
@@ -235,6 +235,6 @@ function ComplianceCalendarPage() {
           </div>
         </div>
       </section>
-    </motion.div>
+    </m.div>
   );
 }

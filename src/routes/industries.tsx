@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { motion, type Variants } from "framer-motion";
+import { m, type Variants } from "framer-motion";
 import { PageHeader } from "@/components/PageHeader";
 import { SectionHeading } from "@/components/SectionHeading";
 import { EmberButton } from "@/components/EmberButton";
@@ -83,6 +83,40 @@ const INDUSTRY_LINKS: Record<string, string[]> = {
   ],
 };
 
+const industryStructuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ItemList",
+      name: "Industries Served by Chartered Solution",
+      description: "Industry-specific business, regulatory, compliance and growth services.",
+      itemListElement: INDUSTRIES.map((i, idx) => ({
+        "@type": "ListItem",
+        position: idx + 1,
+        name: i.label,
+        url: `https://www.charteredsolution.com/industries#${i.slug}`,
+      })),
+    },
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: "https://www.charteredsolution.com",
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Industries We Serve",
+          item: "https://www.charteredsolution.com/industries",
+        },
+      ],
+    },
+  ],
+};
+
 export const Route = createFileRoute("/industries")({
   head: () => ({
     meta: [
@@ -119,6 +153,7 @@ export const Route = createFileRoute("/industries")({
           "Industry-specific business setup, regulatory, compliance and digital growth solutions across India.",
       },
       { name: "twitter:image", content: "https://www.charteredsolution.com/Charted.jpeg" },
+      { "script:ld+json": industryStructuredData },
     ],
     links: [{ rel: "canonical", href: "https://www.charteredsolution.com/industries" }],
   }),
@@ -127,16 +162,16 @@ export const Route = createFileRoute("/industries")({
 
 function IndustriesPage() {
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
+    <m.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
       <PageHeader
         crumbs={[{ label: "Home", to: "/" }, { label: "Industries" }]}
         title="Solutions for every industry."
-        subtext="From first-time founders to solar companies, medical device firms and D2C brands — we tailor business setup, regulatory, compliance and growth solutions to your industry."
+        subtext="From first-time founders to solar companies, medical device firms and D2C brands - we tailor business setup, regulatory, compliance and growth solutions to your industry."
       />
 
       <section className="bg-white py-20">
         <div className="container-page">
-          <motion.div
+          <m.div
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
@@ -147,7 +182,7 @@ function IndustriesPage() {
               const links = INDUSTRY_LINKS[ind.slug] ?? [];
               const desc = INDUSTRY_ITEM_DESCRIPTIONS[ind.slug] ?? "";
               return (
-                <motion.div
+                <m.div
                   key={ind.slug}
                   id={ind.slug}
                   variants={itemVariants}
@@ -191,10 +226,10 @@ function IndustriesPage() {
                       })}
                     </div>
                   )}
-                </motion.div>
+                </m.div>
               );
             })}
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
@@ -207,7 +242,7 @@ function IndustriesPage() {
           />
           <div className="space-y-3">
             {[
-              "Free initial consultation — no obligation",
+              "Free initial consultation - no obligation",
               "A tailored checklist for your industry",
               "Transparent, all-inclusive professional fees",
               "End-to-end documentation, filing and follow-up",
@@ -227,6 +262,6 @@ function IndustriesPage() {
           </div>
         </div>
       </section>
-    </motion.div>
+    </m.div>
   );
 }

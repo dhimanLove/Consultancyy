@@ -7,12 +7,59 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
+import { LazyMotion } from "framer-motion";
 import { type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { WhatsAppFAB } from "@/components/WhatsAppFAB";
+
+const loadMotionFeatures = () => import("@/lib/motion-features").then((mod) => mod.domMax);
+
+const rootStructuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      name: "Chartered Solution",
+      url: "https://www.charteredsolution.com",
+      inLanguage: "en-IN",
+      publisher: {
+        "@type": "Organization",
+        name: "Chartered Solution",
+        url: "https://www.charteredsolution.com",
+      },
+    },
+    {
+      "@type": "ProfessionalService",
+      name: "Chartered Solution",
+      url: "https://www.charteredsolution.com",
+      image: "https://www.charteredsolution.com/Charted.jpeg",
+      logo: "https://www.charteredsolution.com/Charted.jpeg",
+      telephone: "+91-88155-53899",
+      email: "charteredgesolution@gmail.com",
+      priceRange: "₹₹",
+      sameAs: ["https://wa.me/918815553899", "https://www.charteredsolution.com"],
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "152, Sanchar Nagar Ext., Goyal Nagar, Kanadia Road",
+        addressLocality: "Indore",
+        addressRegion: "Madhya Pradesh",
+        postalCode: "452016",
+        addressCountry: "IN",
+      },
+      geo: { "@type": "GeoCoordinates", latitude: 22.7262239, longitude: 75.919035 },
+      openingHours: "Mo-Sa 09:30-18:30",
+      founder: { "@type": "Person", name: "Jitendra Malviya", jobTitle: "Founder & CEO" },
+      areaServed: [
+        { "@type": "City", name: "Indore" },
+        { "@type": "State", name: "Madhya Pradesh" },
+        { "@type": "Country", name: "India" },
+      ],
+    },
+  ],
+};
 
 function NotFoundComponent() {
   return (
@@ -123,6 +170,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "geo.position", content: "22.7262239;75.919035" },
       { name: "geo.placename", content: "Indore, Madhya Pradesh" },
       { name: "geo.region", content: "IN-MP" },
+      { "script:ld+json": rootStructuredData },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -141,54 +189,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
       { rel: "canonical", href: "https://www.charteredsolution.com" },
-    ],
-    scripts: [
-      {
-        type: "application/ld+json",
-        innerHTML: JSON.stringify({
-          "@context": "https://schema.org",
-          "@graph": [
-            {
-              "@type": "WebSite",
-              name: "Chartered Solution",
-              url: "https://www.charteredsolution.com",
-              inLanguage: "en-IN",
-              publisher: {
-                "@type": "Organization",
-                name: "Chartered Solution",
-                url: "https://www.charteredsolution.com",
-              },
-            },
-            {
-              "@type": "ProfessionalService",
-              name: "Chartered Solution",
-              url: "https://www.charteredsolution.com",
-              image: "https://www.charteredsolution.com/Charted.jpeg",
-              logo: "https://www.charteredsolution.com/Charted.jpeg",
-              telephone: "+91-88155-53899",
-              email: "charteredgesolution@gmail.com",
-              priceRange: "₹₹",
-              sameAs: ["https://wa.me/918815553899", "https://www.charteredsolution.com"],
-              address: {
-                "@type": "PostalAddress",
-                streetAddress: "152, Sanchar Nagar Ext., Goyal Nagar, Kanadia Road",
-                addressLocality: "Indore",
-                addressRegion: "Madhya Pradesh",
-                postalCode: "452016",
-                addressCountry: "IN",
-              },
-              geo: { "@type": "GeoCoordinates", latitude: 22.7262239, longitude: 75.919035 },
-              openingHours: "Mo-Sa 09:30-18:30",
-              founder: { "@type": "Person", name: "Jitendra Malviya", jobTitle: "Founder & CEO" },
-              areaServed: [
-                { "@type": "City", name: "Indore" },
-                { "@type": "State", name: "Madhya Pradesh" },
-                { "@type": "Country", name: "India" },
-              ],
-            },
-          ],
-        }),
-      },
     ],
   }),
   shellComponent: RootShell,
@@ -216,12 +216,14 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Navbar />
-      <main>
-        <Outlet />
-      </main>
-      <Footer />
-      <WhatsAppFAB />
+      <LazyMotion features={loadMotionFeatures} strict>
+        <Navbar />
+        <main>
+          <Outlet />
+        </main>
+        <Footer />
+        <WhatsAppFAB />
+      </LazyMotion>
     </QueryClientProvider>
   );
 }

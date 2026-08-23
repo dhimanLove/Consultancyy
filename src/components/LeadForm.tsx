@@ -1,72 +1,39 @@
-import { useState, type FormEvent, type ReactNode } from "react";
-import { motion, AnimatePresence, type Variants } from "framer-motion";
+import { useState, type FormEvent } from "react";
+import { Send, CheckCircle } from "lucide-react";
 import { WHATSAPP_HREF } from "@/lib/nav";
 import { SERVICES_BY_CATEGORY } from "@/lib/services-data";
-import {
-  User,
-  Phone,
-  Mail,
-  MapPin,
-  ChevronDown,
-  Send,
-  CheckCircle,
-  type LucideIcon,
-} from "lucide-react";
 
-const SALUTATIONS = ["Mr.", "Mrs.", "Ms.", "Company"];
+const SALUTATIONS = ["Mr.", "Mrs.", "Ms.", "Company"] as const;
 
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.05, delayChildren: 0.05 } },
+const inputCls =
+  "w-full rounded-[8px] border border-[#E5E5E5] bg-white px-3.5 py-2.5 text-[14px] text-navy " +
+  "placeholder:text-steel/40 outline-none transition-colors duration-150 " +
+  "hover:border-primary/30 focus:border-primary focus:ring-2 focus:ring-primary/10";
+
+const labelCls = "mb-1 block text-[12px] font-semibold text-navy";
+
+const initial = {
+  salutation: SALUTATIONS[0] as string,
+  name: "",
+  email: "",
+  mobile: "",
+  city: "",
+  lookingFor: "",
 };
-
-const fieldVariants: Variants = {
-  hidden: { opacity: 0, y: 14 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] } },
-};
-
-const inputBase =
-  "w-full bg-white border-2 border-gray-200 rounded-[8px] px-3.5 py-2.5 text-[14px] text-navy placeholder:text-gray-300 outline-none transition-all duration-200 " +
-  "hover:border-primary/30 focus:border-primary focus:ring-4 focus:ring-primary/10";
-
-const labelBase = "block text-[12px] font-bold text-navy mb-1.5";
-
-function Field({
-  label,
-  icon: Icon,
-  children,
-  className = "",
-}: {
-  label: ReactNode;
-  icon: LucideIcon;
-  children: ReactNode;
-  className?: string;
-}) {
-  return (
-    <div className={className}>
-      <label className={labelBase}>{label}</label>
-      <div className="relative group">
-        <Icon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-300 group-focus-within:text-primary transition-colors duration-200" />
-        {children}
-        <span className="absolute bottom-0 left-3.5 right-3.5 h-0.5 bg-primary scale-x-0 group-focus-within:scale-x-100 transition-transform duration-300 origin-left rounded-full" />
-      </div>
-    </div>
-  );
-}
 
 export function LeadForm() {
-  const [salutation, setSalutation] = useState(SALUTATIONS[0]);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [mobile, setMobile] = useState("");
-  const [city, setCity] = useState("");
-  const [lookingFor, setLookingFor] = useState("");
+  const [values, setValues] = useState(initial);
   const [error, setError] = useState("");
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
 
+  const set =
+    (key: keyof typeof initial) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
+      setValues((v) => ({ ...v, [key]: e.target.value }));
+
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+    const { salutation, name, email, mobile, city, lookingFor } = values;
     if (!name.trim() || !mobile.trim() || !email.trim() || !city.trim() || !lookingFor) {
       setError("Please fill all the required fields.");
       return;
@@ -95,281 +62,204 @@ export function LeadForm() {
       setSending(false);
       setSent(true);
       window.open(`${WHATSAPP_HREF}?text=${encodeURIComponent(msg)}`, "_blank");
-    }, 900);
+    }, 600);
   };
 
+  if (sent) {
+    return (
+      <div className="w-full rounded-[12px] border border-navy/10 bg-white p-6 shadow-xl shadow-navy/[0.08] sm:p-7">
+        <div className="py-8 text-center">
+          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-warm/10">
+            <CheckCircle className="h-7 w-7 text-warm-dark" />
+          </div>
+          <h3 className="mt-4 text-[18px] font-bold text-navy">
+            Thank you, {values.name.trim().split(" ")[0]}!
+          </h3>
+          <p className="mx-auto mt-1.5 max-w-[340px] text-[13px] leading-relaxed text-steel">
+            Your quote request is ready on WhatsApp. We&rsquo;ll respond within minutes during
+            business hours.
+          </p>
+          <a
+            href={`${WHATSAPP_HREF}?text=${encodeURIComponent(
+              "Hi Chartered Solution, I just submitted the quote form.",
+            )}`}
+            target="_blank"
+            rel="noreferrer"
+            className="mt-5 inline-flex items-center gap-2 rounded-[8px] bg-[#25D366] px-5 py-2.5 text-[13px] font-bold text-white transition-colors hover:bg-[#1fb959]"
+          >
+            Open WhatsApp <Send className="h-4 w-4" />
+          </a>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="relative w-full bg-white rounded-[14px] shadow-2xl shadow-navy/20 ring-1 ring-navy/10 p-8">
-      <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-24 h-1.5 rounded-full bg-[#FFB000]" />
-      <AnimatePresence mode="wait">
-        {sent ? (
-          <motion.div
-            key="success"
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: -20 }}
-            className="py-12 text-center"
-          >
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ type: "spring", stiffness: 200, damping: 12, delay: 0.15 }}
-              className="w-16 h-16 rounded-full bg-warm/10 flex items-center justify-center mx-auto"
-            >
-              <CheckCircle className="w-8 h-8 text-warm" />
-            </motion.div>
-            <motion.h3
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="text-[20px] font-bold text-navy mt-5"
-            >
-              Thank you, {name.trim().split(" ")[0]}!
-            </motion.h3>
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              className="text-[14px] text-steel mt-2 leading-relaxed max-w-[340px] mx-auto"
-            >
-              Your quote request is ready on WhatsApp. We&rsquo;ll respond within minutes during
-              business hours.
-            </motion.p>
-            <motion.a
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.55 }}
-              href={`${WHATSAPP_HREF}?text=${encodeURIComponent(
-                "Hi Chartered Solution, I just submitted the quote form.",
-              )}`}
-              target="_blank"
-              rel="noreferrer"
-              className="mt-6 inline-flex items-center gap-2 bg-[#25D366] text-white font-bold text-[14px] rounded-[2px] px-6 py-3 hover:bg-[#1fb959] active:scale-[0.97] transition-all"
-            >
-              Open WhatsApp <Send className="w-4 h-4" />
-            </motion.a>
-          </motion.div>
-        ) : (
-          <motion.form
-            key="form"
-            onSubmit={handleSubmit}
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            exit="hidden"
-            aria-label="Get quote instantly"
-          >
-            <motion.div
-              variants={fieldVariants}
-              className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-7"
-            >
-              <div>
-                <p className="text-[20px] font-black text-navy leading-tight">
-                  Get Quote Instantly
-                  <br />
-                  <span className="text-primary">in a Minute</span>
-                </p>
-                <p className="text-[13px] text-steel mt-1.5 leading-relaxed">
-                  Fill in your details and we&rsquo;ll reach out on WhatsApp.
-                </p>
-              </div>
-              <div className="flex items-center gap-2 shrink-0">
-                <span className="w-10 h-[3px] rounded-full bg-warm" />
-                <span className="text-[10px] font-semibold text-warm uppercase tracking-widest">
-                  Quick Enquiry
-                </span>
-              </div>
-            </motion.div>
+    <div className="w-full rounded-[12px] border border-navy/10 bg-white p-6 shadow-xl shadow-navy/[0.08] sm:p-7">
+      <form onSubmit={handleSubmit} aria-label="Get quote instantly">
+        {/* Header */}
+        <p className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.16em] text-warm-dark">
+          Quick Enquiry
+        </p>
+        <h3 className="mt-1.5 text-[20px] font-extrabold leading-tight text-navy">
+          Get Quote Instantly <span className="text-primary">in a Minute</span>
+        </h3>
+        <p className="mt-1 text-[13px] text-steel">
+          Fill in your details and we&rsquo;ll reach out on WhatsApp.
+        </p>
 
-            <motion.div variants={fieldVariants} className="mb-6">
-              <span className={labelBase}>Salutation</span>
-              <div className="flex flex-wrap gap-1.5">
-                {SALUTATIONS.map((s) => (
-                  <button
-                    key={s}
-                    type="button"
-                    onClick={() => setSalutation(s)}
-                    className="relative rounded-full px-4 py-1.5 text-[12.5px] font-bold transition-colors"
-                  >
-                    {salutation === s && (
-                      <motion.span
-                        layoutId="salutation-pill"
-                        transition={{ type: "spring", stiffness: 380, damping: 28 }}
-                        className="absolute inset-0 rounded-full bg-primary shadow-md shadow-primary/30"
-                      />
-                    )}
-                    <span
-                      className={`relative z-10 ${
-                        salutation === s ? "text-white" : "text-navy/70 hover:text-primary"
-                      }`}
-                    >
-                      {s}
-                    </span>
-                  </button>
-                ))}
-              </div>
-            </motion.div>
-
-            <div className="grid sm:grid-cols-2 gap-x-4 gap-y-5">
-              <motion.div variants={fieldVariants}>
-                <Field
-                  label={
-                    <span>
-                      Full Name <span className="text-error">*</span>
-                    </span>
-                  }
-                  icon={User}
-                >
-                  <input
-                    type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    className={`${inputBase} pl-9`}
-                    placeholder="Your name"
-                  />
-                </Field>
-              </motion.div>
-              <motion.div variants={fieldVariants}>
-                <Field
-                  label={
-                    <span>
-                      Email <span className="text-error">*</span>
-                    </span>
-                  }
-                  icon={Mail}
-                >
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className={`${inputBase} pl-9`}
-                    placeholder="your@email.com"
-                  />
-                </Field>
-              </motion.div>
-              <motion.div variants={fieldVariants}>
-                <Field
-                  label={
-                    <span>
-                      Mobile <span className="text-error">*</span>
-                    </span>
-                  }
-                  icon={Phone}
-                >
-                  <input
-                    type="tel"
-                    value={mobile}
-                    onChange={(e) => setMobile(e.target.value)}
-                    className={`${inputBase} pl-9`}
-                    placeholder="+91 XXXXX XXXXX"
-                  />
-                </Field>
-              </motion.div>
-              <motion.div variants={fieldVariants}>
-                <Field
-                  label={
-                    <span>
-                      City <span className="text-error">*</span>
-                    </span>
-                  }
-                  icon={MapPin}
-                >
-                  <input
-                    type="text"
-                    value={city}
-                    onChange={(e) => setCity(e.target.value)}
-                    className={`${inputBase} pl-9`}
-                    placeholder="Your city"
-                  />
-                </Field>
-              </motion.div>
-              <motion.div variants={fieldVariants} className="sm:col-span-2">
-                <Field
-                  label={
-                    <span>
-                      Looking For <span className="text-error">*</span>
-                    </span>
-                  }
-                  icon={ChevronDown}
-                >
-                  <select
-                    value={lookingFor}
-                    onChange={(e) => setLookingFor(e.target.value)}
-                    className={`${inputBase} appearance-none cursor-pointer pl-9 pr-9 ${lookingFor ? "" : "text-gray-300"}`}
-                  >
-                    <option value="" disabled>
-                      Select a service...
-                    </option>
-                    {SERVICES_BY_CATEGORY.map(({ category, services }) => (
-                      <optgroup key={category.id} label={category.name}>
-                        {services.map((s) => (
-                          <option key={s.slug} value={s.title} className="text-navy">
-                            {s.title}
-                          </option>
-                        ))}
-                      </optgroup>
-                    ))}
-                  </select>
-                </Field>
-              </motion.div>
-            </div>
-
-            <AnimatePresence>
-              {error && (
-                <motion.p
-                  initial={{ opacity: 0, y: -6 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0 }}
-                  className="text-[12px] font-bold text-error bg-error/5 border border-error/20 rounded-[8px] px-3 py-2 mt-4"
-                >
-                  {error}
-                </motion.p>
-              )}
-            </AnimatePresence>
-
-            <motion.div variants={fieldVariants} className="mt-7">
+        {/* Salutation */}
+        <div className="mt-5">
+          <span className={labelCls}>Salutation</span>
+          <div className="flex flex-wrap gap-1.5">
+            {SALUTATIONS.map((s) => (
               <button
-                type="submit"
-                disabled={sending}
-                className="w-full rounded-[8px] bg-[#FFB000] text-navy font-bold text-[14px] px-6 py-3.5 flex items-center justify-center gap-2.5 hover:bg-[#e6a000] active:scale-[0.98] transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed shadow-lg shadow-[#FFB000]/25"
+                key={s}
+                type="button"
+                onClick={() => setValues((v) => ({ ...v, salutation: s }))}
+                className={`rounded-full border px-4 py-1.5 text-[12.5px] font-semibold transition-colors duration-150 ${
+                  values.salutation === s
+                    ? "border-primary bg-primary/[0.06] text-primary"
+                    : "border-[#E5E5E5] text-navy/70 hover:border-primary/40 hover:text-primary"
+                }`}
               >
-                {sending ? (
-                  <>
-                    <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
-                      <circle
-                        className="opacity-25"
-                        cx="12"
-                        cy="12"
-                        r="10"
-                        stroke="currentColor"
-                        strokeWidth="4"
-                        fill="none"
-                      />
-                      <path
-                        className="opacity-75"
-                        fill="currentColor"
-                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
-                      />
-                    </svg>
-                    Sending...
-                  </>
-                ) : (
-                  <>
-                    Get Quote Now <Send className="w-4 h-4" />
-                  </>
-                )}
+                {s}
               </button>
-            </motion.div>
+            ))}
+          </div>
+        </div>
 
-            <motion.p
-              variants={fieldVariants}
-              className="text-[11px] text-steel/60 mt-4 text-center"
+        {/* Fields */}
+        <div className="mt-5 grid gap-4 sm:grid-cols-2">
+          <div>
+            <label htmlFor="lf-name" className={labelCls}>
+              Full Name <span className="text-error">*</span>
+            </label>
+            <input
+              id="lf-name"
+              type="text"
+              autoComplete="name"
+              value={values.name}
+              onChange={set("name")}
+              className={inputCls}
+              placeholder="Your name"
+            />
+          </div>
+          <div>
+            <label htmlFor="lf-email" className={labelCls}>
+              Email <span className="text-error">*</span>
+            </label>
+            <input
+              id="lf-email"
+              type="email"
+              autoComplete="email"
+              value={values.email}
+              onChange={set("email")}
+              className={inputCls}
+              placeholder="your@email.com"
+            />
+          </div>
+          <div>
+            <label htmlFor="lf-mobile" className={labelCls}>
+              Mobile <span className="text-error">*</span>
+            </label>
+            <input
+              id="lf-mobile"
+              type="tel"
+              inputMode="tel"
+              autoComplete="tel"
+              value={values.mobile}
+              onChange={set("mobile")}
+              className={inputCls}
+              placeholder="+91 XXXXX XXXXX"
+            />
+          </div>
+          <div>
+            <label htmlFor="lf-city" className={labelCls}>
+              City <span className="text-error">*</span>
+            </label>
+            <input
+              id="lf-city"
+              type="text"
+              autoComplete="address-level2"
+              value={values.city}
+              onChange={set("city")}
+              className={inputCls}
+              placeholder="Your city"
+            />
+          </div>
+          <div className="sm:col-span-2">
+            <label htmlFor="lf-looking" className={labelCls}>
+              Looking For <span className="text-error">*</span>
+            </label>
+            <select
+              id="lf-looking"
+              value={values.lookingFor}
+              onChange={set("lookingFor")}
+              className={`${inputCls} cursor-pointer ${values.lookingFor ? "" : "text-steel/40"}`}
             >
-              Your info stays confidential. No spam.
-            </motion.p>
-          </motion.form>
+              <option value="" disabled>
+                Select a service...
+              </option>
+              {SERVICES_BY_CATEGORY.map(({ category, services }) => (
+                <optgroup key={category.id} label={category.name}>
+                  {services.map((s) => (
+                    <option key={s.slug} value={s.title}>
+                      {s.title}
+                    </option>
+                  ))}
+                </optgroup>
+              ))}
+            </select>
+          </div>
+        </div>
+
+        {error && (
+          <p
+            role="alert"
+            className="mt-4 rounded-[8px] border border-error/20 bg-error/5 px-3 py-2 text-[12px] font-semibold text-error"
+          >
+            {error}
+          </p>
         )}
-      </AnimatePresence>
+
+        {/* Submit */}
+        <button
+          type="submit"
+          disabled={sending}
+          className="mt-6 flex w-full items-center justify-center gap-2.5 rounded-[8px] bg-[#FFB000] px-6 py-3 text-[14px] font-bold text-navy shadow-lg shadow-[#FFB000]/25 transition-all duration-150 hover:bg-[#e6a000] active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-70"
+        >
+          {sending ? (
+            <>
+              <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" aria-hidden>
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                  fill="none"
+                />
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+                />
+              </svg>
+              Sending...
+            </>
+          ) : (
+            <>
+              Get Quote Now <Send className="h-4 w-4" />
+            </>
+          )}
+        </button>
+
+        <p className="mt-3 text-center text-[11px] text-steel/60">
+          Your info stays confidential. No spam.
+        </p>
+      </form>
     </div>
   );
 }

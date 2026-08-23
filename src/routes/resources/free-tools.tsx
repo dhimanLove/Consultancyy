@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { motion, type Variants } from "framer-motion";
+import { m, type Variants } from "framer-motion";
 import { PageHeader } from "@/components/PageHeader";
 import { SectionHeading } from "@/components/SectionHeading";
 import { ArrowRight, Wrench, Calculator, ListChecks, Newspaper, CalendarDays } from "lucide-react";
@@ -43,7 +43,7 @@ export const Route = createFileRoute("/resources/free-tools")({
       {
         name: "description",
         content:
-          "Free business tools and calculators from Chartered Solution — GST selector, business structure quiz, service finder and more. Coming soon.",
+          "Free business tools and calculators from Chartered Solution - GST selector, business structure quiz, service finder and more. Coming soon.",
       },
       {
         name: "keywords",
@@ -54,7 +54,7 @@ export const Route = createFileRoute("/resources/free-tools")({
       {
         property: "og:description",
         content:
-          "Free business tools and calculators — GST selector, structure quiz, service finder and more.",
+          "Free business tools and calculators - GST selector, structure quiz, service finder and more.",
       },
       { property: "og:url", content: "https://www.charteredsolution.com/resources/free-tools" },
       { property: "og:image", content: "https://www.charteredsolution.com/Charted.jpeg" },
@@ -66,7 +66,7 @@ export const Route = createFileRoute("/resources/free-tools")({
       {
         name: "twitter:description",
         content:
-          "Free business tools and calculators — GST selector, structure quiz, service finder and more.",
+          "Free business tools and calculators - GST selector, structure quiz, service finder and more.",
       },
     ],
     links: [{ rel: "canonical", href: "https://www.charteredsolution.com/resources/free-tools" }],
@@ -76,7 +76,7 @@ export const Route = createFileRoute("/resources/free-tools")({
 
 function FreeToolsPage() {
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
+    <m.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
       <PageHeader
         crumbs={[
           { label: "Home", to: "/" },
@@ -84,12 +84,12 @@ function FreeToolsPage() {
           { label: "Free Tools" },
         ]}
         title="Free business tools & calculators."
-        subtext="Practical tools to help you pick the right registrations, structures and services. Tools are currently being finalised — coming soon."
+        subtext="Practical tools to help you pick the right registrations, structures and services. Tools are currently being finalised - coming soon."
       />
 
       <section className="bg-white py-20">
         <div className="container-page">
-          <motion.div
+          <m.div
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
@@ -97,7 +97,7 @@ function FreeToolsPage() {
             className="grid sm:grid-cols-2 gap-6"
           >
             {TOOLS.map((t) => (
-              <motion.div
+              <m.div
                 key={t.name}
                 variants={itemVariants}
                 className="border border-[#E5E5E5] rounded-[10px] bg-[#F4F4F4] p-7"
@@ -112,9 +112,9 @@ function FreeToolsPage() {
                 <span className="mt-4 inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.12em] text-warm-dark">
                   <span className="w-2 h-2 rounded-full bg-[#FFB000] animate-pulse" /> Coming soon
                 </span>
-              </motion.div>
+              </m.div>
             ))}
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
@@ -135,6 +135,6 @@ function FreeToolsPage() {
           </div>
         </div>
       </section>
-    </motion.div>
+    </m.div>
   );
 }

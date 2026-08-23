@@ -1,12 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "@tanstack/react-router";
-import {
-  AnimatePresence,
-  motion,
-  useScroll,
-  useMotionValueEvent,
-  type Variants,
-} from "framer-motion";
+import { AnimatePresence, m, useScroll, useMotionValueEvent, type Variants } from "framer-motion";
 import {
   PHONE,
   PHONE_HREF,
@@ -17,23 +11,23 @@ import {
   RESOURCES,
 } from "@/lib/nav";
 import { Menu, X, ChevronDown, ChevronRight, Phone, Mail, ArrowRight, Star } from "lucide-react";
-import logoImg from "../../assets/Charted.jpeg";
+import logoImg from "../../assets/logo-96.webp";
 
 // --- Optimized Animation Variants ---
 const dropVars: Variants = {
-  hidden: { opacity: 0, y: 15, scale: 0.97 },
+  hidden: { opacity: 0, y: 12, scale: 0.98 },
   visible: {
     opacity: 1,
     y: 0,
     scale: 1,
-    transition: { type: "spring", stiffness: 450, damping: 30 },
+    transition: { duration: 0.18, ease: [0.22, 1, 0.36, 1] },
   },
-  exit: { opacity: 0, y: 10, scale: 0.98, transition: { duration: 0.15, ease: "easeOut" } },
+  exit: { opacity: 0, y: 8, scale: 0.99, transition: { duration: 0.12, ease: "easeOut" } },
 };
 
 const accordionVars: Variants = {
-  hidden: { height: 0, opacity: 0 },
-  visible: { height: "auto", opacity: 1, transition: { duration: 0.25, ease: "easeInOut" } },
+  hidden: { opacity: 0, y: -8 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.2, ease: "easeOut" } },
 };
 
 const linkCls =
@@ -88,6 +82,9 @@ export function Navbar() {
             <img
               src={logoImg}
               alt="Logo"
+              width={40}
+              height={40}
+              decoding="async"
               className="w-10 h-10 rounded-xl ring-1 ring-black/5 object-cover transition-transform group-hover:scale-105"
             />
             <div className="flex flex-col">
@@ -124,7 +121,11 @@ export function Navbar() {
                       {g.label}
                     </div>
                     {g.links.map((l) => (
-                      <DropdownLink key={l.slug} to={`/services/${l.slug}`}>
+                      <DropdownLink
+                        key={l.slug}
+                        to={`/services/${l.slug}`}
+                        onClick={() => setOpenId(null)}
+                      >
                         {l.label}
                       </DropdownLink>
                     ))}
@@ -145,7 +146,11 @@ export function Navbar() {
             >
               <div className="grid grid-cols-2 gap-1">
                 {REGULATORY_SERVICES.map((l) => (
-                  <DropdownLink key={l.slug} to={`/services/${l.slug}`}>
+                  <DropdownLink
+                    key={l.slug}
+                    to={`/services/${l.slug}`}
+                    onClick={() => setOpenId(null)}
+                  >
                     {l.label}
                   </DropdownLink>
                 ))}
@@ -163,7 +168,12 @@ export function Navbar() {
               width="w-[300px]"
             >
               {INDUSTRIES.map((i) => (
-                <DropdownLink key={i.slug} to="/industries" hash={i.slug}>
+                <DropdownLink
+                  key={i.slug}
+                  to="/industries"
+                  hash={i.slug}
+                  onClick={() => setOpenId(null)}
+                >
                   {i.label}
                 </DropdownLink>
               ))}
@@ -180,7 +190,7 @@ export function Navbar() {
               width="w-[300px]"
             >
               {RESOURCES.map((r) => (
-                <DropdownLink key={r.label} to={r.to}>
+                <DropdownLink key={r.label} to={r.to} onClick={() => setOpenId(null)}>
                   {r.label}
                 </DropdownLink>
               ))}
@@ -209,7 +219,7 @@ export function Navbar() {
       {/* Mobile Menu */}
       <AnimatePresence>
         {mobileOpen && (
-          <motion.div
+          <m.div
             variants={accordionVars}
             initial="hidden"
             animate="visible"
@@ -220,39 +230,18 @@ export function Navbar() {
               <MobileLink to="/" onClick={closeMenu}>
                 Home
               </MobileLink>
-              <MobileGroup
-                label="Business Services"
-                id="m-serv"
-                openId={openId}
-                setOpenId={setOpenId}
-              >
-                {SERVICES_GROUPS.map((g) => (
-                  <div key={g.id} className="py-1">
-                    <div className="text-[10px] font-bold uppercase text-primary px-3 py-1">
-                      {g.label}
-                    </div>
-                    {g.links.map((l) => (
-                      <MobileLink key={l.slug} to={`/services/${l.slug}`} onClick={closeMenu} sub>
-                        {l.label}
-                      </MobileLink>
-                    ))}
-                  </div>
-                ))}
-              </MobileGroup>
-              <MobileGroup label="Regulatory" id="m-reg" openId={openId} setOpenId={setOpenId}>
-                {REGULATORY_SERVICES.map((l) => (
-                  <MobileLink key={l.slug} to={`/services/${l.slug}`} onClick={closeMenu} sub>
-                    {l.label}
-                  </MobileLink>
-                ))}
-              </MobileGroup>
-              <MobileGroup label="Industries" id="m-ind" openId={openId} setOpenId={setOpenId}>
-                {INDUSTRIES.map((i) => (
-                  <MobileLink key={i.slug} to="/industries" hash={i.slug} onClick={closeMenu} sub>
-                    {i.label}
-                  </MobileLink>
-                ))}
-              </MobileGroup>
+              <MobileLink to="/services" onClick={closeMenu}>
+                Business Services
+              </MobileLink>
+              <MobileLink to="/services" onClick={closeMenu}>
+                Regulatory
+              </MobileLink>
+              <MobileLink to="/industries" onClick={closeMenu}>
+                Industries
+              </MobileLink>
+              <MobileLink to="/resources" onClick={closeMenu}>
+                Resources
+              </MobileLink>
               <MobileLink to="/about-us" onClick={closeMenu}>
                 About
               </MobileLink>
@@ -260,7 +249,7 @@ export function Navbar() {
                 Contact
               </MobileLink>
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </nav>
@@ -287,7 +276,7 @@ function NavLink({
     >
       {children}
       {active && (
-        <motion.div
+        <m.div
           layoutId="nav-pill"
           className="absolute bottom-0 left-4 right-4 h-[3px] rounded-t-full bg-primary"
           transition={{ type: "spring", stiffness: 500, damping: 30 }}
@@ -339,7 +328,7 @@ function Dropdown({
           className={`w-3.5 h-3.5 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
         />
         {(isOpen || active) && (
-          <motion.div
+          <m.div
             layoutId="nav-pill"
             className="absolute bottom-0 left-4 right-4 h-[3px] rounded-t-full bg-primary"
           />
@@ -348,7 +337,7 @@ function Dropdown({
 
       <AnimatePresence>
         {isOpen && (
-          <motion.div
+          <m.div
             variants={dropVars}
             initial="hidden"
             animate="visible"
@@ -356,15 +345,17 @@ function Dropdown({
             className={`absolute ${aligns[align]} top-[calc(100%+4px)] z-50 ${width}`}
           >
             <div className="bg-white rounded-2xl border border-slate-200 shadow-2xl overflow-hidden flex flex-col max-h-[75vh]">
-              <div className="bg-slate-50 border-b border-slate-100 px-6 py-4 flex justify-between items-center shrink-0">
-                <div>
-                  <div className="text-[14px] font-extrabold text-navy">{title}</div>
-                  <div className="text-[12px] text-slate-500 font-medium mt-0.5">{desc}</div>
+              <div className="relative bg-gradient-to-br from-primary via-primary-70 to-navy px-6 py-4 flex justify-between items-center shrink-0 overflow-hidden">
+                <div className="absolute -top-6 -right-6 w-24 h-24 rounded-full bg-white/10 blur-xl pointer-events-none" />
+                <div className="relative">
+                  <div className="text-[14px] font-extrabold text-white">{title}</div>
+                  <div className="text-[12px] text-white/70 font-medium mt-0.5">{desc}</div>
                 </div>
                 {action && (
                   <Link
                     to={action.to}
-                    className="px-4 py-1.5 rounded-full bg-white border border-slate-200 text-navy hover:border-primary hover:text-primary text-[12px] font-bold transition-all shadow-sm"
+                    onClick={() => setOpenId(null)}
+                    className="relative px-4 py-1.5 rounded-full bg-white text-primary hover:bg-warm hover:text-navy text-[12px] font-bold transition-all shadow-sm"
                   >
                     {action.label}
                   </Link>
@@ -372,7 +363,7 @@ function Dropdown({
               </div>
               <div className="p-4 overflow-y-auto">{children}</div>
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </div>
@@ -382,14 +373,16 @@ function Dropdown({
 function DropdownLink({
   to,
   hash,
+  onClick,
   children,
 }: {
   to: string;
   hash?: string;
+  onClick?: () => void;
   children: React.ReactNode;
 }) {
   return (
-    <Link to={to} hash={hash} className={linkCls}>
+    <Link to={to} hash={hash} onClick={onClick} className={linkCls}>
       <div className="w-6 h-6 rounded-md bg-slate-100 flex items-center justify-center shrink-0 group-hover:bg-primary/10 transition-colors">
         <ChevronRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-primary transition-colors" />
       </div>
@@ -399,42 +392,6 @@ function DropdownLink({
 }
 
 // --- Mobile Components ---
-
-function MobileGroup({
-  id,
-  label,
-  openId,
-  setOpenId,
-  children,
-}: {
-  id: string;
-  label: string;
-  openId: string | null;
-  setOpenId: (id: string | null) => void;
-  children: React.ReactNode;
-}) {
-  const isOpen = openId === id;
-  return (
-    <div className="rounded-xl overflow-hidden bg-slate-50/50 border border-slate-100/50">
-      <button
-        onClick={() => setOpenId(isOpen ? null : id)}
-        className="flex items-center justify-between w-full text-[14px] font-bold text-navy p-3.5 rounded-xl hover:bg-slate-100 transition-colors"
-      >
-        {label}{" "}
-        <ChevronDown
-          className={`w-4 h-4 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
-        />
-      </button>
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div variants={accordionVars} initial="hidden" animate="visible" exit="hidden">
-            <div className="px-2 pb-2">{children}</div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
-  );
-}
 
 function MobileLink({
   to,
@@ -473,7 +430,7 @@ function CTAButton() {
     >
       <span className="absolute inset-0 w-full h-full bg-primary scale-0 group-hover:scale-100 transition-transform duration-300 ease-out origin-center rounded-full" />
       <span className="relative z-10 flex items-center gap-2 text-[13px] font-bold text-white transition-colors duration-300">
-        Get Started
+        Contact Us
         <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-300" />
       </span>
     </Link>

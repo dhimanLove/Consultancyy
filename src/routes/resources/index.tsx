@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { motion, type Variants } from "framer-motion";
+import { m, type Variants } from "framer-motion";
 import { PageHeader } from "@/components/PageHeader";
 import { SectionHeading } from "@/components/SectionHeading";
 import { EmberButton } from "@/components/EmberButton";
@@ -57,6 +57,42 @@ export const Route = createFileRoute("/resources/")({
           "Guides, checklists, regulatory updates and free tools to run your business compliantly.",
       },
       { name: "twitter:image", content: "https://www.charteredsolution.com/Charted.jpeg" },
+      {
+        "script:ld+json": {
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "WebPage",
+              name: "Resources | Chartered Solution",
+              url: "https://www.charteredsolution.com/resources",
+              description:
+                "Business guides, regulatory updates, government portal guides, document checklists, FAQs, compliance calendar and free tools.",
+              isPartOf: {
+                "@type": "WebSite",
+                name: "Chartered Solution",
+                url: "https://www.charteredsolution.com",
+              },
+            },
+            {
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                {
+                  "@type": "ListItem",
+                  position: 1,
+                  name: "Home",
+                  item: "https://www.charteredsolution.com",
+                },
+                {
+                  "@type": "ListItem",
+                  position: 2,
+                  name: "Resources",
+                  item: "https://www.charteredsolution.com/resources",
+                },
+              ],
+            },
+          ],
+        },
+      },
     ],
     links: [{ rel: "canonical", href: "https://www.charteredsolution.com/resources" }],
   }),
@@ -72,8 +108,8 @@ const RESOURCE_SECTIONS = [
     items: [
       "How to register a Private Limited Company in India",
       "GST registration explained in simple steps",
-      "Startup India (DPIIT) recognition — what founders must know",
-      "FSSAI license vs registration — which do you need?",
+      "Startup India (DPIIT) recognition - what founders must know",
+      "FSSAI license vs registration - which do you need?",
       "Solar vendor & DISCOM registration guide (state-wise)",
     ],
   },
@@ -83,7 +119,7 @@ const RESOURCE_SECTIONS = [
     title: "Regulatory Updates",
     desc: "Latest changes in tax, GST and regulatory rules.",
     items: [
-      "GST return and invoice changes — what's new",
+      "GST return and invoice changes - what's new",
       "MCA compliance updates for companies & LLPs",
       "Medical device & cosmetics regulatory changes",
       "FSSAI labelling and packaging updates",
@@ -132,17 +168,17 @@ const RESOURCE_SECTIONS = [
 
 function ResourcesPage() {
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
+    <m.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
       <PageHeader
         crumbs={[{ label: "Home", to: "/" }, { label: "Resources" }]}
         title="Guides, checklists & tools for your business."
-        subtext="Practical resources to help you register, comply and grow — built by our team in Indore for businesses across India."
+        subtext="Practical resources to help you register, comply and grow - built by our team in Indore for businesses across India."
       />
 
       <section className="bg-white py-20">
         <div className="container-page">
           <SectionHeading eyebrow="Resources" heading="Everything you need to stay compliant." />
-          <motion.div
+          <m.div
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
@@ -150,7 +186,7 @@ function ResourcesPage() {
             className="mt-12 grid md:grid-cols-2 gap-6"
           >
             {RESOURCE_SECTIONS.map((sec) => (
-              <motion.div
+              <m.div
                 key={sec.id}
                 id={sec.id}
                 variants={itemVariants}
@@ -171,15 +207,15 @@ function ResourcesPage() {
                     </li>
                   ))}
                 </ul>
-              </motion.div>
+              </m.div>
             ))}
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
       <section className="bg-fog py-20">
         <div className="container-page grid lg:grid-cols-2 gap-8">
-          <motion.div
+          <m.div
             variants={itemVariants}
             initial="hidden"
             whileInView="visible"
@@ -201,8 +237,8 @@ function ResourcesPage() {
                 View the calendar <ArrowRight className="w-4 h-4" />
               </EmberButton>
             </div>
-          </motion.div>
-          <motion.div
+          </m.div>
+          <m.div
             variants={itemVariants}
             initial="hidden"
             whileInView="visible"
@@ -216,7 +252,7 @@ function ResourcesPage() {
               <h2 className="text-[18px] font-bold text-navy">Free Tools</h2>
             </div>
             <p className="text-[13.5px] text-steel leading-relaxed">
-              Calculators and selectors — GST composition vs regular, service-finder, and more.
+              Calculators and selectors - GST composition vs regular, service-finder, and more.
               Coming soon.
             </p>
             <div className="mt-6">
@@ -224,14 +260,14 @@ function ResourcesPage() {
                 Browse the tools <ArrowRight className="w-4 h-4" />
               </EmberButton>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
       <section className="bg-navy py-16 md:py-20 relative overflow-hidden">
         <div className="container-page text-center relative z-10">
           <SectionHeading eyebrow="Need a hand?" heading="Tell us what you're working on." center />
-          <motion.p
+          <m.p
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -239,8 +275,8 @@ function ResourcesPage() {
             className="text-[15px] text-white/60 mt-3 max-w-[480px] mx-auto"
           >
             Our team can help you apply these guides to your business.
-          </motion.p>
-          <motion.div
+          </m.p>
+          <m.div
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -250,9 +286,9 @@ function ResourcesPage() {
             <EmberButton to="/contact-us">
               Contact us today <ArrowUpRight className="w-4 h-4" />
             </EmberButton>
-          </motion.div>
+          </m.div>
         </div>
       </section>
-    </motion.div>
+    </m.div>
   );
 }

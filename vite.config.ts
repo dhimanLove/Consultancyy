@@ -1,7 +1,6 @@
 import { defineConfig, loadEnv, mergeConfig, type UserConfig } from "vite";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import tailwindcss from "@tailwindcss/vite";
-import viteTsConfigPaths from "vite-tsconfig-paths";
 import react from "@vitejs/plugin-react";
 import { nitro } from "nitro/vite";
 
@@ -14,7 +13,6 @@ export default defineConfig(({ command, mode }) => {
 
   const plugins = [
     tailwindcss(),
-    viteTsConfigPaths({ projects: ["./tsconfig.json"] }),
     tanstackStart({
       server: {
         entry: "server",
@@ -51,6 +49,7 @@ export default defineConfig(({ command, mode }) => {
       alias: {
         "@": `${process.cwd()}/src`,
       },
+      tsconfigPaths: true,
       dedupe: [
         "react",
         "react-dom",
@@ -73,11 +72,11 @@ export default defineConfig(({ command, mode }) => {
     build: {
       rolldownOptions: {
         output: {
-          advancedChunks: {
+          codeSplitting: {
             groups: [
               {
-                name: "vendor-motion",
-                test: (id) => /(framer-motion|motion-dom|motion-utils|gsap)/.test(id),
+                name: "vendor-gsap",
+                test: /[\\/]node_modules[\\/]gsap[\\/]/,
                 includeDependenciesRecursively: false,
               },
               {
@@ -92,7 +91,9 @@ export default defineConfig(({ command, mode }) => {
               },
               {
                 name: "vendor",
-                test: (id) => id.includes("node_modules"),
+                test: (id) =>
+                  id.includes("node_modules") &&
+                  !/[\\/](framer-motion|motion-dom|motion-utils)[\\/]/.test(id),
                 includeDependenciesRecursively: false,
               },
             ],

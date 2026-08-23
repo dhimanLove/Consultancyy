@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { motion, type Variants } from "framer-motion";
+import { m, type Variants } from "framer-motion";
 import { useEffect, useRef } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { PageHeader } from "@/components/PageHeader";
@@ -96,9 +96,9 @@ export const Route = createFileRoute("/services/")({
       { name: "geo.position", content: "22.7262239;75.919035" },
       { name: "geo.placename", content: "Indore, Madhya Pradesh" },
       { name: "geo.region", content: "IN-MP" },
+      { "script:ld+json": serviceStructuredData },
     ],
     links: [{ rel: "canonical", href: "https://www.charteredsolution.com/services" }],
-    scripts: [{ type: "application/ld+json", innerHTML: JSON.stringify(serviceStructuredData) }],
   }),
   component: ServicesPage,
 });
@@ -130,11 +130,11 @@ function ServicesPage() {
   }, []);
 
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
+    <m.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
       <PageHeader
         crumbs={[{ label: "Home", to: "/" }, { label: "Services" }]}
         title={`${SERVICES.length} registration and compliance services for your business.`}
-        subtext={`Chartered Solution in Indore offers end-to-end business registration, licensing, tax, regulatory, and compliance services across ${SERVICE_CATEGORIES.length} categories. From company incorporation to ISO, solar, and e-commerce — we handle it all.`}
+        subtext={`Chartered Solution in Indore offers end-to-end business registration, licensing, tax, regulatory, and compliance services across ${SERVICE_CATEGORIES.length} categories. From company incorporation to ISO, solar, and e-commerce - we handle it all.`}
       />
 
       <section className="bg-white py-20">
@@ -142,6 +142,8 @@ function ServicesPage() {
           {SERVICES_BY_CATEGORY.map(({ category, services }, idx) => (
             <div
               key={category.id}
+              id={category.id}
+              className="scroll-mt-28"
               ref={(el) => {
                 categoryRefs.current[idx] = el;
               }}
@@ -155,7 +157,7 @@ function ServicesPage() {
                   {services.length} services
                 </span>
               </div>
-              <motion.div
+              <m.div
                 variants={containerVariants}
                 initial="hidden"
                 whileInView="visible"
@@ -163,11 +165,11 @@ function ServicesPage() {
                 className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
               >
                 {services.map((s) => (
-                  <motion.div key={s.slug} variants={itemVariants} className="h-full">
+                  <m.div key={s.slug} variants={itemVariants} className="h-full">
                     <ServiceCard service={s} />
-                  </motion.div>
+                  </m.div>
                 ))}
-              </motion.div>
+              </m.div>
             </div>
           ))}
         </div>
@@ -188,6 +190,6 @@ function ServicesPage() {
           </div>
         </div>
       </section>
-    </motion.div>
+    </m.div>
   );
 }

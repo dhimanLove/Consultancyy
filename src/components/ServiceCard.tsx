@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, Phone } from "lucide-react";
 import { ServiceIcon } from "./ServiceIcon";
@@ -14,7 +14,7 @@ export function ServiceCard({ service }: { service: Service }) {
 
   return (
     <>
-      <motion.div
+      <m.div
         initial={{ opacity: 0, y: 18 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-40px" }}
@@ -68,7 +68,7 @@ export function ServiceCard({ service }: { service: Service }) {
             </Link>
           </div>
         </div>
-      </motion.div>
+      </m.div>
 
       <QuickEnquiry
         open={showEnquiry}

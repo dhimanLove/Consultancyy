@@ -1,22 +1,29 @@
-import { useState, type ComponentProps, type ComponentType, type ReactNode } from "react";
+import { memo, useState, type ComponentProps, type ComponentType, type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
-import { AnimatePresence, motion, useScroll, useMotionValueEvent } from "framer-motion";
-import { ArrowUp, Phone, Mail, MapPin, ChevronRight } from "lucide-react";
-import { EmberButton } from "./EmberButton";
+import { AnimatePresence, m, useScroll, useMotionValueEvent } from "framer-motion";
+import { ArrowUp, Phone, Mail, MapPin } from "lucide-react";
 import { WhatsAppIcon } from "./WhatsAppIcon";
-import {
-  PHONE,
-  PHONE_HREF,
-  EMAIL,
-  ADDRESS,
-  WHATSAPP_HREF,
-  WHATSAPP_DISPLAY,
-  SERVICES_GROUPS,
-  REGULATORY_SERVICES,
-  RESOURCES,
-} from "@/lib/nav";
+import { PHONE, PHONE_HREF, EMAIL, ADDRESS, WHATSAPP_HREF } from "@/lib/nav";
 
-export function Footer() {
+const POPULAR_SERVICES = [
+  { label: "Private Limited Company", slug: "private-limited-company-registration" },
+  { label: "LLP Registration", slug: "llp-registration" },
+  { label: "GST Registration", slug: "gst-registration" },
+  { label: "Income Tax Return", slug: "itr-filing" },
+  { label: "MSME / Udyam", slug: "msme-registration" },
+  { label: "Import Export Code", slug: "import-export-code" },
+];
+
+const COMPLIANCE_SERVICES = [
+  { label: "ISO Certification", slug: "iso-consultancy" },
+  { label: "Food & FSSAI", slug: "food-fssai-services" },
+  { label: "Medical Device", slug: "medical-device-regulatory" },
+  { label: "Cosmetics", slug: "cosmetics-regulatory" },
+  { label: "Solar Consultancy", slug: "solar-consultancy" },
+  { label: "E-Commerce Services", slug: "ecommerce-services" },
+];
+
+export const Footer = memo(function Footer() {
   const [showTopBtn, setShowTopBtn] = useState(false);
   const { scrollY } = useScroll();
 
@@ -27,107 +34,81 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-navy text-white pt-16 pb-6 border-t border-white/10 relative">
+    <footer className="bg-navy text-white pt-14 pb-6">
       <div className="container-page px-4 lg:px-8 mx-auto">
-        {/* Main Grid Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-x-8 gap-y-12 mb-16">
-          {/* Brand & CTA - Spans 4 cols */}
-          <div className="lg:col-span-4 pr-4">
-            <h3 className="text-[22px] font-bold leading-tight mb-4">
-              Ready to Simplify Your <br className="hidden lg:block" />
-              <span className="text-[#FFB000]">Business & Compliance?</span>
-            </h3>
-            <p className="text-[13px] text-white/60 mb-8 leading-relaxed max-w-sm">
-              Talk to our consultants and let us handle everything from company registration and
-              compliance to digital growth.
+        {/* Brand + Contact */}
+        <div className="flex flex-col gap-8 pb-10 lg:flex-row lg:items-start lg:justify-between">
+          <div className="max-w-sm">
+            <div className="text-[20px] font-extrabold tracking-tight">Chartered Solution</div>
+            <div className="mt-1 text-[10.5px] font-semibold uppercase tracking-[0.18em] text-white/35">
+              Business · Regulatory · Growth
+            </div>
+            <p className="mt-4 text-[13px] leading-relaxed text-white/50">
+              One partner for business setup, licensing, compliance and growth — based in Indore,
+              serving clients across India.
             </p>
-            <div className="flex flex-wrap gap-3">
-              <EmberButton to="/contact-us">Get Started</EmberButton>
+          </div>
+
+          <ul className="grid gap-3 sm:grid-cols-2 sm:gap-x-10 lg:max-w-md">
+            <ContactItem icon={Phone} href={PHONE_HREF} text={PHONE} />
+            <ContactItem icon={Mail} href={`mailto:${EMAIL}`} text={EMAIL} />
+            <li>
               <a
                 href={WHATSAPP_HREF}
-                target="_blank"
-                rel="noreferrer"
-                className="group inline-flex items-center gap-2 text-[13px] font-bold text-white bg-white/5 border border-white/10 hover:bg-[#25D366]/10 hover:border-[#25D366]/30 hover:text-[#25D366] rounded-full h-10 px-5 transition-all active:scale-95"
+                className="group flex items-start gap-3 text-white/60 transition-colors hover:text-white"
               >
-                <WhatsAppIcon className="w-4 h-4 text-[#25D366] group-hover:scale-110 transition-transform" />
-                WhatsApp Us
+                <WhatsAppIcon className="mt-0.5 h-4 w-4 shrink-0 text-[#25D366]" />
+                <span className="text-[13px] leading-relaxed">WhatsApp {PHONE}</span>
               </a>
-            </div>
-          </div>
+            </li>
+            <ContactItem icon={MapPin} text="Indore, Madhya Pradesh" />
+          </ul>
+        </div>
 
-          {/* Company */}
-          <div className="lg:col-span-2">
-            <FooterHeading>Company</FooterHeading>
-            <ul className="space-y-3">
-              <FooterLink to="/about-us">About Us</FooterLink>
-              <FooterLink to="/services">All Services</FooterLink>
-              <FooterLink to="/industries">Industries We Serve</FooterLink>
-              <FooterLink to="/insights">Insights</FooterLink>
-              <FooterLink to="/contact-us">Contact Us</FooterLink>
-            </ul>
-          </div>
+        {/* Link columns */}
+        <div className="grid grid-cols-2 gap-x-8 gap-y-10 border-t border-white/[0.08] pt-10 md:grid-cols-4">
+          <FooterColumn title="Company">
+            <FooterLink to="/about-us">About Us</FooterLink>
+            <FooterLink to="/services">All Services</FooterLink>
+            <FooterLink to="/industries">Industries We Serve</FooterLink>
+            <FooterLink to="/insights">Insights</FooterLink>
+            <FooterLink to="/contact-us">Contact Us</FooterLink>
+          </FooterColumn>
 
-          {/* Business Services */}
-          <div className="lg:col-span-2">
-            <FooterHeading>Business Services</FooterHeading>
-            <ul className="space-y-4">
-              {SERVICES_GROUPS.map((group) => (
-                <li key={group.id} className="flex flex-col gap-1">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-white/40">
-                    {group.label}
-                  </span>
-                  <FooterLink to="/services/$slug" params={{ slug: group.links[0].slug }}>
-                    {group.links[0].label}
-                  </FooterLink>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <FooterColumn title="Popular Services">
+            {POPULAR_SERVICES.map((l) => (
+              <FooterLink key={l.slug} to="/services/$slug" params={{ slug: l.slug }}>
+                {l.label}
+              </FooterLink>
+            ))}
+            <FooterLink to="/services">View all services</FooterLink>
+          </FooterColumn>
 
-          {/* Regulatory Services */}
-          <div className="lg:col-span-2">
-            <FooterHeading>Regulatory</FooterHeading>
-            <ul className="space-y-3">
-              {REGULATORY_SERVICES.map((l) => (
-                <FooterLink key={l.slug} to="/services/$slug" params={{ slug: l.slug }}>
-                  {l.label}
-                </FooterLink>
-              ))}
-            </ul>
-          </div>
+          <FooterColumn title="Compliance & Regulatory">
+            {COMPLIANCE_SERVICES.map((l) => (
+              <FooterLink key={l.slug} to="/services/$slug" params={{ slug: l.slug }}>
+                {l.label}
+              </FooterLink>
+            ))}
+          </FooterColumn>
 
-          {/* Resources & Connect Stack */}
-          <div className="lg:col-span-2 flex flex-col gap-8">
-            <div>
-              <FooterHeading>Resources</FooterHeading>
-              <ul className="space-y-3">
-                {RESOURCES.map((l) => (
-                  <FooterLink key={l.label} to={l.to}>
-                    {l.label}
-                  </FooterLink>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <FooterHeading>Connect</FooterHeading>
-              <ul className="space-y-3">
-                <ContactItem icon={Phone} href={PHONE_HREF} text={PHONE} />
-                <ContactItem icon={Mail} href={`mailto:${EMAIL}`} text={EMAIL} />
-                <ContactItem icon={MapPin} text={ADDRESS} />
-              </ul>
-            </div>
-          </div>
+          <FooterColumn title="Resources">
+            <FooterLink to="/resources#business-guides">Business Guides</FooterLink>
+            <FooterLink to="/resources#regulatory-updates">Regulatory Updates</FooterLink>
+            <FooterLink to="/resources#document-checklists">Document Checklists</FooterLink>
+            <FooterLink to="/resources/compliance-calendar">Compliance Calendar</FooterLink>
+            <FooterLink to="/resources/free-tools">Free Tools</FooterLink>
+          </FooterColumn>
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 text-[12px] text-white/40">
+        <div className="mt-10 flex flex-col items-center justify-between gap-3 border-t border-white/[0.08] pt-6 text-[12px] text-white/35 md:flex-row">
           <p>© {year} Chartered Solution Pvt. Ltd. All rights reserved.</p>
           <div className="flex items-center gap-6">
-            <a href="/privacy-policy" className="hover:text-[#FFB000] transition-colors">
+            <a href="/privacy-policy" className="transition-colors hover:text-white/70">
               Privacy Policy
             </a>
-            <a href="/terms" className="hover:text-[#FFB000] transition-colors">
+            <a href="/terms" className="transition-colors hover:text-white/70">
               Terms of Service
             </a>
           </div>
@@ -137,30 +118,30 @@ export function Footer() {
       {/* Animated Scroll to Top */}
       <AnimatePresence>
         {showTopBtn && (
-          <motion.button
+          <m.button
             initial={{ opacity: 0, y: 20, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.9 }}
             onClick={scrollToTop}
-            className="fixed bottom-6 right-6 lg:bottom-10 lg:right-10 z-50 w-11 h-11 bg-[#FFB000] text-navy rounded-full shadow-lg shadow-[#FFB000]/20 flex items-center justify-center hover:bg-[#FFC133] active:scale-90 transition-colors"
+            className="fixed bottom-24 right-6 z-50 flex h-11 w-11 items-center justify-center rounded-full bg-[#FFB000] text-navy shadow-lg shadow-[#FFB000]/20 transition-colors hover:bg-[#FFC133] active:scale-90"
             aria-label="Scroll to top"
           >
-            <ArrowUp className="w-5 h-5 stroke-[2.5]" />
-          </motion.button>
+            <ArrowUp className="h-5 w-5 stroke-[2.5]" />
+          </m.button>
         )}
       </AnimatePresence>
     </footer>
   );
-}
+});
 
-// --- DRY Sub-Components ---
+// --- Sub-components ---
 
-function FooterHeading({ children }: { children: React.ReactNode }) {
+function FooterColumn({ title, children }: { title: string; children: ReactNode }) {
   return (
-    <h4 className="text-[13px] font-bold uppercase tracking-wider text-white mb-6 flex flex-col gap-2.5">
-      {children}
-      <span className="w-6 h-[2px] bg-[#FFB000] rounded-full" />
-    </h4>
+    <div>
+      <h4 className="text-[11px] font-bold uppercase tracking-[0.16em] text-white/40">{title}</h4>
+      <ul className="mt-4 space-y-2.5">{children}</ul>
+    </div>
   );
 }
 
@@ -177,11 +158,10 @@ function FooterLink({
     <li>
       <Link
         to={to}
-        params={params as { slug: string }}
-        className="group flex items-center text-[13px] text-white/60 hover:text-[#FFB000] transition-colors"
+        params={params as never}
+        className="text-[13px] text-white/55 transition-colors hover:text-white"
       >
-        <ChevronRight className="w-3.5 h-3.5 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 mr-1 transition-all text-[#FFB000]" />
-        <span className="group-hover:translate-x-0.5 transition-transform">{children}</span>
+        {children}
       </Link>
     </li>
   );
@@ -198,7 +178,7 @@ function ContactItem({
 }) {
   const content = (
     <>
-      <Icon className="w-4 h-4 text-[#FFB000] shrink-0 mt-0.5" />
+      <Icon className="mt-0.5 h-4 w-4 shrink-0 text-[#FFB000]" />
       <span className="text-[13px] leading-relaxed">{text}</span>
     </>
   );
@@ -208,7 +188,7 @@ function ContactItem({
       {href ? (
         <a
           href={href}
-          className="flex items-start gap-3 text-white/60 hover:text-[#FFB000] transition-colors group"
+          className="group flex items-start gap-3 text-white/60 transition-colors hover:text-white"
         >
           {content}
         </a>

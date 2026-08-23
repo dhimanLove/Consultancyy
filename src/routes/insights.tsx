@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { PageHeader } from "@/components/PageHeader";
 import { SectionHeading } from "@/components/SectionHeading";
 import { EmberButton } from "@/components/EmberButton";
@@ -47,12 +47,8 @@ export const Route = createFileRoute("/insights")({
       { name: "geo.position", content: "22.7262239;75.919035" },
       { name: "geo.placename", content: "Indore, Madhya Pradesh" },
       { name: "geo.region", content: "IN-MP" },
-    ],
-    links: [{ rel: "canonical", href: "https://www.charteredsolution.com/insights" }],
-    scripts: [
       {
-        type: "application/ld+json",
-        innerHTML: JSON.stringify({
+        "script:ld+json": {
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           itemListElement: [
@@ -69,16 +65,17 @@ export const Route = createFileRoute("/insights")({
               item: "https://www.charteredsolution.com/insights",
             },
           ],
-        }),
+        },
       },
     ],
+    links: [{ rel: "canonical", href: "https://www.charteredsolution.com/insights" }],
   }),
   component: InsightsPage,
 });
 
 function InsightsPage() {
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
+    <m.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
       <PageHeader
         crumbs={[{ label: "Home", to: "/" }, { label: "Insights" }]}
         title="Insights & articles."
@@ -105,6 +102,6 @@ function InsightsPage() {
           </div>
         </div>
       </section>
-    </motion.div>
+    </m.div>
   );
 }

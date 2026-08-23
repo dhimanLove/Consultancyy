@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion, AnimatePresence, type Variants } from "framer-motion";
+import { m, AnimatePresence, type Variants } from "framer-motion";
 import { X, Send, CheckCircle, User, Phone, ChevronDown } from "lucide-react";
 import { SERVICES } from "@/lib/services-data";
 
@@ -80,7 +80,7 @@ export function QuickEnquiry({ open, onClose, preselected }: Props) {
     <AnimatePresence>
       {open && (
         <>
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -88,7 +88,7 @@ export function QuickEnquiry({ open, onClose, preselected }: Props) {
             className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm"
             onClick={onClose}
           />
-          <motion.div
+          <m.div
             initial={{ y: "100%", opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: "100%", opacity: 0 }}
@@ -105,19 +105,19 @@ export function QuickEnquiry({ open, onClose, preselected }: Props) {
               </button>
 
               {sent ? (
-                <motion.div
+                <m.div
                   initial={{ scale: 0.92, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   className="py-10 text-center"
                 >
-                  <motion.div
+                  <m.div
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ type: "spring", stiffness: 180, damping: 14, delay: 0.1 }}
                     className="w-14 h-14 rounded-full bg-warm/10 flex items-center justify-center mx-auto"
                   >
                     <CheckCircle className="w-7 h-7 text-warm" />
-                  </motion.div>
+                  </m.div>
                   <h3 className="text-lg font-bold text-navy mt-4">Enquiry sent!</h3>
                   <p className="text-[13px] text-steel mt-1.5 leading-relaxed">
                     Your message has been delivered via WhatsApp. We'll respond shortly.
@@ -128,7 +128,7 @@ export function QuickEnquiry({ open, onClose, preselected }: Props) {
                   >
                     Close
                   </button>
-                </motion.div>
+                </m.div>
               ) : (
                 <>
                   <div className="flex items-center gap-2 mb-0.5">
@@ -143,14 +143,14 @@ export function QuickEnquiry({ open, onClose, preselected }: Props) {
                   </p>
 
                   <form onSubmit={handleSubmit}>
-                    <motion.div
+                    <m.div
                       variants={containerVariants}
                       initial="hidden"
                       animate="visible"
                       className="space-y-3.5"
                     >
                       {fields.map((f) => (
-                        <motion.div key={f.key} variants={fieldVariants}>
+                        <m.div key={f.key} variants={fieldVariants}>
                           <label className={labelCls}>
                             {f.label} <span className="text-error">*</span>
                           </label>
@@ -165,9 +165,9 @@ export function QuickEnquiry({ open, onClose, preselected }: Props) {
                               placeholder={f.placeholder}
                             />
                           </div>
-                        </motion.div>
+                        </m.div>
                       ))}
-                      <motion.div variants={fieldVariants}>
+                      <m.div variants={fieldVariants}>
                         <label className={labelCls}>Service Needed</label>
                         <div className="relative group">
                           <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-300 pointer-events-none group-focus-within:text-primary transition-colors" />
@@ -184,8 +184,8 @@ export function QuickEnquiry({ open, onClose, preselected }: Props) {
                             ))}
                           </select>
                         </div>
-                      </motion.div>
-                      <motion.div variants={fieldVariants} className="pt-1">
+                      </m.div>
+                      <m.div variants={fieldVariants} className="pt-1">
                         <button
                           type="submit"
                           disabled={sending}
@@ -214,8 +214,8 @@ export function QuickEnquiry({ open, onClose, preselected }: Props) {
                             </>
                           )}
                         </button>
-                      </motion.div>
-                    </motion.div>
+                      </m.div>
+                    </m.div>
                   </form>
                   <p className="text-[10px] text-steel/50 mt-3 text-center">
                     Your info stays confidential. No spam.
@@ -223,7 +223,7 @@ export function QuickEnquiry({ open, onClose, preselected }: Props) {
                 </>
               )}
             </div>
-          </motion.div>
+          </m.div>
         </>
       )}
     </AnimatePresence>

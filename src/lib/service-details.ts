@@ -28,7 +28,7 @@ const COMMON_FAQS: ServiceFaq[] = [
   },
   {
     q: "Can I get this done from outside Indore?",
-    a: "Yes. Chartered Solution serves clients across India — most registrations and filings are completed 100% online with doorstep delivery of certificates.",
+    a: "Yes. Chartered Solution serves clients across India - most registrations and filings are completed 100% online with doorstep delivery of certificates.",
   },
   {
     q: "What documents do I need?",
@@ -68,7 +68,7 @@ const CATEGORY_DEFAULTS: Record<string, Omit<ServiceDetail, "faqs"> & { faqs?: S
       { title: "Delivery", detail: "Receive incorporation certificate, PAN, TAN and documents." },
     ],
     govFee:
-      "Government fees vary by structure — from ~₹500 (proprietorship/partnership) to ~₹2,000–10,000+ (company/LLP) depending on authorised capital.",
+      "Government fees vary by structure - from ~₹500 (proprietorship/partnership) to ~₹2,000–10,000+ (company/LLP) depending on authorised capital.",
     professionalFee:
       "Transparent, all-inclusive professional fees quoted after a free consultation. No hidden charges.",
     timeline:
@@ -105,7 +105,7 @@ const CATEGORY_DEFAULTS: Record<string, Omit<ServiceDetail, "faqs"> & { faqs?: S
       },
     ],
     govFee:
-      "Fees vary by registration — many (e.g., Udyam, IEC, DSC-linked) involve nominal government/authority fees; EPFO/ESIC are based on headcount bands.",
+      "Fees vary by registration - many (e.g., Udyam, IEC, DSC-linked) involve nominal government/authority fees; EPFO/ESIC are based on headcount bands.",
     professionalFee: "Fixed, transparent professional fees shared in advance. No hidden charges.",
     timeline: "Most registrations complete in 2–7 working days from complete documentation.",
   },
@@ -156,7 +156,7 @@ const CATEGORY_DEFAULTS: Record<string, Omit<ServiceDetail, "faqs"> & { faqs?: S
     ],
     govFee:
       "Income tax payable is as per the Income-tax Act; no separate government fee for e-filing (Nil for most returns).",
-    professionalFee: "Fixed fees by return type (ITR-1 to ITR-7) — quoted upfront.",
+    professionalFee: "Fixed fees by return type (ITR-1 to ITR-7) - quoted upfront.",
     timeline: "Most returns filed within 1–3 working days of complete data.",
   },
   gst: {
@@ -211,7 +211,7 @@ const CATEGORY_DEFAULTS: Record<string, Omit<ServiceDetail, "faqs"> & { faqs?: S
       { title: "Finalisation", detail: "Deliver the signed report and filings." },
     ],
     govFee: "Government/regulatory filing fees may apply where reports are filed (e.g., ROC fees).",
-    professionalFee: "Fees depend on turnover, entities, and scope — quoted after a scoping call.",
+    professionalFee: "Fees depend on turnover, entities, and scope - quoted after a scoping call.",
     timeline: "Typically 2–4 weeks depending on books readiness and entity size.",
   },
   corporate: {
@@ -235,7 +235,7 @@ const CATEGORY_DEFAULTS: Record<string, Omit<ServiceDetail, "faqs"> & { faqs?: S
       { title: "Follow-up", detail: "Handle queries and confirm compliance." },
     ],
     govFee: "MCA fees apply based on form type and authorised capital.",
-    professionalFee: "Fixed annual compliance packages or per-filing fees — quoted upfront.",
+    professionalFee: "Fixed annual compliance packages or per-filing fees - quoted upfront.",
     timeline: "Per-filing: 1–3 working days. Annual compliance packages run on a calendar basis.",
   },
   advisory: {
@@ -332,7 +332,7 @@ const CATEGORY_DEFAULTS: Record<string, Omit<ServiceDetail, "faqs"> & { faqs?: S
     ],
     govFee: "Government/regulatory fees may apply for specific filings.",
     professionalFee: "Case-based professional fees quoted after a scoping discussion.",
-    timeline: "Varies by engagement — typically 3–10 working days.",
+    timeline: "Varies by engagement - typically 3–10 working days.",
   },
   iso: {
     whoNeeds: [
@@ -358,7 +358,7 @@ const CATEGORY_DEFAULTS: Record<string, Omit<ServiceDetail, "faqs"> & { faqs?: S
     ],
     govFee:
       "No government fee; certification body audit fees are paid directly to the certification body.",
-    professionalFee: "Consultancy fees depend on standard, scope, and headcount — quoted upfront.",
+    professionalFee: "Consultancy fees depend on standard, scope, and headcount - quoted upfront.",
     timeline: "ISO certification typically 4–12 weeks depending on readiness.",
   },
   "medical-device": {
@@ -387,7 +387,7 @@ const CATEGORY_DEFAULTS: Record<string, Omit<ServiceDetail, "faqs"> & { faqs?: S
     ],
     govFee: "CDSCO / State licensing authority fees apply as per the Medical Devices Rules, 2017.",
     professionalFee:
-      "Regulatory consultancy fees depend on licence type and classification — quoted upfront.",
+      "Regulatory consultancy fees depend on licence type and classification - quoted upfront.",
     timeline:
       "Class A/B manufacturing: 4–8 weeks. Import licences: 6–12 weeks. CDSCO timelines may extend.",
   },
@@ -472,7 +472,7 @@ const CATEGORY_DEFAULTS: Record<string, Omit<ServiceDetail, "faqs"> & { faqs?: S
       { title: "Approval", detail: "Track approvals and complete empanelment." },
     ],
     govFee: "DISCOM / nodal agency processing fees may apply as per scheme guidelines.",
-    professionalFee: "Fixed vendor registration fees per discom/state — quoted upfront.",
+    professionalFee: "Fixed vendor registration fees per discom/state - quoted upfront.",
     timeline: "Typically 2–6 weeks depending on the discom and scheme.",
   },
   "import-export": {
@@ -608,7 +608,7 @@ const SERVICE_DETAILS: Record<
     govFee:
       "No government fee; certification body audit fees are payable directly to the certifying body.",
     professionalFee:
-      "Consultancy fees depend on the standard and organisation size — fixed quote provided.",
+      "Consultancy fees depend on the standard and organisation size - fixed quote provided.",
     timeline: "4–12 weeks depending on scope, headcount and document readiness.",
   },
   "medical-device-regulatory": {
@@ -637,7 +637,7 @@ const SERVICE_DETAILS: Record<
     ],
     govFee: "CDSCO / State licensing authority fees apply per the Medical Devices Rules, 2017.",
     professionalFee: "Regulatory consultancy fees depend on licence type, device class and scope.",
-    timeline: "Varies by licence — manufacturing (Class A/B): 4–8 weeks; import: 6–12 weeks.",
+    timeline: "Varies by licence - manufacturing (Class A/B): 4–8 weeks; import: 6–12 weeks.",
   },
   "cosmetics-regulatory": {
     whoNeeds: [
@@ -690,7 +690,7 @@ const SERVICE_DETAILS: Record<
       { title: "Approval", detail: "Track approvals and complete empanelment." },
     ],
     govFee: "DISCOM / nodal agency processing fees may apply per scheme.",
-    professionalFee: "Fixed consultancy fees per state/discom — quoted upfront.",
+    professionalFee: "Fixed consultancy fees per state/discom - quoted upfront.",
     timeline: "Typically 2–6 weeks per discom depending on approvals.",
   },
   "ecommerce-services": {
@@ -857,7 +857,7 @@ export const getServiceDetails = (service: Service): ServiceDetail => {
     professionalFee:
       override.professionalFee ??
       base.professionalFee ??
-      "Professional fees are quoted transparently after a free consultation — no hidden charges.",
+      "Professional fees are quoted transparently after a free consultation - no hidden charges.",
     timeline:
       override.timeline ??
       base.timeline ??
