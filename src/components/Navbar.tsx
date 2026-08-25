@@ -76,7 +76,7 @@ export function Navbar() {
       <div
         className={`transition-all duration-300 border-b ${scrolled ? "bg-white/95 backdrop-blur-md shadow-sm border-slate-200" : "bg-white border-transparent"}`}
       >
-        <div className="container-page flex items-center justify-between h-16 md:h-[72px] px-4 lg:px-8">
+        <div className="container-page !max-w-[1320px] flex items-center justify-between h-16 md:h-[72px] px-4 lg:px-8">
           {/* Logo */}
           <Link to="/" onClick={closeMenu} className="flex items-center gap-3 group shrink-0">
             <img
@@ -89,7 +89,7 @@ export function Navbar() {
             />
             <div className="flex flex-col">
               <span className="text-[17px] font-extrabold text-navy leading-tight">
-                Chartered Solution
+                Charted Solutions Pvt. Ltd
               </span>
               <span className="text-[9.5px] font-semibold text-slate-500 tracking-[0.12em] uppercase">
                 Business · Regulatory · Growth
@@ -98,7 +98,7 @@ export function Navbar() {
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden xl:flex items-center h-full gap-1">
+          <div className="hidden xl:flex items-center h-full gap-3">
             <NavLink to="/" active={pathname === "/"}>
               Home
             </NavLink>
@@ -270,18 +270,18 @@ function NavLink({
   return (
     <Link
       to={to}
-      className={`relative flex items-center px-4 text-[13px] font-bold tracking-wide h-full transition-colors ${
+      className={`relative flex items-center px-5 text-[13px] font-bold tracking-wide h-full transition-colors ${
         active ? "text-primary" : "text-navy hover:text-primary"
       }`}
     >
-      {children}
       {active && (
         <m.div
-          layoutId="nav-pill"
-          className="absolute bottom-0 left-4 right-4 h-[3px] rounded-t-full bg-primary"
+          layoutId="nav-active-pill"
+          className="absolute inset-y-2 left-1 right-1 rounded-full bg-primary/[0.08]"
           transition={{ type: "spring", stiffness: 500, damping: 30 }}
         />
       )}
+      <span className="relative z-10">{children}</span>
     </Link>
   );
 }
@@ -319,20 +319,23 @@ function Dropdown({
       onMouseLeave={() => setOpenId(null)}
     >
       <button
-        className={`flex items-center gap-1 px-4 text-[13px] font-bold tracking-wide h-full transition-colors ${
+        className={`relative flex items-center gap-1 px-5 text-[13px] font-bold tracking-wide h-full transition-colors ${
           isOpen || active ? "text-primary" : "text-navy hover:text-primary"
         }`}
       >
-        {title}{" "}
-        <ChevronDown
-          className={`w-3.5 h-3.5 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
-        />
         {(isOpen || active) && (
           <m.div
-            layoutId="nav-pill"
-            className="absolute bottom-0 left-4 right-4 h-[3px] rounded-t-full bg-primary"
+            layoutId="nav-active-pill"
+            className="absolute inset-y-2 left-1 right-1 rounded-full bg-primary/[0.08]"
+            transition={{ type: "spring", stiffness: 500, damping: 30 }}
           />
         )}
+        <span className="relative z-10 flex items-center gap-1">
+          {title}{" "}
+          <ChevronDown
+            className={`w-3.5 h-3.5 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+          />
+        </span>
       </button>
 
       <AnimatePresence>
