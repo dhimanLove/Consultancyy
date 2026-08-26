@@ -110,7 +110,7 @@ function FreeToolsPage() {
                 </div>
                 <p className="text-[13px] text-steel leading-relaxed mt-3">{t.desc}</p>
                 <span className="mt-4 inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.12em] text-warm-dark">
-                  <span className="w-2 h-2 rounded-full bg-[#FFB000] animate-pulse" /> Coming soon
+                  <span className="w-2 h-2 rounded-full bg-primary animate-pulse" /> Coming soon
                 </span>
               </m.div>
             ))}

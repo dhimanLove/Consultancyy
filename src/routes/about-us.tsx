@@ -54,7 +54,7 @@ const faqData = [
   {
     question: "Is Chartered Solution a government-registered firm?",
     answer:
-      "Yes, Chartered Solution Pvt. Ltd. is a registered professional services firm based in Indore, MP. We are recognized as a reliable service provider for government-related registrations, filings, and compliance work.",
+      "Yes, Chartered Solution is a registered professional services firm based in Indore, MP. We are recognized as a reliable service provider for government-related registrations, filings, and compliance work.",
   },
   {
     question: "Do you provide certificates like net worth and turnover certificates in Indore?",
@@ -231,11 +231,16 @@ function AboutUsPage() {
           </div>
           <div
             ref={founderRef}
-            className="bg-fog border border-border rounded-[5px] p-8 text-center"
+            className="bg-fog border border-border rounded-[5px] p-10 text-center"
           >
-            <div className="founder-el w-[64px] h-[64px] rounded-full bg-warm/10 flex items-center justify-center mx-auto">
-              <span className="text-[20px] font-bold text-warm">JM</span>
-            </div>
+            <img
+              src="/MY IMAGES.jpg.jpeg"
+              alt="Jitendra Malviya - Founder & CEO"
+              className="founder-el w-[180px] h-[180px] rounded-full object-cover mx-auto border-4 border-warm/20"
+              width={120}
+              height={120}
+              decoding="async"
+            />
             <h3 className="founder-el text-[20px] font-bold text-navy mt-4">Jitendra Malviya</h3>
             <p className="founder-el text-[12px] font-semibold text-warm uppercase tracking-wider mt-1">
               Founder &amp; CEO
@@ -336,6 +341,7 @@ function AboutUsPage() {
             eyebrow="Get in Touch"
             heading="Ready to start your compliance journey?"
             center
+            light
           />
           <m.p
             initial={{ opacity: 0, y: 15 }}

@@ -189,7 +189,7 @@ export function QuickEnquiry({ open, onClose, preselected }: Props) {
                         <button
                           type="submit"
                           disabled={sending}
-                          className="w-full flex items-center justify-center gap-2 bg-primary text-white rounded-[8px] px-4 py-3 text-[14px] font-bold hover:bg-primary-70 active:scale-[0.97] transition-all disabled:opacity-60"
+                          className="w-full flex items-center justify-center gap-2 bg-warm text-navy-dark rounded-[8px] px-4 py-3 text-[14px] font-bold hover:bg-warm-dark active:scale-[0.97] transition-all disabled:opacity-60"
                         >
                           {sending ? (
                             <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">

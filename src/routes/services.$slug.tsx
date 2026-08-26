@@ -302,20 +302,54 @@ function ServiceDetailPage() {
                 </Block>
               )}
 
-              <div className="grid sm:grid-cols-2 gap-6">
-                <Block title="Government / Authority Fees" icon={IndianRupee}>
-                  <p className="text-[14px] text-navy/85 leading-relaxed">{details.govFee}</p>
-                </Block>
-                <Block title="Professional Fees" icon={Wallet}>
-                  <p className="text-[14px] text-navy/85 leading-relaxed">
-                    {details.professionalFee}
-                  </p>
-                </Block>
-              </div>
-
-              <Block title="Estimated Timeline" icon={Clock}>
-                <p className="text-[14px] text-navy/85 leading-relaxed">{details.timeline}</p>
-              </Block>
+              <m.div
+                variants={itemVariants}
+                className="border border-[#E5E5E5] rounded-[10px] bg-white overflow-hidden"
+              >
+                <div className="px-7 pt-7 pb-2">
+                  <div className="flex items-center gap-3 mb-5">
+                    <div className="w-9 h-9 rounded-[8px] bg-warm/15 text-warm flex items-center justify-center shrink-0">
+                      <IndianRupee className="w-4.5 h-4.5" />
+                    </div>
+                    <h3 className="text-[17px] font-bold text-navy">Pricing & Timeline</h3>
+                  </div>
+                </div>
+                <div className="px-7 pb-7 space-y-0">
+                  <div className="flex items-start gap-4 py-4 border-b border-[#E5E5E5]">
+                    <IndianRupee className="w-4 h-4 text-warm mt-0.5 shrink-0" />
+                    <div className="min-w-0">
+                      <span className="text-[11px] font-semibold text-warm uppercase tracking-wider">
+                        Government / Authority Fees
+                      </span>
+                      <p className="text-[14px] text-navy/85 leading-relaxed mt-1">
+                        {details.govFee}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-4 py-4 border-b border-[#E5E5E5]">
+                    <Wallet className="w-4 h-4 text-warm mt-0.5 shrink-0" />
+                    <div className="min-w-0">
+                      <span className="text-[11px] font-semibold text-warm uppercase tracking-wider">
+                        Professional Fees
+                      </span>
+                      <p className="text-[14px] text-navy/85 leading-relaxed mt-1">
+                        {details.professionalFee}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-4 py-4">
+                    <Clock className="w-4 h-4 text-warm mt-0.5 shrink-0" />
+                    <div className="min-w-0">
+                      <span className="text-[11px] font-semibold text-warm uppercase tracking-wider">
+                        Estimated Timeline
+                      </span>
+                      <p className="text-[14px] text-navy/85 leading-relaxed mt-1">
+                        {details.timeline}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </m.div>
 
               <Block title="Why Choose Chartered Solution?" icon={ShieldCheck}>
                 <ul className="space-y-2.5">
@@ -385,7 +419,7 @@ function ServiceDetailPage() {
                 </EmberButton>
                 <button
                   onClick={() => setShowEnquiry(true)}
-                  className="inline-flex items-center gap-2 bg-primary text-white rounded-[8px] px-5 py-2.5 text-[14px] font-bold hover:bg-primary-70 active:scale-[0.97] transition-all"
+                  className="inline-flex items-center gap-2 bg-warm text-navy-dark rounded-[8px] px-5 py-2.5 text-[14px] font-bold hover:bg-warm-dark active:scale-[0.97] transition-all"
                 >
                   Request a Quote <ArrowUpRight className="w-4 h-4" />
                 </button>

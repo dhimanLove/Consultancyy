@@ -68,11 +68,11 @@ const CATEGORY_DEFAULTS: Record<string, Omit<ServiceDetail, "faqs"> & { faqs?: S
       { title: "Delivery", detail: "Receive incorporation certificate, PAN, TAN and documents." },
     ],
     govFee:
-      "Government fees vary by structure - from ~₹500 (proprietorship/partnership) to ~₹2,000–10,000+ (company/LLP) depending on authorised capital.",
+      "Pvt Ltd (SPICe+): ₹2,000–₹34,000 based on authorised capital; Name Reservation (RUN): ₹1,000; Stamp Duty on MoA/AoA: ₹500–₹5,000 (varies by state); DSC per Director: ₹500–₹2,000; PAN+TAN: ~₹143. LLP (FiLLiP): ₹500–₹5,000 based on contribution; RUN-LLP: ₹200. OPC/Section 8: ~₹2,000. Proprietorship/Partnership: ~₹500.",
     professionalFee:
-      "Transparent, all-inclusive professional fees quoted after a free consultation. No hidden charges.",
+      "Pvt Ltd: Starting from ₹7,499 (excl. GST & govt. fees). LLP: Starting from ₹6,999. All fees quoted transparently before starting.",
     timeline:
-      "Proprietorship/partnership: 1–3 working days. Company/LLP/OPC: 5–15 working days depending on approvals.",
+      "Proprietorship/partnership: 1–3 working days. Company/LLP/OPC: 7–15 working days depending on approvals.",
   },
   registration: {
     whoNeeds: [
@@ -105,9 +105,11 @@ const CATEGORY_DEFAULTS: Record<string, Omit<ServiceDetail, "faqs"> & { faqs?: S
       },
     ],
     govFee:
-      "Fees vary by registration - many (e.g., Udyam, IEC, DSC-linked) involve nominal government/authority fees; EPFO/ESIC are based on headcount bands.",
-    professionalFee: "Fixed, transparent professional fees shared in advance. No hidden charges.",
-    timeline: "Most registrations complete in 2–7 working days from complete documentation.",
+      "FSSAI Basic Registration: ₹100/year (1 yr) or ₹500 (5 yrs); State Licence: ₹2,000–₹5,000/yr; Central Licence: ₹7,500/yr. Late renewal penalty: ₹100/day. GST Registration: Nil. PAN: ₹107. DSC: ₹200–₹500. MSME/Udyam: Free. IEC: Free.",
+    professionalFee:
+      "FSSAI Registration: Starting from ₹2,999. GST Registration: ₹1,999–₹5,999. All fees transparent, no hidden charges.",
+    timeline:
+      "FSSAI Basic: 7 days. State/Central Licence: 30–60 days. Most registrations complete in 2–7 working days.",
   },
   accounting: {
     whoNeeds: [
@@ -130,8 +132,10 @@ const CATEGORY_DEFAULTS: Record<string, Omit<ServiceDetail, "faqs"> & { faqs?: S
       { title: "Reporting", detail: "Deliver MIS and financial reports on schedule." },
     ],
     govFee: "No government fees involved.",
-    professionalFee: "Monthly/annual fixed fees based on transaction volume and scope.",
-    timeline: "Ongoing service; first reports typically within 15 days of onboarding.",
+    professionalFee:
+      "Monthly Accounting & Bookkeeping: From ₹2,499/month. Tally/Zoho Books: From ₹2,499/month. Xero/Odoo: From ₹4,999/month. Backlog/Catch-Up: From ₹9,999/month. Bank Reconciliation: From ₹2,499/month. Chart of Accounts Setup: From ₹4,999 (one-time). Financial Statements: From ₹9,999/set. MIS Reports: From ₹4,999/month. Year-End Closing: From ₹14,999/year. Software Migration: From ₹9,999 (one-time).",
+    timeline:
+      "Ongoing service; first reports typically within 15 days of onboarding. Migrations: 2–4 weeks.",
   },
   "income-tax": {
     whoNeeds: [
@@ -155,9 +159,11 @@ const CATEGORY_DEFAULTS: Record<string, Omit<ServiceDetail, "faqs"> & { faqs?: S
       { title: "Verification", detail: "Verify the return and share the acknowledgment." },
     ],
     govFee:
-      "Income tax payable is as per the Income-tax Act; no separate government fee for e-filing (Nil for most returns).",
-    professionalFee: "Fixed fees by return type (ITR-1 to ITR-7) - quoted upfront.",
-    timeline: "Most returns filed within 1–3 working days of complete data.",
+      "Income tax payable as per the Income-tax Act; no government fee for e-filing. TDS Late Fee (Section 234E): ₹200/day, capped at total TDS of quarter. TDS Penalty (Section 271H): ₹10,000–₹1,00,000.",
+    professionalFee:
+      "ITR-1 Salaried: ₹1,499. ITR-2 (Capital Gains): ₹2,999. ITR-4 Freelancer/Professional: ₹2,999. ITR-3 Business/F&O: ₹4,999. ITR-5 Partnership/LLP: ₹7,500. ITR-6 Pvt Ltd: ₹9,999. ITR-7 Trust/Section 8: ₹12,500. NRI Return: ₹5,999.",
+    timeline:
+      "ITR-1/2: Due 31 Jul. ITR-3/4: Due 31 Aug. Audit cases: 31 Oct. TP: 30 Nov. Most returns filed within 1–3 working days of complete data.",
   },
   gst: {
     whoNeeds: [
@@ -184,10 +190,11 @@ const CATEGORY_DEFAULTS: Record<string, Omit<ServiceDetail, "faqs"> & { faqs?: S
       { title: "Department follow-up", detail: "Respond to queries / verification if raised." },
       { title: "Certificate", detail: "Download and deliver the GST certificate." },
     ],
-    govFee: "No fee for GST registration; the government collects GST on supplies as per law.",
+    govFee:
+      "GST Registration: Nil (free on portal). Late Fee (Section 47): ₹50/day CGST + ₹50/day SGST = ₹100/day total, capped at ₹10,000/return. Interest (Section 50): 18% p.a. on net tax liability.",
     professionalFee:
-      "Transparent professional fees for registration and/or return filing packages.",
-    timeline: "GST registration usually completes in 3–7 working days.",
+      "Registration: ₹1,999–₹5,999. Monthly Returns (GSTR-1 + 3B): From ₹1,499/month. Quarterly QRMP: ₹2,999/quarter. Annual GSTR-9: From ₹4,999. GSTR-9C (>₹5 Cr): From ₹9,999. Composition (CMP-08 + GSTR-4): ₹999/quarter.",
+    timeline: "GST registration: 3–15 working days. GSTR-1 by 11th, GSTR-3B by 20th monthly.",
   },
   audit: {
     whoNeeds: [
@@ -210,8 +217,10 @@ const CATEGORY_DEFAULTS: Record<string, Omit<ServiceDetail, "faqs"> & { faqs?: S
       { title: "Reporting", detail: "Draft findings and the audit report." },
       { title: "Finalisation", detail: "Deliver the signed report and filings." },
     ],
-    govFee: "Government/regulatory filing fees may apply where reports are filed (e.g., ROC fees).",
-    professionalFee: "Fees depend on turnover, entities, and scope - quoted after a scoping call.",
+    govFee:
+      "Government/regulatory filing fees may apply where reports are filed (e.g., ROC fees for AOC-4).",
+    professionalFee:
+      "Statutory Audit: From ₹15,000/year (small companies) to ₹1,00,000+/year (large). Tax Audit (44AB): From ₹25,000. Internal Audit: From ₹20,000/year. Fees depend on turnover, entities, and scope.",
     timeline: "Typically 2–4 weeks depending on books readiness and entity size.",
   },
   corporate: {
@@ -443,9 +452,10 @@ const CATEGORY_DEFAULTS: Record<string, Omit<ServiceDetail, "faqs"> & { faqs?: S
       { title: "Inspection & approval", detail: "Coordinate inspection and issuance." },
     ],
     govFee:
-      "FSSAI fees apply as per licence category (registration ~₹100–500; state/central licence higher).",
-    professionalFee: "Fixed documentation and filing fees quoted upfront.",
-    timeline: "Registration: 2–7 days. State/central licence: 2–6 weeks.",
+      "FSSAI Basic Registration: ₹100/year (1 yr) or ₹500 (5 yrs); State Licence: ₹2,000–₹5,000/yr; Central Licence: ₹7,500/yr; Late renewal penalty: ₹100/day.",
+    professionalFee:
+      "FSSAI Registration: Starting from ₹2,999. State Licence: ₹4,999–₹7,999. Central Licence: ₹7,999–₹14,999. Renewal: ₹2,499–₹4,999.",
+    timeline: "Registration: 2–7 days. State/Central licence: 2–6 weeks.",
   },
   solar: {
     whoNeeds: [
@@ -838,6 +848,132 @@ const SERVICE_DETAILS: Record<
     govFee: "DISCOM / nodal agency processing fees may apply.",
     professionalFee: "Fixed registration fees per discom/state.",
     timeline: "Typically 2–6 weeks depending on the discom.",
+  },
+  "tally-accounting": {
+    whoNeeds: [
+      "Businesses using Tally for day-to-day accounting",
+      "SMEs migrating from manual records to Tally",
+      "Companies needing Tally-based GST-ready invoicing",
+    ],
+    eligibility: ["Any business with Tally or planning to use Tally."],
+    documents: [
+      "Tally license (existing or new)",
+      "Bank statements & passbooks",
+      "Purchase & sales invoices",
+      "GST returns (if applicable)",
+    ],
+    process: [
+      { title: "Setup", detail: "Configure Tally with chart of accounts and GST settings." },
+      { title: "Data entry", detail: "Record transactions and categorise entries." },
+      { title: "Reconciliation", detail: "Reconcile bank and ledger balances." },
+      { title: "Reporting", detail: "Deliver MIS, P&L, and balance sheet reports." },
+    ],
+    govFee: "No government fees.",
+    professionalFee:
+      "Tally/Zoho Books Accounting: From ₹2,499/month. Backlog/Catch-Up Bookkeeping: From ₹9,999/month. Chart of Accounts Setup: From ₹4,999 (one-time).",
+    timeline: "Ongoing; initial setup typically 3–5 working days.",
+  },
+  "zoho-books-accounting": {
+    whoNeeds: [
+      "Businesses wanting cloud-first Zoho Books accounting",
+      "Companies migrating from Tally to Zoho Books",
+      "Startups needing GST-ready invoicing on Zoho",
+    ],
+    eligibility: ["Any business entity with GST and PAN."],
+    documents: [
+      "Zoho Books account access",
+      "Bank statements",
+      "Purchase & sales invoices",
+      "Existing Tally data (for migration)",
+    ],
+    process: [
+      { title: "Migration", detail: "Migrate data from Tally or set up fresh on Zoho Books." },
+      {
+        title: "Configuration",
+        detail: "Set up chart of accounts, bank feeds, and GST invoicing.",
+      },
+      { title: "Bookkeeping", detail: "Record, categorise, and reconcile transactions monthly." },
+      { title: "Reporting", detail: "Deliver real-time financial reports and MIS dashboards." },
+    ],
+    govFee: "No government fees.",
+    professionalFee:
+      "Tally/Zoho Books Accounting: From ₹2,499/month. Software Migration (Tally to Zoho): From ₹9,999 (one-time). SOP Drafting: From ₹24,999 (one-time).",
+    timeline:
+      "Migration: 5–10 working days. Ongoing bookkeeping starts within 3 days of onboarding.",
+  },
+  "xero-accounting": {
+    whoNeeds: [
+      "Businesses preferring a modern cloud accounting platform",
+      "International businesses with India operations",
+      "Companies wanting real-time collaborative accounting",
+    ],
+    eligibility: ["Any business entity."],
+    documents: [
+      "Xero account access",
+      "Bank statements",
+      "Purchase & sales invoices",
+      "Existing accounting data (for migration)",
+    ],
+    process: [
+      { title: "Setup", detail: "Configure Xero with chart of accounts and integrations." },
+      { title: "Migration", detail: "Migrate data from existing systems." },
+      { title: "Bookkeeping", detail: "Ongoing transaction recording and reconciliation." },
+      { title: "Reporting", detail: "Financial reports, dashboards, and GST-ready data." },
+    ],
+    govFee: "No government fees.",
+    professionalFee:
+      "Xero/Odoo Accounting: From ₹4,999/month. Software Migration: From ₹9,999 (one-time).",
+    timeline: "Setup: 3–5 working days. Migration: 5–10 working days.",
+  },
+  "payroll-processing": {
+    whoNeeds: [
+      "Businesses with 10+ employees needing monthly payroll",
+      "Companies wanting outsourced payroll compliance",
+      "Employers needing PF/ESI/TDS compliance on salary",
+    ],
+    eligibility: ["Any registered business with employees."],
+    documents: [
+      "Employee details & appointment letters",
+      "Salary structure & CTC breakdowns",
+      "Attendance & leave records",
+      "Bank details for salary transfer",
+      "PAN & Aadhaar of employees",
+    ],
+    process: [
+      { title: "Setup", detail: "Configure salary structures and deduction rules." },
+      { title: "Computation", detail: "Compute monthly salary, PF, ESI, and TDS." },
+      { title: "Disbursement", detail: "Generate payslips and salary transfer statements." },
+      { title: "Compliance", detail: "File PF/ESI returns and issue Form 16." },
+    ],
+    govFee:
+      "No government fees for processing. Statutory rates: EPF 12% each (employer+employee). ESI: 0.75% employee + 3.25% employer (gross ≤ ₹21,000). TDS by 7th; EPF/ESI by 15th.",
+    professionalFee:
+      "Basic Payroll Processing: ₹300–₹500/employee/month. Full Compliance (EPF+ESI+TDS+PT): ₹500–₹800/employee/month. Enterprise/Multi-State: ₹1,500–₹2,500/employee/month. Minimum Monthly (<20 emp): ₹5,000/month. Starting from ₹149/employee/month.",
+    timeline: "TDS by 7th; EPF/ESI by 15th; Salary by 7th of each month.",
+  },
+  "gratuity-compliance": {
+    whoNeeds: [
+      "Companies with 10+ employees under the Payment of Gratuity Act",
+      "Businesses setting up gratuity funds or trusts",
+      "Employers managing employee exit settlements",
+    ],
+    eligibility: ["Establishments with 10+ employees covered under the Gratuity Act."],
+    documents: [
+      "Employee details & date of joining",
+      "Salary structure & CTC breakdowns",
+      "Exit details (for settlements)",
+      "Gratuity trust deed (if applicable)",
+    ],
+    process: [
+      { title: "Assessment", detail: "Determine eligibility and compute gratuity liability." },
+      { title: "Trust setup", detail: "Set up or configure gratuity trust (if required)." },
+      { title: "Computation", detail: "Calculate individual gratuity amounts on exit." },
+      { title: "Payment", detail: "Process gratuity payments within 30 days of exit." },
+    ],
+    govFee: "No government fees; gratuity trust registration may involve nominal stamp duty.",
+    professionalFee:
+      "Fixed compliance fees from ₹5,000/- per year; trust setup from ₹15,000/- onwards.",
+    timeline: "Compliance setup: 5–10 working days. Individual computation: 2–3 working days.",
   },
 };
 

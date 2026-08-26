@@ -9,9 +9,12 @@ import {
   REGULATORY_SERVICES,
   INDUSTRIES,
   RESOURCES,
+  TAX_GST_GROUP,
+  CORPORATE_ACCOUNTING_GROUP,
 } from "@/lib/nav";
-import { Menu, X, ChevronDown, ChevronRight, Phone, Mail, ArrowRight, Star } from "lucide-react";
+import { KoboyoIcon } from "@/components/KoboyoIcon";
 import logoImg from "../../assets/logo-96.webp";
+import { GoogleReviewsBadge } from "@/components/GoogleReviews";
 
 // --- Optimized Animation Variants ---
 const dropVars: Variants = {
@@ -55,20 +58,22 @@ export function Navbar() {
     setOpenId(null);
   };
 
+  const isHome = pathname === "/";
+
   return (
     <nav className="sticky top-0 z-50 w-full">
       {/* Top Utility Bar */}
       <div className="hidden md:flex bg-navy border-b border-white/10 items-center justify-between h-9 px-4 lg:px-8 text-[12px] text-white/70">
         <div className="flex gap-6 font-medium">
           <a href={PHONE_HREF} className="flex items-center gap-1.5 hover:text-white">
-            <Phone className="w-3.5 h-3.5 text-primary-light" /> {PHONE}
+            <KoboyoIcon name="phone" className="w-3.5 h-3.5 text-primary-light" /> {PHONE}
           </a>
           <a href={`mailto:${EMAIL}`} className="flex items-center gap-1.5 hover:text-white">
-            <Mail className="w-3.5 h-3.5 text-primary-light" /> {EMAIL}
+            <KoboyoIcon name="mail" className="w-3.5 h-3.5 text-primary-light" /> {EMAIL}
           </a>
         </div>
-        <div className="flex items-center gap-1.5 bg-white/10 px-3 py-0.5 rounded-full text-[#FFB000] font-bold">
-          <Star className="w-3 h-3 fill-current" /> 5.0 Client-Rated Excellence
+        <div className="flex items-center gap-4">
+          <GoogleReviewsBadge />
         </div>
       </div>
 
@@ -76,7 +81,7 @@ export function Navbar() {
       <div
         className={`transition-all duration-300 border-b ${scrolled ? "bg-white/95 backdrop-blur-md shadow-sm border-slate-200" : "bg-white border-transparent"}`}
       >
-        <div className="container-page !max-w-[1320px] flex items-center justify-between h-16 md:h-[72px] px-4 lg:px-8">
+        <div className="container-page !max-w-[1440px] flex items-center justify-between h-16 md:h-[72px] px-4 lg:px-8">
           {/* Logo */}
           <Link to="/" onClick={closeMenu} className="flex items-center gap-3 group shrink-0">
             <img
@@ -89,7 +94,7 @@ export function Navbar() {
             />
             <div className="flex flex-col">
               <span className="text-[17px] font-extrabold text-navy leading-tight">
-                Charted Solutions Pvt. Ltd
+                Chartered Solution
               </span>
               <span className="text-[9.5px] font-semibold text-slate-500 tracking-[0.12em] uppercase">
                 Business · Regulatory · Growth
@@ -98,7 +103,7 @@ export function Navbar() {
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden xl:flex items-center h-full gap-3">
+          <div className="hidden xl:flex items-center h-full gap-3 whitespace-nowrap">
             <NavLink to="/" active={pathname === "/"}>
               Home
             </NavLink>
@@ -135,17 +140,21 @@ export function Navbar() {
             </Dropdown>
 
             <Dropdown
-              id="reg"
-              title="Regulatory"
+              id="tax-gst"
+              title="Tax & GST"
               align="center"
-              desc="Governance & compliance"
-              active={REGULATORY_SERVICES.some((r) => pathname === `/services/${r.slug}`)}
+              desc="Returns, filings & tax planning"
+              active={TAX_GST_GROUP.links.some((l) => pathname === `/services/${l.slug}`)}
               openId={openId}
               setOpenId={setOpenId}
-              width="w-[500px]"
+              width="w-[420px]"
+              action={{ to: "/services#tax-gst", label: "View All" }}
             >
-              <div className="grid grid-cols-2 gap-1">
-                {REGULATORY_SERVICES.map((l) => (
+              <div>
+                <div className="text-[11px] font-bold uppercase text-primary mb-2 px-3">
+                  {TAX_GST_GROUP.label}
+                </div>
+                {TAX_GST_GROUP.links.map((l) => (
                   <DropdownLink
                     key={l.slug}
                     to={`/services/${l.slug}`}
@@ -158,25 +167,76 @@ export function Navbar() {
             </Dropdown>
 
             <Dropdown
-              id="ind"
-              title="Industries"
+              id="corporate-accounting"
+              title="Corporate & Accounting"
               align="center"
-              desc="Tailored key vertical solutions"
-              active={pathname.includes("/industries")}
+              desc="Books, payroll & compliance"
+              active={CORPORATE_ACCOUNTING_GROUP.links.some(
+                (l) => pathname === `/services/${l.slug}`,
+              )}
               openId={openId}
               setOpenId={setOpenId}
-              width="w-[300px]"
+              width="w-[420px]"
+              action={{ to: "/services#accounting", label: "View All" }}
             >
-              {INDUSTRIES.map((i) => (
-                <DropdownLink
-                  key={i.slug}
-                  to="/industries"
-                  hash={i.slug}
-                  onClick={() => setOpenId(null)}
-                >
-                  {i.label}
-                </DropdownLink>
-              ))}
+              <div>
+                <div className="text-[11px] font-bold uppercase text-primary mb-2 px-3">
+                  {CORPORATE_ACCOUNTING_GROUP.label}
+                </div>
+                {CORPORATE_ACCOUNTING_GROUP.links.map((l) => (
+                  <DropdownLink
+                    key={l.slug}
+                    to={`/services/${l.slug}`}
+                    onClick={() => setOpenId(null)}
+                  >
+                    {l.label}
+                  </DropdownLink>
+                ))}
+              </div>
+            </Dropdown>
+
+            <Dropdown
+              id="reg-compliance"
+              title="Regulatory & Compliance"
+              align="center"
+              desc="Regulatory, compliance & industry solutions"
+              active={
+                REGULATORY_SERVICES.some((r) => pathname === `/services/${r.slug}`) ||
+                pathname.includes("/industries")
+              }
+              openId={openId}
+              setOpenId={setOpenId}
+              width="w-[500px]"
+            >
+              <div className="mb-3">
+                <div className="text-[11px] font-bold uppercase text-primary mb-2 px-3">
+                  Regulatory & Compliance
+                </div>
+                {REGULATORY_SERVICES.map((l) => (
+                  <DropdownLink
+                    key={l.slug}
+                    to={`/services/${l.slug}`}
+                    onClick={() => setOpenId(null)}
+                  >
+                    {l.label}
+                  </DropdownLink>
+                ))}
+              </div>
+              <div className="border-t border-slate-100 pt-3 mt-1">
+                <div className="text-[11px] font-bold uppercase text-primary mb-2 px-3">
+                  Industries
+                </div>
+                {INDUSTRIES.map((i) => (
+                  <DropdownLink
+                    key={i.slug}
+                    to="/industries"
+                    hash={i.slug}
+                    onClick={() => setOpenId(null)}
+                  >
+                    {i.label}
+                  </DropdownLink>
+                ))}
+              </div>
             </Dropdown>
 
             <Dropdown
@@ -184,7 +244,7 @@ export function Navbar() {
               title="Resources"
               align="right"
               desc="Guides, calculators & calendars"
-              active={pathname.includes("/resources")}
+              active={pathname.includes("/resources") || pathname === "/about-us"}
               openId={openId}
               setOpenId={setOpenId}
               width="w-[300px]"
@@ -195,10 +255,6 @@ export function Navbar() {
                 </DropdownLink>
               ))}
             </Dropdown>
-
-            <NavLink to="/about-us" active={pathname === "/about-us"}>
-              About
-            </NavLink>
           </div>
 
           {/* Actions */}
@@ -210,7 +266,11 @@ export function Navbar() {
               className="xl:hidden p-2 rounded-full border border-slate-200 bg-slate-50 text-navy hover:bg-slate-100 active:scale-95 transition-all"
               onClick={() => setMobileOpen(!mobileOpen)}
             >
-              {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {mobileOpen ? (
+                <KoboyoIcon name="close" className="w-5 h-5" />
+              ) : (
+                <KoboyoIcon name="menu" className="w-5 h-5" />
+              )}
             </button>
           </div>
         </div>
@@ -233,11 +293,14 @@ export function Navbar() {
               <MobileLink to="/services" onClick={closeMenu}>
                 Business Services
               </MobileLink>
-              <MobileLink to="/services" onClick={closeMenu}>
-                Regulatory
+              <MobileLink to="/services" hash="tax-gst" onClick={closeMenu}>
+                Tax & GST
               </MobileLink>
-              <MobileLink to="/industries" onClick={closeMenu}>
-                Industries
+              <MobileLink to="/services" hash="accounting" onClick={closeMenu}>
+                Corporate & Accounting
+              </MobileLink>
+              <MobileLink to="/services" onClick={closeMenu}>
+                Regulatory & Compliance
               </MobileLink>
               <MobileLink to="/resources" onClick={closeMenu}>
                 Resources
@@ -270,7 +333,7 @@ function NavLink({
   return (
     <Link
       to={to}
-      className={`relative flex items-center px-5 text-[13px] font-bold tracking-wide h-full transition-colors ${
+      className={`relative flex items-center px-5 text-[13px] font-bold tracking-wide h-full transition-colors whitespace-nowrap ${
         active ? "text-primary" : "text-navy hover:text-primary"
       }`}
     >
@@ -319,7 +382,7 @@ function Dropdown({
       onMouseLeave={() => setOpenId(null)}
     >
       <button
-        className={`relative flex items-center gap-1 px-5 text-[13px] font-bold tracking-wide h-full transition-colors ${
+        className={`relative flex items-center gap-1 px-5 text-[13px] font-bold tracking-wide h-full transition-colors whitespace-nowrap ${
           isOpen || active ? "text-primary" : "text-navy hover:text-primary"
         }`}
       >
@@ -332,7 +395,8 @@ function Dropdown({
         )}
         <span className="relative z-10 flex items-center gap-1">
           {title}{" "}
-          <ChevronDown
+          <KoboyoIcon
+            name="chevronDown"
             className={`w-3.5 h-3.5 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
           />
         </span>
@@ -348,7 +412,7 @@ function Dropdown({
             className={`absolute ${aligns[align]} top-[calc(100%+4px)] z-50 ${width}`}
           >
             <div className="bg-white rounded-2xl border border-slate-200 shadow-2xl overflow-hidden flex flex-col max-h-[75vh]">
-              <div className="relative bg-gradient-to-br from-primary via-primary-70 to-navy px-6 py-4 flex justify-between items-center shrink-0 overflow-hidden">
+              <div className="relative bg-gradient-to-br from-navy via-navy-light to-navy-dark px-6 py-4 flex justify-between items-center shrink-0 overflow-hidden">
                 <div className="absolute -top-6 -right-6 w-24 h-24 rounded-full bg-white/10 blur-xl pointer-events-none" />
                 <div className="relative">
                   <div className="text-[14px] font-extrabold text-white">{title}</div>
@@ -358,7 +422,7 @@ function Dropdown({
                   <Link
                     to={action.to}
                     onClick={() => setOpenId(null)}
-                    className="relative px-4 py-1.5 rounded-full bg-white text-primary hover:bg-warm hover:text-navy text-[12px] font-bold transition-all shadow-sm"
+                    className="relative px-4 py-1.5 rounded-full bg-white text-navy hover:bg-warm hover:text-navy text-[12px] font-bold transition-all shadow-sm"
                   >
                     {action.label}
                   </Link>
@@ -386,8 +450,11 @@ function DropdownLink({
 }) {
   return (
     <Link to={to} hash={hash} onClick={onClick} className={linkCls}>
-      <div className="w-6 h-6 rounded-md bg-slate-100 flex items-center justify-center shrink-0 group-hover:bg-primary/10 transition-colors">
-        <ChevronRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-primary transition-colors" />
+      <div className="w-6 h-6 rounded-md bg-slate-100 flex items-center justify-center shrink-0 group-hover:bg-navy/10 transition-colors">
+        <KoboyoIcon
+          name="chevronDown"
+          className="w-3.5 h-3.5 text-slate-400 group-hover:text-navy transition-colors"
+        />
       </div>
       {children}
     </Link>
@@ -429,12 +496,15 @@ function CTAButton() {
   return (
     <Link
       to="/contact-us"
-      className="relative group overflow-hidden flex items-center justify-center h-10 px-6 rounded-full bg-navy border border-navy shadow-sm transition-all active:scale-95"
+      className="relative group overflow-hidden flex items-center justify-center h-10 px-6 rounded-full bg-navy border border-navy shadow-sm transition-all active:scale-95 whitespace-nowrap"
     >
-      <span className="absolute inset-0 w-full h-full bg-primary scale-0 group-hover:scale-100 transition-transform duration-300 ease-out origin-center rounded-full" />
+      <span className="absolute inset-0 w-full h-full bg-navy-light scale-0 group-hover:scale-100 transition-transform duration-300 ease-out origin-center rounded-full" />
       <span className="relative z-10 flex items-center gap-2 text-[13px] font-bold text-white transition-colors duration-300">
         Contact Us
-        <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-300" />
+        <KoboyoIcon
+          name="arrowRight"
+          className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-300"
+        />
       </span>
     </Link>
   );

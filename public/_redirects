@@ -1,0 +1,8 @@
+# Redirects for renamed/removed navigation URLs
+# Old "Industries" standalone nav → combined into Regulatory & Compliance dropdown
+# The /industries route still exists but this ensures old bookmarks work
+/services/accounting-bookkeeping-services    /services/bookkeeping    301
+/services/accounting-services                /services/bookkeeping    301
+/services/corporate-compliance               /services/roc-compliance-support    301
+/services/private-limited-company-compliance /services/roc-compliance-support    301
+/services/industries                         /industries    200

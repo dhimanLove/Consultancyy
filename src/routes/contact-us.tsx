@@ -422,7 +422,7 @@ function ContactUsPage() {
                     <button
                       type="submit"
                       disabled={sending}
-                      className="w-full rounded-[2px] bg-primary text-white font-bold text-[14px] px-6 py-3.5 flex items-center justify-center gap-2.5 hover:bg-primary-70 active:scale-[0.98] transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed shadow-lg shadow-primary/10"
+                      className="w-full rounded-[2px] bg-warm text-navy-dark font-bold text-[14px] px-6 py-3.5 flex items-center justify-center gap-2.5 hover:bg-warm-dark active:scale-[0.98] transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed shadow-lg shadow-warm/10"
                     >
                       <AnimatePresence mode="wait">
                         {sending ? (

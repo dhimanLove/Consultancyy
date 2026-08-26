@@ -119,8 +119,8 @@ export function LeadForm() {
                 onClick={() => setValues((v) => ({ ...v, salutation: s }))}
                 className={`rounded-full border px-4 py-1.5 text-[12.5px] font-semibold transition-colors duration-150 ${
                   values.salutation === s
-                    ? "border-primary bg-primary/[0.06] text-primary"
-                    : "border-[#E5E5E5] text-navy/70 hover:border-primary/40 hover:text-primary"
+                    ? "border-warm bg-warm/10 text-warm-dark"
+                    : "border-[#E5E5E5] text-navy/70 hover:border-warm/40 hover:text-warm-dark"
                 }`}
               >
                 {s}
@@ -227,7 +227,7 @@ export function LeadForm() {
         <button
           type="submit"
           disabled={sending}
-          className="mt-6 flex w-full items-center justify-center gap-2.5 rounded-[8px] bg-[#FFB000] px-6 py-3 text-[14px] font-bold text-navy shadow-lg shadow-[#FFB000]/25 transition-all duration-150 hover:bg-[#e6a000] active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-70"
+          className="mt-6 flex w-full items-center justify-center gap-2.5 rounded-[8px] bg-warm px-6 py-3 text-[14px] font-bold text-navy-dark shadow-lg shadow-warm/25 transition-all duration-150 hover:bg-warm-dark active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-70"
         >
           {sending ? (
             <>

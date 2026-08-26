@@ -26,6 +26,8 @@ export const ADDRESS =
 
 /**
  * SERVICES - Business & Compliance Services dropdown (Section 5)
+ * Restructured: removed old "Accounting, Tax & GST" and "Corporate Compliance" columns,
+ * replaced with "Tax & GST" and "Accounting & Payroll" columns.
  */
 export const SERVICES_GROUPS: NavGroup[] = [
   {
@@ -61,35 +63,6 @@ export const SERVICES_GROUPS: NavGroup[] = [
     ],
   },
   {
-    id: "accounting-tax-gst",
-    label: "Accounting, Tax & GST",
-    tagline: "Books, returns & filings",
-    links: [
-      { label: "Accounting & Bookkeeping", slug: "bookkeeping" },
-      { label: "GST Return Filing", slug: "gst-return-filing" },
-      { label: "Income Tax Return (ITR)", slug: "itr-filing" },
-      { label: "TDS Return Filing", slug: "tds-return-filing" },
-      { label: "Payroll Accounting", slug: "payroll-accounting" },
-      { label: "Tax Audit (44AB)", slug: "tax-audit-44ab" },
-      { label: "MIS Reports", slug: "mis-reports" },
-      { label: "Financial Statements", slug: "financial-statement-preparation" },
-    ],
-  },
-  {
-    id: "corporate-compliance",
-    label: "Corporate Compliance",
-    tagline: "ROC filings & company law compliance",
-    links: [
-      { label: "ROC Compliance Support", slug: "roc-compliance-support" },
-      { label: "AOC-4 Annual Filing", slug: "aoc-4-filing" },
-      { label: "MGT-7 Annual Return", slug: "mgt-7-filing" },
-      { label: "Director KYC (DIR-3)", slug: "director-kyc" },
-      { label: "DPT-3 Filing", slug: "dpt-3-filing" },
-      { label: "ADT-1 Auditor Appointment", slug: "adt-1-appointment" },
-      { label: "Company Changes & Closure", slug: "company-changes-closure" },
-    ],
-  },
-  {
     id: "financial-advisory",
     label: "Financial & Business Advisory",
     tagline: "Reports, plans & funding readiness",
@@ -105,8 +78,52 @@ export const SERVICES_GROUPS: NavGroup[] = [
   },
 ];
 
+/** Tax & GST dropdown */
+export const TAX_GST_GROUP: NavGroup = {
+  id: "tax-gst",
+  label: "Tax & GST",
+  tagline: "Returns, filings & tax planning",
+  links: [
+    { label: "GST Registration", slug: "gst-registration" },
+    { label: "GST Return Filing", slug: "gst-return-filing" },
+    { label: "GST Audit & Reconciliation", slug: "gst-audit-reconciliation" },
+    { label: "GST Refund", slug: "gst-refund" },
+    { label: "GST LUT Application", slug: "gst-lut-application" },
+    { label: "GST Notice Reply", slug: "gst-notice-reply" },
+    { label: "Income Tax Return (ITR)", slug: "itr-filing" },
+    { label: "Tax Planning", slug: "tax-planning" },
+    { label: "TDS Return Filing", slug: "tds-return-filing" },
+    { label: "Tax Audit (44AB)", slug: "tax-audit-44ab" },
+    { label: "Advance Tax Computation", slug: "advance-tax-computation" },
+  ],
+};
+
+/** Corporate & Accounting dropdown */
+export const CORPORATE_ACCOUNTING_GROUP: NavGroup = {
+  id: "corporate-accounting",
+  label: "Corporate & Accounting",
+  tagline: "Books, payroll & compliance",
+  links: [
+    { label: "Accounting & Bookkeeping", slug: "bookkeeping" },
+    { label: "Tally Accounting", slug: "tally-accounting" },
+    { label: "Zoho Books Accounting", slug: "zoho-books-accounting" },
+    { label: "Xero Accounting", slug: "xero-accounting" },
+    { label: "MIS Reports", slug: "mis-reports" },
+    { label: "Financial Statements", slug: "financial-statement-preparation" },
+    { label: "Payroll Services", slug: "payroll-accounting" },
+    { label: "Payroll Processing", slug: "payroll-processing" },
+    { label: "PF Registration", slug: "epfo-registration" },
+    { label: "ESIC Registration", slug: "esic-registration" },
+    { label: "Gratuity Compliance", slug: "gratuity-compliance" },
+    { label: "Company Compliance Advisory", slug: "company-compliance-advisory" },
+    { label: "LLP Compliance Advisory", slug: "llp-compliance-advisory" },
+    { label: "ROC Compliance Support", slug: "roc-compliance-support" },
+  ],
+};
+
 /**
  * REGULATORY & COMPLIANCE SERVICES - mega-menu (Section 4)
+ * Merged from original Regulatory + Industries into a single dropdown.
  */
 export const REGULATORY_SERVICES: NavLink[] = [
   { label: "ISO Consultancy & Regulatory Services", slug: "iso-consultancy" },
@@ -120,9 +137,6 @@ export const REGULATORY_SERVICES: NavLink[] = [
   { label: "Digital Marketing & Growth Services", slug: "digital-marketing-services" },
 ];
 
-/**
- * INDUSTRIES - dropdown (Section 11)
- */
 export const INDUSTRIES: { label: string; slug: string }[] = [
   { label: "Startups & Founders", slug: "startups-founders" },
   { label: "MSMEs & SMEs", slug: "msmes-smes" },
@@ -135,12 +149,15 @@ export const INDUSTRIES: { label: string; slug: string }[] = [
   { label: "Importers & Exporters", slug: "importers-exporters" },
   { label: "B2B Companies", slug: "b2b-companies" },
   { label: "Corporates & Institutions", slug: "corporates-institutions" },
+  { label: "Digital Marketing", slug: "digital-marketing" },
 ];
 
 /**
  * RESOURCES - dropdown (Section 13)
+ * About is now the first item (moved from standalone nav link).
  */
 export const RESOURCES: ResourceLink[] = [
+  { label: "About", to: "/about-us", description: "Learn about Chartered Solution and our team." },
   { label: "Blogs", to: "/insights", description: "Articles and insights from our team." },
   {
     label: "Business Guides",
@@ -202,6 +219,8 @@ export const INDUSTRY_ITEM_DESCRIPTIONS: Record<string, string> = {
     "Business registration, GST, ROC compliance, and lead generation that help B2B companies win and serve clients.",
   "corporates-institutions":
     "Audit, certificates, filings, and advisory for corporates, institutions, and established organisations.",
+  "digital-marketing":
+    "SEO, SEM, social media marketing, content strategy, and performance marketing for businesses looking to grow online.",
 };
 
 export const CONTACT_SERVICE_OPTIONS = [

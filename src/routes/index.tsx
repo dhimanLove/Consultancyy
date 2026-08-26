@@ -22,26 +22,7 @@ import {
   REGULATORY_SERVICES,
   INDUSTRIES as NAV_INDUSTRIES,
 } from "@/lib/nav";
-import {
-  Check,
-  Star,
-  Phone,
-  Mail,
-  ShieldCheck,
-  FileCheck,
-  Users,
-  Zap,
-  Clock,
-  BadgeCheck,
-  Award,
-  Landmark,
-  Building2,
-  GraduationCap,
-  ArrowRight,
-  Rocket,
-  TrendingUp,
-  Sun,
-} from "lucide-react";
+import { KoboyoIcon } from "@/components/KoboyoIcon";
 
 const structuredData = {
   "@context": "https://schema.org",
@@ -54,7 +35,7 @@ const structuredData = {
       logo: "https://www.charteredsolution.com/Charted.jpeg",
       sameAs: ["https://wa.me/918815553899"],
       description:
-        "Chartered Solution Pvt. Ltd. is a business, regulatory and digital growth consultancy offering business registration, GST, FSSAI, MSME, IEC, ISO, medical device, cosmetics, solar and compliance services across India.",
+        "Chartered Solution is a business, regulatory and digital growth consultancy offering business registration, GST, FSSAI, MSME, IEC, ISO, medical device, cosmetics, solar and compliance services across India.",
       address: {
         "@type": "PostalAddress",
         streetAddress: "152, Sanchar Nagar Ext., Goyal Nagar, Kanadia Road",
@@ -243,49 +224,49 @@ const STATS = [
 
 const WHY_US = [
   {
-    icon: Award,
+    koboyo: "award",
     big: "One",
     title: "Partner. Many Needs.",
     body: "Business, regulatory, compliance and digital growth solutions under one roof.",
   },
   {
-    icon: Users,
+    koboyo: "users",
     big: "PAN-India",
     title: "Consultancy",
     body: "Serving startups, SMEs, manufacturers and growing businesses across India.",
   },
   {
-    icon: FileCheck,
+    koboyo: "fileCheck",
     big: `${SERVICES.length}+`,
     title: "Services",
     body: "From business setup to regulatory compliance \u2014 everything in one place.",
   },
   {
-    icon: ShieldCheck,
+    koboyo: "shieldCheck",
     big: `${SERVICE_CATEGORIES.length}`,
     title: "Categories",
     body: "Registration, tax, GST, ISO, medical, cosmetics, solar, e-commerce, and more.",
   },
   {
-    icon: Zap,
+    koboyo: "zap",
     big: "End-to-End",
     title: "Documentation",
     body: "Complete assistance with applications, documents, filings and follow-up.",
   },
   {
-    icon: Landmark,
+    koboyo: "landMark",
     big: "Transparent",
     title: "Professional Fees",
     body: "No hidden charges. A clear quote before you start.",
   },
   {
-    icon: BadgeCheck,
+    koboyo: "badgeCheck",
     big: "Industry-Specific",
     title: "Solutions",
     body: "Tailored compliance for your industry and business type.",
   },
   {
-    icon: Clock,
+    koboyo: "clock",
     big: "Dedicated",
     title: "Client Support",
     body: "A single point of contact on every engagement.",
@@ -294,7 +275,7 @@ const WHY_US = [
 
 const CLIENT_SEGMENTS = [
   {
-    icon: Building2,
+    koboyo: "building",
     title: "Startups & Founders",
     desc: "Incorporation, Startup India, funding readiness, and early-stage compliance.",
     points: [
@@ -304,7 +285,7 @@ const CLIENT_SEGMENTS = [
     ],
   },
   {
-    icon: GraduationCap,
+    koboyo: "building",
     title: "MSMEs & SMEs",
     desc: "Udyam, licenses, GST, accounting, and audit for growing businesses.",
     points: [
@@ -314,7 +295,7 @@ const CLIENT_SEGMENTS = [
     ],
   },
   {
-    icon: Landmark,
+    koboyo: "landMark",
     title: "Corporates & Institutions",
     desc: "Statutory audit, certificates, CFO services, and restructuring support.",
     points: [
@@ -328,7 +309,7 @@ const CLIENT_SEGMENTS = [
 const BUSINESS_JOURNEY = [
   {
     phase: "Start",
-    icon: Rocket,
+    koboyo: "rocket",
     title: "Start & Register",
     desc: "Set up your business entity and get the registrations you need to start.",
     items: ["Company / LLP / OPC", "GST, MSME & Startup India", "IEC & required licences"],
@@ -337,7 +318,7 @@ const BUSINESS_JOURNEY = [
   },
   {
     phase: "Comply",
-    icon: ShieldCheck,
+    koboyo: "shieldCheck",
     title: "Compile & Comply",
     desc: "Stay on time with your tax, GST, ROC and regulatory obligations.",
     items: [
@@ -350,7 +331,7 @@ const BUSINESS_JOURNEY = [
   },
   {
     phase: "Protect",
-    icon: FileCheck,
+    koboyo: "fileCheck",
     title: "Protect & Certify",
     desc: "Protect your products and brand with the right certifications and approvals.",
     items: ["ISO, QMS & FSMS", "Medical device & cosmetics", "Food, import/export compliance"],
@@ -359,7 +340,7 @@ const BUSINESS_JOURNEY = [
   },
   {
     phase: "Grow",
-    icon: TrendingUp,
+    koboyo: "trendingUp",
     title: "Grow & Digitalise",
     desc: "Take your business online and grow with solar, e-commerce and marketing.",
     items: ["Solar vendor & DISCOM", "E-commerce & marketplaces", "SEO, ads & lead generation"],
@@ -424,7 +405,10 @@ function MiniServiceCard({ service, className = "" }: { service: Service; classN
       </p>
       <span className="mt-4 inline-flex items-center gap-1.5 text-[11.5px] font-bold uppercase tracking-[0.08em] text-primary">
         View details
-        <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
+        <KoboyoIcon
+          name="arrowRight"
+          className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5"
+        />
       </span>
     </Link>
   );
@@ -516,7 +500,7 @@ function Index() {
               variants={itemVariants}
               className="inline-flex items-center gap-2.5 text-[11px] font-bold tracking-[0.22em] uppercase text-warm-dark"
             >
-              <span className="w-8 h-[2px] bg-[#FFB000]" />
+              <span className="w-8 h-[2px] bg-navy" />
               Chartered Solution &middot; Business, Regulatory &amp; Digital Growth
             </m.span>
             <m.h1
@@ -524,7 +508,9 @@ function Index() {
               className="mt-6 font-display text-[36px] md:text-[52px] font-black leading-[1.1] tracking-tight text-navy"
             >
               Business. Regulatory. <br />
-              <span className="text-primary">Digital Growth.</span>
+              <span className="underline decoration-navy decoration-[6px] underline-offset-8">
+                Digital Growth.
+              </span>
             </m.h1>
             <m.p
               variants={itemVariants}
@@ -544,8 +530,8 @@ function Index() {
                   variants={itemVariants}
                   className="flex items-start gap-3 text-[13.5px] font-medium text-navy/80"
                 >
-                  <span className="mt-0.5 w-4 h-4 rounded-full bg-[#FFB000] text-navy flex items-center justify-center shrink-0">
-                    <Check className="w-3 h-3" strokeWidth={3} />
+                  <span className="mt-0.5 w-4 h-4 rounded-full bg-navy text-white flex items-center justify-center shrink-0">
+                    <KoboyoIcon name="checkmark" className="w-3 h-3" />
                   </span>
                   {item}
                 </m.li>
@@ -554,9 +540,9 @@ function Index() {
             <m.div variants={itemVariants} className="mt-11 flex flex-wrap items-center gap-4">
               <a
                 href={PHONE_HREF}
-                className="inline-flex items-center gap-2 bg-[#FFB000] text-navy font-bold text-[14px] rounded-[8px] px-7 py-3.5 shadow-lg shadow-[#FFB000]/25 hover:bg-[#e6a000] hover:shadow-[#FFB000]/35 active:scale-[0.98] transition-all"
+                className="inline-flex items-center gap-2 bg-navy text-white font-bold text-[14px] rounded-[8px] px-7 py-3.5 shadow-lg shadow-navy/25 hover:bg-navy-light hover:shadow-navy/35 active:scale-[0.98] transition-all"
               >
-                <Phone className="w-4 h-4" /> Get Started
+                <KoboyoIcon name="phone" className="w-4 h-4" /> Get Started
               </a>
               <a
                 href={WHATSAPP_HREF}
@@ -572,13 +558,16 @@ function Index() {
               className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-2.5 text-[12px] text-steel/70"
             >
               <span className="inline-flex items-center gap-1.5">
-                <Star className="w-3.5 h-3.5 text-[#FFB000] fill-current" /> Consultancy in Indore
+                <KoboyoIcon name="star" className="w-3.5 h-3.5 text-warm" fill="currentColor" />{" "}
+                Consultancy in Indore
               </span>
               <span className="inline-flex items-center gap-1.5">
-                <BadgeCheck className="w-3.5 h-3.5 text-primary" /> PAN-India service
+                <KoboyoIcon name="badgeCheck" className="w-3.5 h-3.5 text-primary" /> PAN-India
+                service
               </span>
               <span className="inline-flex items-center gap-1.5">
-                <ShieldCheck className="w-3.5 h-3.5 text-primary" /> Transparent professional fees
+                <KoboyoIcon name="shieldCheck" className="w-3.5 h-3.5 text-primary" /> Transparent
+                professional fees
               </span>
             </m.div>
           </m.div>
@@ -610,7 +599,7 @@ function Index() {
               variants={itemVariants}
               className={`text-center ${i !== 0 ? "md:border-l md:border-white/10" : ""}`}
             >
-              <div className="text-[30px] md:text-[34px] font-black text-[#FFB000] leading-none">
+              <div className="text-[30px] md:text-[34px] font-black text-white leading-none">
                 <StatCounter target={s.value} suffix={s.suffix} />
               </div>
               <div className="mt-1.5 text-[11px] uppercase tracking-[0.14em] text-white/70">
@@ -667,7 +656,7 @@ function Index() {
                 className="inline-flex items-center gap-2 rounded-full border border-navy/15 px-7 py-3 text-[13px] font-bold text-navy transition-all duration-200 hover:border-navy hover:bg-navy hover:text-white"
               >
                 Explore all {SERVICES.length}+ services
-                <ArrowRight className="h-4 w-4" />
+                <KoboyoIcon name="arrowRight" className="h-4 w-4" />
               </Link>
             </div>
           </m.div>
@@ -698,7 +687,7 @@ function Index() {
               >
                 <div className="flex items-center justify-between">
                   <div className="w-12 h-12 rounded-[10px] bg-primary/10 text-primary flex items-center justify-center transition-colors duration-200 group-hover:bg-primary group-hover:text-white">
-                    <j.icon className="w-6 h-6" />
+                    <KoboyoIcon name={j.koboyo} className="w-6 h-6" />
                   </div>
                   <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-warm-dark">
                     {j.phase}
@@ -709,7 +698,7 @@ function Index() {
                 <ul className="mt-4 space-y-2 flex-1">
                   {j.items.map((it) => (
                     <li key={it} className="flex items-start gap-2 text-[12.5px] text-navy/80">
-                      <span className="mt-1 w-1.5 h-1.5 rounded-full bg-[#FFB000] shrink-0" />
+                      <span className="mt-1 w-1.5 h-1.5 rounded-full bg-navy shrink-0" />
                       {it}
                     </li>
                   ))}
@@ -720,14 +709,14 @@ function Index() {
                     params={{ slug: "private-limited-company-registration" }}
                     className="mt-5 inline-flex items-center gap-1.5 text-[12.5px] font-bold text-primary hover:underline"
                   >
-                    {j.cta} <ArrowRight className="w-3.5 h-3.5" />
+                    {j.cta} <KoboyoIcon name="arrowRight" className="w-3.5 h-3.5" />
                   </Link>
                 ) : (
                   <Link
                     to={j.to}
                     className="mt-5 inline-flex items-center gap-1.5 text-[12.5px] font-bold text-primary hover:underline"
                   >
-                    {j.cta} <ArrowRight className="w-3.5 h-3.5" />
+                    {j.cta} <KoboyoIcon name="arrowRight" className="w-3.5 h-3.5" />
                   </Link>
                 )}
               </m.div>
@@ -782,7 +771,7 @@ function Index() {
               to="/services"
               className="inline-flex items-center gap-2 bg-navy text-white font-bold text-[14px] rounded-[8px] px-7 py-3.5 hover:bg-primary transition-colors"
             >
-              Explore Regulatory Services <ArrowRight className="w-4 h-4" />
+              Explore Regulatory Services <KoboyoIcon name="arrowRight" className="w-4 h-4" />
             </Link>
           </div>
         </div>
@@ -799,9 +788,9 @@ function Index() {
           >
             <m.span
               variants={itemVariants}
-              className="inline-flex items-center gap-2.5 text-[11px] font-bold tracking-[0.22em] uppercase text-[#FFB000]"
+              className="inline-flex items-center gap-2.5 text-[11px] font-bold tracking-[0.22em] uppercase text-white/80"
             >
-              <span className="w-8 h-[2px] bg-[#FFB000]" />
+              <span className="w-8 h-[2px] bg-white/50" />
               Solar &amp; Renewable Energy
             </m.span>
             <m.h2
@@ -830,7 +819,7 @@ function Index() {
                   key={it}
                   className="flex items-start gap-2.5 text-[13px] font-medium text-white/90"
                 >
-                  <Check className="w-4 h-4 text-[#FFB000] shrink-0 mt-0.5" strokeWidth={3} />
+                  <KoboyoIcon name="checkmark" className="w-4 h-4 text-white shrink-0 mt-0.5" />
                   {it}
                 </li>
               ))}
@@ -839,9 +828,9 @@ function Index() {
               <Link
                 to="/services/$slug"
                 params={{ slug: "solar-vendor-registration" }}
-                className="inline-flex items-center gap-2 bg-[#FFB000] text-navy font-bold text-[14px] rounded-[8px] px-7 py-3.5 shadow-lg shadow-black/20 hover:bg-[#e6a000] transition-colors"
+                className="inline-flex items-center gap-2 bg-white text-navy font-bold text-[14px] rounded-[8px] px-7 py-3.5 shadow-lg shadow-black/10 hover:bg-white/90 transition-colors"
               >
-                <Sun className="w-4 h-4" /> Solar Vendor Registration
+                <KoboyoIcon name="sun" className="w-4 h-4" /> Solar Vendor Registration
               </Link>
             </m.div>
           </m.div>
@@ -852,7 +841,7 @@ function Index() {
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="bg-navy rounded-[10px] p-8 md:p-10"
           >
-            <Sun className="w-10 h-10 text-[#FFB000]" />
+            <KoboyoIcon name="sun" className="w-10 h-10 text-white" />
             <h3 className="mt-4 text-[20px] font-black leading-snug">
               Solar business, simplified.
             </h3>
@@ -864,9 +853,9 @@ function Index() {
             <Link
               to="/services/$slug"
               params={{ slug: "solar-consultancy" }}
-              className="mt-7 inline-flex w-full items-center justify-center gap-2 bg-white text-navy font-bold text-[14px] rounded-[8px] px-6 py-3.5 hover:bg-[#FFB000] transition-colors"
+              className="mt-7 inline-flex w-full items-center justify-center gap-2 bg-white text-navy font-bold text-[14px] rounded-[8px] px-6 py-3.5 hover:bg-white/90 transition-colors"
             >
-              Explore Solar Services <ArrowRight className="w-4 h-4" />
+              Explore Solar Services <KoboyoIcon name="arrowRight" className="w-4 h-4" />
             </Link>
           </m.div>
         </div>
@@ -894,7 +883,7 @@ function Index() {
                 variants={itemVariants}
                 className="bg-[#F4F4F4] border border-[#E5E5E5] rounded-[5px] p-6 text-center hover:border-primary/30 hover:shadow-lg hover:-translate-y-0.5 transition-all"
               >
-                <w.icon className="w-7 h-7 text-primary mx-auto" />
+                <KoboyoIcon name={w.koboyo} className="w-7 h-7 text-primary mx-auto" />
                 <div className="mt-3 text-[24px] font-black text-navy leading-none">{w.big}</div>
                 <h3 className="mt-2 text-[13.5px] font-bold text-navy uppercase tracking-wide">
                   {w.title}
@@ -932,7 +921,7 @@ function Index() {
               >
                 <div className="bg-primary px-6 py-5 flex items-center gap-3">
                   <div className="w-11 h-11 rounded-full bg-white/15 flex items-center justify-center">
-                    <c.icon className="w-5 h-5 text-[#FFB000]" />
+                    <KoboyoIcon name={c.koboyo} className="w-5 h-5 text-white" />
                   </div>
                   <h3 className="text-[16px] font-bold text-white">{c.title}</h3>
                 </div>
@@ -941,7 +930,7 @@ function Index() {
                   <ul className="mt-4 space-y-2">
                     {c.points.map((p) => (
                       <li key={p} className="flex items-start gap-2 text-[13px] text-navy/80">
-                        <span className="mt-1 w-1.5 h-1.5 rounded-full bg-[#FFB000] shrink-0" />
+                        <span className="mt-1 w-1.5 h-1.5 rounded-full bg-navy shrink-0" />
                         {p}
                       </li>
                     ))}
@@ -976,7 +965,10 @@ function Index() {
                   hash={ind.slug}
                   className="group flex items-start gap-3 h-full bg-[#F4F4F4] border border-[#E5E5E5] rounded-[8px] p-4 hover:border-primary/40 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
                 >
-                  <ArrowRight className="w-4 h-4 text-warm-dark mt-0.5 shrink-0 transition-transform group-hover:translate-x-0.5" />
+                  <KoboyoIcon
+                    name="arrowRight"
+                    className="w-4 h-4 text-warm-dark mt-0.5 shrink-0 transition-transform group-hover:translate-x-0.5"
+                  />
                   <span className="text-[13px] font-bold text-navy group-hover:text-primary transition-colors leading-snug">
                     {ind.label}
                   </span>
@@ -989,7 +981,7 @@ function Index() {
               to="/industries"
               className="inline-flex items-center gap-2 bg-navy text-white font-bold text-[14px] rounded-[8px] px-7 py-3.5 hover:bg-primary transition-colors"
             >
-              View All Industries <ArrowRight className="w-4 h-4" />
+              View All Industries <KoboyoIcon name="arrowRight" className="w-4 h-4" />
             </Link>
           </div>
         </div>
@@ -1071,8 +1063,8 @@ function Index() {
                 "PAN-India service \u2014 100% online, doorstep delivery",
               ].map((point) => (
                 <li key={point} className="flex items-start gap-3 text-[15px] text-steel">
-                  <span className="mt-0.5 w-5 h-5 rounded-full bg-[#FFB000] text-navy flex items-center justify-center shrink-0">
-                    <Check className="w-3 h-3" strokeWidth={3} />
+                  <span className="mt-0.5 w-5 h-5 rounded-full bg-navy text-white flex items-center justify-center shrink-0">
+                    <KoboyoIcon name="checkmark" className="w-3 h-3" />
                   </span>
                   {point}
                 </li>
@@ -1081,15 +1073,15 @@ function Index() {
             <m.div variants={itemVariants} className="mt-9 flex flex-wrap gap-4">
               <a
                 href={PHONE_HREF}
-                className="inline-flex items-center gap-2 bg-primary text-white font-bold text-[14px] rounded-[8px] px-7 py-3.5 hover:bg-primary-70 transition-colors"
+                className="inline-flex items-center gap-2 bg-warm text-navy-dark font-bold text-[14px] rounded-[8px] px-7 py-3.5 hover:bg-warm-dark transition-colors"
               >
-                <Phone className="w-4 h-4" /> Call {PHONE}
+                <KoboyoIcon name="phone" className="w-4 h-4" /> Call {PHONE}
               </a>
               <a
                 href={`mailto:${EMAIL}`}
                 className="inline-flex items-center gap-2 bg-navy text-white font-bold text-[14px] rounded-[8px] px-7 py-3.5 hover:bg-navy-light transition-colors"
               >
-                <Mail className="w-4 h-4" /> Email Us
+                <KoboyoIcon name="mail" className="w-4 h-4" /> Email Us
               </a>
             </m.div>
           </m.div>
@@ -1107,7 +1099,7 @@ function Index() {
               viewport={{ once: true }}
               transition={{ type: "spring", stiffness: 200, damping: 14, delay: 0.15 }}
             >
-              <BadgeCheck className="w-12 h-12 text-[#FFB000]" />
+              <KoboyoIcon name="badgeCheck" className="w-12 h-12 text-white" />
             </m.div>
             <h3 className="mt-5 text-[22px] font-black leading-snug">
               How we work with every client
@@ -1124,19 +1116,16 @@ function Index() {
                 "End-to-end documentation assistance",
               ].map((line) => (
                 <li key={line} className="flex items-center gap-2.5 text-[13.5px] font-medium">
-                  <span className="w-4 h-4 rounded-full bg-[#FFB000] text-navy flex items-center justify-center">
-                    <Check className="w-3 h-3" strokeWidth={3} />
+                  <span className="w-4 h-4 rounded-full bg-white/20 text-white flex items-center justify-center">
+                    <KoboyoIcon name="checkmark" className="w-3 h-3" />
                   </span>
                   {line}
                 </li>
               ))}
             </ul>
             <div className="mt-8">
-              <EmberButton
-                to="/contact-us"
-                className="!bg-[#FDA700] !text-[#222] hover:!bg-[#e69900]"
-              >
-                Get Started Now <ArrowRight className="w-4 h-4" />
+              <EmberButton to="/contact-us">
+                Get Started Now <KoboyoIcon name="arrowRight" className="w-4 h-4" />
               </EmberButton>
             </div>
           </m.div>
@@ -1155,7 +1144,7 @@ function Index() {
               className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center"
             >
               <m.div variants={itemVariants}>
-                <div className="flex items-center justify-center gap-1 text-[#FFB000] mb-2">
+                <div className="flex items-center justify-center gap-1 text-white mb-2">
                   {Array.from({ length: 5 }).map((_, i) => (
                     <m.span
                       key={i}
@@ -1164,7 +1153,7 @@ function Index() {
                       viewport={{ once: true }}
                       transition={{ type: "spring", stiffness: 260, damping: 16, delay: i * 0.08 }}
                     >
-                      <Star className="w-5 h-5 fill-current" />
+                      <KoboyoIcon name="star" className="w-5 h-5" fill="currentColor" />
                     </m.span>
                   ))}
                 </div>
@@ -1174,7 +1163,7 @@ function Index() {
                 </div>
               </m.div>
               <m.div variants={itemVariants} className="md:border-l md:border-r md:border-white/15">
-                <div className="text-[28px] font-black text-[#FFB000] leading-none mt-1">
+                <div className="text-[28px] font-black text-white leading-none mt-1">
                   {SERVICES.length}+
                 </div>
                 <div className="text-[20px] font-black mt-2">Services Offered</div>
@@ -1183,8 +1172,8 @@ function Index() {
                 </div>
               </m.div>
               <m.div variants={itemVariants}>
-                <div className="flex items-center justify-center gap-1 text-[#FFB000] mb-2">
-                  <BadgeCheck className="w-7 h-7" />
+                <div className="flex items-center justify-center gap-1 text-white mb-2">
+                  <KoboyoIcon name="badgeCheck" className="w-7 h-7" />
                 </div>
                 <div className="text-[20px] font-black">PAN-India Service</div>
                 <div className="text-[12.5px] text-white/70 mt-1">Industry-specific solutions</div>

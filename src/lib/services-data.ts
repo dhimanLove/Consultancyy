@@ -3062,6 +3062,99 @@ const _SERVICES: Service[] = [
     category: "solar",
     order: 6,
   },
+  // 📊 Accounting Software Services
+  {
+    slug: "tally-accounting",
+    title: "Tally Accounting",
+    descriptor: "Complete Tally-based accounting, bookkeeping and compliance for businesses.",
+    summary:
+      "Expert Tally-based accounting services including setup, migration, ongoing bookkeeping, GST-ready invoicing, and financial reporting — all managed by qualified professionals on your Tally platform.",
+    scope: [
+      "Tally software setup & configuration",
+      "Chart of accounts design in Tally",
+      "Day-to-day transaction recording",
+      "GST-ready invoicing & return data",
+      "Bank reconciliation & MIS reports",
+      "Tally to cloud migration support",
+    ],
+    related: ["bookkeeping", "accounting-system-setup", "gst-return-filing"],
+    category: "accounting",
+    order: 8,
+  },
+  {
+    slug: "zoho-books-accounting",
+    title: "Zoho Books Accounting",
+    descriptor: "Professional Zoho Books accounting, setup and ongoing bookkeeping by CAs.",
+    summary:
+      "Certified Zoho Books accounting services — migration from Tally or other platforms, chart of accounts setup, bank reconciliation, GST-ready invoicing, and monthly bookkeeping directly on your Zoho Books account.",
+    scope: [
+      "Zoho Books setup & configuration",
+      "Migration from Tally / other platforms",
+      "Chart of accounts design",
+      "Bank feed integration & reconciliation",
+      "GST-ready invoicing & reporting",
+      "Monthly bookkeeping & MIS reports",
+    ],
+    related: ["bookkeeping", "tally-accounting", "gst-return-filing"],
+    category: "accounting",
+    order: 9,
+  },
+  {
+    slug: "xero-accounting",
+    title: "Xero Accounting",
+    descriptor: "Cloud-based Xero accounting setup, migration and ongoing bookkeeping.",
+    summary:
+      "Xero accounting services including platform setup, migration from legacy systems, bank reconciliation, GST compliance, and real-time financial reporting for businesses that prefer a modern cloud-first approach.",
+    scope: [
+      "Xero setup & chart of accounts",
+      "Migration from Tally / other systems",
+      "Bank feed connection & reconciliation",
+      "Invoicing & accounts receivable",
+      "GST & tax-ready reporting",
+      "Monthly bookkeeping & MIS",
+    ],
+    related: ["bookkeeping", "zoho-books-accounting", "accounting-system-setup"],
+    category: "accounting",
+    order: 10,
+  },
+  // 💰 Payroll Services
+  {
+    slug: "payroll-processing",
+    title: "Payroll Processing",
+    descriptor: "End-to-end payroll processing, salary computation and compliance management.",
+    summary:
+      "Complete payroll processing services including salary computation, payslip generation, PF/ESI deductions, TDS on salary, and statutory compliance — ensuring timely and accurate payroll for your team.",
+    scope: [
+      "Monthly salary computation",
+      "Payslip generation & distribution",
+      "PF & ESI deduction management",
+      "TDS on salary computation",
+      "Gratuity & bonus calculations",
+      "Payroll registers & MIS reports",
+    ],
+    related: ["payroll-accounting", "epfo-registration", "esic-registration"],
+    category: "accounting",
+    order: 11,
+  },
+  {
+    slug: "gratuity-compliance",
+    title: "Gratuity Compliance",
+    descriptor:
+      "Gratuity calculation, compliance and payment management under the Payment of Gratuity Act.",
+    summary:
+      "End-to-end gratuity compliance including eligibility assessment, calculation, record-keeping, and timely payment management under the Payment of Gratuity Act, 1972 — ensuring your business meets all statutory obligations.",
+    scope: [
+      "Gratuity eligibility assessment",
+      "Gratuity fund calculation",
+      "Record-keeping & documentation",
+      "Payment processing & compliance",
+      "Trust setup advisory (if applicable)",
+      "Annual compliance review",
+    ],
+    related: ["payroll-accounting", "payroll-processing", "epfo-registration"],
+    category: "accounting",
+    order: 12,
+  },
 ];
 
 export const SERVICE_CATEGORIES: { id: string; name: string; icon: string }[] = [

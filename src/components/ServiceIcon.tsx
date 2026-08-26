@@ -89,6 +89,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { SERVICE_ICONS } from "@/lib/services-data";
+import { KoboyoIcon, SERVICE_KOBOYO_ICONS } from "@/components/KoboyoIcon";
 
 const ICON_MAP: Record<string, LucideIcon> = {
   Activity,
@@ -186,6 +187,10 @@ export function getServiceIcon(slug: string): LucideIcon {
 }
 
 export function ServiceIcon({ slug, className }: { slug: string; className?: string }) {
+  const koboyoName = SERVICE_KOBOYO_ICONS[slug];
+  if (koboyoName) {
+    return <KoboyoIcon name={koboyoName} className={className} />;
+  }
   const Icon = getServiceIcon(slug);
   return <Icon className={className} />;
 }

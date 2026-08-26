@@ -202,7 +202,7 @@ function ResourcesPage() {
                 <ul className="mt-5 space-y-2.5 flex-1">
                   {sec.items.map((it) => (
                     <li key={it} className="flex items-start gap-2 text-[13.5px] text-navy/85">
-                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#FFB000] shrink-0" />
+                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
                       {it}
                     </li>
                   ))}

@@ -248,7 +248,7 @@ function IndustriesPage() {
               "End-to-end documentation, filing and follow-up",
             ].map((point) => (
               <div key={point} className="flex items-start gap-3">
-                <span className="mt-0.5 w-5 h-5 rounded-full bg-[#FFB000] text-navy flex items-center justify-center shrink-0">
+                <span className="mt-0.5 w-5 h-5 rounded-full bg-primary text-white flex items-center justify-center shrink-0">
                   <Check className="w-3 h-3" strokeWidth={3} />
                 </span>
                 <span className="text-[15px] text-navy/85">{point}</span>

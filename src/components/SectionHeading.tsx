@@ -6,9 +6,10 @@ interface Props {
   heading: string;
   center?: boolean;
   subtext?: string;
+  light?: boolean;
 }
 
-export function SectionHeading({ eyebrow, heading, center, subtext }: Props) {
+export function SectionHeading({ eyebrow, heading, center, subtext, light }: Props) {
   const wrapRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -43,23 +44,28 @@ export function SectionHeading({ eyebrow, heading, center, subtext }: Props) {
   return (
     <div ref={wrapRef} className={center ? "text-center" : ""}>
       {eyebrow && (
-        <p className="eyebrow flex items-center gap-2.5 mb-3">
-          {!center && <span aria-hidden className="block h-px w-6 bg-warm-dark/50" />}
+        <p className={`eyebrow flex items-center gap-2.5 mb-3 ${light ? "!text-warm" : ""}`}>
+          {!center && (
+            <span
+              aria-hidden
+              className={`block h-px w-6 ${light ? "bg-warm/50" : "bg-warm-dark/50"}`}
+            />
+          )}
           {eyebrow}
         </p>
       )}
-      <h2 className="font-display text-[26px] md:text-[32px] font-bold uppercase tracking-[0.04em] text-navy leading-[1.22]">
+      <h2
+        className={`font-display text-[26px] md:text-[32px] font-bold uppercase tracking-[0.04em] leading-[1.22] ${light ? "text-white" : "text-navy"}`}
+      >
         {heading}
       </h2>
       <span
         aria-hidden
-        className={`block h-[3px] w-9 bg-[#FFD712] mt-4 rounded-full ${center ? "mx-auto" : ""}`}
+        className={`block h-[3px] w-9 mt-4 rounded-full ${light ? "bg-warm" : "bg-warm-dark"} ${center ? "mx-auto" : ""}`}
       />
       {subtext && (
         <p
-          className={`text-[16px] text-steel mt-5 max-w-[620px] leading-relaxed ${
-            center ? "mx-auto" : ""
-          }`}
+          className={`text-[16px] mt-5 max-w-[620px] leading-relaxed ${light ? "text-white/70" : "text-steel"} ${center ? "mx-auto" : ""}`}
         >
           {subtext}
         </p>

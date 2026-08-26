@@ -1,8 +1,9 @@
-import { memo, useState, type ComponentProps, type ComponentType, type ReactNode } from "react";
+import { memo, useState, type ComponentProps, type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
 import { AnimatePresence, m, useScroll, useMotionValueEvent } from "framer-motion";
-import { ArrowUp, Phone, Mail, MapPin } from "lucide-react";
+import { KoboyoIcon } from "./KoboyoIcon";
 import { WhatsAppIcon } from "./WhatsAppIcon";
+import { GoogleReviewsFooter } from "./GoogleReviews";
 import { PHONE, PHONE_HREF, EMAIL, ADDRESS, WHATSAPP_HREF } from "@/lib/nav";
 
 const POPULAR_SERVICES = [
@@ -50,8 +51,8 @@ export const Footer = memo(function Footer() {
           </div>
 
           <ul className="grid gap-3 sm:grid-cols-2 sm:gap-x-10 lg:max-w-md">
-            <ContactItem icon={Phone} href={PHONE_HREF} text={PHONE} />
-            <ContactItem icon={Mail} href={`mailto:${EMAIL}`} text={EMAIL} />
+            <ContactItem koboyo="phone" href={PHONE_HREF} text={PHONE} />
+            <ContactItem koboyo="mail" href={`mailto:${EMAIL}`} text={EMAIL} />
             <li>
               <a
                 href={WHATSAPP_HREF}
@@ -61,7 +62,10 @@ export const Footer = memo(function Footer() {
                 <span className="text-[13px] leading-relaxed">WhatsApp {PHONE}</span>
               </a>
             </li>
-            <ContactItem icon={MapPin} text="Indore, Madhya Pradesh" />
+            <ContactItem koboyo="landMark" text="Indore, Madhya Pradesh" />
+            <li className="pt-1">
+              <GoogleReviewsFooter />
+            </li>
           </ul>
         </div>
 
@@ -103,7 +107,7 @@ export const Footer = memo(function Footer() {
 
         {/* Bottom Bar */}
         <div className="mt-10 flex flex-col items-center justify-between gap-3 border-t border-white/[0.08] pt-6 text-[12px] text-white/35 md:flex-row">
-          <p>© {year} Chartered Solution Pvt. Ltd. All rights reserved.</p>
+          <p>© {year} Chartered Solution. All rights reserved.</p>
           <div className="flex items-center gap-6">
             <a href="/privacy-policy" className="transition-colors hover:text-white/70">
               Privacy Policy
@@ -123,10 +127,10 @@ export const Footer = memo(function Footer() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.9 }}
             onClick={scrollToTop}
-            className="fixed bottom-24 right-6 z-50 flex h-11 w-11 items-center justify-center rounded-full bg-[#FFB000] text-navy shadow-lg shadow-[#FFB000]/20 transition-colors hover:bg-[#FFC133] active:scale-90"
+            className="fixed bottom-24 right-6 z-50 flex h-11 w-11 items-center justify-center rounded-full bg-primary text-white shadow-lg shadow-primary/20 transition-colors hover:bg-primary-dark active:scale-90"
             aria-label="Scroll to top"
           >
-            <ArrowUp className="h-5 w-5 stroke-[2.5]" />
+            <KoboyoIcon name="rocket" className="h-5 w-5" />
           </m.button>
         )}
       </AnimatePresence>
@@ -167,18 +171,10 @@ function FooterLink({
   );
 }
 
-function ContactItem({
-  icon: Icon,
-  href,
-  text,
-}: {
-  icon: ComponentType<{ className?: string }>;
-  href?: string;
-  text: string;
-}) {
+function ContactItem({ koboyo, href, text }: { koboyo: string; href?: string; text: string }) {
   const content = (
     <>
-      <Icon className="mt-0.5 h-4 w-4 shrink-0 text-[#FFB000]" />
+      <KoboyoIcon name={koboyo} className="mt-0.5 h-4 w-4 shrink-0 text-primary-light" />
       <span className="text-[13px] leading-relaxed">{text}</span>
     </>
   );
