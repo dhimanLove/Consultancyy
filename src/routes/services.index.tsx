@@ -160,7 +160,7 @@ function ServicesPage() {
                 <h2 className="cat-heading text-[20px] font-bold text-navy tracking-tight">
                   {category.name}
                 </h2>
-                <span className="cat-badge text-[12px] text-steel bg-fog rounded-[4px] px-2 py-0.5">
+                <span className="cat-badge text-[12px] text-warm-dark bg-warm/10 rounded-[4px] px-2 py-0.5">
                   {services.length} services
                 </span>
               </div>

@@ -11,9 +11,13 @@ export function TrustPillar({ number, title, body }: Props) {
   return (
     <m.div
       {...cardChild}
-      className="bg-white border border-border rounded-[5px] p-8 group hover:border-primary/20 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300"
+      className="bg-white border border-border rounded-[5px] p-8 group relative overflow-hidden hover:border-warm/40 hover:shadow-lg hover:shadow-warm/10 transition-all duration-300"
     >
-      <div className="text-[48px] font-bold text-warm/30 leading-none select-none">{number}</div>
+      <span
+        aria-hidden
+        className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-warm to-warm/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+      />
+      <div className="text-[48px] font-bold text-warm/30 leading-none select-none group-hover:text-warm/50 transition-colors">{number}</div>
       <h3 className="text-[20px] font-bold text-navy mt-2 group-hover:text-primary transition-colors">
         {title}
       </h3>

@@ -9,8 +9,8 @@ import {
   REGULATORY_SERVICES,
   INDUSTRIES,
   RESOURCES,
-  TAX_GST_GROUP,
-  CORPORATE_ACCOUNTING_GROUP,
+  TAX_GST_GROUPS,
+  ACCOUNTING_PAYROLL_GROUPS,
 } from "@/lib/nav";
 import { KoboyoIcon } from "@/components/KoboyoIcon";
 import logoImg from "../../assets/logo-96.webp";
@@ -122,7 +122,7 @@ export function Navbar() {
               <div className="grid grid-cols-2 gap-x-6 gap-y-4">
                 {SERVICES_GROUPS.map((g) => (
                   <div key={g.id} className={g.id === "financial-advisory" ? "col-span-2" : ""}>
-                    <div className="text-[11px] font-bold uppercase text-primary mb-2 px-3">
+                    <div className="text-[11px] font-bold uppercase text-warm-dark mb-2 px-3">
                       {g.label}
                     </div>
                     {g.links.map((l) => (
@@ -144,53 +144,63 @@ export function Navbar() {
               title="Tax & GST"
               align="center"
               desc="Returns, filings & tax planning"
-              active={TAX_GST_GROUP.links.some((l) => pathname === `/services/${l.slug}`)}
+              active={TAX_GST_GROUPS.some((g) =>
+                g.links.some((l) => pathname === `/services/${l.slug}`),
+              )}
               openId={openId}
               setOpenId={setOpenId}
-              width="w-[420px]"
-              action={{ to: "/services#tax-gst", label: "View All" }}
+              width="w-[640px]"
+              action={{ to: "/services#gst", label: "View All" }}
             >
-              <div>
-                <div className="text-[11px] font-bold uppercase text-primary mb-2 px-3">
-                  {TAX_GST_GROUP.label}
-                </div>
-                {TAX_GST_GROUP.links.map((l) => (
-                  <DropdownLink
-                    key={l.slug}
-                    to={`/services/${l.slug}`}
-                    onClick={() => setOpenId(null)}
-                  >
-                    {l.label}
-                  </DropdownLink>
+              <div className="grid grid-cols-2 gap-x-6 gap-y-4">
+                {TAX_GST_GROUPS.map((g) => (
+                  <div key={g.id}>
+                    <div className="text-[11px] font-bold uppercase text-warm-dark mb-2 px-3">
+                      {g.label}
+                    </div>
+                    {g.links.map((l) => (
+                      <DropdownLink
+                        key={l.slug}
+                        to={`/services/${l.slug}`}
+                        onClick={() => setOpenId(null)}
+                      >
+                        {l.label}
+                      </DropdownLink>
+                    ))}
+                  </div>
                 ))}
               </div>
             </Dropdown>
 
             <Dropdown
-              id="corporate-accounting"
-              title="Corporate & Accounting"
+              id="accounting-payroll"
+              title="Accounting & Payroll"
               align="center"
-              desc="Books, payroll & compliance"
-              active={CORPORATE_ACCOUNTING_GROUP.links.some(
-                (l) => pathname === `/services/${l.slug}`,
+              desc="Books, payroll & statutory dues"
+              active={ACCOUNTING_PAYROLL_GROUPS.some((g) =>
+                g.links.some((l) => pathname === `/services/${l.slug}`),
               )}
               openId={openId}
               setOpenId={setOpenId}
-              width="w-[420px]"
+              width="w-[780px]"
               action={{ to: "/services#accounting", label: "View All" }}
             >
-              <div>
-                <div className="text-[11px] font-bold uppercase text-primary mb-2 px-3">
-                  {CORPORATE_ACCOUNTING_GROUP.label}
-                </div>
-                {CORPORATE_ACCOUNTING_GROUP.links.map((l) => (
-                  <DropdownLink
-                    key={l.slug}
-                    to={`/services/${l.slug}`}
-                    onClick={() => setOpenId(null)}
-                  >
-                    {l.label}
-                  </DropdownLink>
+              <div className="grid grid-cols-3 gap-x-6 gap-y-4">
+                {ACCOUNTING_PAYROLL_GROUPS.map((g) => (
+                  <div key={g.id}>
+                    <div className="text-[11px] font-bold uppercase text-warm-dark mb-2 px-3">
+                      {g.label}
+                    </div>
+                    {g.links.map((l) => (
+                      <DropdownLink
+                        key={l.slug}
+                        to={`/services/${l.slug}`}
+                        onClick={() => setOpenId(null)}
+                      >
+                        {l.label}
+                      </DropdownLink>
+                    ))}
+                  </div>
                 ))}
               </div>
             </Dropdown>
@@ -209,7 +219,7 @@ export function Navbar() {
               width="w-[500px]"
             >
               <div className="mb-3">
-                <div className="text-[11px] font-bold uppercase text-primary mb-2 px-3">
+                <div className="text-[11px] font-bold uppercase text-warm-dark mb-2 px-3">
                   Regulatory & Compliance
                 </div>
                 {REGULATORY_SERVICES.map((l) => (
@@ -223,7 +233,7 @@ export function Navbar() {
                 ))}
               </div>
               <div className="border-t border-slate-100 pt-3 mt-1">
-                <div className="text-[11px] font-bold uppercase text-primary mb-2 px-3">
+                <div className="text-[11px] font-bold uppercase text-warm-dark mb-2 px-3">
                   Industries
                 </div>
                 {INDUSTRIES.map((i) => (
@@ -293,11 +303,11 @@ export function Navbar() {
               <MobileLink to="/services" onClick={closeMenu}>
                 Business Services
               </MobileLink>
-              <MobileLink to="/services" hash="tax-gst" onClick={closeMenu}>
+              <MobileLink to="/services" hash="gst" onClick={closeMenu}>
                 Tax & GST
               </MobileLink>
               <MobileLink to="/services" hash="accounting" onClick={closeMenu}>
-                Corporate & Accounting
+                Accounting & Payroll
               </MobileLink>
               <MobileLink to="/services" onClick={closeMenu}>
                 Regulatory & Compliance
@@ -412,6 +422,7 @@ function Dropdown({
             className={`absolute ${aligns[align]} top-[calc(100%+4px)] z-50 ${width}`}
           >
             <div className="bg-white rounded-2xl border border-slate-200 shadow-2xl overflow-hidden flex flex-col max-h-[75vh]">
+              <div className="h-[3px] bg-gradient-to-r from-warm to-warm/40 shrink-0" />
               <div className="relative bg-gradient-to-br from-navy via-navy-light to-navy-dark px-6 py-4 flex justify-between items-center shrink-0 overflow-hidden">
                 <div className="absolute -top-6 -right-6 w-24 h-24 rounded-full bg-white/10 blur-xl pointer-events-none" />
                 <div className="relative">

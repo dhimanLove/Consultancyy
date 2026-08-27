@@ -390,10 +390,14 @@ function MiniServiceCard({ service, className = "" }: { service: Service; classN
     <Link
       to="/services/$slug"
       params={{ slug: service.slug }}
-      className={`group flex h-full flex-col rounded-[10px] border border-[#E5E5E5] bg-white p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-lg hover:shadow-navy/[0.06] ${className}`}
+      className={`group relative flex h-full flex-col rounded-[10px] border border-[#E5E5E5] bg-white p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-warm/50 hover:shadow-lg hover:shadow-warm/[0.08] ${className}`}
     >
+      <span
+        aria-hidden
+        className="absolute inset-x-5 top-0 h-[2.5px] rounded-b-md bg-gradient-to-r from-warm to-warm/40 opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+      />
       <div className="flex items-center gap-3">
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[8px] bg-primary/[0.07] text-primary transition-colors duration-200 group-hover:bg-primary group-hover:text-white">
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[8px] bg-warm/10 text-warm-dark transition-colors duration-200 group-hover:bg-warm group-hover:text-navy-dark">
           <ServiceIcon slug={service.slug} className="h-5 w-5" />
         </div>
         <h3 className="text-[14px] font-bold leading-snug text-navy transition-colors duration-200 group-hover:text-primary">
@@ -403,11 +407,11 @@ function MiniServiceCard({ service, className = "" }: { service: Service; classN
       <p className="mt-3 line-clamp-2 text-[12.5px] leading-relaxed text-steel">
         {service.descriptor}
       </p>
-      <span className="mt-4 inline-flex items-center gap-1.5 text-[11.5px] font-bold uppercase tracking-[0.08em] text-primary">
+      <span className="mt-4 inline-flex items-center gap-1.5 text-[11.5px] font-bold uppercase tracking-[0.08em] text-warm-dark">
         View details
         <KoboyoIcon
           name="arrowRight"
-          className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5"
+          className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-warm"
         />
       </span>
     </Link>
@@ -508,7 +512,7 @@ function Index() {
               className="mt-6 font-display text-[36px] md:text-[52px] font-black leading-[1.1] tracking-tight text-navy"
             >
               Business. Regulatory. <br />
-              <span className="underline decoration-navy decoration-[6px] underline-offset-8">
+              <span className="underline decoration-warm decoration-[6px] underline-offset-8">
                 Digital Growth.
               </span>
             </m.h1>
@@ -530,7 +534,7 @@ function Index() {
                   variants={itemVariants}
                   className="flex items-start gap-3 text-[13.5px] font-medium text-navy/80"
                 >
-                  <span className="mt-0.5 w-4 h-4 rounded-full bg-navy text-white flex items-center justify-center shrink-0">
+                  <span className="mt-0.5 w-4 h-4 rounded-full bg-warm text-navy-dark flex items-center justify-center shrink-0">
                     <KoboyoIcon name="checkmark" className="w-3 h-3" />
                   </span>
                   {item}
@@ -599,7 +603,7 @@ function Index() {
               variants={itemVariants}
               className={`text-center ${i !== 0 ? "md:border-l md:border-white/10" : ""}`}
             >
-              <div className="text-[30px] md:text-[34px] font-black text-white leading-none">
+              <div className="text-[30px] md:text-[34px] font-black text-warm leading-none">
                 <StatCounter target={s.value} suffix={s.suffix} />
               </div>
               <div className="mt-1.5 text-[11px] uppercase tracking-[0.14em] text-white/70">
@@ -628,8 +632,8 @@ function Index() {
                 onClick={() => setActiveCat(cat.id)}
                 className={`shrink-0 rounded-full border px-4 py-2 text-[12.5px] font-semibold transition-colors duration-150 ${
                   activeCat === cat.id
-                    ? "border-primary bg-primary/[0.06] text-primary"
-                    : "border-[#E5E5E5] bg-white text-navy/70 hover:border-primary/40 hover:text-primary"
+                    ? "border-warm bg-warm/10 text-warm-dark"
+                    : "border-[#E5E5E5] bg-white text-navy/70 hover:border-warm/50 hover:text-warm-dark"
                 }`}
               >
                 {cat.label}
@@ -683,10 +687,10 @@ function Index() {
               <m.div
                 key={j.phase}
                 variants={itemVariants}
-                className="group bg-white border border-[#E5E5E5] rounded-[10px] p-6 flex flex-col hover:shadow-xl hover:shadow-navy/10 hover:-translate-y-1 transition-all duration-200"
+                className="group bg-white border border-[#E5E5E5] rounded-[10px] p-6 flex flex-col hover:shadow-xl hover:shadow-warm/10 hover:-translate-y-1 hover:border-warm/50 transition-all duration-200"
               >
                 <div className="flex items-center justify-between">
-                  <div className="w-12 h-12 rounded-[10px] bg-primary/10 text-primary flex items-center justify-center transition-colors duration-200 group-hover:bg-primary group-hover:text-white">
+                  <div className="w-12 h-12 rounded-[10px] bg-warm/10 text-warm-dark flex items-center justify-center transition-colors duration-200 group-hover:bg-warm group-hover:text-navy-dark">
                     <KoboyoIcon name={j.koboyo} className="w-6 h-6" />
                   </div>
                   <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-warm-dark">
@@ -698,7 +702,7 @@ function Index() {
                 <ul className="mt-4 space-y-2 flex-1">
                   {j.items.map((it) => (
                     <li key={it} className="flex items-start gap-2 text-[12.5px] text-navy/80">
-                      <span className="mt-1 w-1.5 h-1.5 rounded-full bg-navy shrink-0" />
+                      <span className="mt-1 w-1.5 h-1.5 rounded-full bg-warm shrink-0" />
                       {it}
                     </li>
                   ))}
@@ -748,9 +752,9 @@ function Index() {
                   <Link
                     to="/services/$slug"
                     params={{ slug: r.slug }}
-                    className="group flex items-start gap-4 h-full bg-[#F4F4F4] border border-[#E5E5E5] rounded-[8px] p-5 hover:border-primary/40 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
+                    className="group flex items-start gap-4 h-full bg-[#F4F4F4] border border-[#E5E5E5] rounded-[8px] p-5 hover:border-warm/50 hover:shadow-lg hover:shadow-warm/10 hover:-translate-y-0.5 transition-all duration-200"
                   >
-                    <div className="shrink-0 w-11 h-11 rounded-[8px] bg-primary/10 text-primary flex items-center justify-center transition-colors duration-200 group-hover:bg-primary group-hover:text-white">
+                    <div className="shrink-0 w-11 h-11 rounded-[8px] bg-warm/10 text-warm-dark flex items-center justify-center transition-colors duration-200 group-hover:bg-warm group-hover:text-navy-dark">
                       <ServiceIcon slug={r.slug} className="w-5.5 h-5.5" />
                     </div>
                     <div>
@@ -819,7 +823,7 @@ function Index() {
                   key={it}
                   className="flex items-start gap-2.5 text-[13px] font-medium text-white/90"
                 >
-                  <KoboyoIcon name="checkmark" className="w-4 h-4 text-white shrink-0 mt-0.5" />
+                  <KoboyoIcon name="checkmark" className="w-4 h-4 text-warm shrink-0 mt-0.5" />
                   {it}
                 </li>
               ))}
@@ -881,9 +885,9 @@ function Index() {
               <m.div
                 key={w.title}
                 variants={itemVariants}
-                className="bg-[#F4F4F4] border border-[#E5E5E5] rounded-[5px] p-6 text-center hover:border-primary/30 hover:shadow-lg hover:-translate-y-0.5 transition-all"
+                className="bg-[#F4F4F4] border border-[#E5E5E5] rounded-[5px] p-6 text-center hover:border-warm/50 hover:shadow-lg hover:shadow-warm/10 hover:-translate-y-0.5 transition-all"
               >
-                <KoboyoIcon name={w.koboyo} className="w-7 h-7 text-primary mx-auto" />
+                <KoboyoIcon name={w.koboyo} className="w-7 h-7 text-warm-dark mx-auto" />
                 <div className="mt-3 text-[24px] font-black text-navy leading-none">{w.big}</div>
                 <h3 className="mt-2 text-[13.5px] font-bold text-navy uppercase tracking-wide">
                   {w.title}
@@ -919,9 +923,9 @@ function Index() {
                 transition={{ type: "spring", stiffness: 300, damping: 22 }}
                 className="bg-white border border-[#E5E5E5] rounded-[5px] overflow-hidden hover:shadow-lg hover:border-primary/20 transition-shadow"
               >
-                <div className="bg-primary px-6 py-5 flex items-center gap-3">
-                  <div className="w-11 h-11 rounded-full bg-white/15 flex items-center justify-center">
-                    <KoboyoIcon name={c.koboyo} className="w-5 h-5 text-white" />
+                <div className="bg-primary px-6 py-5 flex items-center gap-3 border-b-[3px] border-warm">
+                  <div className="w-11 h-11 rounded-full bg-warm/20 flex items-center justify-center">
+                    <KoboyoIcon name={c.koboyo} className="w-5 h-5 text-warm" />
                   </div>
                   <h3 className="text-[16px] font-bold text-white">{c.title}</h3>
                 </div>
@@ -930,7 +934,7 @@ function Index() {
                   <ul className="mt-4 space-y-2">
                     {c.points.map((p) => (
                       <li key={p} className="flex items-start gap-2 text-[13px] text-navy/80">
-                        <span className="mt-1 w-1.5 h-1.5 rounded-full bg-navy shrink-0" />
+                        <span className="mt-1 w-1.5 h-1.5 rounded-full bg-warm shrink-0" />
                         {p}
                       </li>
                     ))}
@@ -1018,7 +1022,7 @@ function Index() {
                   >
                     <span className="text-[14.5px] font-bold text-navy">{f.q}</span>
                     <span
-                      className={`shrink-0 w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center transition-transform ${open ? "rotate-45" : ""}`}
+                      className={`shrink-0 w-6 h-6 rounded-full bg-warm text-navy-dark flex items-center justify-center transition-transform ${open ? "rotate-45" : ""}`}
                     >
                       <span className="text-[16px] font-bold leading-none">+</span>
                     </span>
@@ -1053,7 +1057,7 @@ function Index() {
               className="text-[30px] md:text-[38px] font-black text-navy leading-[1.1] tracking-tight"
             >
               Registrations, compliance and{" "}
-              <span className="text-primary">regulatory clarity.</span>
+              <span className="text-warm-dark">regulatory clarity.</span>
             </m.h2>
             <m.ul variants={itemVariants} className="mt-7 space-y-4">
               {[
@@ -1063,7 +1067,7 @@ function Index() {
                 "PAN-India service \u2014 100% online, doorstep delivery",
               ].map((point) => (
                 <li key={point} className="flex items-start gap-3 text-[15px] text-steel">
-                  <span className="mt-0.5 w-5 h-5 rounded-full bg-navy text-white flex items-center justify-center shrink-0">
+                  <span className="mt-0.5 w-5 h-5 rounded-full bg-warm text-navy-dark flex items-center justify-center shrink-0">
                     <KoboyoIcon name="checkmark" className="w-3 h-3" />
                   </span>
                   {point}
@@ -1144,8 +1148,8 @@ function Index() {
               className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center"
             >
               <m.div variants={itemVariants}>
-                <div className="flex items-center justify-center gap-1 text-white mb-2">
-                  {Array.from({ length: 5 }).map((_, i) => (
+                <div className="flex items-center justify-center gap-1 text-warm mb-2">
+                    {Array.from({ length: 5 }).map((_, i) => (
                     <m.span
                       key={i}
                       initial={{ opacity: 0, scale: 0, rotate: -40 }}

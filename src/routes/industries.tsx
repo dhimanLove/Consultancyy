@@ -190,7 +190,7 @@ function IndustriesPage() {
                 >
                   <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                     <div className="flex items-center gap-3">
-                      <div className="w-11 h-11 rounded-[10px] bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                      <div className="w-11 h-11 rounded-[10px] bg-warm/10 text-warm-dark flex items-center justify-center shrink-0">
                         <Building2 className="w-5 h-5" />
                       </div>
                       <div>
@@ -218,7 +218,7 @@ function IndustriesPage() {
                             key={slug}
                             to="/services/$slug"
                             params={{ slug }}
-                            className="inline-flex items-center gap-1.5 bg-[#F4F4F4] border border-[#E5E5E5] rounded-full px-4 py-1.5 text-[12.5px] font-medium text-navy hover:border-primary/40 hover:text-primary transition-colors"
+                            className="inline-flex items-center gap-1.5 bg-[#F4F4F4] border border-[#E5E5E5] rounded-full px-4 py-1.5 text-[12.5px] font-medium text-navy hover:border-warm/50 hover:text-warm-dark hover:bg-warm/10 transition-colors"
                           >
                             {s.title} <ArrowRight className="w-3 h-3" />
                           </Link>

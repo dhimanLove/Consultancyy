@@ -41,7 +41,7 @@ export const Footer = memo(function Footer() {
         <div className="flex flex-col gap-8 pb-10 lg:flex-row lg:items-start lg:justify-between">
           <div className="max-w-sm">
             <div className="text-[20px] font-extrabold tracking-tight">Chartered Solution</div>
-            <div className="mt-1 text-[10.5px] font-semibold uppercase tracking-[0.18em] text-white/35">
+            <div className="mt-1 text-[10.5px] font-semibold uppercase tracking-[0.18em] text-warm">
               Business · Regulatory · Growth
             </div>
             <p className="mt-4 text-[13px] leading-relaxed text-white/50">
@@ -127,7 +127,7 @@ export const Footer = memo(function Footer() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.9 }}
             onClick={scrollToTop}
-            className="fixed bottom-24 right-6 z-50 flex h-11 w-11 items-center justify-center rounded-full bg-primary text-white shadow-lg shadow-primary/20 transition-colors hover:bg-primary-dark active:scale-90"
+            className="fixed bottom-24 right-6 z-50 flex h-11 w-11 items-center justify-center rounded-full bg-warm text-navy-dark shadow-lg shadow-warm/30 transition-colors hover:bg-warm-dark active:scale-90"
             aria-label="Scroll to top"
           >
             <KoboyoIcon name="rocket" className="h-5 w-5" />
@@ -143,7 +143,10 @@ export const Footer = memo(function Footer() {
 function FooterColumn({ title, children }: { title: string; children: ReactNode }) {
   return (
     <div>
-      <h4 className="text-[11px] font-bold uppercase tracking-[0.16em] text-white/40">{title}</h4>
+      <h4 className="text-[11px] font-bold uppercase tracking-[0.16em] text-white/40">
+              <span className="mr-2 inline-block h-3 w-1 rounded-full bg-warm align-middle" />
+              {title}
+            </h4>
       <ul className="mt-4 space-y-2.5">{children}</ul>
     </div>
   );
@@ -163,7 +166,7 @@ function FooterLink({
       <Link
         to={to}
         params={params as never}
-        className="text-[13px] text-white/55 transition-colors hover:text-white"
+        className="text-[13px] text-white/55 transition-colors hover:text-warm"
       >
         {children}
       </Link>
@@ -174,7 +177,7 @@ function FooterLink({
 function ContactItem({ koboyo, href, text }: { koboyo: string; href?: string; text: string }) {
   const content = (
     <>
-      <KoboyoIcon name={koboyo} className="mt-0.5 h-4 w-4 shrink-0 text-primary-light" />
+      <KoboyoIcon name={koboyo} className="mt-0.5 h-4 w-4 shrink-0 text-warm" />
       <span className="text-[13px] leading-relaxed">{text}</span>
     </>
   );

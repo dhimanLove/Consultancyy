@@ -102,7 +102,7 @@ export function LeadForm() {
           Quick Enquiry
         </p>
         <h3 className="mt-1.5 text-[20px] font-extrabold leading-tight text-navy">
-          Get Quote Instantly <span className="text-primary">in a Minute</span>
+          Get Quote Instantly <span className="text-warm-dark">in a Minute</span>
         </h3>
         <p className="mt-1 text-[13px] text-steel">
           Fill in your details and we&rsquo;ll reach out on WhatsApp.

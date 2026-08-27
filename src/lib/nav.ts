@@ -78,48 +78,80 @@ export const SERVICES_GROUPS: NavGroup[] = [
   },
 ];
 
-/** Tax & GST dropdown */
-export const TAX_GST_GROUP: NavGroup = {
-  id: "tax-gst",
-  label: "Tax & GST",
-  tagline: "Returns, filings & tax planning",
-  links: [
-    { label: "GST Registration", slug: "gst-registration" },
-    { label: "GST Return Filing", slug: "gst-return-filing" },
-    { label: "GST Audit & Reconciliation", slug: "gst-audit-reconciliation" },
-    { label: "GST Refund", slug: "gst-refund" },
-    { label: "GST LUT Application", slug: "gst-lut-application" },
-    { label: "GST Notice Reply", slug: "gst-notice-reply" },
-    { label: "Income Tax Return (ITR)", slug: "itr-filing" },
-    { label: "Tax Planning", slug: "tax-planning" },
-    { label: "TDS Return Filing", slug: "tds-return-filing" },
-    { label: "Tax Audit (44AB)", slug: "tax-audit-44ab" },
-    { label: "Advance Tax Computation", slug: "advance-tax-computation" },
-  ],
-};
+/** Tax & GST dropdown - 2 sub-groups: GST Services & Income Tax (aligned with Patron Accounting) */
+export const TAX_GST_GROUPS: NavGroup[] = [
+  {
+    id: "gst-services",
+    label: "GST Services",
+    tagline: "Registration, returns, refunds & litigation",
+    links: [
+      { label: "GST Registration", slug: "gst-registration" },
+      { label: "GST Return Filing", slug: "gst-return-filing" },
+      { label: "GST Audit & Reconciliation", slug: "gst-audit-reconciliation" },
+      { label: "GST Refund", slug: "gst-refund" },
+      { label: "GST LUT Application", slug: "gst-lut-application" },
+      { label: "GST Notice Reply", slug: "gst-notice-reply" },
+      { label: "GST Assessment & Litigation", slug: "gst-assessment-litigation" },
+      { label: "E-Invoicing Compliance", slug: "einvoicing-compliance" },
+      { label: "E-Way Bill Compliance", slug: "ewaybill-compliance" },
+    ],
+  },
+  {
+    id: "income-tax",
+    label: "Income Tax",
+    tagline: "Returns, TDS, audits & planning",
+    links: [
+      { label: "Income Tax Return (ITR)", slug: "itr-filing" },
+      { label: "Tax Planning", slug: "tax-planning" },
+      { label: "TDS Return Filing", slug: "tds-return-filing" },
+      { label: "TDS Compliance", slug: "tds-compliance" },
+      { label: "Tax Audit (44AB)", slug: "tax-audit-44ab" },
+      { label: "Income Tax Assessment & Notice", slug: "income-tax-assessment" },
+      { label: "Notice Reply & Representation", slug: "notice-reply-representation" },
+      { label: "Advance Tax Computation", slug: "advance-tax-computation" },
+    ],
+  },
+];
 
-/** Corporate & Accounting dropdown */
-export const CORPORATE_ACCOUNTING_GROUP: NavGroup = {
-  id: "corporate-accounting",
-  label: "Corporate & Accounting",
-  tagline: "Books, payroll & compliance",
-  links: [
-    { label: "Accounting & Bookkeeping", slug: "bookkeeping" },
-    { label: "Tally Accounting", slug: "tally-accounting" },
-    { label: "Zoho Books Accounting", slug: "zoho-books-accounting" },
-    { label: "Xero Accounting", slug: "xero-accounting" },
-    { label: "MIS Reports", slug: "mis-reports" },
-    { label: "Financial Statements", slug: "financial-statement-preparation" },
-    { label: "Payroll Services", slug: "payroll-accounting" },
-    { label: "Payroll Processing", slug: "payroll-processing" },
-    { label: "PF Registration", slug: "epfo-registration" },
-    { label: "ESIC Registration", slug: "esic-registration" },
-    { label: "Gratuity Compliance", slug: "gratuity-compliance" },
-    { label: "Company Compliance Advisory", slug: "company-compliance-advisory" },
-    { label: "LLP Compliance Advisory", slug: "llp-compliance-advisory" },
-    { label: "ROC Compliance Support", slug: "roc-compliance-support" },
-  ],
-};
+/** Accounting & Payroll dropdown (aligned with Patron Accounting) */
+export const ACCOUNTING_PAYROLL_GROUPS: NavGroup[] = [
+  {
+    id: "accounting-services",
+    label: "Accounting Services",
+    tagline: "Bookkeeping, statements & reports",
+    links: [
+      { label: "Accounting & Bookkeeping", slug: "bookkeeping" },
+      { label: "Accounting System Setup", slug: "accounting-system-setup" },
+      { label: "MIS Reports", slug: "mis-reports" },
+      { label: "Financial Statements", slug: "financial-statement-preparation" },
+      { label: "Bank Reconciliation", slug: "bank-reconciliation" },
+      { label: "Virtual CFO Services", slug: "virtual-cfo-services" },
+    ],
+  },
+  {
+    id: "accounting-software",
+    label: "Accounting Software",
+    tagline: "Tally, Zoho Books & Xero",
+    links: [
+      { label: "Tally Accounting", slug: "tally-accounting" },
+      { label: "Zoho Books Accounting", slug: "zoho-books-accounting" },
+      { label: "Xero Accounting", slug: "xero-accounting" },
+    ],
+  },
+  {
+    id: "payroll-services",
+    label: "Payroll Services",
+    tagline: "Payroll, PF, ESIC & gratuity",
+    links: [
+      { label: "Payroll Services", slug: "payroll-accounting" },
+      { label: "Payroll Processing", slug: "payroll-processing" },
+      { label: "PF Registration", slug: "epfo-registration" },
+      { label: "ESIC Registration", slug: "esic-registration" },
+      { label: "Professional Tax (PTEC / PTRC)", slug: "professional-tax-registration" },
+      { label: "Gratuity Compliance", slug: "gratuity-compliance" },
+    ],
+  },
+];
 
 /**
  * REGULATORY & COMPLIANCE SERVICES - mega-menu (Section 4)
