@@ -65,15 +65,18 @@ export function Navbar() {
     <nav className="sticky top-0 z-50 w-full">
       {/* Top Utility Bar */}
       <div className="hidden md:flex bg-navy border-b border-white/10 items-center justify-between h-9 px-4 lg:px-8 text-[12px] text-white/70">
-        <div className="flex gap-6 font-medium">
+        <div className="flex items-center gap-4 lg:gap-6 font-medium min-w-0">
           <a href={PHONE_HREF} className="flex items-center gap-1.5 hover:text-white">
             <KoboyoIcon name="phone" className="w-3.5 h-3.5 text-primary-light" /> {PHONE}
           </a>
-          <a href={`mailto:${EMAIL}`} className="flex items-center gap-1.5 hover:text-white">
+          <a
+            href={`mailto:${EMAIL}`}
+            className="hidden lg:flex items-center gap-1.5 hover:text-white"
+          >
             <KoboyoIcon name="mail" className="w-3.5 h-3.5 text-primary-light" /> {EMAIL}
           </a>
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 shrink-0">
           <GoogleReviewsBadge />
         </div>
       </div>
@@ -82,7 +85,7 @@ export function Navbar() {
       <div
         className={`transition-all duration-300 border-b ${scrolled ? "bg-white/95 backdrop-blur-md shadow-sm border-slate-200" : "bg-white border-transparent"}`}
       >
-        <div className="container-page !max-w-[1440px] flex items-center justify-between h-16 md:h-[72px] px-4 lg:px-8">
+        <div className="container-page !max-w-[1440px] flex items-center justify-between gap-4 h-16 md:h-[72px] px-4 lg:px-8">
           {/* Logo */}
           <Link to="/" onClick={closeMenu} className="flex items-center gap-3 group shrink-0">
             <img
