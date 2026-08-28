@@ -113,44 +113,51 @@ export const TAX_GST_GROUPS: NavGroup[] = [
   },
 ];
 
-/** Accounting & Payroll dropdown (aligned with Patron Accounting) */
+/** Accounting & Payroll dropdown (aligned with Patron Accounting - 2 columns: Accounting & Payroll) */
 export const ACCOUNTING_PAYROLL_GROUPS: NavGroup[] = [
   {
-    id: "accounting-services",
-    label: "Accounting Services",
-    tagline: "Bookkeeping, statements & reports",
+    id: "accounting",
+    label: "Accounting",
+    tagline: "Bookkeeping, statements & reconciliations",
     links: [
-      { label: "Accounting & Bookkeeping", slug: "bookkeeping" },
-      { label: "Accounting System Setup", slug: "accounting-system-setup" },
-      { label: "MIS Reports", slug: "mis-reports" },
-      { label: "Financial Statements", slug: "financial-statement-preparation" },
-      { label: "Bank Reconciliation", slug: "bank-reconciliation" },
-      { label: "Virtual CFO Services", slug: "virtual-cfo-services" },
+      { label: "Accounting & Bookkeeping Services", slug: "bookkeeping" },
+      { label: "Backlog Bookkeeping Catch-Up", slug: "backlog-bookkeeping-catch-up" },
+      { label: "Financial Statement Preparation", slug: "financial-statement-preparation" },
+      { label: "Year-End Closing & Finalisation", slug: "year-end-closing-finalisation" },
+      { label: "MIS Reporting", slug: "mis-reports" },
+      { label: "Accounts Payable Outsourcing", slug: "accounts-payable-outsourcing" },
+      { label: "Accounts Receivable Outsourcing", slug: "accounts-receivable-outsourcing" },
+      { label: "Bank & Credit Card Reconciliation", slug: "bank-credit-card-reconciliation" },
     ],
   },
   {
-    id: "accounting-software",
-    label: "Accounting Software",
-    tagline: "Tally, Zoho Books & Xero",
+    id: "payroll",
+    label: "Payroll",
+    tagline: "Processing, registrations & statutory returns",
     links: [
-      { label: "Tally Accounting", slug: "tally-accounting" },
-      { label: "Zoho Books Accounting", slug: "zoho-books-accounting" },
-      { label: "Xero Accounting", slug: "xero-accounting" },
-    ],
-  },
-  {
-    id: "payroll-services",
-    label: "Payroll Services",
-    tagline: "Payroll, PF, ESIC & gratuity",
-    links: [
-      { label: "Payroll Services", slug: "payroll-accounting" },
-      { label: "Payroll Processing", slug: "payroll-processing" },
+      { label: "Payroll Processing & Management", slug: "payroll-processing" },
       { label: "PF Registration", slug: "epfo-registration" },
       { label: "ESIC Registration", slug: "esic-registration" },
-      { label: "Professional Tax (PTEC / PTRC)", slug: "professional-tax-registration" },
+      { label: "PF Return", slug: "pf-return" },
+      { label: "ESIC Return", slug: "esic-return" },
+      { label: "Professional Tax Returns", slug: "professional-tax-registration" },
       { label: "Gratuity Compliance", slug: "gratuity-compliance" },
+      { label: "EOR India (Employer of Record)", slug: "eor-india" },
     ],
   },
+];
+
+/** Corporate & ROC / MCA compliance links (moved out of the Accounting & Payroll dropdown - kept not deleted) */
+export const CORPORATE_COMPLIANCE: NavLink[] = [
+  { label: "AOC-4 Annual Filing", slug: "aoc-4-filing" },
+  { label: "MGT-7 Annual Return Filing", slug: "mgt-7-filing" },
+  { label: "Director KYC (DIR-3 KYC)", slug: "director-kyc" },
+  { label: "Company Changes & Closure", slug: "company-changes-closure" },
+  { label: "DPT-3 Return Filing", slug: "dpt-3-filing" },
+  { label: "ADT-1 Auditor Appointment", slug: "adt-1-appointment" },
+  { label: "Company Compliance Advisory", slug: "company-compliance-advisory" },
+  { label: "LLP Compliance Advisory", slug: "llp-compliance-advisory" },
+  { label: "ROC Compliance Support", slug: "roc-compliance-support" },
 ];
 
 /**

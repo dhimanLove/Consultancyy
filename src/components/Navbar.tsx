@@ -7,6 +7,7 @@ import {
   EMAIL,
   SERVICES_GROUPS,
   REGULATORY_SERVICES,
+  CORPORATE_COMPLIANCE,
   INDUSTRIES,
   RESOURCES,
   TAX_GST_GROUPS,
@@ -182,10 +183,10 @@ export function Navbar() {
               )}
               openId={openId}
               setOpenId={setOpenId}
-              width="w-[780px]"
+              width="w-[720px]"
               action={{ to: "/services#accounting", label: "View All" }}
             >
-              <div className="grid grid-cols-3 gap-x-6 gap-y-4">
+              <div className="grid grid-cols-2 gap-x-8 gap-y-4">
                 {ACCOUNTING_PAYROLL_GROUPS.map((g) => (
                   <div key={g.id}>
                     <div className="text-[11px] font-bold uppercase text-warm-dark mb-2 px-3">
@@ -212,27 +213,44 @@ export function Navbar() {
               desc="Regulatory, compliance & industry solutions"
               active={
                 REGULATORY_SERVICES.some((r) => pathname === `/services/${r.slug}`) ||
+                CORPORATE_COMPLIANCE.some((c) => pathname === `/services/${c.slug}`) ||
                 pathname.includes("/industries")
               }
               openId={openId}
               setOpenId={setOpenId}
-              width="w-[500px]"
+              width="w-[760px]"
             >
-              <div className="mb-3">
-                <div className="text-[11px] font-bold uppercase text-warm-dark mb-2 px-3">
-                  Regulatory & Compliance
+              <div className="grid grid-cols-2 gap-x-8 gap-y-4">
+                <div>
+                  <div className="text-[11px] font-bold uppercase text-warm-dark mb-2 px-3">
+                    Regulatory & Compliance
+                  </div>
+                  {REGULATORY_SERVICES.map((l) => (
+                    <DropdownLink
+                      key={l.slug}
+                      to={`/services/${l.slug}`}
+                      onClick={() => setOpenId(null)}
+                    >
+                      {l.label}
+                    </DropdownLink>
+                  ))}
                 </div>
-                {REGULATORY_SERVICES.map((l) => (
-                  <DropdownLink
-                    key={l.slug}
-                    to={`/services/${l.slug}`}
-                    onClick={() => setOpenId(null)}
-                  >
-                    {l.label}
-                  </DropdownLink>
-                ))}
+                <div>
+                  <div className="text-[11px] font-bold uppercase text-warm-dark mb-2 px-3">
+                    Corporate Compliance
+                  </div>
+                  {CORPORATE_COMPLIANCE.map((l) => (
+                    <DropdownLink
+                      key={l.slug}
+                      to={`/services/${l.slug}`}
+                      onClick={() => setOpenId(null)}
+                    >
+                      {l.label}
+                    </DropdownLink>
+                  ))}
+                </div>
               </div>
-              <div className="border-t border-slate-100 pt-3 mt-1">
+              <div className="border-t border-slate-100 pt-3 mt-3">
                 <div className="text-[11px] font-bold uppercase text-warm-dark mb-2 px-3">
                   Industries
                 </div>
