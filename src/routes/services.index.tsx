@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useLocation } from "@tanstack/react-router";
 import { m, type Variants } from "framer-motion";
 import { useEffect, useRef } from "react";
 import { loadGsap, type GsapContext } from "@/lib/gsap";
@@ -105,6 +105,21 @@ export const Route = createFileRoute("/services/")({
 
 function ServicesPage() {
   const categoryRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const { hash } = useLocation();
+
+  // Scroll to the target category when navigating from the navbar (e.g. /services#gst).
+  // Needed because scrollRestoration can restore a stale scroll position instead of the hash.
+  useEffect(() => {
+    if (!hash) {
+      window.scrollTo({ top: 0 });
+      return;
+    }
+    const id = window.decodeURIComponent(hash);
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [hash]);
 
   useEffect(() => {
     let ctx: GsapContext | undefined;

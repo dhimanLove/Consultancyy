@@ -1,5 +1,6 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useLocation } from "@tanstack/react-router";
 import { m, type Variants } from "framer-motion";
+import { useEffect } from "react";
 import { PageHeader } from "@/components/PageHeader";
 import { SectionHeading } from "@/components/SectionHeading";
 import { EmberButton } from "@/components/EmberButton";
@@ -161,6 +162,18 @@ export const Route = createFileRoute("/industries")({
 });
 
 function IndustriesPage() {
+  const { hash } = useLocation();
+
+  // Scroll to the target industry when arriving with a hash (e.g. /industries#solar).
+  useEffect(() => {
+    if (!hash) return;
+    const id = window.decodeURIComponent(hash);
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [hash]);
+
   return (
     <m.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
       <PageHeader

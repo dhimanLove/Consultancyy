@@ -792,14 +792,14 @@ function Index() {
           >
             <m.span
               variants={itemVariants}
-              className="inline-flex items-center gap-2.5 text-[11px] font-bold tracking-[0.22em] uppercase text-white/80"
+              className="inline-flex items-center gap-2.5 text-[11px] font-bold tracking-[0.22em] uppercase text-warm"
             >
-              <span className="w-8 h-[2px] bg-white/50" />
+              <span className="w-8 h-[2px] bg-warm" />
               Solar &amp; Renewable Energy
             </m.span>
             <m.h2
               variants={itemVariants}
-              className="mt-5 font-display text-[30px] md:text-[36px] font-black leading-[1.15] tracking-tight"
+              className="mt-5 font-display text-[30px] md:text-[36px] font-black leading-[1.15] tracking-tight text-white"
             >
               Solar Consultancy &amp; Regulatory Services
             </m.h2>
@@ -832,7 +832,7 @@ function Index() {
               <Link
                 to="/services/$slug"
                 params={{ slug: "solar-vendor-registration" }}
-                className="inline-flex items-center gap-2 bg-white text-navy font-bold text-[14px] rounded-[8px] px-7 py-3.5 shadow-lg shadow-black/10 hover:bg-white/90 transition-colors"
+                className="inline-flex items-center gap-2 bg-warm text-navy font-bold text-[14px] rounded-[8px] px-7 py-3.5 shadow-lg shadow-black/10 hover:bg-warm-dark hover:text-white transition-colors"
               >
                 <KoboyoIcon name="sun" className="w-4 h-4" /> Solar Vendor Registration
               </Link>
@@ -845,8 +845,8 @@ function Index() {
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="bg-navy rounded-[10px] p-8 md:p-10"
           >
-            <KoboyoIcon name="sun" className="w-10 h-10 text-white" />
-            <h3 className="mt-4 text-[20px] font-black leading-snug">
+            <KoboyoIcon name="sun" className="w-10 h-10 text-warm" />
+            <h3 className="mt-4 text-[20px] font-black leading-snug text-white">
               Solar business, simplified.
             </h3>
             <p className="mt-3 text-[13.5px] text-white/80 leading-relaxed">
@@ -857,7 +857,7 @@ function Index() {
             <Link
               to="/services/$slug"
               params={{ slug: "solar-consultancy" }}
-              className="mt-7 inline-flex w-full items-center justify-center gap-2 bg-white text-navy font-bold text-[14px] rounded-[8px] px-6 py-3.5 hover:bg-white/90 transition-colors"
+              className="mt-7 inline-flex w-full items-center justify-center gap-2 bg-warm text-navy font-bold text-[14px] rounded-[8px] px-6 py-3.5 hover:bg-warm-dark hover:text-white transition-colors"
             >
               Explore Solar Services <KoboyoIcon name="arrowRight" className="w-4 h-4" />
             </Link>
