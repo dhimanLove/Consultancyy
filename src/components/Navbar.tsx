@@ -107,7 +107,7 @@ export function Navbar() {
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden xl:flex items-center h-full gap-3 whitespace-nowrap">
+          <div className="hidden xl:flex items-center h-full gap-1 whitespace-nowrap min-w-0">
             <NavLink to="/" active={pathname === "/"}>
               Home
             </NavLink>
@@ -364,7 +364,7 @@ function NavLink({
   return (
     <Link
       to={to}
-      className={`relative flex items-center px-5 text-[13px] font-bold tracking-wide h-full transition-colors whitespace-nowrap ${
+      className={`relative flex items-center px-3.5 text-[13px] font-bold tracking-wide h-full transition-colors whitespace-nowrap ${
         active ? "text-primary" : "text-navy hover:text-primary"
       }`}
     >
@@ -413,7 +413,7 @@ function Dropdown({
       onMouseLeave={() => setOpenId(null)}
     >
       <button
-        className={`relative flex items-center gap-1 px-5 text-[13px] font-bold tracking-wide h-full transition-colors whitespace-nowrap ${
+        className={`relative flex items-center gap-1 px-3.5 text-[13px] font-bold tracking-wide h-full transition-colors whitespace-nowrap ${
           isOpen || active ? "text-primary" : "text-navy hover:text-primary"
         }`}
       >
@@ -440,7 +440,7 @@ function Dropdown({
             initial="hidden"
             animate="visible"
             exit="exit"
-            className={`absolute ${aligns[align]} top-[calc(100%+4px)] z-50 ${width}`}
+            className={`absolute ${aligns[align]} top-[calc(100%+4px)] z-50 ${width} max-w-[calc(100vw-1.5rem)]`}
           >
             <div className="bg-white rounded-2xl border border-slate-200 shadow-2xl overflow-hidden flex flex-col max-h-[75vh]">
               <div className="h-[3px] bg-gradient-to-r from-warm to-warm/40 shrink-0" />
