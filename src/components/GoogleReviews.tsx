@@ -10,15 +10,15 @@ interface GoogleReviewData {
 const FALLBACK_DATA: GoogleReviewData = {
   rating: 5.0,
   totalReviews: 0,
-  mapsUrl: "https://www.google.com/maps/search/?api=1&query=Chartered+Solution+Pvt+Ltd+Indore",
+  mapsUrl: "https://www.google.com/maps/search/?api=1&query=Chartered+Solution+Pvt+Ltd",
 };
 
 function buildMapsUrl(): string {
-  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent("Chartered Solution Pvt Ltd Indore, Madhya Pradesh")}`;
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent("Chartered Solution Pvt Ltd Madhya Pradesh")}`;
 }
 
 function buildSearchUrl(): string {
-  return `https://www.google.com/search?q=${encodeURIComponent("Chartered Solution Pvt Ltd reviews Indore")}`;
+  return `https://www.google.com/search?q=${encodeURIComponent("Chartered Solution Pvt Ltd reviews")}`;
 }
 
 export function GoogleReviewsBadge({ className = "" }: { className?: string }) {

@@ -29,9 +29,9 @@ const dropVars: Variants = {
   exit: { opacity: 0, y: 8, scale: 0.99, transition: { duration: 0.12, ease: "easeOut" } },
 };
 
-const accordionVars: Variants = {
-  hidden: { opacity: 0, y: -8 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.2, ease: "easeOut" } },
+const mobileMenuVars: Variants = {
+  hidden: { opacity: 0, y: 8 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.25, ease: [0.22, 1, 0.36, 1] } },
 };
 
 const linkCls =
@@ -48,21 +48,41 @@ export function Navbar() {
   useMotionValueEvent(scrollY, "change", (y) => setScrolled(y > 20));
 
   useEffect(() => {
-    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    const docEl = document.documentElement;
+    const body = document.body;
+    const prevHtml = docEl.style.overflow;
+    const prevBody = body.style.overflow;
+    if (mobileOpen) {
+      docEl.style.overflow = "hidden";
+      body.style.overflow = "hidden";
+    }
     return () => {
-      document.body.style.overflow = "";
+      docEl.style.overflow = prevHtml;
+      body.style.overflow = prevBody;
     };
   }, [mobileOpen]);
+
+  useEffect(() => {
+    setMobileOpen(false);
+    setOpenId(null);
+  }, [pathname]);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1280px)");
+    const onBreakpoint = (e: MediaQueryListEvent) => {
+      if (e.matches) setMobileOpen(false);
+    };
+    mq.addEventListener("change", onBreakpoint);
+    return () => mq.removeEventListener("change", onBreakpoint);
+  }, []);
 
   const closeMenu = () => {
     setMobileOpen(false);
     setOpenId(null);
   };
 
-  const isHome = pathname === "/";
-
   return (
-    <nav className="sticky top-0 z-50 w-full">
+    <nav className="sticky top-0 z-[60] w-full">
       {/* Top Utility Bar */}
       <div className="hidden md:flex bg-navy border-b border-white/10 items-center justify-between h-9 px-4 lg:px-8 text-[12px] text-white/70">
         <div className="flex items-center gap-4 lg:gap-6 font-medium min-w-0">
@@ -83,7 +103,7 @@ export function Navbar() {
 
       {/* Main Navbar */}
       <div
-        className={`transition-all duration-300 border-b ${scrolled ? "bg-white/95 backdrop-blur-md shadow-sm border-slate-200" : "bg-white border-transparent"}`}
+        className={`transition-all duration-300 border-b ${scrolled && !mobileOpen ? "bg-white/95 backdrop-blur-md shadow-sm border-slate-200" : "bg-white border-transparent"}`}
       >
         <div className="container-page !max-w-[1440px] flex items-center justify-between gap-4 h-16 md:h-[72px] px-4 lg:px-8">
           {/* Logo */}
@@ -295,7 +315,10 @@ export function Navbar() {
             </div>
             <button
               className="xl:hidden p-2 rounded-full border border-slate-200 bg-slate-50 text-navy hover:bg-slate-100 active:scale-95 transition-all"
-              onClick={() => setMobileOpen(!mobileOpen)}
+              onClick={() => {
+                setOpenId(null);
+                setMobileOpen((v) => !v);
+              }}
             >
               {mobileOpen ? (
                 <KoboyoIcon name="close" className="w-5 h-5" />
@@ -311,13 +334,42 @@ export function Navbar() {
       <AnimatePresence>
         {mobileOpen && (
           <m.div
-            variants={accordionVars}
+            variants={mobileMenuVars}
             initial="hidden"
             animate="visible"
             exit="hidden"
-            className="xl:hidden border-b border-slate-200 bg-white shadow-xl overflow-hidden origin-top"
+            role="dialog"
+            aria-modal="true"
+            className="xl:hidden fixed inset-0 z-[70] flex flex-col bg-white"
           >
-            <div className="max-h-[calc(100vh-80px)] overflow-y-auto p-4 space-y-1">
+            <div className="flex items-center justify-between gap-4 border-b border-slate-200 px-4 py-3">
+              <Link to="/" onClick={closeMenu} className="flex items-center gap-3 group shrink-0">
+                <img
+                  src={logoImg}
+                  alt="Logo"
+                  width={40}
+                  height={40}
+                  decoding="async"
+                  className="w-10 h-10 rounded-xl ring-1 ring-black/5 object-cover transition-transform group-hover:scale-105"
+                />
+                <div className="flex flex-col">
+                  <span className="text-[17px] font-extrabold text-navy leading-tight">
+                    Chartered Solution
+                  </span>
+                  <span className="text-[9.5px] font-semibold text-slate-500 tracking-[0.12em] uppercase">
+                    Business · Regulatory · Growth
+                  </span>
+                </div>
+              </Link>
+              <button
+                aria-label="Close menu"
+                className="p-2 rounded-full border border-slate-200 bg-slate-50 text-navy hover:bg-slate-100 active:scale-95 transition-all"
+                onClick={closeMenu}
+              >
+                <KoboyoIcon name="close" className="w-5 h-5" />
+              </button>
+            </div>
+            <div className="flex-1 overflow-y-auto p-4 space-y-1 pb-[calc(1rem+env(safe-area-inset-bottom))]">
               <MobileLink to="/" onClick={closeMenu}>
                 Home
               </MobileLink>

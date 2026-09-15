@@ -23,43 +23,43 @@ const child: Variants = {
 
 const faqData = [
   {
-    question: "What services does Chartered Solution in Indore offer?",
-    answer: `We offer ${SERVICES.length}+ services across ${SERVICE_CATEGORIES.length} categories including business registration, GST registration & filing, ITR filing, FSSAI license, MSME/Udyam registration, IEC code, startup India registration, ISO certification, medical device and cosmetics regulatory, solar consultancy, e-commerce, digital marketing, ROC compliance, and more professional business services in Indore, Madhya Pradesh.`,
+    question: "What services does Chartered Solution offer?",
+    answer: `We offer ${SERVICES.length}+ services across ${SERVICE_CATEGORIES.length} categories including business registration, GST registration & filing, ITR filing, FSSAI license, MSME/Udyam registration, IEC code, startup India registration, ISO certification, medical device and cosmetics regulatory, solar consultancy, e-commerce, digital marketing, ROC compliance, and more professional business services in Madhya Pradesh.`,
   },
   {
     question: "Who is the founder of Chartered Solution?",
     answer:
-      "Chartered Solution is founded by Jitendra Malviya, based in Indore, Madhya Pradesh. With a dedicated team of professionals, we provide end-to-end business registration and compliance services.",
+      "Chartered Solution is founded by Jitendra Malviya, based in Madhya Pradesh. With a dedicated team of professionals, we provide end-to-end business registration and compliance services.",
   },
   {
     question: "Where is Chartered Solution located?",
     answer:
-      "We are located at 152, Sanchar Nagar Ext., Goyal Nagar, Kanadia Road, Indore, Madhya Pradesh 452016. Our office hours are Monday to Saturday, 9:30 AM to 6:30 PM.",
+      "We are located at 152, Sanchar Nagar Ext., Goyal Nagar, Kanadia Road, Madhya Pradesh 452016. Our office hours are Monday to Saturday, 9:30 AM to 6:30 PM.",
   },
   {
     question: "How can I contact Chartered Solution?",
     answer:
-      "You can call or WhatsApp us at +91 88155 53899, email us at charteredgesolution@gmail.com, or visit our office at Kanadia Road, Indore. We are available Mon\u2013Sat 9:30 AM to 6:30 PM.",
+      "You can call or WhatsApp us at +91 88155 53899, email us at charteredgesolution@gmail.com, or visit our office at Kanadia Road. We are available Mon\u2013Sat 9:30 AM to 6:30 PM.",
   },
   {
-    question: "Does Chartered Solution offer GST registration in Indore?",
+    question: "Does Chartered Solution offer GST registration?",
     answer:
-      "Yes, we provide complete GST registration services in Indore, Madhya Pradesh, including new registration, GST return filing, amendments, and cancellation. Our expert team handles the entire process from documentation to filing.",
+      "Yes, we provide complete GST registration services in Madhya Pradesh, including new registration, GST return filing, amendments, and cancellation. Our expert team handles the entire process from documentation to filing.",
   },
   {
-    question: "What is the process for company incorporation in Indore?",
+    question: "What is the process for company incorporation?",
     answer:
-      "We offer end-to-end company incorporation services for Private Limited, OPC, LLP, and Partnership firms across Indore. Our process includes DIN/DPT-3, name reservation, MOA/AOA drafting, PAN/TAN, GST registration, and current account opening assistance.",
+      "We offer end-to-end company incorporation services for Private Limited, OPC, LLP, and Partnership firms across India. Our process includes DIN/DPT-3, name reservation, MOA/AOA drafting, PAN/TAN, GST registration, and current account opening assistance.",
   },
   {
     question: "Is Chartered Solution a government-registered firm?",
     answer:
-      "Yes, Chartered Solution is a registered professional services firm based in Indore, MP. We are recognized as a reliable service provider for government-related registrations, filings, and compliance work.",
+      "Yes, Chartered Solution is a registered professional services firm based in MP. We are recognized as a reliable service provider for government-related registrations, filings, and compliance work.",
   },
   {
-    question: "Do you provide certificates like net worth and turnover certificates in Indore?",
+    question: "Do you provide certificates like net worth and turnover certificates?",
     answer:
-      "Yes, we prepare net worth certificates, turnover certificates, certified financial statements, fund utilization certificates, income certificates, bank certificates, and certificates for government tenders across Indore and all of Madhya Pradesh.",
+      "Yes, we prepare net worth certificates, turnover certificates, certified financial statements, fund utilization certificates, income certificates, bank certificates, and certificates for government tenders across Madhya Pradesh.",
   },
 ];
 
@@ -73,7 +73,6 @@ const aboutStructured = {
       address: {
         "@type": "PostalAddress",
         streetAddress: "152, Sanchar Nagar Ext., Goyal Nagar, Kanadia Road",
-        addressLocality: "Indore",
         addressRegion: "Madhya Pradesh",
         postalCode: "452016",
         addressCountry: "IN",
@@ -122,17 +121,17 @@ export const Route = createFileRoute("/about-us")({
       {
         name: "description",
         content:
-          "Founded by Jitendra Malviya, Chartered Solution in Indore, MP is a professional consultancy offering business registration, licensing, GST, ITR, FSSAI, ISO, medical device, cosmetics, solar, and compliance solutions. Call +91 88155 53899.",
+          "Founded by Jitendra Malviya, Chartered Solution in MP is a professional consultancy offering business registration, licensing, GST, ITR, FSSAI, ISO, medical device, cosmetics, solar, and compliance solutions. Call +91 88155 53899.",
       },
       {
         name: "keywords",
         content:
-          "Chartered Solution Indore, Jitendra Malviya, business consultancy Indore, registration services Indore, regulatory consultancy Indore, compliance services Indore",
+          "Chartered Solution, Jitendra Malviya, business consultancy, registration services, regulatory consultancy, compliance services",
       },
       {
         property: "og:title",
         content:
-          "About Chartered Solution \u2014 Indore\u2019s Business, Regulatory & Digital Growth Consultancy",
+          "About Chartered Solution \u2014 Business, Regulatory & Digital Growth Consultancy",
       },
       {
         property: "og:description",
@@ -147,18 +146,18 @@ export const Route = createFileRoute("/about-us")({
       { name: "twitter:card", content: "summary_large_image" },
       {
         name: "twitter:title",
-        content: "About Chartered Solution \u2014 Indore\u2019s Compliance & Registration Experts",
+        content: "About Chartered Solution \u2014 Compliance & Registration Experts",
       },
       {
         name: "twitter:description",
-        content: `Meet the team behind Chartered Solution. Founded by Jitendra Malviya, we are Indore's trusted partner for business registration, GST, FSSAI, ITR, ISO, regulatory and ${SERVICES.length}+ business solutions.`,
+        content: `Meet the team behind Chartered Solution. Founded by Jitendra Malviya, we are your trusted partner for business registration, GST, FSSAI, ITR, ISO, regulatory and ${SERVICES.length}+ business solutions.`,
       },
       {
         name: "twitter:image",
         content: "https://www.charteredsolution.com/Charted.jpeg",
       },
       { name: "geo.position", content: "22.7262239;75.919035" },
-      { name: "geo.placename", content: "Indore, Madhya Pradesh" },
+      { name: "geo.placename", content: "Madhya Pradesh" },
       { name: "geo.region", content: "IN-MP" },
       { "script:ld+json": aboutStructured },
     ],
@@ -199,7 +198,7 @@ function AboutUsPage() {
       <PageHeader
         crumbs={[{ label: "Home", to: "/" }, { label: "About Us" }]}
         title="About Chartered Solution."
-        subtext="Founded by Jitendra Malviya in Indore, Madhya Pradesh - helping businesses register, comply, and grow since 2023."
+        subtext="Founded by Jitendra Malviya in Madhya Pradesh - helping businesses register, comply, and grow since 2023."
       />
 
       <section className="bg-white py-20">
@@ -207,13 +206,12 @@ function AboutUsPage() {
           <div>
             <SectionHeading
               eyebrow="Our Story"
-              heading="From Kanadia Road, Indore - building a compliance-first India."
+              heading="From Kanadia Road - building a compliance-first India."
             />
             <RevealParagraph className="text-[15px] text-steel leading-relaxed mt-6">
               Chartered Solution was founded in 2023 by Jitendra Malviya with a clear mission: make
               business setup, compliance, and regulatory processes simple, transparent, and
-              stress-free for entrepreneurs across India. What started as a small consultancy in
-              Indore has grown into a team of dedicated professionals serving clients across Madhya
+              stress-free for entrepreneurs across India. What started as a small consultancy has grown into a team of dedicated professionals serving clients across Madhya
               Pradesh and beyond.
             </RevealParagraph>
             <RevealParagraph className="text-[15px] text-steel leading-relaxed mt-4">
@@ -225,7 +223,7 @@ function AboutUsPage() {
             </RevealParagraph>
             <RevealParagraph className="text-[15px] text-steel leading-relaxed mt-4">
               Whether you are a startup founder, a small business owner, a manufacturer, an exporter
-              or an established enterprise, we are your growth partner in Indore. 152, Sanchar Nagar
+              or an established enterprise, we are your growth partner. 152, Sanchar Nagar
               Ext., Goyal Nagar, Kanadia Road is where we turn paperwork into possibilities.
             </RevealParagraph>
           </div>
@@ -279,7 +277,7 @@ function AboutUsPage() {
 
       <section className="bg-fog py-20 cv-auto">
         <div className="container-page">
-          <SectionHeading eyebrow="Trust Pillars" heading="Why businesses in Indore trust us." />
+          <SectionHeading eyebrow="Trust Pillars" heading="Why businesses trust us." />
           <m.div
             variants={container}
             initial="hidden"
@@ -308,7 +306,7 @@ function AboutUsPage() {
 
       <section className="bg-white py-20 cv-auto">
         <div className="container-page">
-          <SectionHeading eyebrow="Testimonials" heading="What our clients in Indore say." />
+          <SectionHeading eyebrow="Testimonials" heading="What our clients say." />
           <m.div
             variants={container}
             initial="hidden"
@@ -350,7 +348,7 @@ function AboutUsPage() {
             transition={{ delay: 0.1 }}
             className="text-[15px] text-white/60 mt-3 max-w-[480px] mx-auto"
           >
-            Call us at +91 88155 53899 or visit our office at Kanadia Road, Indore.
+            Call us at +91 88155 53899 or visit our office at Kanadia Road.
           </m.p>
           <m.div
             initial={{ opacity: 0, y: 15 }}

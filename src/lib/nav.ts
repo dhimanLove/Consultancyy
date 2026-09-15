@@ -22,7 +22,7 @@ export const WHATSAPP_HREF = "https://wa.me/918815553899";
 export const WHATSAPP_DISPLAY = "+91 88155 53899";
 export const EMAIL = "charteredgesolution@gmail.com";
 export const ADDRESS =
-  "152, Sanchar Nagar Extension, Goyal Nagar, Kanadia Road, Indore, Madhya Pradesh 452016, India";
+  "152, Sanchar Nagar Extension, Goyal Nagar, Kanadia Road, Madhya Pradesh 452016, India";
 
 /**
  * SERVICES - Business & Compliance Services dropdown (Section 5)

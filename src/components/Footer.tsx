@@ -45,8 +45,8 @@ export const Footer = memo(function Footer() {
               Business · Regulatory · Growth
             </div>
             <p className="mt-4 text-[13px] leading-relaxed text-white/50">
-              One partner for business setup, licensing, compliance and growth — based in Indore,
-              serving clients across India.
+              One partner for business setup, licensing, compliance and growth — serving clients
+              across India.
             </p>
           </div>
 
@@ -62,7 +62,7 @@ export const Footer = memo(function Footer() {
                 <span className="text-[13px] leading-relaxed">WhatsApp {PHONE}</span>
               </a>
             </li>
-            <ContactItem koboyo="landMark" text="Indore, Madhya Pradesh" />
+            <ContactItem koboyo="landMark" text="Madhya Pradesh" />
             <li className="pt-1">
               <GoogleReviewsFooter />
             </li>

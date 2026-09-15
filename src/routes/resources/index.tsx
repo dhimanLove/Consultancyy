@@ -172,7 +172,7 @@ function ResourcesPage() {
       <PageHeader
         crumbs={[{ label: "Home", to: "/" }, { label: "Resources" }]}
         title="Guides, checklists & tools for your business."
-        subtext="Practical resources to help you register, comply and grow - built by our team in Indore for businesses across India."
+        subtext="Practical resources to help you register, comply and grow - built by our team for businesses across India."
       />
 
       <section className="bg-white py-20">

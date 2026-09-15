@@ -51,17 +51,17 @@ export const Route = createFileRoute("/services/$slug")({
     return {
       meta: [
         {
-          title: `${loaderData.title} in Indore | Chartered Solution \u2014 ${categoryLabel}`,
+          title: `${loaderData.title} | Chartered Solution \u2014 ${categoryLabel}`,
         },
         {
           name: "description",
-          content: `${loaderData.title} by Chartered Solution in Indore, Madhya Pradesh. ${loaderData.summary} Call +91 88155 53899 for expert assistance.`,
+          content: `${loaderData.title} by Chartered Solution in Madhya Pradesh. ${loaderData.summary} Call +91 88155 53899 for expert assistance.`,
         },
         {
           name: "keywords",
-          content: `${loaderData.title.toLowerCase()} Indore, ${loaderData.title.toLowerCase()} Madhya Pradesh, Chartered Solution, business compliance Indore`,
+          content: `${loaderData.title.toLowerCase()} Madhya Pradesh, Chartered Solution, business compliance`,
         },
-        { property: "og:title", content: `${loaderData.title} | Chartered Solution \u2014 Indore` },
+        { property: "og:title", content: `${loaderData.title} | Chartered Solution` },
         { property: "og:description", content: loaderData.summary },
         {
           property: "og:url",
@@ -77,7 +77,7 @@ export const Route = createFileRoute("/services/$slug")({
         { name: "twitter:card", content: "summary_large_image" },
         {
           name: "twitter:title",
-          content: `${loaderData.title} | Chartered Solution \u2014 Indore`,
+          content: `${loaderData.title} | Chartered Solution`,
         },
         { name: "twitter:description", content: loaderData.summary },
         {
@@ -85,7 +85,7 @@ export const Route = createFileRoute("/services/$slug")({
           content: "https://www.charteredsolution.com/Charted.jpeg",
         },
         { name: "geo.position", content: "22.7262239;75.919035" },
-        { name: "geo.placename", content: "Indore, Madhya Pradesh" },
+        { name: "geo.placename", content: "Madhya Pradesh" },
         { name: "geo.region", content: "IN-MP" },
         {
           "script:ld+json": {
@@ -107,14 +107,12 @@ export const Route = createFileRoute("/services/$slug")({
                   address: {
                     "@type": "PostalAddress",
                     streetAddress: "152, Sanchar Nagar Ext., Goyal Nagar, Kanadia Road",
-                    addressLocality: "Indore",
                     addressRegion: "Madhya Pradesh",
                     postalCode: "452016",
                     addressCountry: "IN",
                   },
                 },
                 areaServed: [
-                  { "@type": "City", name: "Indore" },
                   { "@type": "State", name: "Madhya Pradesh" },
                   { "@type": "Country", name: "India" },
                 ],
@@ -241,7 +239,7 @@ function ServiceDetailPage() {
           { label: service.title },
         ]}
         title={service.title}
-        subtext={`${service.summary} \u2014 Chartered Solution, Indore.`}
+        subtext={`${service.summary} \u2014 Chartered Solution.`}
       />
 
       <section className="bg-white py-20">
@@ -438,7 +436,7 @@ function ServiceDetailPage() {
               Need {service.title}?
             </m.h3>
             <m.p variants={sidebarItem} className="text-[14px] text-steel mt-3 leading-relaxed">
-              Our team at Chartered Solution, Indore is here to help. Get in touch for a
+              Our team at Chartered Solution is here to help. Get in touch for a
               personalised consultation.
             </m.p>
             <m.div variants={sidebarItem} className="mt-6 space-y-4 border-t border-border/50 pt-6">

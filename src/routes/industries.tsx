@@ -133,7 +133,7 @@ export const Route = createFileRoute("/industries")({
       {
         name: "keywords",
         content:
-          "industries served Indore, startup consultants, solar vendor registration, medical device compliance, cosmetics regulatory India, food FSSAI consultants, e-commerce enablement, import export consultants, business compliance",
+          "industries served, startup consultants, solar vendor registration, medical device compliance, cosmetics regulatory India, food FSSAI consultants, e-commerce enablement, import export consultants, business compliance",
       },
       { property: "og:title", content: "Industries We Serve | Chartered Solution" },
       {

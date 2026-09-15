@@ -44,7 +44,6 @@ const rootStructuredData = {
       address: {
         "@type": "PostalAddress",
         streetAddress: "152, Sanchar Nagar Ext., Goyal Nagar, Kanadia Road",
-        addressLocality: "Indore",
         addressRegion: "Madhya Pradesh",
         postalCode: "452016",
         addressCountry: "IN",
@@ -53,7 +52,6 @@ const rootStructuredData = {
       openingHours: "Mo-Sa 09:30-18:30",
       founder: { "@type": "Person", name: "Jitendra Malviya", jobTitle: "Founder & CEO" },
       areaServed: [
-        { "@type": "City", name: "Indore" },
         { "@type": "State", name: "Madhya Pradesh" },
         { "@type": "Country", name: "India" },
       ],
@@ -132,12 +130,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "Chartered Solution is a business, regulatory and digital growth consultancy offering business registration, GST, FSSAI, MSME/Udyam, Import Export Code (IEC), ITR, ISO certification, medical device, cosmetics, solar and compliance solutions across India. Trusted professional services in Indore, Madhya Pradesh.",
+          "Chartered Solution is a business, regulatory and digital growth consultancy offering business registration, GST, FSSAI, MSME/Udyam, Import Export Code (IEC), ITR, ISO certification, medical device, cosmetics, solar and compliance solutions across India. Trusted professional services in Madhya Pradesh.",
       },
       {
         name: "keywords",
         content:
-          "Chartered Solution, business consultancy Indore, business registration Indore, GST registration Indore, FSSAI license Indore, MSME registration Indore, IEC code Indore, ITR filing Indore, ISO certification Indore, medical device regulatory, cosmetics regulatory, solar consultancy, e-commerce services Indore, Jitendra Malviya, compliance services, Sanchar Nagar Indore",
+          "Chartered Solution, business consultancy, business registration, GST registration, FSSAI license, MSME registration, IEC code, ITR filing, ISO certification, medical device regulatory, cosmetics regulatory, solar consultancy, e-commerce services, Jitendra Malviya, compliance services, Sanchar Nagar",
       },
       {
         property: "og:title",
@@ -146,7 +144,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         property: "og:description",
         content:
-          "One partner for business setup, compliance, regulatory and digital growth solutions in Indore and across India. Call +91 88155 53899.",
+          "One partner for business setup, compliance, regulatory and digital growth solutions across India. Call +91 88155 53899.",
       },
       { property: "og:type", content: "website" },
       { property: "og:locale", content: "en_IN" },
@@ -161,14 +159,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "twitter:description",
         content:
-          "Business setup, compliance, regulatory and digital growth solutions in Indore, MP and across India. Call +91 88155 53899.",
+          "Business setup, compliance, regulatory and digital growth solutions in MP and across India. Call +91 88155 53899.",
       },
       {
         name: "twitter:image",
         content: "https://www.charteredsolution.com/Charted.jpeg",
       },
       { name: "geo.position", content: "22.7262239;75.919035" },
-      { name: "geo.placename", content: "Indore, Madhya Pradesh" },
+      { name: "geo.placename", content: "Madhya Pradesh" },
       { name: "geo.region", content: "IN-MP" },
       { "script:ld+json": rootStructuredData },
     ],

@@ -39,7 +39,6 @@ const structuredData = {
       address: {
         "@type": "PostalAddress",
         streetAddress: "152, Sanchar Nagar Ext., Goyal Nagar, Kanadia Road",
-        addressLocality: "Indore",
         addressRegion: "Madhya Pradesh",
         postalCode: "452016",
         addressCountry: "IN",
@@ -66,7 +65,6 @@ const structuredData = {
       address: {
         "@type": "PostalAddress",
         streetAddress: "152, Sanchar Nagar Ext., Goyal Nagar, Kanadia Road",
-        addressLocality: "Indore",
         addressRegion: "Madhya Pradesh",
         postalCode: "452016",
         addressCountry: "IN",
@@ -80,7 +78,7 @@ const structuredData = {
           closes: "18:30",
         },
       ],
-      areaServed: ["Indore", "Madhya Pradesh", "India"],
+      areaServed: ["Madhya Pradesh", "India"],
       hasOfferCatalog: {
         "@type": "OfferCatalog",
         name: "Business Registration & Compliance Services",
@@ -110,10 +108,10 @@ const structuredData = {
       mainEntity: [
         {
           "@type": "Question",
-          name: "How much does company registration cost in Indore?",
+          name: "How much does company registration cost?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Company registration cost in Indore varies by structure \u2014 Private Limited, OPC, or LLP. Contact Chartered Solution at +91 88155 53899 for an exact quote; we offer transparent, all-inclusive pricing.",
+            text: "Company registration cost varies by structure \u2014 Private Limited, OPC, or LLP. Contact Chartered Solution at +91 88155 53899 for an exact quote; we offer transparent, all-inclusive pricing.",
           },
         },
         {
@@ -121,7 +119,7 @@ const structuredData = {
           name: "How long does GST registration take?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "GST registration is usually completed within 3\u20137 working days once all required documents are submitted to our Indore team.",
+            text: "GST registration is usually completed within 3\u20137 working days once all required documents are submitted to our team.",
           },
         },
         {
@@ -134,7 +132,7 @@ const structuredData = {
         },
         {
           "@type": "Question",
-          name: "Do you offer services outside Indore?",
+          name: "Do you offer services outside?",
           acceptedAnswer: {
             "@type": "Answer",
             text: "Yes. Chartered Solution serves clients across Madhya Pradesh and all of India remotely, including GST, income tax, ROC compliance, and certification services.",
@@ -145,7 +143,7 @@ const structuredData = {
           name: "What is the difference between MSME and FSSAI registration?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "MSME/Udyam is for classifying small businesses for government benefits, while FSSAI is the mandatory food safety license for food businesses. We handle both in Indore.",
+            text: "MSME/Udyam is for classifying small businesses for government benefits, while FSSAI is the mandatory food safety license for food businesses. We handle both.",
           },
         },
       ],
@@ -157,7 +155,7 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       {
-        title: "Chartered Solution | Business, Regulatory & Digital Growth Consultancy in Indore",
+        title: "Chartered Solution | Business, Regulatory & Digital Growth Consultancy",
       },
       {
         name: "description",
@@ -167,11 +165,11 @@ export const Route = createFileRoute("/")({
       {
         name: "keywords",
         content:
-          "business consultancy Indore, business registration Indore, company incorporation Indore, GST registration Indore, GST filing Indore, FSSAI license Indore, MSME registration Indore, Udyam registration Indore, IEC code Indore, ISO certification Indore, medical device registration Indore, cosmetics registration Indore, solar vendor registration, compliance services Indore, Chartered Solution, Jitendra Malviya",
+          "business consultancy, business registration, company incorporation, GST registration, GST filing, FSSAI license, MSME registration, Udyam registration, IEC code, ISO certification, medical device registration, cosmetics registration, solar vendor registration, compliance services, Chartered Solution, Jitendra Malviya",
       },
       {
         property: "og:title",
-        content: "Chartered Solution | Business, Regulatory & Digital Growth Consultancy in Indore",
+        content: "Chartered Solution | Business, Regulatory & Digital Growth Consultancy",
       },
       {
         property: "og:description",
@@ -185,7 +183,7 @@ export const Route = createFileRoute("/")({
       { property: "og:image", content: "https://www.charteredsolution.com/Charted.jpeg" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "geo.position", content: "22.7262239;75.919035" },
-      { name: "geo.placename", content: "Indore, Madhya Pradesh" },
+      { name: "geo.placename", content: "Madhya Pradesh" },
       { name: "geo.region", content: "IN-MP" },
       { "script:ld+json": structuredData },
     ],
@@ -217,7 +215,7 @@ const HERO_CHECKLIST = [
 const STATS = [
   { value: SERVICES.length, suffix: "+", label: "Services" },
   { value: SERVICE_CATEGORIES.length, suffix: "", label: "Categories" },
-  { value: 2023, suffix: "", label: "Founded in Indore" },
+  { value: 2023, suffix: "", label: "Founded" },
   { value: REGULATORY_SERVICES.length, suffix: "", label: "Regulatory Verticals" },
   { value: 48, suffix: " hrs", label: "Response Time" },
 ];
@@ -351,24 +349,24 @@ const BUSINESS_JOURNEY = [
 
 const FAQS = [
   {
-    q: "How much does company registration cost in Indore?",
-    a: "Company registration cost in Indore varies by structure \u2014 Private Limited, OPC, or LLP. Contact us at +91 88155 53899 for an exact quote; we offer transparent, all-inclusive pricing.",
+    q: "How much does company registration cost?",
+    a: "Company registration cost varies by structure \u2014 Private Limited, OPC, or LLP. Contact us at +91 88155 53899 for an exact quote; we offer transparent, all-inclusive pricing.",
   },
   {
     q: "How long does GST registration take?",
-    a: "GST registration is usually completed within 3\u20137 working days once all required documents are submitted to our Indore team.",
+    a: "GST registration is usually completed within 3\u20137 working days once all required documents are submitted to our team.",
   },
   {
     q: "What documents are needed for MSME / Udyam registration?",
     a: "Only your Aadhaar, PAN, and basic business details are needed. Our team completes MSME/Udyam registration within 24\u201348 hours.",
   },
   {
-    q: "Do you offer services outside Indore?",
+    q: "Do you offer services outside?",
     a: "Yes. Chartered Solution serves clients across Madhya Pradesh and all of India remotely, including GST, income tax, ROC compliance, and certification services.",
   },
   {
     q: "What is the difference between MSME and FSSAI registration?",
-    a: "MSME/Udyam classifies small businesses for government benefits, while FSSAI is the mandatory food safety license for food businesses. We handle both in Indore.",
+    a: "MSME/Udyam classifies small businesses for government benefits, while FSSAI is the mandatory food safety license for food businesses. We handle both.",
   },
   {
     q: "How do I get started with Chartered Solution?",
@@ -563,7 +561,7 @@ function Index() {
             >
               <span className="inline-flex items-center gap-1.5">
                 <KoboyoIcon name="star" className="w-3.5 h-3.5 text-warm" fill="currentColor" />{" "}
-                Consultancy in Indore
+                Consultancy
               </span>
               <span className="inline-flex items-center gap-1.5">
                 <KoboyoIcon name="badgeCheck" className="w-3.5 h-3.5 text-primary" /> PAN-India
@@ -997,7 +995,7 @@ function Index() {
           <SectionHeading
             eyebrow="FAQ"
             heading="Frequently Asked Questions"
-            subtext="Quick answers about registration, licenses, and compliance in Indore."
+            subtext="Quick answers about registration, licenses, and compliance."
             center
           />
           <m.div

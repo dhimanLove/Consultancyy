@@ -27,7 +27,7 @@ const COMMON_FAQS: ServiceFaq[] = [
     a: "Timelines vary by authority and department. We share an expected timeline before starting and keep you updated at every step on WhatsApp.",
   },
   {
-    q: "Can I get this done from outside Indore?",
+    q: "Can I get this done from outside?",
     a: "Yes. Chartered Solution serves clients across India - most registrations and filings are completed 100% online with doorstep delivery of certificates.",
   },
   {

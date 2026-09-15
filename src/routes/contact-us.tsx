@@ -40,9 +40,9 @@ const contactStructured = {
   "@graph": [
     {
       "@type": "ContactPage",
-      name: "Contact Chartered Solution Indore",
+      name: "Contact Chartered Solution",
       description:
-        "Get in touch with Chartered Solution for business registration, GST, FSSAI, MSME, ISO, medical device, cosmetics, solar, and compliance services in Indore.",
+        "Get in touch with Chartered Solution for business registration, GST, FSSAI, MSME, ISO, medical device, cosmetics, solar, and compliance services.",
       url: "https://www.charteredsolution.com/contact-us",
     },
     {
@@ -68,22 +68,22 @@ const contactStructured = {
 export const Route = createFileRoute("/contact-us")({
   head: () => ({
     meta: [
-      { title: "Contact Us | Chartered Solution \u2014 Indore, Kanadia Road" },
+      { title: "Contact Us | Chartered Solution" },
       {
         name: "description",
         content:
-          "Contact Chartered Solution at 152, Sanchar Nagar Ext., Goyal Nagar, Kanadia Road, Indore, MP. Call +91 88155 53899 or email charteredgesolution@gmail.com. Mon\u2013Sat 9:30 AM\u20136:30 PM.",
+          "Contact Chartered Solution at 152, Sanchar Nagar Ext., Goyal Nagar, Kanadia Road, MP. Call +91 88155 53899 or email charteredgesolution@gmail.com. Mon\u2013Sat 9:30 AM\u20136:30 PM.",
       },
       {
         name: "keywords",
         content:
-          "contact Chartered Solution Indore, business registration Indore, GST help Indore, Kanadia Road Indore consultancy",
+          "contact Chartered Solution, business registration, GST help, Kanadia Road consultancy",
       },
-      { property: "og:title", content: "Contact Us | Chartered Solution \u2014 Indore Office" },
+      { property: "og:title", content: "Contact Us | Chartered Solution Office" },
       {
         property: "og:description",
         content:
-          "Visit us at 152, Sanchar Nagar Ext., Goyal Nagar, Kanadia Road, Indore, MP 452016. Call +91 88155 53899.",
+          "Visit us at 152, Sanchar Nagar Ext., Goyal Nagar, Kanadia Road, MP 452016. Call +91 88155 53899.",
       },
       { property: "og:url", content: "https://www.charteredsolution.com/contact-us" },
       { property: "og:image", content: "https://www.charteredsolution.com/Charted.jpeg" },
@@ -93,19 +93,19 @@ export const Route = createFileRoute("/contact-us")({
       { name: "twitter:card", content: "summary_large_image" },
       {
         name: "twitter:title",
-        content: "Contact Us | Chartered Solution \u2014 Indore Office",
+        content: "Contact Us | Chartered Solution Office",
       },
       {
         name: "twitter:description",
         content:
-          "Visit us at 152, Sanchar Nagar Ext., Goyal Nagar, Kanadia Road, Indore, MP 452016. Call +91 88155 53899.",
+          "Visit us at 152, Sanchar Nagar Ext., Goyal Nagar, Kanadia Road, MP 452016. Call +91 88155 53899.",
       },
       {
         name: "twitter:image",
         content: "https://www.charteredsolution.com/Charted.jpeg",
       },
       { name: "geo.position", content: "22.7262239;75.919035" },
-      { name: "geo.placename", content: "Indore, Madhya Pradesh" },
+      { name: "geo.placename", content: "Madhya Pradesh" },
       { name: "geo.region", content: "IN-MP" },
       { "script:ld+json": contactStructured },
     ],
@@ -334,7 +334,7 @@ function ContactUsPage() {
                         value={values.city}
                         onChange={update("city")}
                         className={`${inputBase} pl-10 ${errors.city ? "border-error focus:border-error focus:ring-error/10" : ""}`}
-                        placeholder="Indore, Madhya Pradesh"
+                        placeholder="Madhya Pradesh"
                       />
                       <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-primary scale-x-0 group-focus-within:scale-x-100 transition-transform duration-300 origin-left rounded-full" />
                     </div>
@@ -493,7 +493,7 @@ function ContactUsPage() {
                   <div>
                     <p className="text-[14px] font-semibold text-navy">Address</p>
                     <p className="text-[13px] text-steel leading-relaxed mt-0.5">
-                      152, Sanchar Nagar Ext., Goyal Nagar, Kanadia Road, Indore, Madhya Pradesh
+                      152, Sanchar Nagar Ext., Goyal Nagar, Kanadia Road, Madhya Pradesh
                       452016
                     </p>
                   </div>
@@ -552,7 +552,7 @@ function ContactUsPage() {
 
             <div className="overflow-hidden rounded-[14px] border border-border shadow-sm group">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3679.6802054222304!2d75.905432475098!3d22.737381828772134!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3962fd8a1b2b4b1b%3A0x9b8a5e5b7b2b4b1b!2sKanadia%20Rd%2C%20Indore%2C%20Madhya%20Pradesh!5e0!3m2!1sen!2sin!4v1"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3679.6802054222304!2d75.905432475098!3d22.737381828772134!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3962fd8a1b2b4b1b%3A0x9b8a5e5b7b2b4b1b!2sKanadia%20Rd%2C%20Madhya%20Pradesh!5e0!3m2!1sen!2sin!4v1"
                 width="100%"
                 height="360"
                 style={{ border: 0, borderRadius: 14 }}

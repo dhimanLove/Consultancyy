@@ -22,7 +22,7 @@ const serviceStructuredData = {
   "@graph": [
     {
       "@type": "ItemList",
-      name: "All Services at Chartered Solution, Indore",
+      name: "All Services at Chartered Solution",
       description: `${SERVICES.length} business registration, compliance, and financial services across ${SERVICE_CATEGORIES.length} categories.`,
       itemListElement: SERVICES.map((s, i) => ({
         "@type": "ListItem",
@@ -56,24 +56,24 @@ export const Route = createFileRoute("/services/")({
   head: () => ({
     meta: [
       {
-        title: `All ${SERVICES.length} Services | Business Registration, GST, FSSAI, MSME | Chartered Solution Indore`,
+        title: `All ${SERVICES.length} Services | Business Registration, GST, FSSAI, MSME | Chartered Solution`,
       },
       {
         name: "description",
-        content: `Full list of ${SERVICES.length} services by Chartered Solution in Indore: business registration, GST registration & filing, ITR filing, FSSAI license, MSME/Udyam, IEC, startup India registration, ISO certification, medical device & cosmetics regulatory, solar, e-commerce, ROC compliance, and more across ${SERVICE_CATEGORIES.length} categories.`,
+        content: `Full list of ${SERVICES.length} services by Chartered Solution: business registration, GST registration & filing, ITR filing, FSSAI license, MSME/Udyam, IEC, startup India registration, ISO certification, medical device & cosmetics regulatory, solar, e-commerce, ROC compliance, and more across ${SERVICE_CATEGORIES.length} categories.`,
       },
       {
         name: "keywords",
         content:
-          "GST registration Indore, ITR filing Indore, FSSAI license Indore, MSME registration Indore, IEC code Indore, ISO certification Indore, medical device registration Indore, cosmetics registration Indore, business registration Indore, compliance services Indore",
+          "GST registration, ITR filing, FSSAI license, MSME registration, IEC code, ISO certification, medical device registration, cosmetics registration, business registration, compliance services",
       },
       {
         property: "og:title",
-        content: `${SERVICES.length} Business, Regulatory & Compliance Services | Chartered Solution Indore`,
+        content: `${SERVICES.length} Business, Regulatory & Compliance Services | Chartered Solution`,
       },
       {
         property: "og:description",
-        content: `Complete list of ${SERVICES.length} services including business registration, GST, ITR, FSSAI, MSME, IEC, ISO, medical device, cosmetics, solar, e-commerce, certificates, ROC compliance, and more in Indore.`,
+        content: `Complete list of ${SERVICES.length} services including business registration, GST, ITR, FSSAI, MSME, IEC, ISO, medical device, cosmetics, solar, e-commerce, certificates, ROC compliance, and more.`,
       },
       { property: "og:url", content: "https://www.charteredsolution.com/services" },
       { property: "og:image", content: "https://www.charteredsolution.com/Charted.jpeg" },
@@ -83,18 +83,18 @@ export const Route = createFileRoute("/services/")({
       { name: "twitter:card", content: "summary_large_image" },
       {
         name: "twitter:title",
-        content: `${SERVICES.length} Business, Regulatory & Compliance Services | Chartered Solution Indore`,
+        content: `${SERVICES.length} Business, Regulatory & Compliance Services | Chartered Solution`,
       },
       {
         name: "twitter:description",
-        content: `Complete list of ${SERVICES.length} services including business registration, GST, ITR, FSSAI, MSME, IEC, ISO, medical device, cosmetics, solar, e-commerce, certificates, ROC compliance, and more in Indore.`,
+        content: `Complete list of ${SERVICES.length} services including business registration, GST, ITR, FSSAI, MSME, IEC, ISO, medical device, cosmetics, solar, e-commerce, certificates, ROC compliance, and more.`,
       },
       {
         name: "twitter:image",
         content: "https://www.charteredsolution.com/Charted.jpeg",
       },
       { name: "geo.position", content: "22.7262239;75.919035" },
-      { name: "geo.placename", content: "Indore, Madhya Pradesh" },
+      { name: "geo.placename", content: "Madhya Pradesh" },
       { name: "geo.region", content: "IN-MP" },
       { "script:ld+json": serviceStructuredData },
     ],
@@ -156,7 +156,7 @@ function ServicesPage() {
       <PageHeader
         crumbs={[{ label: "Home", to: "/" }, { label: "Services" }]}
         title={`${SERVICES.length} registration and compliance services for your business.`}
-        subtext={`Chartered Solution in Indore offers end-to-end business registration, licensing, tax, regulatory, and compliance services across ${SERVICE_CATEGORIES.length} categories. From company incorporation to ISO, solar, and e-commerce - we handle it all.`}
+        subtext={`Chartered Solution offers end-to-end business registration, licensing, tax, regulatory, and compliance services across ${SERVICE_CATEGORIES.length} categories. From company incorporation to ISO, solar, and e-commerce - we handle it all.`}
       />
 
       <section className="bg-white py-20">
@@ -203,7 +203,7 @@ function ServicesPage() {
             Need help choosing the right service?
           </h2>
           <p className="text-[15px] text-white/60 mt-3 max-w-[480px] mx-auto">
-            Our team in Indore will guide you through the process. Call us at +91 88155 53899.
+            Our team will guide you through the process. Call us at +91 88155 53899.
           </p>
           <div className="mt-8">
             <EmberButton to="/contact-us">
