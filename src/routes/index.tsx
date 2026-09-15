@@ -491,7 +491,7 @@ function Index() {
     <m.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
       {/* ===== HERO ===== */}
       <section ref={heroRef} className="bg-white text-navy relative overflow-hidden">
-        <div className="container-page relative z-10 grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-16 lg:gap-24 items-center py-20 md:py-28">
+        <div className="container-page relative z-10 grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-16 lg:gap-24 items-center pt-4 md:pt-8 pb-20 md:pb-28">
           <m.div
             style={{ y: heroY }}
             variants={containerVariants}
