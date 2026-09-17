@@ -84,7 +84,7 @@ export function Navbar() {
   return (
     <nav className="sticky top-0 z-[60] w-full">
       {/* Top Utility Bar */}
-      <div className="hidden md:flex bg-navy border-b border-white/10 items-center justify-between h-9 px-4 lg:px-8 text-[12px] text-white/70">
+      <div className="hidden md:flex bg-navy items-center justify-between h-9 px-4 lg:px-8 text-[12px] text-white/70">
         <div className="flex items-center gap-4 lg:gap-6 font-medium min-w-0">
           <a href={PHONE_HREF} className="flex items-center gap-1.5 hover:text-white">
             <KoboyoIcon name="phone" className="w-3.5 h-3.5 text-primary-light" /> {PHONE}
@@ -103,7 +103,7 @@ export function Navbar() {
 
       {/* Main Navbar */}
       <div
-        className={`transition-all duration-300 border-b ${scrolled && !mobileOpen ? "bg-white/95 backdrop-blur-md shadow-sm border-slate-200" : "bg-white border-transparent"}`}
+        className={`transition-all duration-300 ${scrolled && !mobileOpen ? "bg-white/95 backdrop-blur-md" : "bg-white"}`}
       >
         <div className="container-page !max-w-[1440px] flex items-center justify-between gap-4 h-16 md:h-[72px] px-4 lg:px-8">
           {/* Logo */}
@@ -128,10 +128,6 @@ export function Navbar() {
 
           {/* Desktop Nav */}
           <div className="hidden xl:flex items-center h-full gap-1 whitespace-nowrap min-w-0">
-            <NavLink to="/" active={pathname === "/"}>
-              Home
-            </NavLink>
-
             <Dropdown
               id="services"
               title="Business Services"
@@ -342,7 +338,7 @@ export function Navbar() {
             aria-modal="true"
             className="xl:hidden fixed inset-0 z-[70] flex flex-col bg-white"
           >
-            <div className="flex items-center justify-between gap-4 border-b border-slate-200 px-4 py-3">
+            <div className="flex items-center justify-between gap-4 px-4 py-3">
               <Link to="/" onClick={closeMenu} className="flex items-center gap-3 group shrink-0">
                 <img
                   src={logoImg}
@@ -370,9 +366,6 @@ export function Navbar() {
               </button>
             </div>
             <div className="flex-1 overflow-y-auto p-4 space-y-1 pb-[calc(1rem+env(safe-area-inset-bottom))]">
-              <MobileLink to="/" onClick={closeMenu}>
-                Home
-              </MobileLink>
               <MobileLink to="/services" onClick={closeMenu}>
                 Business Services
               </MobileLink>
@@ -403,34 +396,6 @@ export function Navbar() {
 }
 
 // --- Layout & Nav Components ---
-
-function NavLink({
-  to,
-  active,
-  children,
-}: {
-  to: string;
-  active: boolean;
-  children: React.ReactNode;
-}) {
-  return (
-    <Link
-      to={to}
-      className={`relative flex items-center px-3.5 text-[13px] font-bold tracking-wide h-full transition-colors whitespace-nowrap ${
-        active ? "text-primary" : "text-navy hover:text-primary"
-      }`}
-    >
-      {active && (
-        <m.div
-          layoutId="nav-active-pill"
-          className="absolute inset-y-2 left-1 right-1 rounded-full bg-primary/[0.08]"
-          transition={{ type: "spring", stiffness: 500, damping: 30 }}
-        />
-      )}
-      <span className="relative z-10">{children}</span>
-    </Link>
-  );
-}
 
 function Dropdown({
   id,
@@ -465,17 +430,14 @@ function Dropdown({
       onMouseLeave={() => setOpenId(null)}
     >
       <button
-        className={`relative flex items-center gap-1 px-3.5 text-[13px] font-bold tracking-wide h-full transition-colors whitespace-nowrap ${
+        className={`group relative flex items-center gap-1 px-3.5 text-[13px] font-bold tracking-wide h-full transition-colors whitespace-nowrap ${
           isOpen || active ? "text-primary" : "text-navy hover:text-primary"
         }`}
       >
-        {(isOpen || active) && (
-          <m.div
-            layoutId="nav-active-pill"
-            className="absolute inset-y-2 left-1 right-1 rounded-full bg-primary/[0.08]"
-            transition={{ type: "spring", stiffness: 500, damping: 30 }}
-          />
-        )}
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute bottom-1.5 left-3.5 right-3.5 h-0.5 origin-left scale-x-0 rounded-full bg-primary transition-transform duration-200 ease-out group-hover:scale-x-100"
+        />
         <span className="relative z-10 flex items-center gap-1">
           {title}{" "}
           <KoboyoIcon

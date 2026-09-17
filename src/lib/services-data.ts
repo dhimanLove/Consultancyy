@@ -3292,12 +3292,97 @@ const _SERVICES: Service[] = [
     category: "accounting",
     order: 20,
   },
+
+  // ™️ Intellectual Property & Trademark Services
+  {
+    slug: "trademark-search",
+    title: "Trademark Search & Availability",
+    descriptor: "Search, classify, and assess your brand before filing a trademark application.",
+    summary:
+      "We conduct a practical trademark search across relevant classes, review similar marks, and help you choose a filing strategy that reduces avoidable objections.",
+    scope: [
+      "Wordmark and phonetic similarity search",
+      "Relevant Nice class identification",
+      "Conflict and objection risk review",
+      "Search report with filing recommendation",
+    ],
+    related: ["trademark-registration", "trademark-objection-reply", "copyright-registration"],
+    category: "intellectual-property",
+    order: 1,
+  },
+  {
+    slug: "trademark-registration",
+    title: "Trademark Registration",
+    descriptor: "Protect your brand name, logo, and identity with an India trademark filing.",
+    summary:
+      "End-to-end trademark registration support for businesses, founders, and product brands - from class selection and application filing to status tracking.",
+    scope: [
+      "Trademark class and ownership guidance",
+      "TM-A application preparation and filing",
+      "Brand name / logo documentation",
+      "Application status tracking",
+      "Hearing and examination support where required",
+    ],
+    related: ["trademark-search", "trademark-objection-reply", "copyright-registration"],
+    category: "intellectual-property",
+    order: 2,
+  },
+  {
+    slug: "trademark-objection-reply",
+    title: "Trademark Objection & Opposition",
+    descriptor:
+      "Professional response support for examination reports, objections, and oppositions.",
+    summary:
+      "We review the examiner's report or opposition notice, prepare the response and supporting documents, and coordinate the next steps for your mark.",
+    scope: [
+      "Examination report review",
+      "Reply drafting and evidence preparation",
+      "Hearing preparation and representation support",
+      "Opposition / counter-statement coordination",
+    ],
+    related: ["trademark-registration", "trademark-search", "copyright-registration"],
+    category: "intellectual-property",
+    order: 3,
+  },
+  {
+    slug: "copyright-registration",
+    title: "Copyright Registration",
+    descriptor: "Register original software, content, artwork, and creative work in India.",
+    summary:
+      "Copyright registration support for original creative and digital works, including application preparation, document collation, and status follow-up.",
+    scope: [
+      "Work classification and ownership review",
+      "Application and statement of particulars",
+      "Author / owner documentation",
+      "Diary number and status tracking",
+    ],
+    related: ["trademark-registration", "trademark-search", "design-registration"],
+    category: "intellectual-property",
+    order: 4,
+  },
+  {
+    slug: "design-registration",
+    title: "Design Registration",
+    descriptor: "Protect the visual design and appearance of your product.",
+    summary:
+      "Design registration assistance for product shape, configuration, pattern, or ornamentation, including representation preparation and filing support.",
+    scope: [
+      "Design eligibility assessment",
+      "Locarno class guidance",
+      "Representation and document preparation",
+      "Application filing and follow-up",
+    ],
+    related: ["trademark-registration", "copyright-registration", "trademark-search"],
+    category: "intellectual-property",
+    order: 5,
+  },
 ];
 
 export const SERVICE_CATEGORIES: { id: string; name: string; icon: string }[] = [
   { id: "business-registration", name: "Company & Business Registration", icon: "building" },
   { id: "registration", name: "Registrations & Licenses", icon: "file-text" },
   { id: "accounting", name: "Accounting & Bookkeeping", icon: "book-open" },
+  { id: "intellectual-property", name: "IP & Trademark Services", icon: "badge-check" },
   { id: "income-tax", name: "Income Tax", icon: "landmark" },
   { id: "gst", name: "GST Services", icon: "receipt" },
   { id: "audit", name: "Audit & Assurance", icon: "search-check" },
@@ -3497,6 +3582,11 @@ const CATEGORY_IMAGE_POOL: Record<string, string[]> = {
     "https://images.unsplash.com/photo-1547658719-da2b51169166?w=400&h=280&fit=crop",
     "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=400&h=280&fit=crop",
   ],
+  "intellectual-property": [
+    "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=400&h=280&fit=crop",
+    "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=400&h=280&fit=crop",
+    "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=400&h=280&fit=crop",
+  ],
 };
 
 export const getServiceImage = (slug: string): string => {
@@ -3523,6 +3613,11 @@ export const SERVICE_ICONS: Record<string, string> = {
   "pf-return": "FileText",
   "esic-return": "ScrollText",
   "eor-india": "Users",
+  "trademark-search": "Search",
+  "trademark-registration": "BadgeCheck",
+  "trademark-objection-reply": "FileCheck",
+  "copyright-registration": "FileText",
+  "design-registration": "Palette",
   "itr-filing": "FileText",
   "tax-planning": "TrendingUp",
   "tax-audit": "SearchCheck",

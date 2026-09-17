@@ -137,6 +137,47 @@ const CATEGORY_DEFAULTS: Record<string, Omit<ServiceDetail, "faqs"> & { faqs?: S
     timeline:
       "Ongoing service; first reports typically within 15 days of onboarding. Migrations: 2–4 weeks.",
   },
+  "intellectual-property": {
+    whoNeeds: [
+      "Founders launching a new business, product, or brand",
+      "Businesses protecting names, logos, packaging, and creative assets",
+      "Manufacturers and D2C brands preparing for marketplace growth",
+      "Companies responding to trademark examination reports or oppositions",
+    ],
+    eligibility: [
+      "Individuals, proprietorships, partnerships, LLPs, companies, and other applicants",
+      "An original or distinctive mark / work capable of protection",
+      "Clear ownership and applicant details",
+    ],
+    documents: [
+      "Applicant PAN and identity / address proof",
+      "Business incorporation or registration proof (if applicable)",
+      "Brand name, logo, or creative work files",
+      "User affidavit / proof of prior use (if claiming prior use)",
+      "Authorisation and power of attorney where required",
+    ],
+    process: [
+      { title: "IP review", detail: "Understand the asset, ownership, and protection goal." },
+      {
+        title: "Search & classification",
+        detail: "Check conflicts and identify the correct class or category.",
+      },
+      {
+        title: "Application",
+        detail: "Prepare and file the application with the relevant IP office.",
+      },
+      {
+        title: "Tracking & response",
+        detail: "Monitor status and support examination, hearing, or objection responses.",
+      },
+    ],
+    govFee:
+      "Government fees depend on the applicant type, mark / work category, number of classes, and filing type. We confirm the current official fee before filing.",
+    professionalFee:
+      "Trademark search, registration, objection, copyright, and design fees are quoted separately by scope with a clear payment schedule.",
+    timeline:
+      "Search: 1–3 working days. Filing: 2–5 working days after documents are ready. Registry examination and registration timelines vary by case.",
+  },
   "income-tax": {
     whoNeeds: [
       "Individuals and businesses required to file income tax returns",

@@ -376,6 +376,8 @@ const FAQS = [
 
 const HEAD_CATEGORIES = [
   { id: "business-registration", label: "Business Registration" },
+  { id: "accounting", label: "Accounting & Payroll" },
+  { id: "intellectual-property", label: "IP & Trademark" },
   { id: "gst", label: "GST Services" },
   { id: "income-tax", label: "Income Tax" },
   { id: "food", label: "Food & FSSAI" },

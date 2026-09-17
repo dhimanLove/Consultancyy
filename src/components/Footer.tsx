@@ -1,6 +1,5 @@
-import { memo, useState, type ComponentProps, type ReactNode } from "react";
+import { memo, type ComponentProps, type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
-import { AnimatePresence, m, useScroll, useMotionValueEvent } from "framer-motion";
 import { KoboyoIcon } from "./KoboyoIcon";
 import { WhatsAppIcon } from "./WhatsAppIcon";
 import { GoogleReviewsFooter } from "./GoogleReviews";
@@ -25,13 +24,6 @@ const COMPLIANCE_SERVICES = [
 ];
 
 export const Footer = memo(function Footer() {
-  const [showTopBtn, setShowTopBtn] = useState(false);
-  const { scrollY } = useScroll();
-
-  // Highly optimized scroll listener (prevents unnecessary re-renders)
-  useMotionValueEvent(scrollY, "change", (y) => setShowTopBtn(y > 500));
-
-  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
   const year = new Date().getFullYear();
 
   return (
@@ -119,21 +111,6 @@ export const Footer = memo(function Footer() {
         </div>
       </div>
 
-      {/* Animated Scroll to Top */}
-      <AnimatePresence>
-        {showTopBtn && (
-          <m.button
-            initial={{ opacity: 0, y: 20, scale: 0.9 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 20, scale: 0.9 }}
-            onClick={scrollToTop}
-            className="fixed bottom-24 right-6 z-50 flex h-11 w-11 items-center justify-center rounded-full bg-warm text-navy-dark shadow-lg shadow-warm/30 transition-colors hover:bg-warm-dark active:scale-90"
-            aria-label="Scroll to top"
-          >
-            <KoboyoIcon name="rocket" className="h-5 w-5" />
-          </m.button>
-        )}
-      </AnimatePresence>
     </footer>
   );
 });
