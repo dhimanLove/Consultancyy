@@ -436,8 +436,8 @@ function ServiceDetailPage() {
               Need {service.title}?
             </m.h3>
             <m.p variants={sidebarItem} className="text-[14px] text-steel mt-3 leading-relaxed">
-              Our team at Chartered Solution is here to help. Get in touch for a
-              personalised consultation.
+              Our team at Chartered Solution is here to help. Get in touch for a personalised
+              consultation.
             </m.p>
             <m.div variants={sidebarItem} className="mt-6 space-y-4 border-t border-border/50 pt-6">
               <div className="flex items-start gap-3">
@@ -469,10 +469,10 @@ function ServiceDetailPage() {
                     Email
                   </span>
                   <a
-                    href="mailto:charteredgesolution@gmail.com"
+                    href="mailto:Info@charteredsolution.com"
                     className="block text-[15px] text-navy font-medium mt-0.5 hover:text-warm transition-colors break-all"
                   >
-                    charteredgesolution@gmail.com
+                    Info@charteredsolution.com
                   </a>
                 </div>
               </div>

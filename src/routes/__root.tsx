@@ -38,7 +38,7 @@ const rootStructuredData = {
       image: "https://www.charteredsolution.com/Charted.jpeg",
       logo: "https://www.charteredsolution.com/Charted.jpeg",
       telephone: "+91-88155-53899",
-      email: "charteredgesolution@gmail.com",
+      email: "Info@charteredsolution.com",
       priceRange: "₹₹",
       sameAs: ["https://wa.me/918815553899", "https://www.charteredsolution.com"],
       address: {

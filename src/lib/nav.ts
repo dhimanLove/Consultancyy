@@ -20,7 +20,7 @@ export const PHONE = "+91 88155 53899";
 export const PHONE_HREF = "tel:+918815553899";
 export const WHATSAPP_HREF = "https://wa.me/918815553899";
 export const WHATSAPP_DISPLAY = "+91 88155 53899";
-export const EMAIL = "charteredgesolution@gmail.com";
+export const EMAIL = "Info@charteredsolution.com";
 export const ADDRESS =
   "152, Sanchar Nagar Extension, Goyal Nagar, Kanadia Road, Madhya Pradesh 452016, India";
 

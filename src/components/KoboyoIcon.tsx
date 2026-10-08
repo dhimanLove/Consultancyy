@@ -47,6 +47,7 @@ const ICON_PATHS: Record<string, string> = {
     "M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zm14 10v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75",
   scale: "M12 3v18M3 7l3-4 6 4 6-4 3 4M3 7v6a3 3 0 003 3m12-9v6a3 3 0 01-3 3",
   warehouse: "M3 21V8l9-5 9 5v13M9 21v-6h6v6M3 11h18",
+  package: "M12 2l9 5v10l-9 5-9-5V7l9-5zm0 0v10m9-5l-9 5m0 0L3 7m4-2 9 5m-9 5 9 5",
   factory: "M2 20h20M5 20V8l5-4v16M10 20V4l5 4v12M15 20V10l5 4v6",
   truck:
     "M1 3h15v13H1V3zm15 5h4l3 3v5h-7V8zM6 21a2 2 0 100-4 2 2 0 000 4zm12 0a2 2 0 100-4 2 2 0 000 4z",
@@ -80,6 +81,7 @@ const ICON_PATHS: Record<string, string> = {
   filter: "M22 3H2l8 9.46V19l4 2v-8.54L22 3z",
   dollarSign: "M12 2v20m5-17a5 5 0 010 7m-5-7a5 5 0 000 7",
   shoppingBag: "M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0",
+  utensilsCrossed: "M4 3l17 17M14 4l-3 3m-2 2-6 6m8-1 6-6M3 21l6-6m6-9 2-2m-3 9 4 4m-6-6-3-3",
   barcode: "M3 5v14M7 5v14M11 5v14M15 5v14M19 5v14M23 5v14M1 5v14",
   flaskConical: "M9 3h6M10 3v7.4L4 18a2 2 0 001.7 3h12.6A2 2 0 0020 18l-6-7.6V3",
   heartPulse:

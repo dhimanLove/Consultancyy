@@ -47,7 +47,7 @@ const structuredData = {
         "@type": "ContactPoint",
         telephone: "+91-88155-53899",
         contactType: "customer service",
-        email: "charteredgesolution@gmail.com",
+        email: "Info@charteredsolution.com",
         availableLanguage: ["Hindi", "English"],
       },
       founder: { "@type": "Person", name: "Jitendra Malviya", jobTitle: "Founder & CEO" },
@@ -60,7 +60,7 @@ const structuredData = {
       name: "Chartered Solution",
       url: "https://www.charteredsolution.com",
       telephone: "+91-88155-53899",
-      email: "charteredgesolution@gmail.com",
+      email: "Info@charteredsolution.com",
       priceRange: "\u20b9",
       address: {
         "@type": "PostalAddress",
@@ -500,13 +500,6 @@ function Index() {
             initial="hidden"
             animate="visible"
           >
-            <m.span
-              variants={itemVariants}
-              className="inline-flex items-center gap-2.5 text-[11px] font-bold tracking-[0.22em] uppercase text-warm-dark"
-            >
-              <span className="w-8 h-[2px] bg-navy" />
-              Chartered Solution &middot; Business, Regulatory &amp; Digital Growth
-            </m.span>
             <m.h1
               variants={itemVariants}
               className="mt-6 font-display text-[36px] md:text-[52px] font-black leading-[1.1] tracking-tight text-navy"
@@ -541,7 +534,10 @@ function Index() {
                 </m.li>
               ))}
             </m.ul>
-            <m.div variants={itemVariants} className="mt-11 flex flex-wrap items-center gap-4">
+            <m.div
+              variants={itemVariants}
+              className="mt-11 flex flex-wrap items-center gap-x-36 gap-y-5"
+            >
               <a
                 href={PHONE_HREF}
                 className="inline-flex items-center gap-2 bg-navy text-white font-bold text-[14px] rounded-[8px] px-7 py-3.5 shadow-lg shadow-navy/25 hover:bg-navy-light hover:shadow-navy/35 active:scale-[0.98] transition-all"
@@ -1149,7 +1145,7 @@ function Index() {
             >
               <m.div variants={itemVariants}>
                 <div className="flex items-center justify-center gap-1 text-warm mb-2">
-                    {Array.from({ length: 5 }).map((_, i) => (
+                  {Array.from({ length: 5 }).map((_, i) => (
                     <m.span
                       key={i}
                       initial={{ opacity: 0, scale: 0, rotate: -40 }}

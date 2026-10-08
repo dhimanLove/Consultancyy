@@ -72,7 +72,7 @@ export const Route = createFileRoute("/contact-us")({
       {
         name: "description",
         content:
-          "Contact Chartered Solution at 152, Sanchar Nagar Ext., Goyal Nagar, Kanadia Road, MP. Call +91 88155 53899 or email charteredgesolution@gmail.com. Mon\u2013Sat 9:30 AM\u20136:30 PM.",
+          "Contact Chartered Solution at 152, Sanchar Nagar Ext., Goyal Nagar, Kanadia Road, MP. Call +91 88155 53899 or email Info@charteredsolution.com. Mon\u2013Sat 9:30 AM\u20136:30 PM.",
       },
       {
         name: "keywords",
@@ -525,10 +525,10 @@ function ContactUsPage() {
                   <div>
                     <p className="text-[14px] font-semibold text-navy">Email</p>
                     <a
-                      href="mailto:charteredgesolution@gmail.com"
+                      href="mailto:Info@charteredsolution.com"
                       className="text-[13px] text-steel hover:text-primary transition-colors mt-0.5 block"
                     >
-                      charteredgesolution@gmail.com
+                      Info@charteredsolution.com
                     </a>
                   </div>
                 </m.div>

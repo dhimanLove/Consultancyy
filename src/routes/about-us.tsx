@@ -39,7 +39,7 @@ const faqData = [
   {
     question: "How can I contact Chartered Solution?",
     answer:
-      "You can call or WhatsApp us at +91 88155 53899, email us at charteredgesolution@gmail.com, or visit our office at Kanadia Road. We are available Mon\u2013Sat 9:30 AM to 6:30 PM.",
+      "You can call or WhatsApp us at +91 88155 53899, email us at Info@charteredsolution.com, or visit our office at Kanadia Road. We are available Mon\u2013Sat 9:30 AM to 6:30 PM.",
   },
   {
     question: "Does Chartered Solution offer GST registration?",
@@ -257,7 +257,7 @@ function AboutUsPage() {
                 <Phone className="w-3.5 h-3.5 text-primary" /> +91 88155 53899
               </a>
               <a
-                href="mailto:charteredgesolution@gmail.com"
+                href="mailto:Info@charteredsolution.com"
                 className="inline-flex items-center gap-1.5 bg-white border border-border rounded-full px-4 py-1.5 hover:text-primary hover:border-primary/40 transition-colors"
               >
                 <Mail className="w-3.5 h-3.5 text-primary" /> Email
