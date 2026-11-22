@@ -4,6 +4,7 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
@@ -83,7 +84,7 @@ function NotFoundComponent() {
   );
 }
 
-function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
+function ErrorComponent({ error, reset }: { error: unknown; reset: () => void }) {
   console.error(error);
   const router = useRouter();
 
@@ -211,16 +212,25 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const isAdminRoute = useRouterState({
+    select: (state) => state.location.pathname.startsWith("/admin"),
+  });
 
   return (
     <QueryClientProvider client={queryClient}>
       <LazyMotion features={loadMotionFeatures} strict>
-        <Navbar />
-        <main>
+        {isAdminRoute ? (
           <Outlet />
-        </main>
-        <Footer />
-        <WhatsAppFAB />
+        ) : (
+          <>
+            <Navbar />
+            <main>
+              <Outlet />
+            </main>
+            <Footer />
+            <WhatsAppFAB />
+          </>
+        )}
       </LazyMotion>
     </QueryClientProvider>
   );
